@@ -1,0 +1,14 @@
+/* 
+ * This css will include all web-app-theme css you need
+ *
+ *= require web-app-theme/base
+ *= require web-app-theme/themes/default/style.css
+ *= require_self
+ */
+
+/* Write here your css for overriding the theme's rules */
+
+.flash .alert {
+  border: 1px solid #e0d300;
+  background-color: #ffffcc;
+}
