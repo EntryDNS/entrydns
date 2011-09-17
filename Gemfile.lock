@@ -98,6 +98,7 @@ GEM
     multi_json (1.0.3)
     nokogiri (1.5.0)
     orm_adapter (0.0.5)
+    pg (0.11.0)
     pjax-rails (0.1.4)
       jquery-rails
     polyglot (0.3.2)
@@ -187,6 +188,7 @@ DEPENDENCIES
   devise (~> 1.4.5)
   factory_girl_rails (~> 1.2)
   jquery-rails
+  pg
   pjax-rails (~> 0.1.4)
   rails (= 3.1.0)
   rspec-rails (~> 2.6.1)

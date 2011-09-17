@@ -5,7 +5,14 @@ gem 'rails', '3.1.0'
 # Bundle edge Rails instead:
 # gem 'rails',     :git => 'git://github.com/rails/rails.git'
 
-gem 'sqlite3'
+group :development do
+  gem 'sqlite3'
+end
+
+group :production do
+  gem 'pg'
+end
+
 gem 'devise', '~> 1.4.5'
 #gem 'cancan', '~> 1.6.5'
 #gem "meta_where", "~> 1.0" # squeel ?
