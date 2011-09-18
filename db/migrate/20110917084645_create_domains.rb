@@ -2,11 +2,11 @@ class CreateDomains < ActiveRecord::Migration
   def change
     create_table :domains do |t|
       t.string :name, :limit => 255, :null => false
-      t.string :master, :limit => 128
-      t.integer :last_check, :limit => 50
+      t.string :master, :limit => 128, :default => nil
+      t.integer :last_check, :limit => 50, :default => nil
       t.string :type, :limit => 6, :null => false
-      t.integer :notified_serial
-      t.string :account, :limit => 40
+      t.integer :notified_serial, :default => nil
+      t.string :account, :limit => 40, :default => nil
 
       t.timestamps
     end
