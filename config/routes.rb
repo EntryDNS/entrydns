@@ -12,7 +12,9 @@ Simpledns::Application.routes.draw do
     as_routes
   end
   
-  root :to => lambda { |env| [200, {'Content-Type' => 'text/plain'}, ["Hello world!"]] }
+  get '/dashboard', :to => 'dashboard#index', :as => :dashboard
+  
+  root :to => 'home#index'
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

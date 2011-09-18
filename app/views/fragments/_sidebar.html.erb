@@ -3,6 +3,7 @@
   <div class="block">
     <h3>Menu</h3>
     <ul class="navigation">
+      <li><%= link_to 'Dashboard', dashboard_path, :data => {:pjax => '#main'} %></li>
       <li><%= link_to 'Domains', domains_path, :data => {:pjax => '#main'} %></li>
       <li><%= link_to 'Records', records_path, :data => {:pjax => '#main'} %></li>
       <li><%= link_to 'Supermasters', supermasters_path, :data => {:pjax => '#main'} %></li>
