@@ -1,6 +1,7 @@
 class DomainsController < ApplicationController
   active_scaffold :domain do |conf|
     conf.columns = [:name]
+    conf.actions.exclude :show
   end
   
   protected
