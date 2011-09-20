@@ -20,6 +20,8 @@ gem 'sentient_user', '~> 0.3.2'
 gem 'active_scaffold', '~> 3.1.0', :git => 'https://github.com/activescaffold/active_scaffold.git'
 gem 'web-app-theme', :git => "git://github.com/tscolari/web-app-theme.git", :branch => "v3.1.0"
 gem "pjax-rails", "~> 0.1.4"
+gem "rails_config", "~> 0.2.4"
+# gem "rails-settings-cached", :require => "rails-settings"
 
 # Gems used only for assets and not required
 # in production environments by default.
@@ -36,7 +38,7 @@ gem 'jquery-rails'
 
 group :test, :development do
   gem "rspec-rails", "~> 2.6.1"
-  gem 'capybara', '~> 1.1.1'
+  # gem 'capybara', '~> 1.1.1'
 end
 
 group :test do
