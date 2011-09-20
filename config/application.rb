@@ -46,11 +46,15 @@ module Simpledns
     config.assets.version = '1.0'
     
     config.to_prepare do
-      Devise::SessionsController.layout "devise"
-      Devise::RegistrationsController.layout proc{ |controller| user_signed_in? ? "application" : "devise" }
-      Devise::ConfirmationsController.layout "devise"
-      Devise::UnlocksController.layout "devise"            
-      Devise::PasswordsController.layout "devise"        
+      layout = proc{|controller| 
+        l = user_signed_in? ? "application" : "marketing" 
+        request.xhr? ? false : l 
+      }
+      Devise::SessionsController.layout layout
+      Devise::RegistrationsController.layout layout
+      Devise::ConfirmationsController.layout layout
+      Devise::UnlocksController.layout layout
+      Devise::PasswordsController.layout layout
     end
     
   end
