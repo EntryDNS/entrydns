@@ -1,0 +1,85 @@
+@import "compass/css3/gradient";
+@import "compass/css3/border-radius";
+@import "compass/css3/box-shadow";
+
+@mixin slick-black {
+    @include background(
+    image-url("marketing/action/slick-black.png"),
+    linear-gradient(top, rgba(50, 50, 50, 0.9) 0%, rgba(30, 30, 30, 0.9) 50%, rgba(20, 20, 20, 0.9) 50%, rgba(0, 0, 0, 0.9) 100%));
+    border: 0;
+    @include border-radius(4px);
+    @include box-shadow(inset 1px 1px 1px 0px rgba(135, 135, 135, 0.1), inset -1px -1px 1px 0px rgba(135, 135, 135, 0.1));
+    color: #fff;
+    line-height: 1;
+    padding: 8px 0;
+    text-shadow: 0px -1px 1px rgba(0, 0, 0, .8), 0 1px 1px rgba(255, 255, 255, 0.3);
+    
+    &:hover {
+        @include background(
+        image-url("marketing/action/slick-black-hover.png"),
+        linear-gradient(top, rgba(70, 70, 70, 0.9) 0%, rgba(50, 50, 50, 0.9) 50%, rgba(40, 40, 40, 0.9) 50%, rgba(20, 20, 20, 0.9) 100%));
+        cursor: pointer;
+    }
+    
+    &:active {
+        @include background(
+        image-url("marketing/action/slick-black-hover.png"),
+        linear-gradient(top, rgba(30, 30, 30, 0.9) 0%, rgba(20, 20, 20, 0.9) 50%, rgba(10, 10, 10, 0.9) 50%, rgba(0, 0, 0, 0.9) 100%));
+    }
+}
+
+.marketing .header-inner {
+    width: 77%;
+    margin: auto;
+    position: relative;
+}
+
+#main.marketing-main {
+    margin-left: auto;
+    margin-right: auto;
+    float: none;
+    
+    .block .content .marketing-inner {
+        padding: 0 30px 30px;
+        p {
+            line-height: 1em;
+            color: #555;
+        }
+    }
+    
+    .marketing-text {
+        padding-right: 20px;
+    }
+    .marketing-images {
+        padding-left: 20px;
+    }
+    
+    h1 {
+        text-transform: uppercase;
+        font-size: 34px;
+    }
+    
+    li {
+        font-size: 16px;
+    }
+    
+    .action {
+        padding: 0 20px 20px 20px;
+        button {
+            @include slick-black;
+            width: 300px;
+            height: 60px;
+            margin: auto;
+            display: block;
+            font-family: "MuseoSans500", helvetica, arial, sans-serif;
+            strong {
+                font-size: 18px;
+                font-weight: bold;
+            }
+            em {
+                font-size: 13px;
+                font-weight: normal;
+            }
+        }
+    }
+}

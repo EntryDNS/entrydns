@@ -6,13 +6,13 @@
     <%= javascript_include_tag "application" %>
     <%= csrf_meta_tag %>
   </head>
-  <body>
+  <body class="marketing">
 
     <div id="container">
       <%= render :partial => 'fragments/top' %>
       <div id="wrapper" class="wat-cf">
         <%= flash_display 'flash' %>
-        <div id="main" style="width: 100%;" data-pjax-container="true">
+        <div id="main" class="marketing-main" data-pjax-container="true">
           <%= yield %>
         </div>
       </div>

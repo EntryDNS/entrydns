@@ -8,3 +8,5 @@
 //= require jquery_ujs
 //= require pjax
 //= require active_scaffold
+//= require slides
+//= require_self

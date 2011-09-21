@@ -5,7 +5,9 @@
 *= require normalize
 *= require theme/base
 *= require web-app-theme/themes/default/style.css
+*= require marketing
 *= require active_scaffold
 *= require overrides
+*= require slides
 *= require_self
 */
