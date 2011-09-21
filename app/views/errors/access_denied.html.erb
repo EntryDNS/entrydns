@@ -1,0 +1,11 @@
+<div class="main_container">
+  <div class="sheet error-sheet">
+    <% if request.xhr? %>
+      <br />
+      <%= render(:partial => 'messages') %>
+      <br />
+    <% else %>
+      <%= link_to 'Back', :back %>
+    <% end %>
+  </div>
+</div>

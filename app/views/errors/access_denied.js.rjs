@@ -1,0 +1,5 @@
+if controller.class.uses_active_scaffold?
+  form_selector = "#{element_form_id(:action => params[:action])}"
+  page << "var action_link = ActiveScaffold.find_action_link('#{form_selector}');"
+  page << "action_link.update_flash_messages('#{escape_javascript(render(:partial => 'messages').strip)}');"
+end
