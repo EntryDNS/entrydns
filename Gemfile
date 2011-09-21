@@ -14,12 +14,12 @@ group :production do
 end
 
 gem 'devise', '~> 1.4.5'
-#gem 'cancan', '~> 1.6.5'
+gem 'cancan', '~> 1.6.5'
 #gem "meta_where", "~> 1.0" # squeel ?
 gem 'sentient_user', '~> 0.3.2'
 gem 'active_scaffold', '~> 3.1.0', :git => 'https://github.com/activescaffold/active_scaffold.git'
 gem 'web-app-theme', :git => "git://github.com/tscolari/web-app-theme.git", :branch => "v3.1.0"
-gem "pjax-rails", "~> 0.1.4"
+gem "pjax_rails", "~> 0.1.10"
 gem "rails_config", "~> 0.2.4"
 # gem "rails-settings-cached", :require => "rails-settings"
 
@@ -27,14 +27,14 @@ gem "rails_config", "~> 0.2.4"
 # in production environments by default.
 group :assets do
   gem 'sass-rails', "  ~> 3.1.0"
-  gem 'compass', "  ~> 0.11.5"
+  gem "compass", "~> 0.12.alpha.0"
   gem 'coffee-rails', "~> 3.1.0"
   gem 'uglifier'
   gem 'therubyracer'
 end
 
 gem 'jquery-rails'
-# gem 'foreigner'
+# gem 'foreigner' ?
 
 group :test, :development do
   gem "rspec-rails", "~> 2.6.1"

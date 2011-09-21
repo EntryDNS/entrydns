@@ -1,6 +1,7 @@
 class CreateDomains < ActiveRecord::Migration
   def change
     create_table :domains do |t|
+      t.references :user
       t.string :name, :limit => 255, :null => false
       t.string :master, :limit => 128, :default => nil
       t.integer :last_check, :limit => 50, :default => nil
