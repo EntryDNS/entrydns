@@ -1,8 +1,7 @@
 set :application, 'simpledns'
 set :domain, 'zooz.dyndns.org'
 set :repository,  "set your repository location here" # TODO: write me
-# set :repository,  "ssh://#{domain}/home/clyfe/dev/#{application}.git"
-set :repository,  "/home/clyfe/dev/#{application}.git"
+set :repository,  "ssh://#{domain}/home/clyfe/dev/#{application}.git"
 set :use_sudo, false
 set :deploy_to, '/srv/www/apps/entrydns'
 set :user, 'clyfe'
