@@ -1,0 +1,2 @@
+module NsHelper
+end

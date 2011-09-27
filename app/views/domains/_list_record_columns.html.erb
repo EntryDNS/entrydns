@@ -4,7 +4,12 @@
 
   <% if column.name == :records %>
     <td class="<%= column_class(column, column_value, record) %>" >
-      <% column_value = 'Manage Records (0)' if column_value == '-' %>
+      <% column_value = 'Manage All Records (0)' if column_value == '-' %>
+      <%= authorized ? render_list_column(column_value, column, record) : column_value %>
+    </td>
+  <% elsif column.name == :ns_records %>
+    <td class="<%= column_class(column, column_value, record) %>" >
+      <% column_value = 'Manage NS Records (0)' if column_value == '-' %>
       <%= authorized ? render_list_column(column_value, column, record) : column_value %>
     </td>
   <% else %>

@@ -296,7 +296,7 @@ button,
 input,
 select,
 textarea {
-	-webkit-appearance: none;
+	/* -webkit-appearance: none; wtf this hides content */
 	border-radius: 0;
 	vertical-align: baseline;
 	*vertical-align: middle;

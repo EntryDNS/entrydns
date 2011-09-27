@@ -5,15 +5,20 @@ Simpledns::Application.routes.draw do
   resources :domains do
     as_routes
   end
+
   resources :records do
     as_routes
   end
-  resources :supermasters do
+
+  resources :soas do
+    as_routes
+  end
+
+  resources :ns do
     as_routes
   end
   
   get '/dashboard', :to => 'dashboard#index', :as => :dashboard
-  
   root :to => 'home#index'
 
   # The priority is based upon order of creation:

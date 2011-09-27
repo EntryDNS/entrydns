@@ -1,32 +1,4 @@
-@import "compass/css3/gradient";
-@import "compass/css3/border-radius";
-@import "compass/css3/box-shadow";
-
-@mixin slick-black {
-    @include background(
-    image-url("marketing/action/slick-black.png"),
-    linear-gradient(top, rgba(50, 50, 50, 0.9) 0%, rgba(30, 30, 30, 0.9) 50%, rgba(20, 20, 20, 0.9) 50%, rgba(0, 0, 0, 0.9) 100%));
-    border: 0;
-    @include border-radius(4px);
-    @include box-shadow(inset 1px 1px 1px 0px rgba(135, 135, 135, 0.1), inset -1px -1px 1px 0px rgba(135, 135, 135, 0.1));
-    color: #fff;
-    line-height: 1;
-    padding: 8px 0;
-    text-shadow: 0px -1px 1px rgba(0, 0, 0, .8), 0 1px 1px rgba(255, 255, 255, 0.3);
-    
-    &:hover {
-        @include background(
-        image-url("marketing/action/slick-black-hover.png"),
-        linear-gradient(top, rgba(70, 70, 70, 0.9) 0%, rgba(50, 50, 50, 0.9) 50%, rgba(40, 40, 40, 0.9) 50%, rgba(20, 20, 20, 0.9) 100%));
-        cursor: pointer;
-    }
-    
-    &:active {
-        @include background(
-        image-url("marketing/action/slick-black-hover.png"),
-        linear-gradient(top, rgba(30, 30, 30, 0.9) 0%, rgba(20, 20, 20, 0.9) 50%, rgba(10, 10, 10, 0.9) 50%, rgba(0, 0, 0, 0.9) 100%));
-    }
-}
+@import "ui/buttons";
 
 .marketing .header-inner {
     width: 77%;
@@ -73,12 +45,18 @@
     
     .action {
         padding: 0 20px 20px 20px;
+        a {
+            display: block;
+            width: 350px;
+            margin: auto;
+        }
         button {
-            @include slick-black;
+            // @include slick-black;
+            @include cupid-green;
+            
             width: 300px;
             height: 60px;
             margin: auto;
-            display: block;
             font-family: "MuseoSans500", helvetica, arial, sans-serif;
             strong {
                 font-size: 18px;
