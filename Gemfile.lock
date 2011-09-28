@@ -13,7 +13,7 @@ GIT
 
 GIT
   remote: https://github.com/activescaffold/active_scaffold.git
-  revision: 5391f1f4ab8a71ca4c010107e970266bff5a09b1
+  revision: 09b1d2fa9cd2fdc7a576e213e07869b569977afe
   specs:
     active_scaffold (3.1.2)
       rails (~> 3.1.0)
@@ -110,6 +110,7 @@ GEM
       treetop (~> 1.4.8)
     mime-types (1.16)
     multi_json (1.0.3)
+    mysql2 (0.3.7)
     net-scp (1.0.4)
       net-ssh (>= 1.99.1)
     net-sftp (2.0.5)
@@ -122,7 +123,6 @@ GEM
       activesupport (>= 3.0.0)
     nokogiri (1.5.0)
     orm_adapter (0.0.5)
-    pg (0.11.0)
     pjax_rails (0.1.10)
       jquery-rails
     polyglot (0.3.2)
@@ -216,8 +216,8 @@ DEPENDENCIES
   devise (~> 1.4.5)
   factory_girl_rails (~> 1.2)
   jquery-rails
+  mysql2
   nilify_blanks (~> 1.0.0)
-  pg
   pjax_rails (~> 0.1.10)
   rails (= 3.1.0)
   rails_config (~> 0.2.4)

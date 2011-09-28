@@ -1,0 +1,9 @@
+server {
+    listen 80;
+    server_name domain.com;
+
+    location / {
+        root /var/www/apps/simpledns/current/public;
+        passenger_enabled on;
+    }
+}

@@ -10,7 +10,8 @@ group :development, :test do
 end
 
 group :production do
-  gem 'pg'
+  # gem 'pg'
+  gem 'mysql2'
 end
 
 gem 'devise', '~> 1.4.5'
