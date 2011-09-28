@@ -19,6 +19,8 @@ role :app, domain                   # This may be the same as your `Web` server
 role :db,  domain, :primary => true # This is where Rails migrations will run
 # role :db,  "your slave db-server here"
 
+after 'deploy:update_code', 'deploy:symlink_db'
+
 namespace :deploy do
   task :start, :roles => :app, :except => { :no_release => true } do
     run "touch #{current_release}/tmp/restart.txt"
@@ -31,5 +33,10 @@ namespace :deploy do
   desc "Restart Application"
   task :restart, :roles => :app, :except => { :no_release => true } do
     run "touch #{current_release}/tmp/restart.txt"
+  end
+  
+  desc "Symlinks the database.yml"
+  task :symlink_db, :roles => :app do
+    run "ln -nfs #{deploy_to}/shared/config/database.yml #{release_path}/config/database.yml"
   end
 end
