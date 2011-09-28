@@ -1,1 +1,11 @@
-Simple DNS
+## Simple DNS
+
+A DNS users frontend.
+
+## Tests
+
+Start Spork
+> spork rspec
+
+Run tests
+> rspec spec
