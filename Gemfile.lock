@@ -1,9 +1,8 @@
 GIT
   remote: git://github.com/tscolari/web-app-theme.git
-  revision: 07e87199fb37ebba1d0d49e77c5f1d91a619a7b1
-  branch: v3.1.0
+  revision: 813439b996f0cdd517456ef21271139eae5e892e
   specs:
-    web-app-theme (3.1.0)
+    web-app-theme (0.8.0)
       thor (~> 0.14)
 
 GIT
