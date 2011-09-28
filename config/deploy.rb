@@ -1,4 +1,5 @@
 require 'bundler/capistrano'
+load 'deploy/assets'
 
 set :application, 'simpledns'
 set :domain, 'zooz.dyndns.org'
@@ -20,6 +21,14 @@ role :db,  domain, :primary => true # This is where Rails migrations will run
 # role :db,  "your slave db-server here"
 
 after 'deploy:update_code', 'deploy:symlink_db'
+
+# TODO
+# chown -R clyfe:wwwdata /srv/www/apps/entrydns/current/public
+# find /srv/www/apps/entrydns/current/public -type d -exec chmod 0750 {} +
+# find /srv/www/apps/entrydns/current/public -type f -exec chmod 0640 {} +
+
+# TODO
+# precompile assets
 
 namespace :deploy do
   task :start, :roles => :app, :except => { :no_release => true } do
