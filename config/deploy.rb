@@ -2,15 +2,14 @@ require 'bundler/capistrano'
 
 set :application, 'simpledns'
 set :domain, 'zooz.dyndns.org'
-set :repository,  "set your repository location here" # TODO: write me
 set :repository,  "ssh://#{domain}/home/clyfe/dev/#{application}.git"
-set :use_sudo, false
 set :deploy_to, '/srv/www/apps/entrydns'
 set :user, 'clyfe'
+set :use_sudo, false
 set :scm, 'git'
-set :branch, "master"
-set :scm_verbose, true
-#set :deploy_via, :remote_cache/:export .. etc
+# set :branch, "master"
+# set :scm_verbose, true
+# set :deploy_via, :remote_cache/:export .. etc
 # set :git_enable_submodules, 1
 
 ssh_options[:forward_agent] = true # use local keys
