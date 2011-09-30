@@ -2,7 +2,7 @@ class Record < ActiveRecord::Base
   belongs_to :domain
   
   cattr_reader :types
-  @@types = ['SOA', 'NS', 'A', 'MX', 'TXT', 'CNAME']
+  @@types = %w(SOA NS A MX TXT CNAME)
   
   validates :domain_id, :name, :presence => true
   validates :type, :inclusion => {:in => @@types, :message => "Unknown record type"}

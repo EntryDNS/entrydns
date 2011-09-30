@@ -7,6 +7,7 @@ class Ability
     if user.persisted?
       can :manage, Domain, :user_id => user.id
       can :manage, Record, :domain => {:user_id => user.id}
+      cannot :delete, SOA
     end
 
     # The first argument to `can` is the action you are giving the user permission to do.
