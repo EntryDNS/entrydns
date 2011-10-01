@@ -24,7 +24,7 @@ class Record < ActiveRecord::Base
   def shortname; name.gsub(/\.?#{self.domain.name}$/, '') end
   def shortname=(value); self.name = value end
   
-  def to_label; content end
+  def to_label; "#{type} #{content}" end
   
   protected
 
