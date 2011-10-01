@@ -18,6 +18,9 @@ class SOA < Record
   before_validation :assemble_content
   before_update :update_serial
   after_initialize :disassemble_content
+  before_validation do
+    self.primary_ns ||= domain.ns_records.first.content
+  end
 
   # This allows us to have these convenience attributes act like any other
   # column in terms of validations

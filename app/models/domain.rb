@@ -33,19 +33,16 @@ class Domain < ActiveRecord::Base
     ns_records.build
     ns_records.build
     
-    soa = soa_record
     ns1, ns2 = ns_records
+    soa = soa_record
     
-    soa.domain = self
-    soa.contact ||= email
-    soa.ttl ||= Settings.default_ttl
-    
-    ns1.domain = self
     ns1.content = sample_ns.first
     ns1.ttl ||= Settings.default_ttl
     
-    ns2.domain = self
     ns2.content = sample_ns.second
     ns2.ttl ||= Settings.default_ttl
+    
+    soa.contact ||= email
+    soa.ttl ||= Settings.default_ttl
   end
 end
