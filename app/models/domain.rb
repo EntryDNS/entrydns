@@ -41,11 +41,11 @@ class Domain < ActiveRecord::Base
     soa.ttl ||= Settings.default_ttl
     
     ns1.domain = self
-    ns1.name = sample_ns.first
+    ns1.content = sample_ns.first
     ns1.ttl ||= Settings.default_ttl
     
     ns2.domain = self
-    ns2.name = sample_ns.second
+    ns2.content = sample_ns.second
     ns2.ttl ||= Settings.default_ttl
   end
 end

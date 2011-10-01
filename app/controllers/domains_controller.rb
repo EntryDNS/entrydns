@@ -15,6 +15,7 @@ class DomainsController < ApplicationController
   
   def do_new
     super
+    session[:sample_ns] = nil
     @record.setup(current_user.email, sample_ns)
   end
     

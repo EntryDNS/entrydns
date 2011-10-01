@@ -1,7 +1,9 @@
 class NsController < ApplicationController
   active_scaffold :ns do |conf|
     conf.columns = [:name, :content, :ttl]
-    conf.columns[:content].label = 'Hostname'
+    conf.create.columns = [:content, :ttl]
+    conf.update.columns = [:content, :ttl]
+    conf.columns[:content].label = 'NS'
     conf.actions.exclude :show
   end
   
