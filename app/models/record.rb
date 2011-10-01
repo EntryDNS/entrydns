@@ -4,10 +4,14 @@ class Record < ActiveRecord::Base
   cattr_reader :types
   @@types = %w(SOA NS A MX TXT CNAME)
   
-  validates :domain_id, :name, :presence => true
+  validates :domain, :name, :presence => true
   validates :type, :inclusion => {:in => @@types, :message => "Unknown record type"}
   # RFC 2181, 8
-  validates :ttl, :numericality => { :greater_than_or_equal_to => 0, :less_than => 2**31 }, :allow_blank => true
+  validates :ttl, :numericality => { 
+    # :greater_than_or_equal_to => 0, 
+    :greater_than_or_equal_to => Settings.min_ttl.to_i,
+    :less_than => 2**31 
+  }, :allow_blank => true
   
   before_validation :prepare_name!
   before_save :update_change_date

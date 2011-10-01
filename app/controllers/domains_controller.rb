@@ -12,9 +12,22 @@ class DomainsController < ApplicationController
   end
   
   protected
+  
+  def do_new
+    super
+    @record.setup(current_user.email, sample_ns)
+  end
     
   def before_create_save(record)
     record.type = 'NATIVE'
   end
-    
+
+  def after_create_save(record)
+    session[:sample_ns] = nil
+  end
+  
+  def sample_ns
+    session[:sample_ns] ||= Settings.ns.sample(2)
+  end
+      
 end

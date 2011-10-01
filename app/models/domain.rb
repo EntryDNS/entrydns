@@ -21,8 +21,31 @@ class Domain < ActiveRecord::Base
   validates :type, :inclusion => { :in => @@types, :message => "Unknown domain type" }
   validates :soa_record, :presence => {:unless => :slave?}
   validates_associated :soa_record, :allow_nil => true
-  validates :ns_records, :presence => true, :length => {:minimum => 2, :message => "must have be at least 2"}
+  validates :ns_records, :presence => true, :length => {
+    :minimum => 2, :maximum => 10,
+    :message => "must have be at least 2, at most 10"}
   validates_associated :records
   
   def slave?; self.type == 'SLAVE' end
+
+  def setup(email, sample_ns)
+    build_soa_record
+    ns_records.build
+    ns_records.build
+    
+    soa = soa_record
+    ns1, ns2 = ns_records
+    
+    soa.domain = self
+    soa.contact ||= email
+    soa.ttl ||= Settings.default_ttl
+    
+    ns1.domain = self
+    ns1.name = sample_ns.first
+    ns1.ttl ||= Settings.default_ttl
+    
+    ns2.domain = self
+    ns2.name = sample_ns.second
+    ns2.ttl ||= Settings.default_ttl
+  end
 end
