@@ -378,9 +378,9 @@ button.button[type] {
   line-height:17px; /* Safari */
 }
 
-*:first-child+html button.button[type] {
-  padding:4px 10px 3px 7px; /* IE7 */
-}
+/**:first-child+html button.button[type] {
+  padding:4px 10px 3px 7px;  IE7 
+}*/
 
 button.button img, a.button img {
   margin:0 3px -3px 0 !important;
