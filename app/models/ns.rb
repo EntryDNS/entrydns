@@ -20,10 +20,9 @@
 # Obtained from http://www.zytrax.com/books/dns/ch8/ns.html
 #
 class NS < Record
-  validates :content, :presence => true, :hostname => true
+  validates :content, :presence => true, :hostname => true, :inclusion => {:in => Settings.ns}
 
   def to_label; "#{content}" end
-  
 end
 
 Ns = NS

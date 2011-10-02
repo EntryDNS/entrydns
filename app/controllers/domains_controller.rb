@@ -5,7 +5,7 @@ class DomainsController < ApplicationController
     conf.list.columns = [:name, :soa_record, :ns_records, :records]
     conf.create.columns = [:name, :soa_record, :ns_records]
     conf.update.columns = [:name, :soa_record, :ns_records]
-    conf.columns[:name].description = 'yourdomain.com'
+    conf.columns[:name].description = 'domain.com'
     conf.columns[:ns_records].show_blank_record = false
     conf.actions.exclude :show
     conf.list.sorting = { :name => :asc }
@@ -18,8 +18,7 @@ class DomainsController < ApplicationController
   
   def do_new
     super
-    session[:sample_ns] = nil
-    @record.setup(current_user.email, sample_ns)
+    @record.setup(current_user.email)
   end
     
   def before_create_save(record)
@@ -27,12 +26,7 @@ class DomainsController < ApplicationController
   end
 
   def after_create_save(record)
-    session[:sample_ns] = nil
     @record.reload
-  end
-  
-  def sample_ns
-    session[:sample_ns] ||= Settings.ns.sample(2)
   end
       
 end

@@ -28,7 +28,7 @@ class Domain < ActiveRecord::Base
   
   def slave?; self.type == 'SLAVE' end
 
-  def setup(email, sample_ns)
+  def setup(email)
     build_soa_record
     soa = soa_record
     soa.contact ||= email
@@ -36,7 +36,7 @@ class Domain < ActiveRecord::Base
     ns_records.build
     ns_records.build    
     ns1, ns2 = ns_records
-    ns1.content = sample_ns.first
-    ns2.content = sample_ns.second
+    ns1.content = Settings.ns.first
+    ns2.content = (Settings.ns - [ns1.content]).sample
   end
 end

@@ -1,10 +1,10 @@
 class MxesController < ApplicationController
   active_scaffold :mx do |conf|
     conf.list.columns = [:name, :type, :content, :ttl, :prio, :change_date]
-    conf.create.columns = [:name, :content, :ttl, :prio]
-    conf.update.columns = [:name, :content, :ttl, :prio]
+    conf.create.columns = [:content, :ttl, :prio]
+    conf.update.columns = [:content, :ttl, :prio]
     conf.columns[:content].label = 'MX'
-    conf.columns[:name].description = 'Ex: mail or mx etc'
+    conf.columns[:content].description = 'Ex. mail.domain.com'
     conf.columns[:change_date].list_ui = :timestamp
     conf.actions.exclude :show
   end
