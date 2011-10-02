@@ -4,7 +4,7 @@
 * the top of the compiled file, but it's generally better to create a new file per style scope.
 *= require normalize
 *= require theme/base
-*= require web-app-theme/themes/default/style.css
+*= require theme/default
 *= require marketing
 *= require active_scaffold
 *= require overrides

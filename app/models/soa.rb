@@ -58,7 +58,7 @@ class SOA < Record
     save
   end
 
-  def to_label; "#{type} #{primary_ns} #{contact}" end
+  def to_label; "#{primary_ns} #{contact}" end
   
   private
   

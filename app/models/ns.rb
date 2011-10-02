@@ -22,6 +22,8 @@
 class NS < Record
   validates :content, :presence => true, :hostname => true
 
+  def to_label; "#{content}" end
+  
 end
 
 Ns = NS

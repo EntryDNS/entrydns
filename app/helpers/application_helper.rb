@@ -14,4 +14,9 @@ module ApplicationHelper
     end
   end
   
+  def active_scaffold_column_timestamp(column, record)
+    value = record.send(column.name)
+    value.nil? ? nil : Time.at(value)
+  end
+  
 end

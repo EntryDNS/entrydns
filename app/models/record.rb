@@ -16,6 +16,9 @@ class Record < ActiveRecord::Base
   before_validation :prepare_name!
   before_save :update_change_date
   after_save  :update_soa_serial
+  after_initialize do
+    self.ttl ||= Settings.default_ttl
+  end
   
   # By default records don't support priorities.
   # Those who do can overwrite this in their own classes.

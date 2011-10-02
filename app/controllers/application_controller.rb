@@ -13,4 +13,9 @@ class ApplicationController < ActionController::Base
     render :template => 'errors/access_denied', :layout => 'errors'
   end
   
+  protected
+  
+  def ensure_nested_under_domain
+    raise CanCan::AccessDenied, "not found" unless nested? and nested_parent_record.is_a?(Domain)
+  end
 end

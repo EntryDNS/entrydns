@@ -7,9 +7,14 @@
 # Obtained from http://www.zytrax.com/books/dns/ch8/mx.html
 #
 class MX < Record
-  validates :prio,
-    :numericality => {:greater_than_or_equal_to => 0, :less_than_or_equal_to => 65535, :only_integer => true}
+  validates :prio, :numericality => {
+    :greater_than_or_equal_to => 0, 
+    :less_than_or_equal_to => 65535, 
+    :only_integer => true
+  }
   validates :content, :presence => true, :hostname => true
-
-  def supports_prio?; true end
+  
+  def supports_priority?; true end
 end
+
+Mx = MX

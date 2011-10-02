@@ -6,3 +6,4 @@ ns:
   - ns2.ourdomain.com
   - ns3.ourdomain.com
   - ns4.ourdomain.com
+default_prio: 10

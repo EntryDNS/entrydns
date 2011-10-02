@@ -5,8 +5,11 @@ class DomainsController < ApplicationController
     conf.list.columns = [:name, :soa_record, :ns_records, :records]
     conf.create.columns = [:name, :soa_record, :ns_records]
     conf.update.columns = [:name, :soa_record, :ns_records]
+    conf.columns[:name].description = 'yourdomain.com'
+    conf.columns[:ns_records].show_blank_record = false
     conf.actions.exclude :show
     conf.list.sorting = { :name => :asc }
+    conf.create.link.label = "Add Domain"
     
     conf.columns[:records].label = 'All Records'
   end
@@ -25,6 +28,7 @@ class DomainsController < ApplicationController
 
   def after_create_save(record)
     session[:sample_ns] = nil
+    @record.reload
   end
   
   def sample_ns

@@ -30,19 +30,13 @@ class Domain < ActiveRecord::Base
 
   def setup(email, sample_ns)
     build_soa_record
-    ns_records.build
-    ns_records.build
-    
-    ns1, ns2 = ns_records
     soa = soa_record
-    
-    ns1.content = sample_ns.first
-    ns1.ttl ||= Settings.default_ttl
-    
-    ns2.content = sample_ns.second
-    ns2.ttl ||= Settings.default_ttl
-    
     soa.contact ||= email
-    soa.ttl ||= Settings.default_ttl
+
+    ns_records.build
+    ns_records.build    
+    ns1, ns2 = ns_records
+    ns1.content = sample_ns.first
+    ns2.content = sample_ns.second
   end
 end
