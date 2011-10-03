@@ -1,0 +1,2 @@
+module CnamesHelper
+end

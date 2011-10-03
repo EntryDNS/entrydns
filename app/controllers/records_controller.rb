@@ -16,7 +16,7 @@ class RecordsController < ApplicationController
   end
   
   active_scaffold :record do |conf|
-    conf.sti_children = [:SOA, :NS, :MX]
+    conf.sti_children = [:SOA, :NS, :MX, :A, :CNAME]
     conf.columns = [:name, :type, :content, :ttl, :prio, :change_date]
     conf.columns[:change_date].list_ui = :timestamp
     conf.actions.exclude :show

@@ -21,6 +21,14 @@ Simpledns::Application.routes.draw do
   resources :mxes do
     as_routes
   end
+
+  resources :as do
+    as_routes
+  end
+
+  resources :cnames do
+    as_routes
+  end
   
   get '/dashboard', :to => 'dashboard#index', :as => :dashboard
   root :to => 'home#index'
