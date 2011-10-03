@@ -37,7 +37,13 @@
     
     h1 {
         text-transform: uppercase;
-        font-size: 34px;
+        font-size: 30px;
+        font-weight: bold;
+    }
+    
+    em.mk-point {
+        font-style: normal;
+        color: #111;
     }
     
     li {

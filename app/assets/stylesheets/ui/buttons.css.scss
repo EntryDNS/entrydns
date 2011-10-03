@@ -3,10 +3,7 @@
 @import "compass/css3/box-shadow";
 
 @mixin cupid-green {
-    @include background(
-    image-url("marketing/action/slick-black.png"),
-    linear-gradient(top, #7fbf4d, #63a62f)
-    );
+    @include background(linear-gradient(top, #7fbf4d, #63a62f));
     border: 1px solid #63a62f;
     border-bottom: 1px solid #5b992b;
     @include border-radius(3px);
@@ -20,10 +17,7 @@
     width: 150px;
     
     &:hover {
-        @include background(
-        image-url("marketing/action/slick-black.png"),
-        linear-gradient(top, #76b347, #5e9e2e)
-        );
+        @include background(linear-gradient(top, #76b347, #5e9e2e));
         @include box-shadow(inset 0 1px 0 0 #8dbf67);
         cursor: pointer;
     }
