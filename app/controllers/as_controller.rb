@@ -1,8 +1,8 @@
 class AsController < ApplicationController
   active_scaffold :a do |conf|
     conf.list.columns = [:name, :type, :content, :ttl, :prio, :change_date]
-    conf.create.columns = [:content, :ttl,]
-    conf.update.columns = [:content, :ttl]
+    conf.create.columns = [:name, :content, :ttl,]
+    conf.update.columns = [:name, :content, :ttl]
     conf.columns[:content].label = 'IP'
     conf.columns[:content].description = 'Ex. 10.10.5.12'
     conf.columns[:change_date].list_ui = :timestamp

@@ -1,8 +1,8 @@
 class CnamesController < ApplicationController
   active_scaffold :cname do |conf|
     conf.list.columns = [:name, :type, :content, :ttl, :prio, :change_date]
-    conf.create.columns = [:content, :ttl,]
-    conf.update.columns = [:content, :ttl]
+    conf.create.columns = [:name, :content, :ttl,]
+    conf.update.columns = [:name, :content, :ttl]
     conf.columns[:content].label = 'FQDN'
     conf.columns[:content].description = 'Ex. host.domain.com'
     conf.columns[:change_date].list_ui = :timestamp
