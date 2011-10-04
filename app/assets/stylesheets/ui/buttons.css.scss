@@ -1,6 +1,7 @@
 @import "compass/css3/gradient";
 @import "compass/css3/border-radius";
 @import "compass/css3/box-shadow";
+@import "compass/css3/text-shadow";
 
 @mixin cupid-green {
     @include background(linear-gradient(top, #7fbf4d, #63a62f));
@@ -8,13 +9,11 @@
     border-bottom: 1px solid #5b992b;
     @include border-radius(3px);
     @include box-shadow(inset 0 1px 0 0 #96ca6d);
-    color: #fff;
-    font: bold 11px "Lucida Grande", "Lucida Sans Unicode", "Lucida Sans", Geneva, Verdana, sans-serif;
-    line-height: 1;
-    padding: 7px 0 8px 0;
-    text-align: center;
     text-shadow: 0 -1px 0 #4c9021;
-    width: 150px;
+    color: #fff;
+    line-height: 20px;
+    display: inline-block;
+    padding: 9px 15px 10px;
     
     &:hover {
         @include background(linear-gradient(top, #76b347, #5e9e2e));
@@ -27,4 +26,28 @@
         border-bottom: 1px solid #538c27;
         @include box-shadow(inset 0 0 8px 4px #548c29, 0 1px 0 0 #eee);
     }
+}
+
+@mixin button(
+    $color: #f5f5f5, 
+    $textColor: #333, 
+    $textShadow: 0 1px 1px rgba(255,255,255,.75), 
+    $padding: 9px 15px 10px, 
+    $borderRadius: 6px
+){
+  display: inline-block;
+  background-color: darken(saturate($color, 10), 10);
+  background-repeat: repeat-x;
+  @include background-image(linear-gradient($color, darken(saturate($color, 10), 10)));
+  padding: $padding;
+  text-shadow: $textShadow;
+  color: $textColor;
+  line-height: 20px;
+  @include border-radius($borderRadius);
+  @include box-shadow(inset 0 1px 0 rgba(255,255,255,.2), inset 0 -1px 0 rgba(0,0,0,.2), 0 1px 2px rgba(0,0,0,.25));
+  &:hover {
+    background-position: 0 -15px;
+    color: $textColor;
+    text-decoration: none;
+  }
 }

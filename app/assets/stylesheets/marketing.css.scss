@@ -15,7 +15,7 @@
     margin-right: auto;
     float: none;
     
-    .block .content .marketing-inner {
+    .block .content .marketing-inner {        
         padding: 0 30px 30px;
         h2 {
             font-size: 25px;
@@ -52,18 +52,17 @@
     
     .action {
         padding: 0 20px 20px 20px;
+        text-align: center;
+        
         a {
-            display: block;
-            width: 350px;
-            margin: auto;
-        }
-        button {
-            // @include slick-black;
-            @include cupid-green;
+            @include button(#7a43b6, #fff, 0 -1px 1px rgba(0,0,0,.4));
+            //@include cupid-green;
             
             width: 250px;
-            height: 50px;
+            height: 40px;
             margin: auto;
+            text-align: center;
+            
             font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
             strong {
                 font-size: 18px;
