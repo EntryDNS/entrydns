@@ -3,15 +3,21 @@ class Domain < ActiveRecord::Base
   nilify_blanks
   
   belongs_to :user
-  has_many :records, :dependent => :destroy
+  has_many :records, :dependent => :destroy, :inverse_of => :domain
 
   cattr_reader :types
   @@types = ['NATIVE', 'MASTER', 'SLAVE', 'SUPERSLAVE']
   
-  has_one :soa_record, :class_name => 'SOA', :conditions => {:type => 'SOA'}
+  has_one :soa_record, 
+    :class_name => 'SOA', 
+    :conditions => {:type => 'SOA'},
+    :inverse_of => :domain
   
   for type in Record.types
-    has_many :"#{type.downcase}_records", :class_name => type, :conditions => {:type => type}
+    has_many :"#{type.downcase}_records", 
+      :class_name => type, 
+      :conditions => {:type => type},
+      :inverse_of => :domain
     validates_associated :"#{type.downcase}_records"
   end
   

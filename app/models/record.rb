@@ -1,5 +1,5 @@
 class Record < ActiveRecord::Base
-  belongs_to :domain
+  belongs_to :domain, :inverse_of => :records
   
   cattr_reader :types
   @@types = %w(SOA NS A MX TXT CNAME)

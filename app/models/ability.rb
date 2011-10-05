@@ -5,9 +5,7 @@ class Ability
 
     user ||= User.new
     if user.persisted?
-      can :create, Domain
       can :manage, Domain, :user_id => user.id
-      can :create, Record
       can :manage, Record, :domain => {:user_id => user.id}
       cannot :delete, SOA # it's deleted with the parent domain
     end
