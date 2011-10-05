@@ -29,6 +29,10 @@ Simpledns::Application.routes.draw do
   resources :cnames do
     as_routes
   end
+
+  resources :txts do
+    as_routes
+  end
   
   get '/dashboard', :to => 'dashboard#index', :as => :dashboard
   root :to => 'home#index'

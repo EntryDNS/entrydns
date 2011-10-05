@@ -12,3 +12,5 @@ class TXT < Record
   validate :content, :presence => true
   
 end
+
+Txt = TXT
