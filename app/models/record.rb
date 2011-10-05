@@ -11,7 +11,8 @@ class Record < ActiveRecord::Base
   validates :ttl, :numericality => { 
     # :greater_than_or_equal_to => 0, 
     :greater_than_or_equal_to => Settings.min_ttl.to_i,
-    :less_than => 2**31 
+    :less_than => 2**31,
+    :only_integer => true
   }, :allow_blank => true
   
   before_validation :prepare_name!

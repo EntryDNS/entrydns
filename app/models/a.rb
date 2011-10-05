@@ -11,7 +11,7 @@
 # Obtained from http://www.zytrax.com/books/dns/ch8/a.html
 #
 class A < Record
-  # Only accept valid IPv4 addresses
-  validates :content, :presence => true, :ip => true
+  validates :name, :hostname => {:allow_underscore => true, :allow_wildcard_hostname => true}
+  validates :content, :presence => true, :ip => {:ip_type => :v4} # Only accept valid IPv4 addresses
 
 end

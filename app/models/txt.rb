@@ -9,7 +9,8 @@
 # 
 # Obtained from http://www.zytrax.com/books/dns/ch8/txt.html
 class TXT < Record
-  validate :content, :presence => true
+  validates :name, :hostname => {:allow_underscore => true, :allow_wildcard_hostname => true}
+  validates :content, :presence => true, :length => { :maximum => 255 }
   
 end
 
