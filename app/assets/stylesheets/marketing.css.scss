@@ -1,9 +1,31 @@
+@import "compass/css3/text-shadow";
 @import "ui/buttons";
 
 .marketing .header-inner {
     width: 77%;
     margin: auto;
     position: relative;
+}
+
+#main .marketing-block {
+    background-color: #261F1F;
+    .content h1 {
+        //text-align: center;
+        font-size: 32px;
+        //font-weight: bold;
+        padding-left: 30px;
+        padding-right: 30px;
+        background-color: #261F1F;
+        color: white;
+        em {
+            font-size: 26px;
+            color: #3e3d4c;
+            font-style: normal;
+            font-weight: normal;
+            color: white;
+            @include text-shadow(none, 0, 0, 0, 0);
+        }
+    }
 }
 
 .marketing-duo td {
@@ -16,14 +38,22 @@
     float: none;
     
     .block .content .marketing-inner {        
-        padding: 0 30px 30px;
+        background-color: #e5ecf3;
+        padding: 20px 30px 30px;
+        @include border-bottom-radius(6px);
         h2 {
             font-size: 25px;
             margin-top: 0;
         }
         p {
             font-size: 18px;
-            line-height: 1em;
+            line-height: 1.2em;
+            color: #555;
+        }
+        
+        .marketing-text li {
+            list-style-image: url(image_path('theme/check.png'));
+            font-size: 20px;
             color: #555;
         }
     }
@@ -35,15 +65,9 @@
         padding-left: 20px;
     }
     
-    h1 {
-        text-transform: uppercase;
-        font-size: 30px;
-        font-weight: bold;
-    }
-    
     em.mk-point {
         font-style: normal;
-        color: #111;
+        @include text-shadow(0 0 6px rgba(143, 181, 200, 1),0 0 30px rgba(143, 181, 200, .7));
     }
     
     li {
