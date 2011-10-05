@@ -12,6 +12,7 @@ class RecordsController < ApplicationController
         new_sti_link.controller = Proc.new { active_scaffold_controller_for(child.to_s.camelize.constantize).controller_path }
         active_scaffold_config.action_links.collection.create.add(new_sti_link)
       end
+      active_scaffold_config.action_links.collection.create.name = "Add Record"
     end
   end
   
@@ -19,6 +20,7 @@ class RecordsController < ApplicationController
     conf.sti_children = [:SOA, :NS, :MX, :A, :CNAME, :TXT]
     conf.columns = [:name, :type, :content, :ttl, :prio, :change_date]
     conf.columns[:change_date].list_ui = :timestamp
+    # conf.create.link.label = "Add Record"
     conf.actions.exclude :show
   end
   before_filter :ensure_nested_under_domain

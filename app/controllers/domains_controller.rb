@@ -2,7 +2,7 @@ class DomainsController < ApplicationController
   
   active_scaffold :domain do |conf|
     conf.columns = [:name, :soa_record, :ns_records, :records]
-    conf.list.columns = [:name, :soa_record, :ns_records, :records]
+    conf.list.columns = [:name, :records]
     conf.create.columns = [:name, :soa_record, :ns_records]
     conf.update.columns = [:name, :soa_record, :ns_records]
     conf.columns[:name].description = 'domain.com'
@@ -11,7 +11,7 @@ class DomainsController < ApplicationController
     conf.list.sorting = { :name => :asc }
     conf.create.link.label = "Add Domain"
     
-    conf.columns[:records].label = 'All Records'
+    # conf.columns[:records].label = 'All Records'
   end
   
   protected
