@@ -4,7 +4,7 @@ class MxesController < ApplicationController
     conf.create.columns = [:content, :ttl, :prio]
     conf.update.columns = [:content, :ttl, :prio]
     conf.columns[:content].label = 'MX'
-    conf.columns[:content].description = 'Ex. mail.domain.com'
+    conf.columns[:content].description = 'Ex. "mail.domain.com"'
     conf.columns[:change_date].list_ui = :timestamp
     conf.actions.exclude :show
   end

@@ -5,7 +5,7 @@ class DomainsController < ApplicationController
     conf.list.columns = [:name, :records]
     conf.create.columns = [:name, :soa_record, :ns_records]
     conf.update.columns = [:name, :soa_record, :ns_records]
-    conf.columns[:name].description = 'domain.com'
+    conf.columns[:name].description = 'Ex. "domain.com"'
     conf.columns[:ns_records].show_blank_record = false
     conf.actions.exclude :show
     conf.list.sorting = { :name => :asc }

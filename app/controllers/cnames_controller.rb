@@ -4,7 +4,7 @@ class CnamesController < ApplicationController
     conf.create.columns = [:name, :content, :ttl]
     conf.update.columns = [:name, :content, :ttl]
     conf.columns[:content].label = 'FQDN'
-    conf.columns[:content].description = 'Ex. host.domain.com'
+    conf.columns[:content].description = 'Ex. "host.domain.com"'
     conf.columns[:change_date].list_ui = :timestamp
     conf.actions.exclude :show
   end
