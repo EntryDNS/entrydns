@@ -7,9 +7,10 @@
 # Obtained from http://www.zytrax.com/books/dns/ch8/soa.html
 #
 class SOA < Record
-  validates :domain_id, :presence => true, :uniqueness => true # one SOA per domain
+  validates :domain, :presence => true
+  validates :domain_id, :uniqueness => true # one SOA per domain
   validates :name, :presence => true, :hostname => true
-  validate  :name_equals_dmain_name?
+  validate  :name_equals_domain_name?
   validates :content, :presence => true
   validates :primary_ns, :presence => true
   CONTACT_FORMAT = /\A[a-zA-Z0-9\-\.]+@[a-zA-Z0-9-]+\.[a-zA-Z.]{2,6}\z/
@@ -74,7 +75,7 @@ class SOA < Record
     update_serial if @serial.nil? || @serial.zero?
   end
   
-  def name_equals_dmain_name?
+  def name_equals_domain_name?
     unless name == domain.name
       errors.add :name, "must be equal to domain's name"
     end

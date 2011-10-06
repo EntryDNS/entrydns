@@ -3,6 +3,7 @@ class NsController < ApplicationController
     conf.list.columns = [:name, :type, :content, :ttl, :prio, :change_date]
     conf.create.columns = [:name, :content, :ttl]
     conf.update.columns = [:name, :content, :ttl]
+    conf.subform.columns = [:content, :ttl]
     conf.columns[:content].label = 'NS'
     conf.columns[:change_date].list_ui = :timestamp
     conf.actions.exclude :show
