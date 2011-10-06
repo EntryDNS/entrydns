@@ -1,8 +1,8 @@
 class NsController < ApplicationController
   active_scaffold :ns do |conf|
     conf.list.columns = [:name, :type, :content, :ttl, :prio, :change_date]
-    conf.create.columns = [:content, :ttl]
-    conf.update.columns = [:content, :ttl]
+    conf.create.columns = [:name, :content, :ttl]
+    conf.update.columns = [:name, :content, :ttl]
     conf.columns[:content].label = 'NS'
     conf.columns[:change_date].list_ui = :timestamp
     conf.actions.exclude :show
@@ -22,8 +22,10 @@ class NsController < ApplicationController
   
   # override, we make our own sti logic
   def new_model
-    model = beginning_of_chain
-    model.new
+    model = beginning_of_chain.new
+    model.name = nested_parent_record.name
+    model.content = Settings.ns.sample
+    model
   end
 
   # override to close create form after success  
