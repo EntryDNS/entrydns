@@ -6,6 +6,7 @@ class MxesController < ApplicationController
     conf.columns[:content].label = 'MX'
     conf.columns[:content].description = 'Ex. "mail.domain.com"'
     conf.columns[:change_date].list_ui = :timestamp
+    conf.columns[:ttl].options = {:i18n_number => {:delimiter => ''}}
     conf.actions.exclude :show
   end
   before_filter :ensure_nested_under_domain

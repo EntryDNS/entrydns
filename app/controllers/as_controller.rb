@@ -6,6 +6,7 @@ class AsController < ApplicationController
     conf.columns[:content].label = 'IP'
     conf.columns[:content].description = 'Ex. "10.10.5.12"'
     conf.columns[:change_date].list_ui = :timestamp
+    conf.columns[:ttl].options = {:i18n_number => {:delimiter => ''}}
     conf.actions.exclude :show
   end
   before_filter :ensure_nested_under_domain

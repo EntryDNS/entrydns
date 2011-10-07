@@ -4,6 +4,7 @@ class SoasController < ApplicationController
     conf.create.columns = [:contact, :ttl]
     conf.update.columns = [:contact, :ttl]
     conf.columns[:change_date].list_ui = :timestamp
+    conf.columns[:ttl].options = {:i18n_number => {:delimiter => ''}}
     conf.actions.exclude :delete, :show
   end
   before_filter :ensure_nested_under_domain

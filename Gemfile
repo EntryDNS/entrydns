@@ -18,7 +18,7 @@ gem 'devise', '~> 1.4.5'
 gem 'cancan', '~> 1.6.5'
 # gem "meta_where", "~> 1.0" # squeel ?
 gem 'sentient_user', '~> 0.3.2'
-gem 'active_scaffold', '~> 3.1.0', :git => 'https://github.com/clyfe/active_scaffold.git' # :path => '/home/clyfe/dev/active_scaffold'
+gem 'active_scaffold', '~> 3.1.0', :git => 'https://github.com/activescaffold/active_scaffold.git' # :path => '/home/clyfe/dev/active_scaffold'
 gem 'web-app-theme'
 gem 'pjax_rails', '~> 0.1.10'
 gem 'validates_hostname', '~> 1.0.0', :git => 'https://github.com/KimNorgaard/validates_hostname.git'
