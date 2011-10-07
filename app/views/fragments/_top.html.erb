@@ -4,13 +4,13 @@
     <div id="main-navigation">
       <ul class="wat-cf">
         <% if user_signed_in? %>
-          <li><%= link_to('Dashboard', dashboard_path, :data => {:pjax => '#main'}) %></li>
+          <li><%#= link_to('Dashboard', dashboard_path, :data => {:pjax => '#main'}) %></li>
           <li><%= link_to 'Manage Domains', domains_path, :data => {:pjax => '#main'} %></li>
         <% else %>
           <li><%= link_to('Home', root_path, :data => {:pjax => '#main'}) %></li>
-          <li><%= link_to('About us', root_path, :data => {:pjax => '#main'}) %></li>
+          <li><%#= link_to('About us', root_path, :data => {:pjax => '#main'}) %></li>
         <% end %>
-        <li><%= link_to('Help & Support', root_path, :data => {:pjax => '#main'}) %></li>
+        <li><%#= link_to('Help & Support', root_path, :data => {:pjax => '#main'}) %></li>
       </ul>
     </div>
     <div id="user-navigation">

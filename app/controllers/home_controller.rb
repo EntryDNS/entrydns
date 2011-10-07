@@ -3,6 +3,6 @@ class HomeController < ApplicationController
   layout proc{|controller| request.xhr? ? false : 'marketing'}
   
   def index
-    redirect_to dashboard_path if user_signed_in?
+    redirect_to domains_path if user_signed_in?
   end
 end
