@@ -1,6 +1,9 @@
 class Domain < ActiveRecord::Base
   set_inheritance_column "sti_disabled"
   nilify_blanks
+
+  # optional IP for create form, results in a type A record
+  attr_accessor :ip
   
   belongs_to :user
   has_many :records, :dependent => :destroy, :inverse_of => :domain
@@ -34,6 +37,10 @@ class Domain < ActiveRecord::Base
   
   def slave?; self.type == 'SLAVE' end
 
+  before_create do
+    a_records.build(:content => ip) if ip.present?
+  end
+  
   def setup(email)
     build_soa_record
     soa = soa_record

@@ -1,13 +1,13 @@
 class DomainsController < ApplicationController
   
   active_scaffold :domain do |conf|
-    conf.columns = [:name, :records, :soa_record, :ns_records, :a_records]
+    conf.columns = [:name, :ip, :records, :soa_record, :ns_records]
     conf.list.columns = [:name, :records]
-    conf.create.columns = [:name, :soa_record, :ns_records, :a_records]
+    conf.create.columns = [:name, :ip, :soa_record, :ns_records]
     conf.update.columns = [:name, :soa_record]
     conf.columns[:name].description = 'Ex. "domain.com"'
+    conf.columns[:ip].description = 'Ex. "10.10.5.12", optional IP to associate your domain with'
     conf.columns[:ns_records].show_blank_record = false
-    conf.columns[:a_records].show_blank_record = false
     conf.actions.exclude :show
     conf.list.sorting = { :name => :asc }
     conf.create.link.label = "Add Domain"
