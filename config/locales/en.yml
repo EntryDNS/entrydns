@@ -2,4 +2,15 @@
 # See https://github.com/svenfuchs/rails-i18n/tree/master/rails%2Flocale for starting points.
 
 en:
-  action_not_allowed: "Action not allowed"
+  errors:
+    action_not_allowed: "Action not allowed"
+  activerecord:
+    models:
+      ns: NS
+      cname: CNAME
+      mx: MX
+      soa: SOA
+      txt: TXT
+#    attributes:
+#      user:
+#        login: "Handle"

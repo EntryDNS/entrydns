@@ -9,7 +9,7 @@ class ApplicationController < ActionController::Base
   end
 
   rescue_from ActiveScaffold::ActionNotAllowed do |exception|
-    flash.now[:error] = I18n.t("action_not_allowed")
+    flash.now[:error] = I18n.t("errors.action_not_allowed")
     render :template => 'errors/access_denied', :layout => 'errors'
   end
   
