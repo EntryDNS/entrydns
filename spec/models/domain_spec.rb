@@ -1,5 +1,8 @@
 require 'spec_helper'
 
 describe Domain do
-  pending "add some examples to (or delete) #{__FILE__}"
+  let(:domain){Factory(:domain)}
+  it "is" do
+    domain.should be_valid
+  end
 end

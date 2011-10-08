@@ -41,6 +41,16 @@ class Domain < ActiveRecord::Base
     a_records.build(:content => ip) if ip.present?
   end
   
+  before_validation(:on => :update) do
+    if name_changed?
+      soa_record.reset_serial
+      # soa_record.name = soa_record.name.gsub(/#{name_was}$/, name)
+      for record in records
+        record.name = record.name.gsub(/#{name_was}$/, name)
+      end
+    end
+  end
+  
   def setup(email)
     build_soa_record
     soa = soa_record

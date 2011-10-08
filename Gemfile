@@ -5,15 +5,8 @@ gem 'rails', '3.1.1.rc1'
 # Bundle edge Rails instead:
 # gem 'rails',     :git => 'git://github.com/rails/rails.git'
 
-group :development, :test do
-  gem 'sqlite3'
-end
-
-group :production do
-  # gem 'pg'
-  gem 'mysql2'
-end
-
+# gem 'pg'
+gem 'mysql2'
 gem 'devise', '~> 1.4.5'
 gem 'cancan', '~> 1.6.5'
 # gem "meta_where", "~> 1.0" # squeel ?
@@ -41,9 +34,12 @@ gem 'jquery-rails'
 
 gem 'rspec-rails', '~> 2.6.1', :group => [:test, :development]
 group :test do
-  gem 'forgery','~> 0.3.12'
+  gem 'faker','~> 1.0.1'
   gem 'factory_girl_rails', '~> 1.2'
   gem 'capybara', '~> 1.1.1'
   gem 'database_cleaner', '~> 0.6.7'
   gem 'spork', '~> 0.9.0.rc'
+  gem 'rb-fsevent', '~> 0.4.3.1'
+  gem 'guard-rspec', '~> 0.4.5'
+  gem 'guard-spork', '~> 0.3.0'
 end

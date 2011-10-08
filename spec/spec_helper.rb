@@ -7,12 +7,10 @@ Spork.prefork do
   require 'rspec/rails'
   require 'capybara/rspec'
   
-  RSpec.configure do |config|
-    config.mock_with :rspec
-    config.use_transactional_fixtures = true
-  end
+  Dir[Rails.root.join("spec/support/**/*.rb")].each {|f| require f}
+  Spork.trap_method(Rails::Application::RoutesReloader, :reload!)
 end
 
 Spork.each_run do
-  Dir[Rails.root.join("spec/support/**/*.rb")].each {|f| require f}
+  FactoryGirl.reload
 end
