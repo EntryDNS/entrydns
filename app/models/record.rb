@@ -6,7 +6,7 @@ class Record < ActiveRecord::Base
   
   validates :domain, :name, :presence => true
   validates :type, :inclusion => {:in => @@types, :message => "Unknown record type"}
-  validates :content, :uniqueness => {:scope => [:domain_id, :type]}
+  validates :content, :uniqueness => {:scope => [:domain_id, :type, :name]}
   # RFC 2181, 8
   validates :ttl, :numericality => { 
     # :greater_than_or_equal_to => 0, 
