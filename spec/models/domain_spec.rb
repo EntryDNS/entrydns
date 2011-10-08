@@ -5,6 +5,7 @@ describe Domain do
     domain = Factory.build(:domain)
     domain.setup(FactoryGirl.generate(:email))
     domain.save!
+    domain.soa_record.update_serial!
     domain
   }
   
@@ -22,6 +23,10 @@ describe Domain do
   it "has correct records" do
     domain.records.count.should == 3
   end
+
+  it "has a soa serial updated" do
+    (domain.soa_record.serial % 10).should == 1
+  end
   
   it "updates name to records when name changed" do
     domain.update_attributes(:name => "changed#{domain.name}")
@@ -30,5 +35,6 @@ describe Domain do
     for record in domain.records.all
       record.name.should =~ /#{domain.name}$/
     end
+    (domain.soa_record.serial % 10).should == 0
   end
 end
