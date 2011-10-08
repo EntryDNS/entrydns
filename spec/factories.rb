@@ -13,14 +13,6 @@ FactoryGirl.define do
   factory :domain do
     name {FactoryGirl.generate(:domain_name)}
     type 'NATIVE'
-    association :soa_record, :factory => :soa_record, :method => :build
-    ns_records do |ns_records| 
-      ns1 = ns_records.association(:ns_record, :method => :build)
-      ns2 = ns_records.association(:ns_record, :method => :build)
-      ns1.content = Settings.ns.first
-      ns2.content = (Settings.ns - [ns1.content]).sample
-      [ns1, ns2]
-    end
   end
 
   factory :record do

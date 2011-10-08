@@ -36,7 +36,7 @@ class Record < ActiveRecord::Base
   def prepare_name!
     return if domain.nil? or domain.name.blank?
     self.name = domain.name if name.blank? or name == '@'
-    self.name << ".#{domain.name}" unless name.index(domain.name)
+    self.name << ".#{domain.name}" unless name =~ /#{Regexp.escape(domain.name)}$/
   end
   
   # Update the change date for automatic serial number generation
@@ -47,6 +47,10 @@ class Record < ActiveRecord::Base
       domain.soa_record.update_serial!
       @serial_updated = true
     end
+  end
+ 
+  def name_equals_domain_name
+    errors.add :name, "must be equal to domain's name" unless name == domain.name
   end
   
 end

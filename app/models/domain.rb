@@ -29,7 +29,7 @@ class Domain < ActiveRecord::Base
   validates :master, :ip => true, :allow_nil => true, :if => :slave?
   validates :type, :inclusion => { :in => @@types, :message => "Unknown domain type" }
   validates :soa_record, :presence => {:unless => :slave?}
-  validates_associated :soa_record, :allow_nil => true
+  validates_associated :soa_record #, :allow_nil => true
   validates :ns_records, :presence => true, :length => {
     :minimum => 2, :maximum => 10,
     :message => "must have be at least 2, at most 10"}
@@ -43,13 +43,39 @@ class Domain < ActiveRecord::Base
   
   before_validation(:on => :update) do
     if name_changed?
-      soa_record.reset_serial
-      # soa_record.name = soa_record.name.gsub(/#{name_was}$/, name)
-      for record in records
-        record.name = record.name.gsub(/#{name_was}$/, name)
+      name_was_pattern = /#{Regexp.escape(name_was)}$/
+      each_update_involved_record do |record|
+        if record.type == 'SOA'
+          record.reset_serial
+          record.name = name
+        else
+          record.name = record.name.sub(name_was_pattern, name)
+        end
+        record.domain = self
       end
     end
   end
+
+  after_update do
+    if name_changed?
+      name_was_pattern = /#{Regexp.escape(name_was)}$/
+      for record in records.all
+        record.name = record.name.sub(name_was_pattern, name)
+        record.save!
+      end
+    end
+  end
+  
+  def each_update_involved_record
+    yield soa_record
+    for record in soa_records
+      yield record
+    end
+    for record in records
+      yield record
+    end
+  end
+
   
   def setup(email)
     build_soa_record

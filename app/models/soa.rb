@@ -10,11 +10,10 @@ class SOA < Record
   validates :domain, :presence => true
   validates :domain_id, :uniqueness => true # one SOA per domain
   validates :name, :presence => true, :hostname => true
-  validate  :name_equals_domain_name?
+  validate  :name_equals_domain_name
   validates :content, :presence => true
   validates :primary_ns, :presence => true
-  CONTACT_FORMAT = /\A[a-zA-Z0-9\-\.]+@[a-zA-Z0-9-]+\.[a-zA-Z.]{2,6}\z/
-  validates :contact, :format => {:with => CONTACT_FORMAT}
+  validates :contact, :email => true
   validates :serial, :presence => true, :numericality => {:allow_blank => true, :greater_than_or_equal_to => 0}
 
   before_validation :assemble_content
@@ -78,10 +77,6 @@ class SOA < Record
     @primary_ns, @contact, @serial = content.split(/\s+/) unless content.blank?
     @serial = @serial.to_i unless @serial.nil?
     update_serial if @serial.nil? || @serial.zero?
-  end
-  
-  def name_equals_domain_name?
-    errors.add :name, "must be equal to domain's name" unless name == domain.name
   end
   
   def compute_serial

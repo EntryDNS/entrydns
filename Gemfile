@@ -17,6 +17,7 @@ gem 'validates_hostname', '~> 1.0.0', :git => 'https://github.com/KimNorgaard/va
 gem 'nilify_blanks', '~> 1.0.0'
 gem 'rails_config', '~> 0.2.4'
 # gem 'rails-settings-cached', :require => 'rails-settings'
+gem 'active-model-email-validator', '~> 1.0.2'
 gem 'capistrano', '~> 2.9.0'
 
 # Gems used only for assets and not required

@@ -32,12 +32,14 @@ class DomainsController < ApplicationController
   
   def before_update_save(record) # just to make sure of params tampering
     record.type = 'NATIVE'
+    @name_changed = @record.name_changed?
   end
 
   def after_update_save(record)
-    if @record.nam_changed?
-      flash[:warning] = "Changing the name of a domain migrates all it's records to the new name!"
+    if @name_changed
+      flash.now[:warning] = "Changing the name of a domain migrates all it's records to the new name!"
     end
+    @record.reload
   end
   
 end
