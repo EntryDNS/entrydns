@@ -1,6 +1,6 @@
 require 'bundler/capistrano'
 
-set :application, 'simpledns'
+set :application, 'entrydns'
 set :domain, 'zooz.dyndns.org'
 set :repository,  "ssh://#{domain}/home/clyfe/dev/#{application}.git"
 set :deploy_to, '/srv/www/apps/entrydns'

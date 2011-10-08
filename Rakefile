@@ -4,4 +4,4 @@
 
 require File.expand_path('../config/application', __FILE__)
 
-Simpledns::Application.load_tasks
+Entrydns::Application.load_tasks

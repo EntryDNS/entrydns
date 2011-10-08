@@ -1,4 +1,4 @@
-Simpledns::Application.configure do
+Entrydns::Application.configure do
   # Settings specified here will take precedence over those in config/application.rb
 
   # Code is not reloaded between requests
@@ -58,12 +58,12 @@ Simpledns::Application.configure do
   # Send deprecation notices to registered listeners
   config.active_support.deprecation = :notify
   
-  config.action_mailer.default_url_options = { :host => 'simpledns.heroku.com' }
+  config.action_mailer.default_url_options = { :host => 'entrydns.com' }
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.smtp_settings = {
     :address              => "smtp.gmail.com",
     :port                 => 587,
-    :domain               => 'simpledns.heroku.com',
+    :domain               => 'entrydns.com',
     :user_name            => 'simpledns.office',
     :password             => 'jablonskis',
     :authentication       => 'plain',

@@ -3,7 +3,7 @@ server {
     server_name domain.com;
 
     location / {
-        root /var/www/apps/simpledns/current/public;
+        root /var/www/apps/entrydns/current/public;
         passenger_enabled on;
     }
 }
