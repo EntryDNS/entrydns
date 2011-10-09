@@ -2,7 +2,7 @@ require 'bundler/capistrano'
 
 set :application, 'entrydns'
 set :domain, 'zooz.dyndns.org'
-set :repository,  "https://clyfe@bitbucket.org/clyfe/entrydns.git"
+set :repository,  "git@bitbucket.org:clyfe/entrydns.git"
 set :deploy_to, '/srv/www/apps/entrydns'
 set :user, 'clyfe'
 set :use_sudo, false
