@@ -27,4 +27,10 @@ class SoasController < ApplicationController
     nested_singular_association? # || params[:parent_sti]
   end
   
+  def after_update_save(record)
+    unless @record.domain.ns_records.any? {|ns_record| @record.primary_ns == ns_record.content}
+      flash.now[:warning] = "SOA record's primary NS is no longer among this domain's NS records"
+    end
+  end
+  
 end

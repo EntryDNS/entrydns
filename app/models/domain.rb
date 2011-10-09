@@ -31,8 +31,7 @@ class Domain < ActiveRecord::Base
   validates :soa_record, :presence => {:unless => :slave?}
   validates_associated :soa_record #, :allow_nil => true
   validates :ns_records, :on => :create, :presence => true, :length => {
-    :minimum => 2, :maximum => 10,
-    :message => "must have be at least 2, at most 10"}
+    :minimum => 2, :maximum => 10, :message => "must have be at least 2, at most 10"}
   validates_associated :records
   
   def slave?; self.type == 'SLAVE' end
