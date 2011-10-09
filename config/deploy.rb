@@ -7,12 +7,12 @@ set :deploy_to, '/srv/www/apps/entrydns'
 set :user, 'clyfe'
 set :use_sudo, false
 set :scm, 'git'
+set :ssh_options, :forward_agent => true
 # set :branch, "master"
 # set :scm_verbose, true
 # set :deploy_via, :remote_cache/:export .. etc
 # set :git_enable_submodules, 1
 
-ssh_options[:forward_agent] = true # use local keys
 
 role :web, domain                   # Your HTTP server, Apache/etc
 role :app, domain                   # This may be the same as your `Web` server
