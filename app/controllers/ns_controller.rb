@@ -35,4 +35,11 @@ class NsController < ApplicationController
     nested_singular_association? # || params[:parent_sti]
   end
   
+  def do_destroy
+    super
+    if successful? && nested_parent_record.ns_records.count == 0
+      flash[:warning] = "All NS records deleted, no other nameservers are associated with this domain!"
+    end
+  end
+  
 end
