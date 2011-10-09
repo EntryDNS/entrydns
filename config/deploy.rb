@@ -1,5 +1,6 @@
 require 'bundler/capistrano'
 
+default_run_options[:pty] = true
 set :application, 'entrydns'
 set :domain, 'zooz.dyndns.org'
 set :repository,  "git@bitbucket.org:clyfe/entrydns.git"
@@ -11,7 +12,8 @@ set :ssh_options, :forward_agent => true
 # set :branch, "master"
 # set :scm_verbose, true
 # set :deploy_via, :remote_cache/:export .. etc
-# set :git_enable_submodules, 1
+# set :git_enable_submodules, 
+# set :scm_passphrase, "passwd0" # the deploy user's password
 
 
 role :web, domain                   # Your HTTP server, Apache/etc
