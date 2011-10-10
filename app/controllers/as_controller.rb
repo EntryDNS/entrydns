@@ -1,6 +1,8 @@
 class AsController < ApplicationController
+  respond_to :html, :xml, :json
+  
   active_scaffold :a do |conf|
-    conf.list.columns = [:name, :type, :content, :ttl, :prio, :change_date]
+    conf.columns = [:name, :type, :content, :ttl, :prio, :change_date, :authentication_token]
     conf.create.columns = [:name, :content, :ttl,]
     conf.update.columns = [:name, :content, :ttl]
     conf.columns[:content].label = 'IP'
@@ -9,7 +11,18 @@ class AsController < ApplicationController
     conf.columns[:ttl].options = {:i18n_number => {:delimiter => ''}}
     conf.actions.exclude :show
   end
-  before_filter :ensure_nested_under_domain
+  before_filter :ensure_nested_under_domain, :except => 'modify'
+  skip_before_filter :authenticate_user!, :only => 'modify'
+  protect_from_forgery :except => 'modify'
+  skip_authorize_resource :only => :modify
+  
+  # TODO: externalize
+  def modify
+    @a = A.where(:authentication_token => params[:authentication_token]).first!
+    @a.content = params[:ip] || client_remote_ip
+    @a.save!
+    respond_with @a
+  end
   
   protected
   
@@ -24,8 +37,9 @@ class AsController < ApplicationController
   
   # override, we make our own sti logic
   def new_model
-    model = beginning_of_chain
-    model.new
+    model = beginning_of_chain.new
+    model.name = nested_parent_record.name
+    model
   end
 
   # override to close create form after success  

@@ -16,7 +16,7 @@
     <div id="user-navigation">
       <ul class="wat-cf">
         <% if user_signed_in? %>
-          <li><%= link_to(current_user.email, edit_user_registration_path, :data => {:pjax => '#main'}) %></li>
+          <li><%= link_to(current_user.email, edit_user_registration_path, :title => "IP: #{client_remote_ip}", :data => {:pjax => '#main'}) %></li>
           <li><%= link_to('Sign out', destroy_user_session_path, :method => :delete) %></li>
         <% else %>
           <li><%= link_to('Sign up', new_user_registration_path, :data => {:pjax => '#main'}) %></li>

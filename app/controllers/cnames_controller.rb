@@ -1,6 +1,6 @@
 class CnamesController < ApplicationController
   active_scaffold :cname do |conf|
-    conf.list.columns = [:name, :type, :content, :ttl, :prio, :change_date]
+    conf.columns = [:name, :type, :content, :ttl, :prio, :change_date, :authentication_token]
     conf.create.columns = [:name, :content, :ttl]
     conf.update.columns = [:name, :content, :ttl]
     conf.columns[:content].label = 'FQDN'
@@ -24,8 +24,9 @@ class CnamesController < ApplicationController
   
   # override, we make our own sti logic
   def new_model
-    model = beginning_of_chain
-    model.new
+    model = beginning_of_chain.new
+    model.name = nested_parent_record.name
+    model
   end
 
   # override to close create form after success  

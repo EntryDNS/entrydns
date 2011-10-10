@@ -18,7 +18,7 @@ class RecordsController < ApplicationController
   
   active_scaffold :record do |conf|
     conf.sti_children = [:SOA, :NS, :MX, :A, :CNAME, :TXT]
-    conf.columns = [:name, :type, :content, :ttl, :prio, :change_date]
+    conf.columns = [:name, :type, :content, :ttl, :prio, :change_date, :authentication_token]
     conf.columns[:change_date].list_ui = :timestamp
     conf.columns[:ttl].options = {:i18n_number => {:delimiter => ''}}
     # conf.create.link.label = "Add Record"

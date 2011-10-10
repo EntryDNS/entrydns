@@ -8,6 +8,7 @@ class CreateRecords < ActiveRecord::Migration
       t.integer :ttl
       t.integer :prio
       t.integer :change_date
+      t.string :authentication_token
 
       t.timestamps
     end
@@ -15,5 +16,6 @@ class CreateRecords < ActiveRecord::Migration
     add_index :records, :name, :name => 'rec_name_index'
     add_index :records, [:name, :type], :name => 'nametype_index'
     add_index :records, :domain_id, :name => 'domain_id'
+    add_index :records, :authentication_token, :unique => true
   end
 end

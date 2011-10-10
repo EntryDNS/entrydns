@@ -1,6 +1,6 @@
 class NsController < ApplicationController
   active_scaffold :ns do |conf|
-    conf.list.columns = [:name, :type, :content, :ttl, :prio, :change_date]
+    conf.columns = [:name, :type, :content, :ttl, :prio, :change_date, :authentication_token]
     conf.create.columns = [:name, :content, :ttl]
     conf.update.columns = [:name, :content, :ttl]
     conf.subform.columns = [:content, :ttl]

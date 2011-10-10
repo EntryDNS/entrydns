@@ -23,4 +23,10 @@ class ApplicationController < ActionController::Base
   def ensure_nested_under_domain
     raise CanCan::AccessDenied, "not found" unless nested? and nested_parent_record.is_a?(Domain)
   end
+  
+  def client_remote_ip
+    request.env["HTTP_X_FORWARDED_FOR"]
+  end
+  helper_method :client_remote_ip
+  
 end

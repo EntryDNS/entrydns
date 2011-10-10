@@ -1,6 +1,6 @@
 class MxesController < ApplicationController
   active_scaffold :mx do |conf|
-    conf.list.columns = [:name, :type, :content, :ttl, :prio, :change_date]
+    conf.columns = [:name, :type, :content, :ttl, :prio, :change_date, :authentication_token]
     conf.create.columns = [:content, :ttl, :prio]
     conf.update.columns = [:content, :ttl, :prio]
     conf.columns[:content].label = 'MX'
@@ -32,8 +32,9 @@ class MxesController < ApplicationController
   
   # override, we make our own sti logic
   def new_model
-    model = beginning_of_chain
-    model.new
+    model = beginning_of_chain.new
+    model.name = nested_parent_record.name
+    model
   end
 
   # override to close create form after success  

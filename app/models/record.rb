@@ -14,7 +14,9 @@ class Record < ActiveRecord::Base
     :less_than => 2**31,
     :only_integer => true
   }, :allow_blank => true
+  validates :authentication_token, :presence => true, :uniqueness => true
   
+  before_validation :generate_token, :on => :create
   before_validation :prepare_name!
   before_save :update_change_date
   after_save  :update_soa_serial
@@ -30,6 +32,15 @@ class Record < ActiveRecord::Base
   def shortname=(value); self.name = value end
   
   def to_label; "#{type} #{content}" end
+  
+  # Generate a token by looping and ensuring does not already exist.
+  # stolen from Devise
+  def generate_token
+    self.authentication_token = loop do
+      token = Devise.friendly_token
+      break token unless self.class.exists?(:authentication_token => token)
+    end
+  end
   
   protected
 

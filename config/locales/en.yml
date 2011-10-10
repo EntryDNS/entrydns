@@ -12,6 +12,14 @@ en:
       mx: "MX Record"
       a: "A Record"
       txt: "TXT Record"
+
+#    errors
+#      models
+#        a
+#          attributes
+#            content
+#              ipv4
+
 #    attributes:
 #      user:
 #        login: "Handle"
