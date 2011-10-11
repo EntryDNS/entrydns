@@ -8,9 +8,10 @@
           <li><%= link_to 'Manage Domains', domains_path, :data => {:pjax => '#main'} %></li>
         <% else %>
           <li><%= link_to('Home', root_path, :data => {:pjax => '#main'}) %></li>
-          <li><%= link_to('About', page_path('about'), :data => {:pjax => '#main'}) %></li>
-          <li><%= link_to('Team', page_path('team'), :data => {:pjax => '#main'}) %></li>
         <% end %>
+        <li><%= link_to('About', page_path('about'), :data => {:pjax => '#main'}) %></li>
+        <li><%= link_to('Team', page_path('team'), :data => {:pjax => '#main'}) %></li>
+        <li><%= link_to('Contact', page_path('contact'), :data => {:pjax => '#main'}) %></li>
         <li><%= link_to('Help & Support', page_path('help'), :data => {:pjax => '#main'}) %></li>
       </ul>
     </div>
