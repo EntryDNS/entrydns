@@ -67,7 +67,8 @@
     
     em.mk-point {
         font-style: normal;
-        @include text-shadow(0 0 6px rgba(143, 181, 200, 1),0 0 30px rgba(143, 181, 200, .7));
+        color: darken(#6b35a6, 30);
+        //@include text-shadow(0 0 6px rgba(143, 181, 200, 1),0 0 30px rgba(143, 181, 200, .7));
     }
     
     li {
