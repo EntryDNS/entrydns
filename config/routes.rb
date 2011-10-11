@@ -38,7 +38,10 @@ Entrydns::Application.routes.draw do
   end
   
   get '/dashboard', :to => 'dashboard#index', :as => :dashboard
-  root :to => 'home#index'
+  
+  resources :pages, :only => :show
+  
+  root :to => 'pages#show', :id => 'home'
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

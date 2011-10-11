@@ -2,7 +2,7 @@ require 'bundler/capistrano'
 
 default_run_options[:pty] = true
 set :application, 'entrydns'
-set :domain, 'zooz.dyndns.org'
+set :domain, 'n0.entrydns.net'
 set :repository,  "git@bitbucket.org:clyfe/entrydns.git"
 set :deploy_to, '/srv/www/apps/entrydns'
 set :user, 'clyfe'
