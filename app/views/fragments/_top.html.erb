@@ -9,9 +9,9 @@
         <% else %>
           <li><%= link_to('Home', root_path, :data => {:pjax => '#main'}) %></li>
           <li><%= link_to('About', page_path('about'), :data => {:pjax => '#main'}) %></li>
-          <li><%#= link_to('About us', root_path, :data => {:pjax => '#main'}) %></li>
+          <li><%= link_to('Team', page_path('team'), :data => {:pjax => '#main'}) %></li>
         <% end %>
-        <li><%#= link_to('Help & Support', root_path, :data => {:pjax => '#main'}) %></li>
+        <li><%= link_to('Help & Support', page_path('help'), :data => {:pjax => '#main'}) %></li>
       </ul>
     </div>
     <div id="user-navigation">
