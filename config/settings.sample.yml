@@ -1,0 +1,8 @@
+default_ttl: 3600
+min_ttl: 60
+ns:
+  - ns1.entrydns.net
+  - ns2.entrydns.net
+#  - ns3.entrydns.net
+#  - ns4.entrydns.net
+default_prio: 10

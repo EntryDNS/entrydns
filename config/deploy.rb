@@ -21,7 +21,8 @@ role :app, domain                   # This may be the same as your `Web` server
 role :db,  domain, :primary => true # This is where Rails migrations will run
 # role :db,  "your slave db-server here"
 
-after 'deploy:update_code', 'deploy:symlink_db'
+after 'deploy:update_code', 'deploy:symlink_database_yml'
+after 'deploy:update_code', 'deploy:symlink_settings_yml'
 
 load 'deploy/assets'
 
@@ -48,7 +49,12 @@ namespace :deploy do
   end
   
   desc "Symlinks the database.yml"
-  task :symlink_db, :roles => :app do
+  task :symlink_database_yml, :roles => :app do
     run "ln -nfs #{deploy_to}/shared/config/database.yml #{release_path}/config/database.yml"
+  end
+
+  desc "Symlinks the settings.yml"
+  task :symlink_settings_yml, :roles => :app do
+    run "ln -nfs #{deploy_to}/shared/config/settings.yml #{release_path}/config/settings.yml"
   end
 end

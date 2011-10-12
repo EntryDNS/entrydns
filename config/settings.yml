@@ -1,8 +1,0 @@
-default_ttl: 2000
-min_ttl: 1000
-ns:
-  - ns1.ourdomain.com
-  - ns2.ourdomain.com
-  - ns3.ourdomain.com
-  - ns4.ourdomain.com
-default_prio: 10
