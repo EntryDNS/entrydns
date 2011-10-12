@@ -25,4 +25,15 @@ class RecordsController < ApplicationController
     conf.actions.exclude :show
   end
   before_filter :ensure_nested_under_domain
+  skip_before_filter :authenticate_user!, :only => 'modify'
+  protect_from_forgery :except => 'modify'
+  skip_authorize_resource :only => :modify
+  
+  # TODO: externalize
+  def modify
+    @record = Record.where(:authentication_token => params[:authentication_token]).first!
+    @record.content = params[:ip] || client_remote_ip
+    @record.save!
+    respond_with @arecord
+  end
 end

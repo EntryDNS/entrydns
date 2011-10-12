@@ -12,17 +12,6 @@ class AsController < ApplicationController
     conf.actions.exclude :show
   end
   before_filter :ensure_nested_under_domain, :except => 'modify'
-  skip_before_filter :authenticate_user!, :only => 'modify'
-  protect_from_forgery :except => 'modify'
-  skip_authorize_resource :only => :modify
-  
-  # TODO: externalize
-  def modify
-    @a = A.where(:authentication_token => params[:authentication_token]).first!
-    @a.content = params[:ip] || client_remote_ip
-    @a.save!
-    respond_with @a
-  end
   
   protected
   

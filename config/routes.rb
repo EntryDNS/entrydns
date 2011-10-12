@@ -8,6 +8,9 @@ Entrydns::Application.routes.draw do
 
   resources :records do
     as_routes
+    collection do
+      put 'modify/:authentication_token', :action => 'modify'
+    end
   end
 
   resources :soas do
@@ -24,9 +27,6 @@ Entrydns::Application.routes.draw do
 
   resources :as do
     as_routes
-    collection do
-      put 'modify/:authentication_token', :action => 'modify'
-    end
   end
 
   resources :cnames do
