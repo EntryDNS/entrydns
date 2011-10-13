@@ -11,12 +11,21 @@ class PagesController < ApplicationController
   end
 
   def show
-    # redirect_to domains_path if user_signed_in? # for home page only
-    render :template => current_page
+    if user_signed_in? && params[:id] == "home"
+      redirect_to domains_path
+    else
+      render :template => current_page
+    end
   end
 
   protected
-
-  def current_page; "pages/#{clean_path}" end
-  def clean_path; Pathname.new("/#{params[:id]}").cleanpath.to_s[1..-1] end
+  
+  def current_page
+    @current_page ||= "pages/#{clean_path}"
+  end
+  
+  def clean_path
+    Pathname.new("/#{params[:id]}").cleanpath.to_s[1..-1]
+  end
+  
 end

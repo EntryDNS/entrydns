@@ -11,15 +11,9 @@
     <div id="container">
       <%= render :partial => 'fragments/top' %>
       <div id="wrapper" class="wat-cf">
-        <div id="main" style="width: 100%;">
-          <div class="block">
-            <div class="content">
-              <div class="inner" data-pjax-container="true">
-                <%= flash_display 'flash' %>
-                <%= yield %>
-              </div>
-            </div>
-          </div>
+        <div id="main" style="width: 100%;" data-pjax-container="true">
+          <%= flash_display 'flash' %>          
+          <%= yield %>
         </div>
       </div>
       <%= render :partial => 'fragments/bottom' %>
