@@ -16,6 +16,8 @@ class RecordsController < ApplicationController
     end
   end
   
+  respond_to :html, :xml, :json
+  
   active_scaffold :record do |conf|
     conf.sti_children = [:SOA, :NS, :MX, :A, :CNAME, :TXT]
     conf.columns = [:name, :type, :content, :ttl, :prio, :change_date, :authentication_token]
@@ -24,7 +26,7 @@ class RecordsController < ApplicationController
     # conf.create.link.label = "Add Record"
     conf.actions.exclude :show
   end
-  before_filter :ensure_nested_under_domain
+  before_filter :ensure_nested_under_domain, :except => 'modify'
   skip_before_filter :authenticate_user!, :only => 'modify'
   protect_from_forgery :except => 'modify'
   skip_authorize_resource :only => :modify
@@ -34,6 +36,10 @@ class RecordsController < ApplicationController
     @record = Record.where(:authentication_token => params[:authentication_token]).first!
     @record.content = params[:ip] || client_remote_ip
     @record.save!
-    respond_with @arecord
+    respond_with(@record) do |format|
+      format.html {
+        render :text => 'OK'
+      }
+    end
   end
 end

@@ -26,7 +26,34 @@ describe RecordsController do
   def valid_attributes
     {}
   end
-
+  
+  describe "PUT modify", :focus => true do
+    include_context "data"
+    
+    before do
+      sign_in user
+      controller.stub(:current_user).and_return(user)
+    end
+    
+    it "modifies @record when IP given" do
+      ip = '127.0.0.2'
+      put :modify, :authentication_token => a_record.authentication_token, :ip => ip
+      response.should be_success
+      assigns(:record).should == a_record
+      assigns(:record).content.should == ip
+    end
+    
+    it "modifies @record with remote IP" do
+      ip = '127.0.0.3'
+      request.env["HTTP_X_FORWARDED_FOR"] = ip
+      put :modify, :authentication_token => a_record.authentication_token
+      response.should be_success
+      assigns(:record).should == a_record
+      assigns(:record).content.should == ip
+    end
+    
+  end
+  
   describe "GET index" do
     it "assigns all records as @records" do
       record = Record.create! valid_attributes

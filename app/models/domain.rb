@@ -33,6 +33,7 @@ class Domain < ActiveRecord::Base
   validates :ns_records, :on => :create, :presence => true, :length => {
     :minimum => 2, :maximum => 10, :message => "must have be at least 2, at most 10"}
   validates_associated :records
+  validates :user_id, :presence => true
   
   def slave?; self.type == 'SLAVE' end
 

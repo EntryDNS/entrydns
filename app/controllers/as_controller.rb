@@ -1,6 +1,4 @@
 class AsController < ApplicationController
-  respond_to :html, :xml, :json
-  
   active_scaffold :a do |conf|
     conf.columns = [:name, :type, :content, :ttl, :prio, :change_date, :authentication_token]
     conf.create.columns = [:name, :content, :ttl,]
@@ -11,7 +9,7 @@ class AsController < ApplicationController
     conf.columns[:ttl].options = {:i18n_number => {:delimiter => ''}}
     conf.actions.exclude :show
   end
-  before_filter :ensure_nested_under_domain, :except => 'modify'
+  before_filter :ensure_nested_under_domain
   
   protected
   
