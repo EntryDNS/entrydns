@@ -12,6 +12,14 @@ en:
       mx: "MX Record"
       a: "A Record"
       txt: "TXT Record"
+    attributes:
+      domain:
+        ip: "IP"
+        soa_record: "SOA Record"
+        ns_records: "NS Records"
+      record:
+        ttl: "TTL"
+        prio: "Priority"
 
 #    errors
 #      models
@@ -20,6 +28,3 @@ en:
 #            content
 #              ipv4
 
-#    attributes:
-#      user:
-#        login: "Handle"
