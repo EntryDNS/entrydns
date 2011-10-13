@@ -3,8 +3,9 @@ class CnamesController < ApplicationController
     conf.columns = [:name, :type, :content, :ttl, :prio, :change_date, :authentication_token]
     conf.create.columns = [:name, :content, :ttl]
     conf.update.columns = [:name, :content, :ttl]
-    conf.columns[:content].label = 'FQDN'
-    conf.columns[:content].description = 'Ex. "host.domain.com"'
+    conf.columns[:name].description = 'CNAME'
+    conf.columns[:content].label = 'Destination'
+    conf.columns[:content].description = 'FQDN Ex. "host.domain.com"'
     conf.columns[:change_date].list_ui = :timestamp
     conf.columns[:ttl].options = {:i18n_number => {:delimiter => ''}}
     conf.actions.exclude :show
