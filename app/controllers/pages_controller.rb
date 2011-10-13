@@ -1,6 +1,14 @@
 class PagesController < ApplicationController
   skip_before_filter :authenticate_user!
-  layout proc{|controller| request.xhr? ? false : 'marketing'}
+  layout proc{|controller| 
+    if request.xhr? 
+      false 
+    elsif user_signed_in?
+      'application'
+    else
+      'marketing'
+    end
+  }
   
   rescue_from ActionView::MissingTemplate do |exception|
     if exception.message =~ %r{Missing template pages/}

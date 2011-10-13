@@ -5,6 +5,8 @@
 *= require normalize
 *= require theme/base
 *= require theme/default
+*= require theme/error_explanation
+*= require theme/pages
 *= require marketing
 *= require active_scaffold
 *= require overrides
