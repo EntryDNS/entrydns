@@ -18,12 +18,16 @@ FactoryGirl.define do
   factory :record do
   end
 
-  factory :soa_record, :class => 'SOA' do
+  factory :soa do
     contact {Faker::Internet.email}
   end
 
-  factory :ns_record, :class => 'NS' do
+  factory :ns do
     content {Settings.ns.sample}
+  end
+
+  factory :a do
+    content {Faker::Internet.ip_v4_address}
   end
   
 end

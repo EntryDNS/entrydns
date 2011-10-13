@@ -1,13 +1,7 @@
 require 'spec_helper'
 
 describe Domain do
-  let(:domain){
-    domain = Factory.build(:domain)
-    domain.setup(FactoryGirl.generate(:email))
-    domain.save!
-    domain.soa_record.update_serial!
-    domain
-  }
+  include_context "data"
   
   it "has correct soa record" do
     domain.soa_record.should be_present
