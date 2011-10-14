@@ -1,8 +1,51 @@
 <div class="block">
   <div class="content">
     <div class="inner">
-      <h1>Top 20 questions about EntryDNS</h1>
-      <p>Coming soon!</p>
+
+      <h1>Help & Support</h1>
+
+      <em>We are working hard on creating a support system. In the mean time please bear with us!</em>
+
+      <h3>1. What support can I expect?</h3>
+      <p>
+        Since the service is totally free and we both have full time jobs, 
+        we do our best to answer your questions and address your suggestions.
+      </p>
+
+      <h3>2. How can I contact you if I have a question?</h3>
+      <ul>
+        <li>E-Mail: <a href="mailto:support@entrydns.net">support@entrydns.net</a></li>
+        <li>IRC: #entrydns on irc.freenode.net</li>
+      </ul>
+
+      <h3>3. What are your name servers?</h3>
+      <ul>
+        <li>ns1.entrydns.net</li>
+        <li>ns2.entrydns.net</li>
+      </ul>
+
+      <h3>4. How can I update my domain record dynamically?</h3>
+      <div>
+        We offer two API's: Complete REST API and Simple API.<br />
+        Using the simple API you can update your records using the following shell commands:<br />
+        <br />
+        
+        With IP specified:
+        <pre style="margin-top: 0;">curl -X PUT -d "ip=IP" http://entrydns.net/records/modify/TOKEN</pre>
+
+        With IP automatically computed from request origin:
+        <pre style="margin-top: 0;">curl -X PUT -d "" http://entrydns.net/records/modify/TOKEN</pre>
+      </div>
+
+      <h3>5. What domain record types do you currently support?</h3>
+      <p>SOA, NS, A, CNAME, TXT (more coming soon)</p>
+
+      <h3>6. Can I set individual TTL for each record?</h3>
+      <p>Yes, you certainly can.</p>
+
+      <h3>7. What is a minimum TTL for a domain record?</h3>
+      <p>60 seconds</p>
+
     </div>
   </div>
 </div>
