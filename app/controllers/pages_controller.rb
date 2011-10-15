@@ -6,7 +6,7 @@ class PagesController < ApplicationController
     elsif user_signed_in?
       'application'
     else
-      'marketing'
+      'public'
     end
   }
   

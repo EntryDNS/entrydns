@@ -1,13 +1,13 @@
 @import "compass/css3/text-shadow";
 @import "ui/buttons";
 
-.marketing .header-inner {
+.home-page .header-inner {
     width: 77%;
     margin: auto;
     position: relative;
 }
 
-#main .marketing-block {
+#main .home-page-block {
     background-color: #333333;
     .content h1 {
         //text-align: center;
@@ -28,16 +28,16 @@
     }
 }
 
-.marketing-duo td {
+.home-page-duo td {
     vertical-align: top;
 }
 
-#main.marketing-main {
+#main.home-page-main {
     margin-left: auto;
     margin-right: auto;
     float: none;
     
-    .block .content .marketing-inner {        
+    .block .content .home-page-inner {        
         background-color: #e5ecf3;
         padding: 20px 30px 30px;
         @include border-bottom-radius(6px);
@@ -51,17 +51,17 @@
             color: #555;
         }
         
-        .marketing-text li {
+        .home-page-text li {
             list-style-image: url(image_path('theme/check.png'));
             font-size: 20px;
             color: #555;
         }
     }
     
-    .marketing-text {
+    .home-page-text {
         padding-right: 20px;
     }
-    .marketing-images {
+    .home-page-images {
         padding-left: 20px;
     }
     

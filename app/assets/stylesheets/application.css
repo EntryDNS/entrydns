@@ -6,8 +6,9 @@
 *= require theme/base
 *= require theme/default
 *= require theme/error_explanation
+*= require pages/home
 *= require pages/team
-*= require pages/marketing
+*= require pages/help
 *= require active_scaffold
 *= require overrides
 *= require slides
