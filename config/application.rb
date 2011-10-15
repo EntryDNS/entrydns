@@ -47,7 +47,7 @@ module Entrydns
     
     config.to_prepare do
       layout = proc{|controller| 
-        l = user_signed_in? ? "application" : "marketing" 
+        l = user_signed_in? ? "application" : "public" 
         request.xhr? ? false : l 
       }
       Devise::SessionsController.layout layout
@@ -55,6 +55,8 @@ module Entrydns
       Devise::ConfirmationsController.layout layout
       Devise::UnlocksController.layout layout
       Devise::PasswordsController.layout layout
+      
+      Devise::Mailer.layout "emails"
     end
     
   end

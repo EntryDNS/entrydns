@@ -17,4 +17,9 @@ class User < ActiveRecord::Base
   attr_accessible :email, :password, :password_confirmation, :remember_me, :first_name, :last_name
   
   has_many :records
+  
+  def name
+    first_name + ' ' + last_name
+  end
+  
 end

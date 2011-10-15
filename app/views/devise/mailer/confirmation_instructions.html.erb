@@ -1,5 +1,13 @@
-<p>Welcome <%= @resource.email %>!</p>
+<p>Welcome <%= @resource.name %>!</p>
 
 <p>You can confirm your account through the link below:</p>
 
-<p><%= link_to 'Confirm my account', confirmation_url(@resource, :confirmation_token => @resource.confirmation_token) %></p>
+<p>
+  <%= link_to 'Confirm my account', 
+    confirmation_url(@resource, :confirmation_token => @resource.confirmation_token) %>
+</p>
+
+<p>
+  If you cannot see the link copy and paste the following address in your browser address bar:<br />
+  <%= confirmation_url(@resource, :confirmation_token => @resource.confirmation_token) %>
+</p>
