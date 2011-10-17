@@ -1,6 +1,6 @@
 source 'http://rubygems.org'
 
-gem 'rails', '3.1.1.rc1'
+gem 'rails', '3.1.1'
 
 # Bundle edge Rails instead:
 # gem 'rails',     :git => 'git://github.com/rails/rails.git'
@@ -18,6 +18,7 @@ gem 'nilify_blanks', '~> 1.0.0'
 gem 'rails_config', '~> 0.2.4'
 # gem 'rails-settings-cached', :require => 'rails-settings'
 gem 'active-model-email-validator', '~> 1.0.2'
+gem 'mail_form', '~> 1.3.0'
 gem 'capistrano', '~> 2.9.0'
 
 # Gems used only for assets and not required

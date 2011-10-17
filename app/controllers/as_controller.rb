@@ -26,6 +26,7 @@ class AsController < ApplicationController
   def new_model
     model = beginning_of_chain.new
     model.name = nested_parent_record.name
+    model.content = client_remote_ip if client_remote_ip.present?
     model
   end
 

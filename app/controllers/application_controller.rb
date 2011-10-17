@@ -25,7 +25,7 @@ class ApplicationController < ActionController::Base
   end
   
   def client_remote_ip
-    request.env["HTTP_X_FORWARDED_FOR"]
+    @client_remote_ip ||= request.env["HTTP_X_FORWARDED_FOR"]
   end
   helper_method :client_remote_ip
   
