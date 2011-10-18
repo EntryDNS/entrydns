@@ -16,6 +16,17 @@ class A < Record
 
   attr_accessor :host_domain
   validates :host_domain, :inclusion => {:in => Settings.host_domains}, :allow_blank => true
+
+  validate do
+    if Settings.host_domains.include?(domain.name)
+      for hostname in Settings.protected_hostnames
+        if name =~ /^#{hostname}/i
+          errors[:name] << "cannot be used, please try another"
+          break
+        end
+      end
+    end
+  end
   
   before_validation do
     if host_domain.present? && Settings.host_domains.include?(host_domain)

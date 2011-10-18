@@ -8,3 +8,9 @@ ns:
 default_prio: 10
 host_domains:
   - entrydns.org
+protected_hostnames:
+  - www
+  - mail
+  - smtp
+  - imap
+  - ns[0-9]*
