@@ -27,10 +27,12 @@ class ApplicationController < ActionController::Base
   def client_remote_ip
     @client_remote_ip ||= request.env["HTTP_X_FORWARDED_FOR"]
   end
-  helper_method :client_remote_ip
   
   def current_ability
     @current_ability ||= ::Ability.new(:user => current_user)
   end
+  
+  helper_method :client_remote_ip
+  helper_method :respond_to
   
 end

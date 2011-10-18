@@ -1,7 +1,17 @@
-<div class="block">
-  <div class="content">
-    <div class="inner" data-pjax-container="true">
-      <%= render :super %>
+<% respond_to do |format| %>
+
+  <% format.html do %>
+    <div class="block">
+      <div class="content">
+        <div class="inner">
+          <%= render :super %>
+        </div>
+      </div>
     </div>
-  </div>
-</div>
+  <% end %>
+
+  <% format.js do %>
+    <%= render :super %>
+  <% end %>
+
+<% end %>
