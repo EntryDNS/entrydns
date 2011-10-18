@@ -17,14 +17,10 @@ class A < Record
   attr_accessor :host_domain
   validates :host_domain, :inclusion => {:in => Settings.host_domains}, :allow_blank => true
 
+  validates :name, :length => {:minimum => 4}, :if => :host?
   validate do
-    if Settings.host_domains.include?(domain.name)
-      for hostname in Settings.protected_hostnames
-        if name =~ /^#{hostname}/i
-          errors[:name] << "cannot be used, please try another"
-          break
-        end
-      end
+    if host? && Settings.protected_hostnames.any? {|hn| name =~ /^#{hn}/i}
+      errors[:name] << "cannot be used, please try another"
     end
   end
   
@@ -34,4 +30,5 @@ class A < Record
     end
   end
   
+  def host?; domain.present? && Settings.host_domains.include?(domain.name) end
 end
