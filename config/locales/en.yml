@@ -4,6 +4,9 @@
 en:
   errors:
     action_not_allowed: "Action not allowed"
+    messages:
+      ipv4: "must be a valid IPV4"
+      ipv6: "must be a valid IPV6"
   activerecord:
     models:
       soa: "SOA Record"

@@ -25,6 +25,10 @@ class HostsController < ApplicationController
     record
   end
   
+  def beginning_of_chain
+    super.includes(:domain).where(:domains => {:name => Settings.host_domains})
+  end
+  
   def before_create_save(record)
     record.user = current_user
   end

@@ -15,7 +15,7 @@ class A < Record
   validates :content, :presence => true, :ip => {:ip_type => :v4} # Only accept valid IPv4 addresses
 
   attr_accessor :host_domain
-  validates :host_domain, :inclusion => {:in => Settings.host_domains}
+  validates :host_domain, :inclusion => {:in => Settings.host_domains}, :allow_blank => true
   
   before_validation do
     if host_domain.present? && Settings.host_domains.include?(host_domain)
