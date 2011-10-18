@@ -1,6 +1,8 @@
 
 # an user for administrative purposes
 admin = User.create(
+  :first_name => 'admin',
+  :last_name => 'admin',
   :email => 'admin@entrydns.com',
   :password => 'garlik1',
   :password_confirmation => 'garlik1'
@@ -14,7 +16,9 @@ for name in Settings.host_domains
 end
 
 # sample user
-user = User.create(
+user = User.create!(
+  :first_name => 'user',
+  :last_name => 'user',
   :email => 'user@app.com',
   :password => 'useruser',
   :password_confirmation => 'useruser'
