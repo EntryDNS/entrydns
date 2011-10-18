@@ -7,4 +7,4 @@ ns:
 #  - ns4.entrydns.net
 default_prio: 10
 host_domains:
-  - entrydns.net
+  - entrydns.org
