@@ -3,7 +3,7 @@
 admin = User.create(
   :first_name => 'admin',
   :last_name => 'admin',
-  :email => 'admin@entrydns.com',
+  :email => 'admin@entrydns.net',
   :password => 'garlik1',
   :password_confirmation => 'garlik1'
 )
@@ -19,7 +19,7 @@ end
 user = User.create!(
   :first_name => 'user',
   :last_name => 'user',
-  :email => 'user@app.com',
+  :email => 'user@entrydns.net',
   :password => 'useruser',
   :password_confirmation => 'useruser'
 )
