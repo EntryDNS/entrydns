@@ -1,6 +1,6 @@
 
 # an user for administrative purposes
-admin = User.create(
+admin = User.create!(
   :first_name => 'admin',
   :last_name => 'admin',
   :email => 'admin@entrydns.net',
