@@ -5,8 +5,8 @@ class Domain < ActiveRecord::Base
   # optional IP for create form, results in a type A record
   attr_accessor :ip
   
-  belongs_to :user
-  has_many :records, :dependent => :destroy, :inverse_of => :domain
+  belongs_to :user, :inverse_of => :domain
+  has_many :records, :inverse_of => :domain, :dependent => :destroy
 
   cattr_reader :types
   @@types = ['NATIVE', 'MASTER', 'SLAVE', 'SUPERSLAVE']
@@ -85,6 +85,7 @@ class Domain < ActiveRecord::Base
     end
   end
 
+  scope :host_domains, where(:name => Settings.host_domains)
   
   def setup(email)
     build_soa_record

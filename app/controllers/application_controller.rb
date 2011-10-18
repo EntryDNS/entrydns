@@ -29,4 +29,8 @@ class ApplicationController < ActionController::Base
   end
   helper_method :client_remote_ip
   
+  def current_ability
+    @current_ability ||= ::Ability.new(:user => current_user)
+  end
+  
 end

@@ -6,3 +6,5 @@ ns:
 #  - ns3.entrydns.net
 #  - ns4.entrydns.net
 default_prio: 10
+host_domains:
+  - entrydns.net

@@ -14,4 +14,13 @@ class A < Record
   validates :name, :hostname => {:allow_underscore => true, :allow_wildcard_hostname => true}
   validates :content, :presence => true, :ip => {:ip_type => :v4} # Only accept valid IPv4 addresses
 
+  attr_accessor :host_domain
+  validates :host_domain, :inclusion => {:in => Settings.host_domains}
+  
+  before_validation do
+    if host_domain.present? && Settings.host_domains.include?(host_domain)
+      self.domain_id = Domain.find_by_name(host_domain).try(:id)
+    end
+  end
+  
 end

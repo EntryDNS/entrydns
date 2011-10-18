@@ -1,27 +1,24 @@
 class Ability
   include CanCan::Ability
+  attr_accessor :user
+  attr_accessor :context
 
-  def initialize(user)
-
-    user ||= User.new
+  def initialize(options)
+    @user = options[:user] || User.new
+    @context = options[:context] || :application
+    
     if user.persisted?
+    
+      # can manage his domains and records
       can :manage, Domain, :user_id => user.id
       can :manage, Record, :domain => {:user_id => user.id}
       cannot :delete, SOA # it's deleted with the parent domain
+      
+      # can manage his hosts
+      can :manage, A, :user_id => user.id #, :domain => {:name => Settings.host_domains}
+      
     end
 
-    # The first argument to `can` is the action you are giving the user permission to do.
-    # If you pass :manage it will apply to every action. Other common actions here are
-    # :read, :create, :update and :destroy.
-    #
-    # The second argument is the resource the user can perform the action on. If you pass
-    # :all it will apply to every resource. Otherwise pass a Ruby class of the resource.
-    #
-    # The third argument is an optional hash of conditions to further filter the objects.
-    # For example, here the user can only update published articles.
-    #
-    #   can :update, Article, :published => true
-    #
     # See the wiki for details: https://github.com/ryanb/cancan/wiki/Defining-Abilities
   end
 end

@@ -6,6 +6,10 @@ Entrydns::Application.routes.draw do
     as_routes
   end
 
+  resources :hosts do
+    as_routes
+  end
+
   put '/records/modify/:authentication_token', :to => 'records#modify', :as => :modify_record
   resources :records do
     as_routes
