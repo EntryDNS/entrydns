@@ -57,4 +57,9 @@ namespace :deploy do
   task :symlink_settings_yml, :roles => :app do
     run "ln -nfs #{deploy_to}/shared/config/settings.yml #{release_path}/config/settings.yml"
   end
+  
+  desc "Populates the Production Database"
+  task :seed do
+    run "cd #{current_path}; #{rake} db:seed RAILS_ENV=production"
+  end
 end
