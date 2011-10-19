@@ -24,8 +24,8 @@ module ApplicationHelper
 
     messages = resource.errors.full_messages.map { |msg| content_tag(:li, msg) }.join
     sentence = I18n.t("errors.messages.not_saved",
-                      :count => resource.errors.count,
-                      :resource => resource.class.model_name.human.downcase)
+      :count => resource.errors.count,
+      :resource => resource.class.model_name.human.downcase)
 
     html = <<-HTML
     <div id="error_explanation">
@@ -35,6 +35,12 @@ module ApplicationHelper
     HTML
 
     html.html_safe
+  end
+  
+  def honeypot
+    content_tag('div', :style => 'position: absolute; left: -2000px;') do
+      text_field_tag("#{Settings.honeypot}", nil, :tabindex => 900)
+    end
   end
   
 end

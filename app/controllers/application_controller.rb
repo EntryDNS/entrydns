@@ -2,6 +2,7 @@ class ApplicationController < ActionController::Base
   before_filter :authenticate_user!
   include SentientController
   protect_from_forgery
+  before_filter :check_honeypot
   
   rescue_from CanCan::AccessDenied, ActiveScaffold::ActionNotAllowed do |exception|
     flash.now[:error] = exception.message
@@ -34,5 +35,9 @@ class ApplicationController < ActionController::Base
   
   helper_method :client_remote_ip
   helper_method :respond_to
+  
+  def check_honeypot
+    render :nothing => true if params[Settings.honeypot].present?
+  end
   
 end
