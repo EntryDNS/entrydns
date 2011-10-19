@@ -42,6 +42,7 @@ Entrydns::Application.routes.draw do
   get '/dashboard', :to => 'dashboard#index', :as => :dashboard
   
   resources :pages, :only => :show
+  post 'pages/contact', :to => 'pages#contact'
   
   root :to => 'pages#show', :id => 'home'
 

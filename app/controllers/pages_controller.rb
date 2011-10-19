@@ -19,10 +19,20 @@ class PagesController < ApplicationController
   end
 
   def show
-    if user_signed_in? && params[:id] == "home"
-      redirect_to domains_path
+    return redirect_to(domains_path) if user_signed_in? && params[:id] == "home"
+    if params[:id] == "contact"
+      init = user_signed_in? ? {:name => current_user.name, :email => current_user.email} : {}
+      @contact_form = ContactForm.new(init)
+    end
+    render :template => current_page
+  end
+  
+  def contact
+    @contact_form = ContactForm.new(params[:contact_form])
+    if !@contact_form.deliver
+      render :template => 'pages/contact'
     else
-      render :template => current_page
+      redirect_to :back, :notice => 'Your notification has been sent!'
     end
   end
 

@@ -15,6 +15,7 @@
 *= require pages/team
 *= require pages/help
 *= require pages/edit_account
+*= require pages/contact
 
 *= require active_scaffold
 *= require overrides
