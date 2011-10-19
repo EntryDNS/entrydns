@@ -8,7 +8,7 @@
 
       <h3>I have an idea for an EntryDNS feature, who can I tell about it?</h3>
       <p>
-        We’d love to hear your idea. Please send an email to support@entrydns.net
+        We’d love to hear your idea. Please send an email to <%= mail_to Settings.support_mail %>
       </p>
       
       <h3>What support can I expect?</h3>
@@ -19,7 +19,7 @@
 
       <h3>How can I contact you if I have a question?</h3>
       <ul>
-        <li>E-Mail: <a href="mailto:support@entrydns.net">support@entrydns.net</a></li>
+        <li>Email: <%= mail_to Settings.support_mail %></li>
         <li>IRC: #entrydns on irc.freenode.net</li>
       </ul>
 
