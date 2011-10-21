@@ -20,7 +20,7 @@ class User < ActiveRecord::Base
   has_many :records, :inverse_of => :user, :dependent => :destroy
   
   def name
-    first_name + ' ' + last_name
+    "#{first_name} #{last_name}"
   end
   
 end
