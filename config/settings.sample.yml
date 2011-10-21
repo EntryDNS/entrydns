@@ -1,3 +1,4 @@
+
 default_ttl: 3600
 min_ttl: 60
 ns:
@@ -15,3 +16,4 @@ protected_hostnames:
   - imap
   - ns[0-9]*
 support_mail: "support@entrydns.net"
+honeypot: userid
