@@ -33,16 +33,22 @@ hr {
 #header h1 {
     padding: 15px 5px;
     float: left;
-    font-size: 40px;
+    font-size: 38px;
     font-style: normal;
     font-weight: bold;
     text-transform: normal;
     letter-spacing: -1px;
-    line-height: 1.2em;
-    color: white;
+    color: #53d4ff;
 }
-#header h1 a:link, #header h1 a:active, #header h1 a:hover, #header h1 a:visited {
-    color: white;
+#header h1 a {
+    &:link, &:active, &:hover, &:visited {
+        color: #53d4ff;
+        border: 6px solid #53d4ff;
+        padding: 0 10px;
+        @include border-radius(15px);
+        @include text-shadow(0 1px 0 rgba(0, 0, 0, 0.6),0 0 6px rgba(143, 181, 200, 1),0 0 30px rgba(143, 181, 200, .7));
+        @include box-shadow(0 1px 0 rgba(0, 0, 0, 0.6),0 0 6px rgba(143, 181, 200, 1),0 0 30px rgba(143, 181, 200, .7));
+    }
 }
 
 #main {
@@ -88,7 +94,7 @@ hr {
     a {
         text-decoration: none;
         padding: 8px 0;
-        color: #eeeeee;
+        color: #53d4ff;
         &:hover {
             text-decoration: underline;
         }
@@ -134,7 +140,7 @@ hr {
 
 #user-navigation ul li {
     a {
-        color: #eeeeee;
+        color: #53d4ff;
         &:hover {
             text-decoration: underline;
         }

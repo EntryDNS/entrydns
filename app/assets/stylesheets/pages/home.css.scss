@@ -25,6 +25,19 @@
 .home-page-duo td {
     vertical-align: top;
     width: 50%;
+    blockquote {
+        font-style: italic;
+        font-size: 1.2em;
+        font-family: Cambria, Georgia, serif;
+        color: #333;
+        line-height: 1.4em;
+        margin-bottom: 30px;
+        strong {
+            font-style: normal;
+            font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+            font-weight: normal;
+        }
+    }
 }
 
 #main.home-page-main {
