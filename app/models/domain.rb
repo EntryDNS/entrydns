@@ -34,13 +34,23 @@ class Domain < ActiveRecord::Base
     :minimum => 2, :maximum => 10, :message => "must have be at least 2, at most 10"}
   validates_associated :records
   validates :user_id, :presence => true
-  validate do # domain ownership
+  
+  validate :domain_ownership
+  def domain_ownership # domain ownership
     segments = name.split('.')
     if segments.size > 2
       parent = segments[1..-1].join('.')
       unless Domain.exists?(:name => parent, :user_id => user_id)
         errors.add :name, "issue, must create the domain named `#{parent}` first"
       end
+    end
+  end
+  
+  validate :max_domains_per_user, :on => :create
+  def max_domains_per_user # domains per user limit for DOS protection
+    max = Settings.max_domains_per_user.to_i
+    if user.domains.count >= max
+      errors.add :base, "as a security measure, you cannot have more than #{max} domains on one account"
     end
   end
   

@@ -16,6 +16,13 @@ class Record < ActiveRecord::Base
     :only_integer => true
   }, :allow_blank => true
   validates :authentication_token, :presence => true, :uniqueness => true
+  validate :max_records_per_domain, :on => :create
+  def max_records_per_domain # domains per user limit for DOS protection
+    max = Settings.max_records_per_domain.to_i
+    if domain.records.count >= max
+      errors.add :base, "as a security measure, you cannot have more than #{max} records on one domain"
+    end
+  end
   
   before_validation :generate_token, :on => :create
   before_validation :prepare_name!

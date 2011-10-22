@@ -31,4 +31,19 @@ describe Domain do
     end
     (domain.soa_record.serial % 10).should == 0
   end
+  
+  it "protects DOS on more Settings.max_domains_per_user+ domains" do
+    max = Settings.max_domains_per_user.to_i
+    domain.stub_chain(:user, :domains, :count).and_return(max)
+    domain.max_domains_per_user
+    domain.should have(1).errors
+  end
+
+  it "is DOS-valid on less than Settings.max_domains_per_user domains" do
+    max = Settings.max_domains_per_user.to_i
+    domain.stub_chain(:user, :domains, :count).and_return(max-1)
+    domain.max_domains_per_user
+    domain.should be_valid
+  end
+  
 end

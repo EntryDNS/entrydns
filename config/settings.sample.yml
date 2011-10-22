@@ -1,4 +1,3 @@
-
 default_ttl: 3600
 min_ttl: 60
 ns:
@@ -17,3 +16,5 @@ protected_hostnames:
   - ns[0-9]*
 support_mail: "support@entrydns.net"
 honeypot: userid
+max_domains_per_user: 200
+max_records_per_domain: 500
