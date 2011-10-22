@@ -9,9 +9,9 @@ set :user, 'clyfe'
 set :use_sudo, false
 set :scm, 'git'
 set :ssh_options, :forward_agent => true
+set :deploy_via, :remote_cache
 # set :branch, "master"
 # set :scm_verbose, true
-# set :deploy_via, :remote_cache/:export .. etc
 # set :git_enable_submodules, 
 # set :scm_passphrase, "passwd0" # the deploy user's password
 
