@@ -1,21 +1,24 @@
 <div id="slidesWrapper">
   <div id="slides">
-    <img src="http://slidesjs.com/examples/standard/img/slide-1.jpg">
-    <img src="http://slidesjs.com/examples/standard/img/slide-2.jpg">
-    <img src="http://slidesjs.com/examples/standard/img/slide-3.jpg">
-    <img src="http://slidesjs.com/examples/standard/img/slide-4.jpg">
+    <%= image_tag 'marketing/domains.jpg' %>
+    <%= image_tag 'marketing/hosts.jpg' %>
   </div>
 </div>
 
 <script type="text/javascript">
   $("#slides")
-    .slides({
-      width: 470,
-      navigation: false,
-      //responsive: true,
-      slide: {
-        interval: 500
-      }
-    })
-    .slides('play');
+  .slides({
+    width: 470,
+    navigation: false,
+    //responsive: true,
+    slide: {
+      interval: 500
+    },
+    preload: {
+      active: true
+    },
+    playInterval: 8000,
+    pauseInterval: 16000
+  })
+  .slides('play');
 </script>

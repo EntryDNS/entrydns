@@ -5,10 +5,12 @@ class HostsController < ApplicationController
     conf.create.columns = [:name, :host_domain, :content, :ttl,]
     conf.update.columns = [:name, :host_domain, :content, :ttl]
     conf.list.label = 'Hosts'
+    conf.list.sorting = {:name => :asc}
     conf.create.link.label = "Add Host"
     conf.columns[:host_domain].form_ui = :select
     conf.columns[:host_domain].options = {:options => Settings.host_domains}
     conf.columns[:name].label = 'Host'
+    conf.columns[:name].description = 'Ex. "your-name"'
     conf.columns[:content].label = 'IP'
     conf.columns[:content].description = 'Ex. "10.10.5.12"'
     conf.columns[:change_date].list_ui = :timestamp

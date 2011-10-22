@@ -1,3 +1,0 @@
-# Simple API
-
-curl -H "Accept: application/json" -X PUT -d "" http://entrydns/records/modify/TOKEN

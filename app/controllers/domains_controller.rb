@@ -9,7 +9,7 @@ class DomainsController < ApplicationController
     conf.columns[:ip].description = 'Ex. "10.10.5.12", optional IP to associate your domain with'
     conf.columns[:ns_records].show_blank_record = false
     conf.actions.exclude :show
-    conf.list.sorting = { :name => :asc }
+    conf.list.sorting = {:name => :asc}
     conf.create.link.label = "Add Domain"
     
     # conf.columns[:records].label = 'All Records'

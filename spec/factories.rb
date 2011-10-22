@@ -27,6 +27,7 @@ FactoryGirl.define do
   end
 
   factory :a do
+    name {Faker::Internet.domain_word}
     content {Faker::Internet.ip_v4_address}
   end
   

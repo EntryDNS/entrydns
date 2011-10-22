@@ -34,10 +34,13 @@ end
 gem 'jquery-rails'
 # gem 'foreigner' ?
 
-gem 'rspec-rails', '~> 2.6.1', :group => [:test, :development]
-group :test do
+group :test, :development do
+  gem 'rspec-rails', '~> 2.6.1'
   gem 'faker','~> 1.0.1'
   gem 'factory_girl_rails', '~> 1.2'
+end
+
+group :test do
   gem 'capybara', '~> 1.1.1'
   gem 'database_cleaner', '~> 0.6.7'
   gem 'spork', '~> 0.9.0.rc'
