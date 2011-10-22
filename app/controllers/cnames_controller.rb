@@ -26,7 +26,6 @@ class CnamesController < ApplicationController
   # override, we make our own sti logic
   def new_model
     model = beginning_of_chain.new
-    model.name = nested_parent_record.name
     model
   end
 
