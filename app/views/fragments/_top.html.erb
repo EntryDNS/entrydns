@@ -18,6 +18,12 @@
     </div>
     <div id="user-navigation">
       <ul class="wat-cf">
+        <li>
+          <script src="//platform.twitter.com/widgets.js" type="text/javascript"></script>
+          <%= link_to 'Tweet',
+            "https://twitter.com/share?text=EntryDNS a nice free DNS management service&url=#{root_url}",
+            :class => "twitter-share-button" %>
+        </li>
         <% if user_signed_in? %>
           <li><%= link_to('Help & Support', page_path('help'), :data => {:pjax => '#main'}) %></li>
           <li><%= link_to(current_user.email, edit_user_registration_path, :title => "IP: #{client_remote_ip}", :data => {:pjax => '#main'}) %></li>
