@@ -19,10 +19,15 @@
     <div id="user-navigation">
       <ul class="wat-cf">
         <li>
-          <script src="//platform.twitter.com/widgets.js" type="text/javascript"></script>
-          <%= link_to 'Tweet',
-            "https://twitter.com/share?text=EntryDNS a nice free DNS service&url=#{root_url}",
-            :class => "twitter-share-button" %>
+           <%= link_to 'Tweet', "https://twitter.com/share", :class => "twitter-share-button",
+              :data => {
+                :url => root_url,
+                :text => "EntryDNS a nice free DNS service",
+                :count => "horizontal",
+                :via => "entrydns",
+                :related => "_clyfe:vaijab"
+              } %>
+           <script type="text/javascript" src="//platform.twitter.com/widgets.js"></script>
         </li>
         <% if user_signed_in? %>
           <li><%= link_to('Help & Support', page_path('help'), :data => {:pjax => '#main'}) %></li>
