@@ -47,7 +47,8 @@ class Domain < ActiveRecord::Base
 
   validate :domain_ownership, :on => :create
   def domain_ownership # at least one NS is among ours
-    Resolv::DNS.open do |dns|
+    ns = Settings.resolv.sample
+    Resolv::DNS.open(:nameserver => ns) do |dns|
       ress = dns.getresources name, Resolv::DNS::Resource::IN::NS
       if (Settings.ns & ress.map{|r| r.name.to_s}).blank?
         errors.add :base, "You must delegate #{name} to one of our NS servers before adding it"
