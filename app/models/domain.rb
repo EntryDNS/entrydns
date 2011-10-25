@@ -35,17 +35,6 @@ class Domain < ActiveRecord::Base
   validates_associated :records
   validates :user_id, :presence => true
   
-  validate :domain_ownership
-  def domain_ownership # domain ownership
-    segments = name.split('.')
-    if segments.size > 2
-      parent = segments[1..-1].join('.')
-      unless Domain.exists?(:name => parent, :user_id => user_id)
-        errors.add :name, "issue, must create the domain named `#{parent}` first"
-      end
-    end
-  end
-  
   validate :max_domains_per_user, :on => :create
   def max_domains_per_user # domains per user limit for DOS protection
     max = Settings.max_domains_per_user.to_i
