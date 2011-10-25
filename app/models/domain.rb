@@ -1,3 +1,5 @@
+require 'resolv'
+
 class Domain < ActiveRecord::Base
   set_inheritance_column "sti_disabled"
   nilify_blanks
@@ -40,6 +42,16 @@ class Domain < ActiveRecord::Base
     max = Settings.max_domains_per_user.to_i
     if user.domains.count >= max
       errors.add :base, "as a security measure, you cannot have more than #{max} domains on one account"
+    end
+  end
+
+  validate :domain_ownership, :on => :create
+  def domain_ownership # at least one NS is among ours
+    Resolv::DNS.open do |dns|
+      ress = dns.getresources name, Resolv::DNS::Resource::IN::NS
+      if (Settings.ns & ress.map{|r| r.name.to_s}).blank?
+        errors.add :base, "You must delegate #{name} to one of our NS servers before adding it"
+      end
     end
   end
   
