@@ -38,10 +38,10 @@
         <br />
         
         With IP specified:
-        <pre style="margin-top: 0;">curl -X PUT -d "ip=IP" http://entrydns.net/records/modify/TOKEN</pre>
+        <pre style="margin-top: 0;">curl -k -X PUT -d "ip=IP" https://entrydns.net/records/modify/TOKEN</pre>
 
         With IP automatically computed from request origin:
-        <pre style="margin-top: 0;">curl -X PUT -d "" http://entrydns.net/records/modify/TOKEN</pre>
+        <pre style="margin-top: 0;">curl -k -X PUT -d "" https://entrydns.net/records/modify/TOKEN</pre>
       </div>
 
       <h3>What domain record types do you currently support?</h3>
