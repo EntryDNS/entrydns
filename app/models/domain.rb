@@ -46,8 +46,19 @@ class Domain < ActiveRecord::Base
   end
 
   validate :domain_ownership
-  def domain_ownership # at least one NS is among ours
+  def domain_ownership
+    # non-TLD validation
     errors[:name] = "cannot be a TLD or a reserved domain" if Tld.include?(name)
+
+    # if parent domain is on our system, the user must own it
+    segments = name.split('.')
+    if segments.size >= 2
+      parent = segments[1..-1].join('.')
+      parent_domain = Domain.find_by_name(parent)
+      if parent_domain.present? && parent_domain.user_id != user_id
+        errors[:name] = "issue, the parent domain `#{parent}` is registered to another user"
+      end
+    end
   end
   
   def slave?; self.type == 'SLAVE' end

@@ -49,9 +49,13 @@ describe Domain do
   it "validates ownership" do
     domain.name = 'co.uk'
     domain.should have(1).errors_on(:name)
-    
+
     domain.name = 'clyfe.ro'
     domain.should be_valid
+
+    # stub a parent domain on another user account
+    Domain.stub_chain(:find_by_name, :user_id).and_return(domain.user_id+1)
+    domain.should have(1).errors_on(:name)
   end
   
 end
