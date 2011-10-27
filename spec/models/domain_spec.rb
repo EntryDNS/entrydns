@@ -46,4 +46,12 @@ describe Domain do
     domain.should be_valid
   end
   
+  it "validates ownership" do
+    domain.name = 'co.uk'
+    domain.should have(1).errors_on(:name)
+    
+    domain.name = 'clyfe.ro'
+    domain.should be_valid
+  end
+  
 end

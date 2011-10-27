@@ -45,15 +45,9 @@ class Domain < ActiveRecord::Base
     end
   end
 
-  validate :domain_ownership, :on => :create
+  validate :domain_ownership
   def domain_ownership # at least one NS is among ours
-    ns = Settings.resolv.sample
-    Resolv::DNS.open(:nameserver => ns) do |dns|
-      ress = dns.getresources name, Resolv::DNS::Resource::IN::NS
-      if (Settings.ns & ress.map{|r| r.name.to_s}).blank?
-        errors.add :base, "You must delegate #{name} to one of our NS servers before adding it"
-      end
-    end
+    errors[:name] = "cannot be a TLD or a reserved domain" if Tld.include?(name)
   end
   
   def slave?; self.type == 'SLAVE' end
