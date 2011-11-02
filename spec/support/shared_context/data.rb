@@ -12,4 +12,6 @@ shared_context "data" do
   
   let(:a_record){Factory(:a, :content => '127.0.0.1', :domain => domain)}
   
+  let(:soa_record){domain.soa_record}
+  
 end

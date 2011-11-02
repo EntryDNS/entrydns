@@ -31,14 +31,20 @@ class RecordsController < ApplicationController
   protect_from_forgery :except => 'modify'
   skip_authorize_resource :only => :modify
   
+  MODIFY_ERROR = 'ERROR: only A records can be modified with this API'
+  MODIFY_OK = 'OK'
+  
   # TODO: externalize
   def modify
     @record = Record.where(:authentication_token => params[:authentication_token]).first!
+    if @record.type != 'A'
+      return render :text => MODIFY_ERROR
+    end
     @record.content = params[:ip] || client_remote_ip
     @record.save!
     respond_with(@record) do |format|
       format.html {
-        render :text => 'OK'
+        render :text => MODIFY_OK
       }
     end
   end
