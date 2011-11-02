@@ -5,8 +5,8 @@
       <ul class="wat-cf">
         <% if user_signed_in? %>
           <li><%#= link_to('Dashboard', dashboard_path, :data => {:pjax => '#main'}) %></li>
-          <li><%= link_to 'Manage Domains', domains_path, :data => {:pjax => '#main'} %></li>
-          <li><%= link_to 'Manage Hosts', hosts_path, :data => {:pjax => '#main'} %></li>
+          <li><%= link_to 'My Domains', domains_path, :data => {:pjax => '#main'} %></li>
+          <li><%= link_to 'Dynamic Hosts', hosts_path, :data => {:pjax => '#main'} %></li>
         <% else %>
           <li><%= link_to('Home', root_path, :data => {:pjax => '#main'}) %></li>
           <li><%= link_to('About', page_path('about'), :data => {:pjax => '#main'}) %></li>
@@ -27,7 +27,6 @@
                 :via => "entrydns",
                 :related => "_clyfe:vaijab"
               } %>
-           <script type="text/javascript" src="//platform.twitter.com/widgets.js"></script>
         </li>
         <% if user_signed_in? %>
           <li><%= link_to('Help & Support', page_path('help'), :data => {:pjax => '#main'}) %></li>
