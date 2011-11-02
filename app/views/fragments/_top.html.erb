@@ -28,6 +28,7 @@
                 :related => "_clyfe:vaijab"
               } %>
         </li>
+        <li><%= link_to('Donate', page_path('donate'), :data => {:pjax => '#main'}) %></li>
         <% if user_signed_in? %>
           <li><%= link_to('Help & Support', page_path('help'), :data => {:pjax => '#main'}) %></li>
           <li><%= link_to(current_user.email, edit_user_registration_path, :title => "IP: #{client_remote_ip}", :data => {:pjax => '#main'}) %></li>
