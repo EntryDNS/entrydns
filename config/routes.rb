@@ -42,6 +42,10 @@ Entrydns::Application.routes.draw do
     as_routes
   end
   
+  resources :aaaas do
+    as_routes
+  end
+  
   get '/dashboard', :to => 'dashboard#index', :as => :dashboard
   
   resources :pages, :only => :show

@@ -1,10 +1,10 @@
-class AsController < ApplicationController
-  active_scaffold :a do |conf|
+class AaaasController < ApplicationController
+  active_scaffold :aaaa do |conf|
     conf.columns = [:name, :type, :content, :ttl, :prio, :change_date, :authentication_token]
     conf.create.columns = [:name, :content, :ttl,]
     conf.update.columns = [:name, :content, :ttl]
-    conf.columns[:content].label = 'IP v4'
-    conf.columns[:content].description = 'Ex. "10.10.5.12"'
+    conf.columns[:content].label = 'IP v6'
+    conf.columns[:content].description = 'Ex. "2001:0db8:85a3:0000:0000:8a2e:0370:7334"'
     conf.columns[:change_date].list_ui = :timestamp
     conf.columns[:ttl].options = {:i18n_number => {:delimiter => ''}}
     conf.actions.exclude :show

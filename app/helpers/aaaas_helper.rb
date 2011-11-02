@@ -1,0 +1,2 @@
+module AaaasHelper
+end

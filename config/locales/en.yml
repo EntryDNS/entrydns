@@ -14,6 +14,7 @@ en:
       cname: "CNAME Record"
       mx: "MX Record"
       a: "A Record"
+      aaaa: "AAAA Record"
       txt: "TXT Record"
     attributes:
       domain:

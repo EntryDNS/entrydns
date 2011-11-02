@@ -19,7 +19,7 @@ class RecordsController < ApplicationController
   respond_to :html, :xml, :json
   
   active_scaffold :record do |conf|
-    conf.sti_children = [:SOA, :NS, :MX, :A, :CNAME, :TXT]
+    conf.sti_children = [:SOA, :NS, :MX, :A, :CNAME, :TXT, :AAAA]
     conf.columns = [:name, :type, :content, :ttl, :prio, :change_date, :authentication_token]
     conf.columns[:change_date].list_ui = :timestamp
     conf.columns[:ttl].options = {:i18n_number => {:delimiter => ''}}
