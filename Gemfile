@@ -32,6 +32,7 @@ group :assets do
 end
 
 gem 'jquery-rails'
+gem 'dalli', '~> 1.1.3'
 # gem 'foreigner' ?
 
 group :test, :development do

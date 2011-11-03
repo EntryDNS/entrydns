@@ -38,7 +38,13 @@ Entrydns::Application.configure do
 
   # Use a different cache store in production
   # config.cache_store = :mem_cache_store
-
+  config.cache_store = :dalli_store, 'localhost', {
+    :memcache_server => ['127.0.0.1'],
+    :namespace => 'entrydns',
+    :expires_in => 1.day,
+    :compress => true
+  }
+  
   # Enable serving of images, stylesheets, and JavaScripts from an asset server
   # config.action_controller.asset_host = "http://assets.example.com"
 
