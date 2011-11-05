@@ -13,7 +13,7 @@ class Domain < ActiveRecord::Base
   cattr_reader :types
   @@types = ['NATIVE', 'MASTER', 'SLAVE', 'SUPERSLAVE']
   
-  has_one :soa_record, 
+  has_one :soa_record,
     :class_name => 'SOA', 
     :conditions => {:type => 'SOA'},
     :inverse_of => :domain
@@ -110,9 +110,11 @@ class Domain < ActiveRecord::Base
     soa.contact ||= email
 
     ns_records.build
-    ns_records.build    
-    ns1, ns2 = ns_records
+    ns_records.build
+    ns_records.build
+    ns1, ns2, ns3 = ns_records
     ns1.content = Settings.ns.first
-    ns2.content = (Settings.ns - [ns1.content]).sample
+    ns2.content = Settings.ns.second
+    ns3.content = Settings.ns.third
   end
 end
