@@ -3,7 +3,7 @@ class Record < ActiveRecord::Base
   belongs_to :user, :inverse_of => :records
   
   cattr_reader :types
-  @@types = %w(SOA NS A MX TXT CNAME AAAA)
+  @@types = %w(SOA NS A MX TXT CNAME AAAA SRV)
   
   validates :domain, :name, :presence => true
   validates :type, :inclusion => {:in => @@types, :message => "Unknown record type"}
