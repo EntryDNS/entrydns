@@ -16,7 +16,7 @@ class AaaasController < ApplicationController
   # override to use :mx_records instead of :records assoc
   def beginning_of_chain
     if nested? && nested.association && nested.association.collection? && nested.association.name == :records
-      nested.parent_scope.a_records
+      nested.parent_scope.aaaa_records
     else
       super
     end
