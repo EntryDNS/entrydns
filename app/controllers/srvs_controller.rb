@@ -2,8 +2,8 @@ class SrvsController < ApplicationController
   active_scaffold :srv do |conf|
     conf.columns = [:name, :type, :content, :weight, :port, :host, :ttl, :prio, :change_date, :authentication_token]
     conf.columns = [:name, :type, :content, :ttl, :prio, :change_date, :authentication_token]
-    conf.create.columns = [:weight, :host, :port, :ttl, :prio]
-    conf.update.columns = [:weight, :host, :port, :ttl, :prio]
+    conf.create.columns = [:name, :weight, :host, :port, :ttl, :prio]
+    conf.update.columns = [:name, :weight, :host, :port, :ttl, :prio]
     conf.columns[:content].description = 'Ex. "_http._tcp.example.com"'
     conf.columns[:change_date].list_ui = :timestamp
     conf.columns[:ttl].options = {:i18n_number => {:delimiter => ''}}
