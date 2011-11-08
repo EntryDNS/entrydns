@@ -1,3 +1,4 @@
+# application
 default_ttl: 3600
 min_ttl: 60
 ns:
@@ -14,10 +15,13 @@ protected_hostnames:
   - smtp
   - imap
   - ns[0-9]*
-support_mail: "support@entrydns.net"
-honeypot: userid
 max_domains_per_user: 200
 max_records_per_domain: 500
 resolv:
   - 8.8.8.8
   - 8.8.4.4
+  
+# public
+honeypot: userid
+support_mail: "support@entrydns.net"
+news_link: "http://twitter.com/#!/entrydns"
