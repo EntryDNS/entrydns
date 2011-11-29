@@ -35,6 +35,8 @@ gem 'jquery-rails'
 gem 'dalli', '~> 1.1.3'
 # gem 'foreigner' ?
 
+gem 'mongrel', '>= 1.2.0.pre2', :group => :development
+
 group :test, :development do
   gem 'rspec-rails', '~> 2.6.1'
   gem 'faker','~> 1.0.1'
