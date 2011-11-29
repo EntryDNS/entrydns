@@ -8,14 +8,14 @@ describe Domain do
   end
 
   it "has correct ns records" do
-    domain.should have(2).ns_records
+    domain.should have(Settings.ns.count).ns_records
     for record in domain.ns_records
       record.should be_persisted
     end
   end
 
   it "has correct records" do
-    domain.records.count.should == 3
+    domain.records.count.should == Settings.ns.count+1
   end
 
   it "has a soa serial updated" do
@@ -25,7 +25,7 @@ describe Domain do
   it "updates name to records when name changed" do
     domain.update_attributes(:name => "changed#{domain.name}")
     domain.soa_record.name.should == domain.name
-    domain.records.all.size.should == 3
+    domain.records.all.size.should == Settings.ns.count+1
     for record in domain.records.all
       record.name.should =~ /#{domain.name}$/
     end
