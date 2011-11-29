@@ -48,6 +48,8 @@ group :test do
   gem 'database_cleaner', '~> 0.6.7'
   gem 'spork', '~> 0.9.0.rc'
   gem 'rb-fsevent', '~> 0.4.3.1'
+  gem 'rb-inotify', '~> 0.8.8'
+  gem 'libnotify', '~> 0.5.9'
   gem 'guard-rspec', '~> 0.4.5'
   gem 'guard-spork', '~> 0.3.0'
 end
