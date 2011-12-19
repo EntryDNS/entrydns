@@ -1,4 +1,4 @@
-module AngelNest
+module Entrydns
   module TestHelpers
     
 #    def make_user
@@ -8,5 +8,5 @@ module AngelNest
 end
 
 RSpec.configure do |config|
-  config.include AngelNest::TestHelpers
+  config.include Entrydns::TestHelpers
 end

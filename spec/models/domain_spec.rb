@@ -15,7 +15,7 @@ describe Domain do
   end
 
   it "has correct records" do
-    domain.records.count.should == Settings.ns.count+1
+    domain.records.count.should == Settings.ns.count + 1
   end
 
   it "has a soa serial updated" do
@@ -25,7 +25,7 @@ describe Domain do
   it "updates name to records when name changed" do
     domain.update_attributes(:name => "changed#{domain.name}")
     domain.soa_record.name.should == domain.name
-    domain.records.all.size.should == Settings.ns.count+1
+    domain.records.all.size.should == Settings.ns.count + 1
     for record in domain.records.all
       record.name.should =~ /#{domain.name}$/
     end
@@ -34,14 +34,14 @@ describe Domain do
   
   it "protects DOS on more Settings.max_domains_per_user+ domains" do
     max = Settings.max_domains_per_user.to_i
-    domain.stub_chain(:user, :domains, :count).and_return(max)
+    domain.stub_chain('user.domains.count').and_return(max)
     domain.max_domains_per_user
     domain.should have(1).errors
   end
 
   it "is DOS-valid on less than Settings.max_domains_per_user domains" do
     max = Settings.max_domains_per_user.to_i
-    domain.stub_chain(:user, :domains, :count).and_return(max-1)
+    domain.stub_chain('user.domains.count').and_return(max - 1)
     domain.max_domains_per_user
     domain.should be_valid
   end
@@ -54,7 +54,7 @@ describe Domain do
     domain.should be_valid
 
     # stub a parent domain on another user account
-    Domain.stub_chain(:find_by_name, :user_id).and_return(domain.user_id+1)
+    Domain.stub_chain('find_by_name.user_id').and_return(domain.user_id + 1)
     domain.should have(1).errors_on(:name)
   end
   
