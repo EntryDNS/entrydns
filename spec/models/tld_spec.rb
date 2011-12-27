@@ -3,7 +3,7 @@ require 'spec_helper'
 describe Tld do
 
   its ".lines" do
-   Tld.lines.should be_present
+    Tld.lines.should be_present
   end
 
   its ".include" do
