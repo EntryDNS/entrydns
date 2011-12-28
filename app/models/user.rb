@@ -18,6 +18,7 @@ class User < ActiveRecord::Base
   
   has_many :domains, :inverse_of => :user, :dependent => :destroy
   has_many :records, :inverse_of => :user, :dependent => :destroy
+  has_many :permissions, :inverse_of => :user, :dependent => :destroy
   
   def name
     "#{first_name} #{last_name}"

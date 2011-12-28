@@ -9,7 +9,7 @@ gem 'rails', '3.1.1'
 gem 'mysql2'
 gem 'devise', '~> 1.4.5'
 gem 'cancan', '~> 1.6.5'
-# gem "meta_where", "~> 1.0" # squeel ?
+gem "squeel", "~> 0.9.3"
 gem 'sentient_user', '~> 0.3.2'
 gem 'active_scaffold', '~> 3.1.0', :git => 'https://github.com/activescaffold/active_scaffold.git' # :path => '/home/clyfe/dev/active_scaffold'
 gem 'pjax_rails', '~> 0.1.10'

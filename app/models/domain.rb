@@ -9,6 +9,7 @@ class Domain < ActiveRecord::Base
   
   belongs_to :user, :inverse_of => :domain
   has_many :records, :inverse_of => :domain, :dependent => :destroy
+  has_many :permissions, :inverse_of => :domain, :dependent => :destroy
 
   cattr_reader :types
   @@types = ['NATIVE', 'MASTER', 'SLAVE', 'SUPERSLAVE']

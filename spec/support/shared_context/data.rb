@@ -2,6 +2,7 @@ shared_context "data" do
   
   let(:user){create(:user)}
   let(:ability){Ability.new(:user => user)}
+
   let(:other_user){create(:user)}
   let(:other_user_ability){Ability.new(:user => other_user)}
   
@@ -36,5 +37,7 @@ shared_context "data" do
     domain
   }
   let(:host_a_record){create(:a, :content => '127.0.0.1', :domain => host_domain, :user => user)}
+
+  let(:permission) {create(:permission, :domain => domain, :user => other_user)}
   
 end

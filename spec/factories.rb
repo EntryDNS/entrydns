@@ -33,4 +33,7 @@ FactoryGirl.define do
     content {Faker::Internet.ip_v4_address}
   end
   
+  factory :permission do
+  end
+  
 end

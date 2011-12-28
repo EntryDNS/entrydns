@@ -2,15 +2,16 @@ class DomainsController < ApplicationController
   
   active_scaffold :domain do |conf|
     conf.columns = [:name, :ip, :records, :soa_record, :ns_records]
-    conf.list.columns = [:name, :records]
+    conf.list.columns = [:name, :records, :permissions]
     conf.create.columns = [:name, :ip, :soa_record, :ns_records]
     conf.update.columns = [:name, :soa_record]
     conf.columns[:name].description = 'Ex. "domain.com"'
     conf.columns[:ip].description = 'Ex. "10.10.5.12", optional IP to associate your domain with'
     conf.columns[:ns_records].show_blank_record = false
+    conf.columns[:permissions].label = 'Sharing'
     conf.actions.exclude :show
     conf.list.sorting = {:name => :asc}
-    conf.create.link.label = "Add Domain"
+    conf.create.link.label = 'Add Domain'
     
     # conf.columns[:records].label = 'All Records'
   end
@@ -20,6 +21,12 @@ class DomainsController < ApplicationController
   def do_new
     super
     @record.setup(current_user.email)
+  end
+  
+  def new_model
+    record = super
+    record.user_id = current_user.id
+    record
   end
     
   def before_create_save(record)
