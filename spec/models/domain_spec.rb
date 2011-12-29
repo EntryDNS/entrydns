@@ -57,5 +57,12 @@ describe Domain do
     Domain.stub_chain('find_by_name.user_id').and_return(domain.user_id + 1)
     domain.should have(1).errors_on(:name)
   end
+
+  it "queries domains corectly in index" do
+    wheres = Domain.accessible_by(ability).where_values
+    joins = Domain.accessible_by(ability).joins_values.map{|j| [j._name, j._type]}
+    wheres.should == ["(`permissions`.`user_id` = #{user.id}) OR (`domains`.`user_id` = #{user.id})"]
+    joins.should == [[:permissions, Arel::Nodes::OuterJoin]]
+  end
   
 end

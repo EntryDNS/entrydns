@@ -16,4 +16,30 @@ describe Record do
     a_record.max_records_per_domain
     a_record.should be_valid
   end
+  
+  def record_joins_expectations(joins)
+    # joins == [{:domain => Squeel(:permissions, outer)}]
+    joins.size.should == 1
+    joins.first.should be_an_instance_of(Hash)
+    domain_joins = joins.first[:domain]
+    domain_joins.size.should == 1
+    domain_joins.first[:domain]._name.should == :permissions
+    domain_joins.first[:domain]._type.should == Arel::Nodes::OuterJoin
+  end
+  
+  it "queries records corectly in index" do
+    wheres = Record.accessible_by(ability).where_values
+    joins = Record.accessible_by(ability).joins_values
+    wheres.should == ["(`permissions`.`user_id` = #{user.id}) OR (`domains`.`user_id` = #{user.id})"]
+    record_joins_expectations(joins)
+  end
+  
+  it "queries A records corectly in index" do
+    wheres = A.accessible_by(ability).where_values
+    joins = A.accessible_by(ability).joins_values
+    wheres.size.should == 2
+    wheres.second.should == "(`permissions`.`user_id` = #{user.id}) OR ((`records`.`user_id` = #{user.id}) OR (`domains`.`user_id` = #{user.id}))"
+    record_joins_expectations(joins)
+  end
+  
 end

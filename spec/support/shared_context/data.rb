@@ -38,6 +38,6 @@ shared_context "data" do
   }
   let(:host_a_record){create(:a, :content => '127.0.0.1', :domain => host_domain, :user => user)}
 
-  let(:permission) {create(:permission, :domain => domain, :user => other_user)}
-  
+  let(:permission){create(:permission, :domain => domain, :user => other_user)}
+    
 end
