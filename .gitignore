@@ -11,3 +11,7 @@ config/settings/*.local.yml
 config/environments/*.local.yml
 config/settings.yml
 public/assets
+/spec/.views/
+/spec/.requests/
+/spec/.controllers/
+/spec/.helpers/
