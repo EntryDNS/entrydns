@@ -1,5 +1,8 @@
 require 'spec_helper'
 
 describe User do
-  pending "add some examples to (or delete) #{__FILE__}"
+  include_context "data"
+  it "is valid" do
+    user.should be_valid
+  end
 end
