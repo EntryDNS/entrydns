@@ -48,4 +48,13 @@ class RecordsController < ApplicationController
       }
     end
   end
+  
+  protected
+  
+  def new_model
+    record = super
+    record.user_id = current_user.id
+    record
+  end
+  
 end

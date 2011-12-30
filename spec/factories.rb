@@ -10,6 +10,9 @@ FactoryGirl.define do
     email
     password
     password_confirmation {password}
+    after_create do |u|
+      u.confirm!
+    end
   end
   
   factory :domain do
