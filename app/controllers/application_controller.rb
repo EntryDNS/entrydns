@@ -40,4 +40,8 @@ class ApplicationController < ActionController::Base
     render :nothing => true if params[Settings.honeypot].present?
   end
   
+  def nested_via_records?
+    nested? && nested.association && nested.association.collection? && nested.association.name == :records
+  end
+  
 end

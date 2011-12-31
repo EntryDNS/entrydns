@@ -23,11 +23,7 @@ class MxesController < ApplicationController
   
   # override to use :mx_records instead of :records assoc
   def beginning_of_chain
-    if nested? && nested.association && nested.association.collection? && nested.association.name == :records
-      nested.parent_scope.mx_records
-    else
-      super
-    end
+    nested_via_records? ? nested.parent_scope.mx_records : super
   end
   
   # override, we make our own sti logic

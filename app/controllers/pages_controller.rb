@@ -1,13 +1,8 @@
 class PagesController < ApplicationController
   skip_before_filter :authenticate_user!
   layout proc{|controller| 
-    if request.xhr? 
-      false 
-    elsif user_signed_in?
-      'application'
-    else
-      'public'
-    end
+    return false if request.xhr? 
+    user_signed_in? ? 'application' : 'public'
   }
   
   rescue_from ActionView::MissingTemplate do |exception|

@@ -11,9 +11,8 @@ class SoasController < ApplicationController
   
   protected
   
-  # override to use :mx_records instead of :records assoc
   def beginning_of_chain
-    super.readonly(false)
+    (nested_via_records? ? nested.parent_scope.soa_records : super).readonly(false)
   end
   
   # override, we make our own sti logic
