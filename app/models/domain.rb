@@ -1,5 +1,3 @@
-require 'resolv'
-
 class Domain < ActiveRecord::Base
   set_inheritance_column "sti_disabled"
   nilify_blanks

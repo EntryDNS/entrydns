@@ -37,15 +37,11 @@ class RecordsController < ApplicationController
   # TODO: externalize
   def modify
     @record = Record.where(:authentication_token => params[:authentication_token]).first!
-    if @record.type != 'A'
-      return render :text => MODIFY_ERROR
-    end
+    return render(:text => MODIFY_ERROR) if @record.type != 'A'
     @record.content = params[:ip] || client_remote_ip
     @record.save!
     respond_with(@record) do |format|
-      format.html {
-        render :text => MODIFY_OK
-      }
+      format.html {render(:text => MODIFY_OK)}
     end
   end
   
