@@ -46,6 +46,7 @@ end
 group :test do
   gem 'capybara', '~> 1.1.1'
   gem 'database_cleaner', '~> 0.6.7'
+  gem 'simplecov', :require => false
   gem 'spork', '~> 0.9.0.rc'
   gem 'rb-fsevent', '~> 0.4.3.1'
   gem 'rb-inotify', '~> 0.8.8'
