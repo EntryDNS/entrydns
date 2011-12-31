@@ -25,12 +25,13 @@ class DomainsController < ApplicationController
   
   def new_model
     record = super
-    record.user_id = current_user.id
+    before_create_save(record)
     record
   end
     
   def before_create_save(record)
     record.type = 'NATIVE'
+    record.user = current_user
   end
 
   def after_create_save(record)

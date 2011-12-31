@@ -20,10 +20,15 @@ class NsController < ApplicationController
   
   # override, we make our own sti logic
   def new_model
-    model = beginning_of_chain.new
-    model.name = nested_parent_record.name
-    model.content = Settings.ns.sample
-    model
+    record = beginning_of_chain.new
+    record.name = nested_parent_record.name
+    record.content = Settings.ns.sample
+    before_create_save(record)
+    record
+  end
+  
+  def before_create_save(record)
+    record.user = current_user
   end
 
   # override to close create form after success  

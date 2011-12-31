@@ -21,8 +21,13 @@ class CnamesController < ApplicationController
   
   # override, we make our own sti logic
   def new_model
-    model = beginning_of_chain.new
-    model
+    record = beginning_of_chain.new
+    before_create_save(record)
+    record
+  end
+  
+  def before_create_save(record)
+    record.user = current_user
   end
 
   # override to close create form after success  

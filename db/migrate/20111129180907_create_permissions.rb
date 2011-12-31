@@ -2,7 +2,7 @@ class CreatePermissions < ActiveRecord::Migration
   def change
     create_table :permissions do |t|
       t.references :domain # the domain to whom permission is being given
-      t.references :user # the user permitted to manage
+      t.references :user # the user newly permitted to manage the domain
 
       t.timestamps
     end

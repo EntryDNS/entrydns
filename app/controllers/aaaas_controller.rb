@@ -20,9 +20,14 @@ class AaaasController < ApplicationController
   
   # override, we make our own sti logic
   def new_model
-    model = beginning_of_chain.new
-    model.name = nested_parent_record.name
-    model
+    record = beginning_of_chain.new
+    record.name = nested_parent_record.name
+    before_create_save(record)
+    record
+  end
+  
+  def before_create_save(record)
+    record.user = current_user
   end
 
   # override to close create form after success  
