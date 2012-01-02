@@ -146,6 +146,9 @@ hr {
         &:hover {
             text-decoration: underline;
         }
+        &.highlight {
+          color: yellow;
+        }
     }
 }
 #user-navigation ul li a:active img {
