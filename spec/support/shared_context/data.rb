@@ -5,6 +5,9 @@ shared_context "data" do
 
   let(:other_user){create(:user)}
   let(:other_user_ability){Ability.new(:user => other_user)}
+
+  let(:third_user){create(:user)}
+  let(:third_user_ability){Ability.new(:user => third_user)}
   
   let(:domain){
     domain = build(:domain, :user => user)

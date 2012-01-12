@@ -24,4 +24,10 @@ class User < ActiveRecord::Base
     "#{first_name} #{last_name}"
   end
   
+  delegate :can?, :cannot?, :to => :ability
+  
+  def ability
+    @ability ||= Ability.new(self)
+  end
+  
 end

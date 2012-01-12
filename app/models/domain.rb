@@ -50,7 +50,7 @@ class Domain < ActiveRecord::Base
     errors[:name] = "cannot be a TLD or a reserved domain" if Tld.include?(name)
 
     # if parent domain is on our system, the user must own it
-    if parent_domain.present? && parent_domain.user_id != user_id
+    if parent_domain.present? && user.cannot?(:manage, parent_domain)
       errors[:name] = "issue, the parent domain `#{parent_domain.name}` is registered to another user"
     end
   end
@@ -72,6 +72,10 @@ class Domain < ActiveRecord::Base
 
   before_create do
     a_records.build(:content => ip) if ip.present?
+  end
+  
+  before_save do
+    self.name_reversed = name.reverse if name_changed?
   end
   
   before_validation(:on => :update) do

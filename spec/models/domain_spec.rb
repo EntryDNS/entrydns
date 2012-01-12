@@ -46,6 +46,11 @@ describe Domain do
     domain.should be_valid
   end
   
+  it "has parent_domain" do
+    subdomain = build(:domain, :user => other_user, :name => "x.#{domain.name}")
+    subdomain.parent_domain.should == domain
+  end
+  
   it "validates ownership" do
     domain.name = 'co.uk'
     domain.should have(1).errors_on(:name)
@@ -53,9 +58,13 @@ describe Domain do
     domain.name = 'clyfe.ro'
     domain.should be_valid
 
-    # stub a parent domain on another user account
-    mock_domain = mock(:user_id => domain.user_id + 1, :name => 'x')
-    Domain.stub_chain('find_by_name').and_return(mock_domain)
+    # stub a parent domain on another user account, with no permissions present
+    mock_domain = mock(
+      :user_id => third_user.id,
+      :user => third_user,
+      :name => 'x'
+    )
+    Domain.stub(:find_by_name).and_return(mock_domain)
     domain.should have(1).errors_on(:name)
   end
 
@@ -64,6 +73,11 @@ describe Domain do
     joins = Domain.accessible_by(ability).joins_values.map{|j| [j._name, j._type]}
     wheres.should == ["(`permissions`.`user_id` = #{user.id}) OR (`domains`.`user_id` = #{user.id})"]
     joins.should == [[:permissions, Arel::Nodes::OuterJoin]]
+  end
+  
+  it "has reversed name" do
+    domain.name_reversed.should be_present
+    domain.name_reversed.should == domain.name.reverse
   end
   
 end
