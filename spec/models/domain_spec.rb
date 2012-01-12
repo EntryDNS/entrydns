@@ -54,7 +54,8 @@ describe Domain do
     domain.should be_valid
 
     # stub a parent domain on another user account
-    Domain.stub_chain('find_by_name.user_id').and_return(domain.user_id + 1)
+    mock_domain = mock(:user_id => domain.user_id + 1, :name => 'x')
+    Domain.stub_chain('find_by_name').and_return(mock_domain)
     domain.should have(1).errors_on(:name)
   end
 

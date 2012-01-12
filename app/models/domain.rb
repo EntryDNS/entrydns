@@ -50,12 +50,20 @@ class Domain < ActiveRecord::Base
     errors[:name] = "cannot be a TLD or a reserved domain" if Tld.include?(name)
 
     # if parent domain is on our system, the user must own it
-    segments = name.split('.')
-    if segments.size >= 2
-      parent = segments[1..-1].join('.')
-      parent_domain = Domain.find_by_name(parent)
-      if parent_domain.present? && parent_domain.user_id != user_id
-        errors[:name] = "issue, the parent domain `#{parent}` is registered to another user"
+    if parent_domain.present? && parent_domain.user_id != user_id
+      errors[:name] = "issue, the parent domain `#{parent_domain.name}` is registered to another user"
+    end
+  end
+  
+  def parent_domain
+    @parent_domain ||= {}
+    @parent_domain[name] ||= begin
+      segments = name.split('.')
+      if segments.size >= 2
+        domain_name = segments[1..-1].join('.')
+        Domain.find_by_name(domain_name)
+      else
+        nil
       end
     end
   end
