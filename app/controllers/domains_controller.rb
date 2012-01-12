@@ -31,7 +31,7 @@ class DomainsController < ApplicationController
     
   def before_create_save(record)
     record.type = 'NATIVE'
-    record.user = current_user
+    record.user = record.parent_domain.present? ? record.parent_domain.user : current_user
   end
 
   def after_create_save(record)

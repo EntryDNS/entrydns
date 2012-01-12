@@ -56,6 +56,7 @@ class Domain < ActiveRecord::Base
   end
   
   def parent_domain
+    return nil if name.nil?
     @parent_domain ||= {}
     @parent_domain[name] ||= begin
       segments = name.split('.')
