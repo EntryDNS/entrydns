@@ -7,7 +7,7 @@ class SoasController < ApplicationController
     conf.columns[:ttl].options = {:i18n_number => {:delimiter => ''}}
     conf.actions.exclude :delete, :show
   end
-  before_filter :ensure_nested_under_domain
+  include RecordsControllerCommon
   
   protected
   
@@ -22,20 +22,9 @@ class SoasController < ApplicationController
     record
   end
   
-  def before_create_save(record)
-    record.domain = nested_parent_record
-    record.user = record.domain_user
-  end
-
-  # override to close create form after success  
-  def render_parent?
-    nested_singular_association? # || params[:parent_sti]
-  end
-  
   def after_update_save(record)
     unless @record.domain.ns_records.any? {|ns_record| @record.primary_ns == ns_record.content}
       flash.now[:warning] = "SOA record's primary NS is no longer among this domain's NS records"
     end
   end
-  
 end

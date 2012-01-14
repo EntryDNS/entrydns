@@ -10,7 +10,7 @@ class CnamesController < ApplicationController
     conf.columns[:ttl].options = {:i18n_number => {:delimiter => ''}}
     conf.actions.exclude :show
   end
-  before_filter :ensure_nested_under_domain
+  include RecordsControllerCommon
   
   protected
   
@@ -26,13 +26,4 @@ class CnamesController < ApplicationController
     record
   end
   
-  def before_create_save(record)
-    record.domain = nested_parent_record
-    record.user = record.domain_user
-  end
-
-  # override to close create form after success  
-  def render_parent?
-    nested_singular_association? # || params[:parent_sti]
-  end
-end 
+end

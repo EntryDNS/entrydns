@@ -26,7 +26,8 @@ class RecordsController < ApplicationController
     # conf.create.link.label = "Add Record"
     conf.actions.exclude :show
   end
-  before_filter :ensure_nested_under_domain, :except => 'modify'
+  include RecordsControllerCommon
+  skip_before_filter :ensure_nested_under_domain, :only => 'modify'
   skip_before_filter :authenticate_user!, :only => 'modify'
   protect_from_forgery :except => 'modify'
   skip_authorize_resource :only => :modify
@@ -49,14 +50,7 @@ class RecordsController < ApplicationController
   
   def new_model
     record = super
-    record.user_id = current_user.id
     before_create_save(record)
     record
   end
-  
-  def before_create_save(record)
-    record.domain = nested_parent_record
-    record.user = record.domain_user
-  end
-  
 end

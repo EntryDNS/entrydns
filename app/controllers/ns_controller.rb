@@ -9,7 +9,7 @@ class NsController < ApplicationController
     conf.columns[:ttl].options = {:i18n_number => {:delimiter => ''}}
     conf.actions.exclude :show
   end
-  before_filter :ensure_nested_under_domain
+  include RecordsControllerCommon
   
   protected
   
@@ -27,16 +27,6 @@ class NsController < ApplicationController
     record
   end
   
-  def before_create_save(record)
-    record.domain = nested_parent_record
-    record.user = record.domain_user
-  end
-
-  # override to close create form after success  
-  def render_parent?
-    nested_singular_association? # || params[:parent_sti]
-  end
-  
   def after_update_save(record)
     domain = @record.domain
     soa_record = domain.soa_record
@@ -51,5 +41,4 @@ class NsController < ApplicationController
       flash[:warning] = "All NS records deleted, no other nameservers are associated with this domain!"
     end
   end
-  
 end
