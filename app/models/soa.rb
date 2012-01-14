@@ -63,6 +63,11 @@ class SOA < Record
     update_serial
     save
   end
+  
+  # if SOA record's primary NS is among it's domain's NS records
+  def ns?
+    domain.has_ns?(primary_ns)
+  end
 
   def to_label; "#{primary_ns} #{contact}" end
   

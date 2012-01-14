@@ -120,6 +120,11 @@ class Domain < ActiveRecord::Base
     Settings.host_domains.include?(name)
   end
   
+  # domain.has_ns?('129.168.0.1')
+  def has_ns?(ns)
+    ns_records.any? {|ns_record| ns_record.content == ns}
+  end
+  
   def setup(email)
     build_soa_record
     soa = soa_record
