@@ -5,17 +5,54 @@ module CanCan
   module ModelAdapters
     class ActiveRecordAdapter < AbstractAdapter
 
+      def self.override_condition_matching?(subject, name, value)
+        name.kind_of?(Squeel::Nodes::Predicate) if defined? Squeel
+      end
+      
+      def self.matches_condition?(subject, name, value)
+        subject_value = subject.send(name.expr)
+        method_name = name.method_name.to_s
+        if method_name.ends_with? "_any"
+          value.any? { |v| squeel_match? subject_value, method_name.sub("_any", ""), v }
+        elsif method_name.ends_with? "_all"
+          value.all? { |v| squeel_match? subject_value, method_name.sub("_all", ""), v }
+        else
+          squeel_match? subject_value, name.method_name, value
+        end
+      end
+      
+      def self.squeel_match?(subject_value, method, value)
+        case method.to_sym
+        when :eq      then subject_value == value
+        when :not_eq  then subject_value != value
+        when :in      then value.include?(subject_value)
+        when :not_in  then !value.include?(subject_value)
+        when :lt      then subject_value < value
+        when :lteq    then subject_value <= value
+        when :gt      then subject_value > value
+        when :gteq    then subject_value >= value
+        when :matches then subject_value =~ Regexp.new("^" + Regexp.escape(value).gsub("%", ".*") + "$", true)
+        when :does_not_match then !squeel_match?(subject_value, :matches, value)
+        else raise NotImplemented, "The #{method} Squeel condition is not supported."
+        end
+      end
+      
       def tableized_conditions(conditions, model_class = @model_class)
         return conditions unless conditions.kind_of? Hash
         conditions.inject({}) do |result_hash, (name, value)|
-          reflection_name = name.kind_of?(Symbol) ? name : name._name # Squeel compatibility
+          name_sym = case name
+          when Symbol                   then name
+          when Squeel::Nodes::Join      then name._name
+          when Squeel::Nodes::Predicate then name.expr
+          else raise name
+          end
           if value.kind_of? Hash
-            reflection = model_class.reflect_on_association(reflection_name)
+            reflection = model_class.reflect_on_association(name_sym)
             association_class = reflection.class_name.constantize
             name = reflection.table_name.to_sym
             value = tableized_conditions(value, association_class)
           end
-          result_hash[name] = value
+          result_hash[name_sym] = value
           result_hash
         end
       end
@@ -38,7 +75,7 @@ module CanCan
   end
   
   class Rule
-    # allow Squeel Join
+    # allow Squeel
     def matches_conditions_hash?(subject, conditions = @conditions)
       if conditions.empty?
         true
@@ -50,7 +87,12 @@ module CanCan
             if model_adapter(subject).override_condition_matching? subject, name, value
               model_adapter(subject).matches_condition? subject, name, value
             else
-              method_name = name.kind_of?(Symbol) ? name : name._name # Squeel compatibility
+              method_name = case name
+              when Symbol                   then name
+              when Squeel::Nodes::Join      then name._name
+              when Squeel::Nodes::Predicate then name.expr
+              else raise name
+              end
               attribute = subject.send(method_name)
               if value.kind_of?(Hash)
                 if attribute.kind_of? Array
