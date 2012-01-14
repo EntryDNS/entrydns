@@ -116,6 +116,10 @@ class Domain < ActiveRecord::Base
 
   scope :host_domains, where(:name => Settings.host_domains)
   
+  def host_domain?
+    Settings.host_domains.include?(name)
+  end
+  
   def setup(email)
     build_soa_record
     soa = soa_record

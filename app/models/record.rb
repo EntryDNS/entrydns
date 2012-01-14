@@ -50,6 +50,9 @@ class Record < ActiveRecord::Base
     end
   end
   
+  delegate :host_domain?, :to => :domain
+  delegate :user, :to => :domain, :prefix => :domain
+  
   protected
 
   def prepare_name!

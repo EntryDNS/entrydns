@@ -8,7 +8,6 @@ describe RecordsController do
     
     before do
       sign_in user
-      controller.stub(:current_user).and_return(user)
     end
     
     it "modifies @record when IP given" do

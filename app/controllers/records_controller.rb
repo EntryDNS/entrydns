@@ -55,7 +55,8 @@ class RecordsController < ApplicationController
   end
   
   def before_create_save(record)
-    record.user = current_user
+    record.domain = nested_parent_record
+    record.user = record.domain_user
   end
   
 end
