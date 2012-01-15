@@ -28,15 +28,15 @@ describe Record do
   end
   
   it "queries records corectly in index" do
-    wheres = Record.accessible_by(ability).where_values
-    joins = Record.accessible_by(ability).joins_values
+    wheres = Record.accessible_by(user.ability).where_values
+    joins = Record.accessible_by(user.ability).joins_values
     wheres.should == ["(`permissions`.`user_id` = #{user.id}) OR (`domains`.`user_id` = #{user.id})"]
     record_joins_expectations(joins)
   end
   
   it "queries A records corectly in index" do
-    wheres = A.accessible_by(ability).where_values
-    joins = A.accessible_by(ability).joins_values
+    wheres = A.accessible_by(user.ability).where_values
+    joins = A.accessible_by(user.ability).joins_values
     wheres.size.should == 2
     wheres.second.should == "(`permissions`.`user_id` = #{user.id}) OR ((`records`.`user_id` = #{user.id}) OR (`domains`.`user_id` = #{user.id}))"
     record_joins_expectations(joins)

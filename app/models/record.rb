@@ -1,4 +1,6 @@
 class Record < ActiveRecord::Base
+  stampable
+  
   belongs_to :domain, :inverse_of => :records
   belongs_to :user, :inverse_of => :records
   

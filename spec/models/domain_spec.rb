@@ -58,19 +58,17 @@ describe Domain do
     domain.name = 'clyfe.ro'
     domain.should be_valid
 
-    # stub a parent domain on another user account, with no permissions present
-    mock_domain = mock(
-      :user_id => third_user.id,
-      :user => third_user,
-      :name => 'x'
-    )
-    Domain.stub(:find_by_name).and_return(mock_domain)
-    domain.should have(1).errors_on(:name)
+    User.do_as(user) do
+      # stub a parent domain on another user account, with no permissions present
+      mock_domain = mock(:user_id => third_user.id, :user => third_user, :name => 'x')
+      domain.stub(:parent_domain).and_return(mock_domain)
+      domain.should have(1).errors_on(:name)
+    end
   end
 
   it "queries domains corectly in index" do
-    wheres = Domain.accessible_by(ability).where_values
-    joins = Domain.accessible_by(ability).joins_values.map{|j| [j._name, j._type]}
+    wheres = Domain.accessible_by(user.ability).where_values
+    joins = Domain.accessible_by(user.ability).joins_values.map{|j| [j._name, j._type]}
     wheres.should == ["(`permissions`.`user_id` = #{user.id}) OR (`domains`.`user_id` = #{user.id})"]
     joins.should == [[:permissions, Arel::Nodes::OuterJoin]]
   end

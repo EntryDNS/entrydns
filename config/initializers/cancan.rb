@@ -1,5 +1,4 @@
-# tweaks to allow Squeel Join
-
+# https://gist.github.com/1523940
 module CanCan
   
   module ModelAdapters
@@ -49,7 +48,7 @@ module CanCan
           if value.kind_of? Hash
             reflection = model_class.reflect_on_association(name_sym)
             association_class = reflection.class_name.constantize
-            name = reflection.table_name.to_sym
+            name_sym = reflection.table_name.to_sym
             value = tableized_conditions(value, association_class)
           end
           result_hash[name_sym] = value

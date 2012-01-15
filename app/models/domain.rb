@@ -1,6 +1,7 @@
 class Domain < ActiveRecord::Base
   set_inheritance_column "sti_disabled"
   nilify_blanks
+  stampable
 
   # optional IP for create form, results in a type A record
   attr_accessor :ip
@@ -8,6 +9,7 @@ class Domain < ActiveRecord::Base
   belongs_to :user, :inverse_of => :domain
   has_many :records, :inverse_of => :domain, :dependent => :destroy
   has_many :permissions, :inverse_of => :domain, :dependent => :destroy
+  has_many :permitted_users, :through => :permissions, :source => :user
 
   cattr_reader :types
   @@types = ['NATIVE', 'MASTER', 'SLAVE', 'SUPERSLAVE']
@@ -49,8 +51,9 @@ class Domain < ActiveRecord::Base
     # non-TLD validation
     errors[:name] = "cannot be a TLD or a reserved domain" if Tld.include?(name)
 
-    # if parent domain is on our system, the user must own it
-    if parent_domain.present? && user.cannot?(:manage, parent_domain)
+    # If parent domain is on our system, the user be permitted to manage current domain.
+    # He either owns parent, or is permitted to current domain or to an ancestor.
+    if parent_domain.present? && can_be_managed_by_current_user?
       errors[:name] = "issue, the parent domain `#{parent_domain.name}` is registered to another user"
     end
   end
@@ -67,6 +70,12 @@ class Domain < ActiveRecord::Base
         nil
       end
     end
+  end
+  
+  # If current user present authorize it
+  # If current user not present, just allow (rake tasks etc)
+  def can_be_managed_by_current_user?
+    User.current.present? ? User.current.can?(:manage, self) : true
   end
   
   def slave?; self.type == 'SLAVE' end
@@ -115,6 +124,10 @@ class Domain < ActiveRecord::Base
   end
 
   scope :host_domains, where(:name => Settings.host_domains)
+  
+  def subdomains
+    Domain.where(:name_reversed.matches => "#{name_reversed}.%")
+  end
   
   def host_domain?
     Settings.host_domains.include?(name)
