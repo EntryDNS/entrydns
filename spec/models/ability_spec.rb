@@ -37,9 +37,20 @@ describe Ability do
       other_user.should be_able_to(:manage, soa_record)
     end
     
+    it "denies third user to manage user's permitted domains and records" do
+      third_user.should_not be_able_to(:manage, domain)
+      third_user.should_not be_able_to(:manage, a_record)
+      third_user.should_not be_able_to(:manage, soa_record)
+    end
+
     it "allows other user to manage user's permitted subdomains" do
       other_user.should be_able_to(:manage, subdomain)
       other_user.should be_able_to(:manage, subsubdomain)
+    end
+
+    it "denies third user to manage other user's permitted subdomains" do
+      third_user.should_not be_able_to(:manage, subdomain)
+      third_user.should_not be_able_to(:manage, subsubdomain)
     end
   end
   

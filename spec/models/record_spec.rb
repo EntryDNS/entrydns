@@ -35,8 +35,9 @@ describe Record do
   end
   
   it "queries A records corectly in index" do
-    wheres = A.accessible_by(user.ability).where_values
-    joins = A.accessible_by(user.ability).joins_values
+    query = A.accessible_by(user.ability)
+    wheres = query.where_values
+    joins = query.joins_values
     wheres.size.should == 2
     wheres.second.should == "(`permissions`.`user_id` = #{user.id}) OR ((`records`.`user_id` = #{user.id}) OR (`domains`.`user_id` = #{user.id}))"
     record_joins_expectations(joins)

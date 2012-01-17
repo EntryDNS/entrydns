@@ -67,8 +67,9 @@ describe Domain do
   end
 
   it "queries domains corectly in index" do
-    wheres = Domain.accessible_by(user.ability).where_values
-    joins = Domain.accessible_by(user.ability).joins_values.map{|j| [j._name, j._type]}
+    query = Domain.accessible_by(user.ability)
+    wheres = query.where_values
+    joins = query.joins_values.map{|j| [j._name, j._type]}
     wheres.should == ["(`permissions`.`user_id` = #{user.id}) OR (`domains`.`user_id` = #{user.id})"]
     joins.should == [[:permissions, Arel::Nodes::OuterJoin]]
   end
