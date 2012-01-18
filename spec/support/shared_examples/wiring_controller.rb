@@ -21,7 +21,7 @@ shared_examples_for "wiring controller" do
     
     context "on permitted domain" do
       before do
-        sign_in other_user
+        sign_in user2
         permission # touch to ensure creation
         @controller.stub(:nested_parent_record => domain)
       end

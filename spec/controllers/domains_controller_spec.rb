@@ -25,11 +25,11 @@ describe DomainsController do
     # a domain who's parent domain is in our system
     context "subdomain" do
       before do
-        sign_in other_user
+        sign_in user2
       end
       
       it "is wired with the user of the parent domain by #before_create_save" do
-        subdomain = build(:domain, :user => other_user, :name => "x.#{domain.name}")
+        subdomain = build(:domain, :user => user2, :name => "x.#{domain.name}")
         @controller.send(:before_create_save, subdomain)
         subdomain.user.should == user
       end

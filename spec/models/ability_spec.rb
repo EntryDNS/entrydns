@@ -15,10 +15,10 @@ describe Ability do
     end
   
     it "denies other user to manage my domains and their records, and my hosts" do
-      other_user.should_not be_able_to(:manage, domain)
-      other_user.should_not be_able_to(:manage, a_record)
-      other_user.should_not be_able_to(:manage, soa_record)
-      other_user.should_not be_able_to(:manage, host_a_record)
+      user2.should_not be_able_to(:manage, domain)
+      user2.should_not be_able_to(:manage, a_record)
+      user2.should_not be_able_to(:manage, soa_record)
+      user2.should_not be_able_to(:manage, host_a_record)
     end
   
     it "allows admin to manage other user's hosts" do
@@ -32,25 +32,25 @@ describe Ability do
     end
     
     it "allows other user to manage user's domains and records, if permitted" do
-      other_user.should be_able_to(:manage, domain)
-      other_user.should be_able_to(:manage, a_record)
-      other_user.should be_able_to(:manage, soa_record)
+      user2.should be_able_to(:manage, domain)
+      user2.should be_able_to(:manage, a_record)
+      user2.should be_able_to(:manage, soa_record)
     end
     
     it "denies third user to manage user's permitted domains and records" do
-      third_user.should_not be_able_to(:manage, domain)
-      third_user.should_not be_able_to(:manage, a_record)
-      third_user.should_not be_able_to(:manage, soa_record)
+      user3.should_not be_able_to(:manage, domain)
+      user3.should_not be_able_to(:manage, a_record)
+      user3.should_not be_able_to(:manage, soa_record)
     end
 
     it "allows other user to manage user's permitted subdomains" do
-      other_user.should be_able_to(:manage, subdomain)
-      other_user.should be_able_to(:manage, subsubdomain)
+      user2.should be_able_to(:manage, subdomain)
+      user2.should be_able_to(:manage, subsubdomain)
     end
 
     it "denies third user to manage other user's permitted subdomains" do
-      third_user.should_not be_able_to(:manage, subdomain)
-      third_user.should_not be_able_to(:manage, subsubdomain)
+      user3.should_not be_able_to(:manage, subdomain)
+      user3.should_not be_able_to(:manage, subsubdomain)
     end
   end
   
@@ -60,7 +60,7 @@ describe Ability do
     end
 
     it "denies other user to manage my domain's permissions" do
-      other_user.should_not be_able_to(:manage, permission)
+      user2.should_not be_able_to(:manage, permission)
     end
   end
 

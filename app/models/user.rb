@@ -29,8 +29,14 @@ class User < ActiveRecord::Base
   
   delegate :can?, :cannot?, :to => :ability
   
-  def ability
-    @ability ||= Ability.new(:user => self)
+  def ability(options = {:reload => false})
+    options[:reload] ? _ability : (@ability ||= _ability)
   end
-  
+
+  protected
+
+  def _ability
+    Ability.new(:user => self)
+  end
+
 end

@@ -35,11 +35,12 @@ describe Record do
   end
   
   it "queries A records corectly in index" do
-    query = A.accessible_by(user.ability)
+    permission3
+    query = A.accessible_by(user.ability(:reload => true))
     wheres = query.where_values
     joins = query.joins_values
     wheres.size.should == 2
-    wheres.second.should == "(`permissions`.`user_id` = #{user.id}) OR ((`records`.`user_id` = #{user.id}) OR (`domains`.`user_id` = #{user.id}))"
+    wheres.second.should == "(`domains`.`name_reversed` = '#{domain3.name_reversed}.%') OR ((`permissions`.`user_id` = #{user.id}) OR ((`records`.`user_id` = #{user.id}) OR (`domains`.`user_id` = #{user.id})))"
     record_joins_expectations(joins)
   end
   

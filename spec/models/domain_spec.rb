@@ -47,7 +47,7 @@ describe Domain do
   end
   
   it "has parent_domain" do
-    subdomain = build(:domain, :user => other_user, :name => "x.#{domain.name}")
+    subdomain = build(:domain, :user => user2, :name => "x.#{domain.name}")
     subdomain.parent_domain.should == domain
   end
   
@@ -60,17 +60,18 @@ describe Domain do
 
     User.do_as(user) do
       # stub a parent domain on another user account, with no permissions present
-      mock_domain = mock(:user_id => third_user.id, :user => third_user, :name => 'x')
+      mock_domain = mock(:user_id => user3.id, :user => user3, :name => 'x')
       domain.stub(:parent_domain).and_return(mock_domain)
       domain.should have(1).errors_on(:name)
     end
   end
 
   it "queries domains corectly in index" do
-    query = Domain.accessible_by(user.ability)
+    permission3
+    query = Domain.accessible_by(user.ability(:reload => true))
     wheres = query.where_values
     joins = query.joins_values.map{|j| [j._name, j._type]}
-    wheres.should == ["(`permissions`.`user_id` = #{user.id}) OR (`domains`.`user_id` = #{user.id})"]
+    wheres.should == ["(`domains`.`name_reversed` = '#{domain3.name_reversed}.%') OR ((`permissions`.`user_id` = #{user.id}) OR (`domains`.`user_id` = #{user.id}))"]
     joins.should == [[:permissions, Arel::Nodes::OuterJoin]]
   end
   
