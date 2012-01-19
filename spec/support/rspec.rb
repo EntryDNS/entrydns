@@ -1,6 +1,6 @@
 RSpec.configure do |config|
   config.mock_with :rspec
-  config.use_transactional_fixtures = true
+  config.use_transactional_fixtures = false
     
   config.treat_symbols_as_metadata_keys_with_true_values = true
   config.filter_run :focus => true

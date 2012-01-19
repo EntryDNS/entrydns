@@ -7,30 +7,22 @@ class SoasController < ApplicationController
     conf.columns[:ttl].options = {:i18n_number => {:delimiter => ''}}
     conf.actions.exclude :delete, :show
   end
-  before_filter :ensure_nested_under_domain
+  include RecordsControllerCommon
   
   protected
   
-  # override to use :mx_records instead of :records assoc
   def beginning_of_chain
-    super.readonly(false)
+    (nested_via_records? ? nested.parent_scope.soa_records : super).readonly(false)
   end
   
   # override, we make our own sti logic
   def new_model
-    model = beginning_of_chain
-    model.new
-  end
-
-  # override to close create form after success  
-  def render_parent?
-    nested_singular_association? # || params[:parent_sti]
+    record = beginning_of_chain.new
+    before_create_save(record)
+    record
   end
   
   def after_update_save(record)
-    unless @record.domain.ns_records.any? {|ns_record| @record.primary_ns == ns_record.content}
-      flash.now[:warning] = "SOA record's primary NS is no longer among this domain's NS records"
-    end
+    flash.now[:warning] = "SOA record's primary NS is no longer among this domain's NS records" unless record.ns?
   end
-  
 end

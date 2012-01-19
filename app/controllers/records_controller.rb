@@ -26,7 +26,8 @@ class RecordsController < ApplicationController
     # conf.create.link.label = "Add Record"
     conf.actions.exclude :show
   end
-  before_filter :ensure_nested_under_domain, :except => 'modify'
+  include RecordsControllerCommon
+  skip_before_filter :ensure_nested_under_domain, :only => 'modify'
   skip_before_filter :authenticate_user!, :only => 'modify'
   protect_from_forgery :except => 'modify'
   skip_authorize_resource :only => :modify
@@ -37,15 +38,19 @@ class RecordsController < ApplicationController
   # TODO: externalize
   def modify
     @record = Record.where(:authentication_token => params[:authentication_token]).first!
-    if @record.type != 'A'
-      return render :text => MODIFY_ERROR
-    end
+    return render(:text => MODIFY_ERROR) if @record.type != 'A'
     @record.content = params[:ip] || client_remote_ip
     @record.save!
     respond_with(@record) do |format|
-      format.html {
-        render :text => MODIFY_OK
-      }
+      format.html {render(:text => MODIFY_OK)}
     end
+  end
+  
+  protected
+  
+  def new_model
+    record = super
+    before_create_save(record)
+    record
   end
 end

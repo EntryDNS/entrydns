@@ -1,14 +1,15 @@
-require 'resolv'
-
 class Domain < ActiveRecord::Base
   set_inheritance_column "sti_disabled"
   nilify_blanks
+  stampable
 
   # optional IP for create form, results in a type A record
   attr_accessor :ip
   
   belongs_to :user, :inverse_of => :domain
   has_many :records, :inverse_of => :domain, :dependent => :destroy
+  has_many :permissions, :inverse_of => :domain, :dependent => :destroy
+  has_many :permitted_users, :through => :permissions, :source => :user
 
   cattr_reader :types
   @@types = ['NATIVE', 'MASTER', 'SLAVE', 'SUPERSLAVE']
@@ -50,21 +51,41 @@ class Domain < ActiveRecord::Base
     # non-TLD validation
     errors[:name] = "cannot be a TLD or a reserved domain" if Tld.include?(name)
 
-    # if parent domain is on our system, the user must own it
-    segments = name.split('.')
-    if segments.size >= 2
-      parent = segments[1..-1].join('.')
-      parent_domain = Domain.find_by_name(parent)
-      if parent_domain.present? && parent_domain.user_id != user_id
-        errors[:name] = "issue, the parent domain `#{parent}` is registered to another user"
+    # If parent domain is on our system, the user be permitted to manage current domain.
+    # He either owns parent, or is permitted to current domain or to an ancestor.
+    if parent_domain.present? && can_be_managed_by_current_user?
+      errors[:name] = "issue, the parent domain `#{parent_domain.name}` is registered to another user"
+    end
+  end
+  
+  def parent_domain
+    return nil if name.nil?
+    @parent_domain ||= {}
+    @parent_domain[name] ||= begin
+      segments = name.split('.')
+      if segments.size >= 2
+        domain_name = segments[1..-1].join('.')
+        Domain.find_by_name(domain_name)
+      else
+        nil
       end
     end
+  end
+  
+  # If current user present authorize it
+  # If current user not present, just allow (rake tasks etc)
+  def can_be_managed_by_current_user?
+    User.current.present? ? User.current.can?(:manage, self) : true
   end
   
   def slave?; self.type == 'SLAVE' end
 
   before_create do
     a_records.build(:content => ip) if ip.present?
+  end
+  
+  before_save do
+    self.name_reversed = name.reverse if name_changed?
   end
   
   before_validation(:on => :update) do
@@ -103,6 +124,19 @@ class Domain < ActiveRecord::Base
   end
 
   scope :host_domains, where(:name => Settings.host_domains)
+  
+  def subdomains
+    Domain.where(:name_reversed.matches => "#{name_reversed}.%")
+  end
+  
+  def host_domain?
+    Settings.host_domains.include?(name)
+  end
+  
+  # domain.has_ns?('129.168.0.1')
+  def has_ns?(ns)
+    ns_records.any? {|ns_record| ns_record.content == ns}
+  end
   
   def setup(email)
     build_soa_record

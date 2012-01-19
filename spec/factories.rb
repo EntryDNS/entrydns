@@ -10,6 +10,9 @@ FactoryGirl.define do
     email
     password
     password_confirmation {password}
+    after_create do |u|
+      u.confirm!
+    end
   end
   
   factory :domain do
@@ -31,6 +34,9 @@ FactoryGirl.define do
   factory :a do
     name {Faker::Internet.domain_word}
     content {Faker::Internet.ip_v4_address}
+  end
+  
+  factory :permission do
   end
   
 end

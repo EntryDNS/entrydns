@@ -9,8 +9,9 @@ gem 'rails', '3.1.1'
 gem 'mysql2'
 gem 'devise', '~> 1.4.5'
 gem 'cancan', '~> 1.6.5'
-# gem "meta_where", "~> 1.0" # squeel ?
+gem 'squeel', '~> 0.9.3'
 gem 'sentient_user', '~> 0.3.2'
+gem 'userstamp_basic', '~> 0.1.0'
 gem 'active_scaffold', '~> 3.1.0', :git => 'https://github.com/activescaffold/active_scaffold.git' # :path => '/home/clyfe/dev/active_scaffold'
 gem 'pjax_rails', '~> 0.1.10'
 gem 'validates_hostname', '~> 1.0.0', :git => 'https://github.com/KimNorgaard/validates_hostname.git'
@@ -46,6 +47,7 @@ end
 group :test do
   gem 'capybara', '~> 1.1.1'
   gem 'database_cleaner', '~> 0.6.7'
+  gem 'simplecov', :require => false
   gem 'spork', '~> 0.9.0.rc'
   gem 'rb-fsevent', '~> 0.4.3.1'
   gem 'rb-inotify', '~> 0.8.8'

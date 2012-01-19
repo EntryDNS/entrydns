@@ -6,9 +6,9 @@ GIT
 
 GIT
   remote: https://github.com/activescaffold/active_scaffold.git
-  revision: c2380071424210e6704fc278c677ae340caf8311
+  revision: 07cfb68c2d51e4372e94322afb55262aed394211
   specs:
-    active_scaffold (3.1.13)
+    active_scaffold (3.1.15)
       rails (~> 3.1.0)
 
 GEM
@@ -62,7 +62,7 @@ GEM
       rack-test (>= 0.5.4)
       selenium-webdriver (~> 2.0)
       xpath (~> 0.1.4)
-    childprocess (0.2.4)
+    childprocess (0.3.0)
       ffi (~> 1.0.6)
     chunky_png (1.2.5)
     coffee-rails (3.1.1)
@@ -72,7 +72,7 @@ GEM
       coffee-script-source
       execjs
     coffee-script-source (1.2.0)
-    compass (0.12.alpha.3)
+    compass (0.12.alpha.4)
       chunky_png (~> 1.2)
       fssm (>= 0.2.7)
       sass (~> 3.1)
@@ -85,17 +85,17 @@ GEM
       warden (~> 1.0.3)
     diff-lcs (1.1.3)
     erubis (2.7.0)
-    execjs (1.2.13)
+    execjs (1.3.0)
       multi_json (~> 1.0)
-    factory_girl (2.3.2)
+    factory_girl (2.4.2)
       activesupport
-    factory_girl_rails (1.4.0)
-      factory_girl (~> 2.3.0)
+    factory_girl_rails (1.5.0)
+      factory_girl (~> 2.4.0)
       railties (>= 3.0.0)
     faker (1.0.1)
       i18n (~> 0.4)
     ffi (1.0.11)
-    fssm (0.2.7)
+    fssm (0.2.8.1)
     gem_plugin (0.2.3)
     guard (0.10.0)
       ffi (>= 0.5.0)
@@ -111,7 +111,7 @@ GEM
     jquery-rails (1.0.19)
       railties (~> 3.0)
       thor (~> 0.14)
-    json (1.6.4)
+    json (1.6.5)
     libnotify (0.5.9)
     libv8 (3.3.10.4)
     mail (2.3.0)
@@ -129,16 +129,18 @@ GEM
       net-ssh (>= 1.99.1)
     net-sftp (2.0.5)
       net-ssh (>= 2.0.9)
-    net-ssh (2.2.1)
+    net-ssh (2.3.0)
     net-ssh-gateway (1.1.0)
       net-ssh (>= 1.99.1)
     nilify_blanks (1.0.0)
       activerecord (>= 3.0.0)
       activesupport (>= 3.0.0)
     nokogiri (1.5.0)
-    orm_adapter (0.0.5)
+    orm_adapter (0.0.6)
     pjax_rails (0.1.10)
       jquery-rails
+    polyamorous (0.5.0)
+      activerecord (~> 3.0)
     polyglot (0.3.3)
     rack (1.3.6)
     rack-cache (1.1)
@@ -192,17 +194,25 @@ GEM
       railties (~> 3.1.0)
       sass (~> 3.1.10)
       tilt (~> 1.3.2)
-    selenium-webdriver (2.15.0)
-      childprocess (>= 0.2.1)
+    selenium-webdriver (2.17.0)
+      childprocess (>= 0.2.5)
       ffi (~> 1.0.9)
       multi_json (~> 1.0.4)
       rubyzip
     sentient_user (0.3.2)
+    simplecov (0.5.4)
+      multi_json (~> 1.0.3)
+      simplecov-html (~> 0.5.3)
+    simplecov-html (0.5.3)
     spork (0.9.0.rc9)
     sprockets (2.0.3)
       hike (~> 1.2)
       rack (~> 1.0)
       tilt (!= 1.3.0, ~> 1.1)
+    squeel (0.9.3)
+      activerecord (~> 3.0)
+      activesupport (~> 3.0)
+      polyamorous (~> 0.5.0)
     therubyracer (0.9.9)
       libv8 (~> 3.3.10)
     thor (0.14.6)
@@ -211,9 +221,11 @@ GEM
       polyglot
       polyglot (>= 0.3.1)
     tzinfo (0.3.31)
-    uglifier (1.2.1)
+    uglifier (1.2.2)
       execjs (>= 0.3.0)
       multi_json (>= 1.0.2)
+    userstamp_basic (0.1.0)
+      sentient_user (>= 0.1.0)
     warden (1.0.6)
       rack (>= 1.0)
     xpath (0.1.4)
@@ -251,7 +263,10 @@ DEPENDENCIES
   rspec-rails (~> 2.6.1)
   sass-rails (~> 3.1.0)
   sentient_user (~> 0.3.2)
+  simplecov
   spork (~> 0.9.0.rc)
+  squeel (~> 0.9.3)
   therubyracer
   uglifier
+  userstamp_basic (~> 0.1.0)
   validates_hostname (~> 1.0.0)!

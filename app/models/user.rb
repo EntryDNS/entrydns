@@ -1,5 +1,7 @@
 class User < ActiveRecord::Base
   include SentientUser
+  stampable
+  
   # Include default devise modules. Others available are:
   # :token_authenticatable, :encryptable, :timeoutable and :omniauthable
   devise :database_authenticatable, 
@@ -18,9 +20,23 @@ class User < ActiveRecord::Base
   
   has_many :domains, :inverse_of => :user, :dependent => :destroy
   has_many :records, :inverse_of => :user, :dependent => :destroy
+  has_many :permissions, :inverse_of => :user, :dependent => :destroy
+  has_many :permitted_domains, :through => :permissions, :source => :domain
   
   def name
     "#{first_name} #{last_name}"
   end
   
+  delegate :can?, :cannot?, :to => :ability
+  
+  def ability(options = {:reload => false})
+    options[:reload] ? _ability : (@ability ||= _ability)
+  end
+
+  protected
+
+  def _ability
+    Ability.new(:user => self)
+  end
+
 end

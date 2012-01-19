@@ -1,40 +1,35 @@
 shared_context "data" do
+  let(:admin){create(:user)} # admin is a user that owns host domains
+  let(:user){create(:user)} # a regular user
+  let(:user2){create(:user)}
+  let(:user3){create(:user)}
   
-  let(:user){create(:user)}
-  let(:ability){Ability.new(:user => user)}
-  let(:other_user){create(:user)}
-  let(:other_user_ability){Ability.new(:user => other_user)}
-  
-  let(:domain){
-    domain = build(:domain, :user => user)
+  def make_domain(options)
+    domain = build(:domain, options)
     domain.setup(FactoryGirl.generate(:email))
     domain.save!
     domain.soa_record.update_serial!
     domain
-  }
+  end
+  
+  # user's domains
+  let(:domain){make_domain(:user => user)}
+  let(:subdomain){make_domain(:name => "sub.#{domain.name}", :user => user)}
+  let(:subsubdomain){make_domain(:name => "sub.#{subdomain.name}", :user => user)}
+
+  # third user's domains
+  let(:domain3){make_domain(:user => user3)}
+  let(:subdomain3){make_domain(:name => "sub.#{domain.name}", :user => user3)}
+  let(:subsubdomain3){make_domain(:name => "sub.#{subdomain.name}", :user => user3)}
+  
+  # admin's host domain (like entrydns.org)
+  let(:host_domain){make_domain(:user => admin, :name => Settings.host_domains.first)}
+  
   let(:a_record){create(:a, :content => '127.0.0.1', :domain => domain)}
   let(:soa_record){domain.soa_record}
-  
-  # admin is a user that owns host domains
-  let(:admin){
-    admin_user = create(:user,
-      :first_name => 'admin',
-      :last_name => 'admin',
-      :email => 'admin@entrydns.net',
-      :confirmed_at => Time.now
-    )
-    admin_user.confirm!
-    admin_user
-  }
-  let(:admin_ability){Ability.new(:user => admin)}
-  
-  let(:host_domain){
-    domain = build(:domain, :user => admin, :name => Settings.host_domains.first)
-    domain.setup(FactoryGirl.generate(:email))
-    domain.save!
-    domain.soa_record.update_serial!
-    domain
-  }
   let(:host_a_record){create(:a, :content => '127.0.0.1', :domain => host_domain, :user => user)}
-  
+
+  let(:permission){create(:permission, :domain => domain, :user => user2)}
+  let(:permission3){create(:permission, :domain => domain3, :user => user)}
+    
 end

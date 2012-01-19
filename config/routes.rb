@@ -49,6 +49,10 @@ Entrydns::Application.routes.draw do
   resources :srvs do
     as_routes
   end
+  
+  resources :permissions do
+    as_routes
+  end
 
   get '/dashboard', :to => 'dashboard#index', :as => :dashboard
   

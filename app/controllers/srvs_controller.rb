@@ -9,7 +9,7 @@ class SrvsController < ApplicationController
     conf.columns[:ttl].options = {:i18n_number => {:delimiter => ''}}
     conf.actions.exclude :show
   end
-  before_filter :ensure_nested_under_domain
+  include RecordsControllerCommon
   
   protected
   
@@ -20,23 +20,15 @@ class SrvsController < ApplicationController
   
   # override to use :mx_records instead of :records assoc
   def beginning_of_chain
-    if nested? && nested.association && nested.association.collection? && nested.association.name == :records
-      nested.parent_scope.srv_records
-    else
-      super
-    end
+    nested_via_records? ? nested.parent_scope.srv_records : super
   end
   
   # override, we make our own sti logic
   def new_model
-    model = beginning_of_chain.new
-    model.name = nested_parent_record.name
-    model
-  end
-
-  # override to close create form after success  
-  def render_parent?
-    nested_singular_association? # || params[:parent_sti]
+    record = beginning_of_chain.new
+    record.name = nested_parent_record.name
+    before_create_save(record)
+    record
   end
   
-end 
+end

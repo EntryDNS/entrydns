@@ -1,4 +1,6 @@
 class Record < ActiveRecord::Base
+  stampable
+  
   belongs_to :domain, :inverse_of => :records
   belongs_to :user, :inverse_of => :records
   
@@ -49,6 +51,9 @@ class Record < ActiveRecord::Base
       break token unless self.class.exists?(:authentication_token => token)
     end
   end
+  
+  delegate :host_domain?, :to => :domain
+  delegate :user, :to => :domain, :prefix => :domain
   
   protected
 
