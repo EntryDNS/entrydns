@@ -32,7 +32,7 @@ describe Record do
     query.to_sql.should == expected.gsub("\n", '').gsub(/\s+/, ' ').strip
   end
   
-  it "queries A records corectly in index", :focus => true do
+  it "queries A records corectly in index" do
     permission3
     query = A.accessible_by(user.ability(:reload => true))
     expected = <<-SQL
