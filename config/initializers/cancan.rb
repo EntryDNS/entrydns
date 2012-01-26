@@ -1,4 +1,19 @@
 # https://gist.github.com/1523940
+
+class String
+  include Squeel::Nodes::PredicateOperators
+end
+
+module Squeel
+  module Visitors
+    class PredicateVisitor < Visitor
+      def visit_String(o, parent)
+        Arel::Nodes::SqlLiteral.new(o)
+      end      
+    end
+  end
+end
+
 module CanCan
   
   module ModelAdapters
@@ -35,24 +50,14 @@ module CanCan
         else raise NotImplemented, "The #{method} Squeel condition is not supported."
         end
       end
-      
-      def tableized_conditions(conditions, model_class = @model_class)
-        return conditions unless conditions.kind_of? Hash
-        conditions.inject({}) do |result_hash, (name, value)|
-          name_sym = case name
-          when Symbol                   then name
-          when Squeel::Nodes::Join      then name._name
-          when Squeel::Nodes::Predicate then name.expr
-          else raise name
-          end
-          if value.kind_of? Hash
-            reflection = model_class.reflect_on_association(name_sym)
-            association_class = reflection.class_name.constantize
-            name_sym = reflection.table_name.to_sym
-            value = tableized_conditions(value, association_class)
-          end
-          result_hash[name_sym] = value
-          result_hash
+
+      # mostly let Squeel do the job in building the query
+      def conditions
+        if @rules.size == 1 && @rules.first.base_behavior
+          # Return the conditions directly if there's just one definition
+          @rules.first.conditions.dup
+        else
+          @rules.reverse.inject(false_sql) {|acc, rule| acc | rule.conditions.dup}
         end
       end
       

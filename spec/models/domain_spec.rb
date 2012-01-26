@@ -69,10 +69,15 @@ describe Domain do
   it "queries domains corectly in index" do
     permission3
     query = Domain.accessible_by(user.ability(:reload => true))
-    wheres = query.where_values
-    joins = query.joins_values.map{|j| [j._name, j._type]}
-    wheres.should == ["(`domains`.`name_reversed` = '#{domain3.name_reversed}.%') OR ((`permissions`.`user_id` = #{user.id}) OR (`domains`.`user_id` = #{user.id}))"]
-    joins.should == [[:permissions, Arel::Nodes::OuterJoin]]
+    expected = <<-SQL
+      SELECT `domains`.* FROM `domains` 
+      LEFT OUTER JOIN `permissions` ON `permissions`.`domain_id` = `domains`.`id`
+      WHERE ((((1=0 OR 
+        `domains`.`user_id` = #{user.id}) OR 
+        `permissions`.`user_id` = #{user.id}) OR 
+        `domains`.`name_reversed` LIKE '#{permission3.domain.name_reversed}.%'))
+    SQL
+    query.to_sql.should == expected.gsub("\n", '').gsub(/\s+/, ' ').strip
   end
   
   it "has reversed name" do
