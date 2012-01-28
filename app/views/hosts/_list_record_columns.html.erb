@@ -14,21 +14,6 @@
           column_value
         end %>
     </td>
-  <% elsif column.name == :records %>
-    <td class="<%= column_class(column, column_value, record) %>" >
-      <% column_value = 'Manage All Records (0)' if column_value == '-' %>
-      <%= authorized ? render_list_column(column_value, column, record) : column_value %>
-    </td>
-  <% elsif column.name == :permissions %>
-    <td class="<%= column_class(column, column_value, record) %>" >
-      <% 
-      if column_value == '-'
-        column_value = 'Permissions (0)'
-        authorized &&= can?(:crud_permissions, record)
-      end
-      %>
-      <%= authorized ? render_list_column(column_value, column, record) : column_value %>
-    </td>
   <% else %>
     <td class="<%= column_class(column, column_value, record) %>" >
       <%= authorized ? render_list_column(column_value, column, record) : column_value %>

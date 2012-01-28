@@ -1,10 +1,11 @@
 class Ability
-  CRUD = [:read, :create, :edit, :update, :destroy]
+  CRUD = [:read, :create, :edit, :destroy]
   
   include CanCan::Ability
   attr_accessor :user
   attr_accessor :context
 
+  # See the wiki for details: https://github.com/ryanb/cancan/wiki/Defining-Abilities
   def initialize(options)
     @user = options[:user] || User.new
     @context = options[:context] || :application
@@ -14,8 +15,6 @@ class Ability
       owner_abilities
       sharing_abilities
     end
-
-    # See the wiki for details: https://github.com/ryanb/cancan/wiki/Defining-Abilities
   end
   
   protected

@@ -2,7 +2,7 @@ class HostsController < ApplicationController
   active_scaffold :a do |conf|
     conf.columns = [:name, :host_domain, :content, :ttl, :change_date, :authentication_token]
     conf.list.columns = [:name, :content, :ttl, :change_date, :authentication_token]
-    conf.create.columns = [:name, :host_domain, :content, :ttl,]
+    conf.create.columns = [:name, :host_domain, :content, :ttl]
     conf.update.columns = [:name, :host_domain, :content, :ttl]
     conf.list.label = 'Hosts'
     conf.list.sorting = {:name => :asc}
