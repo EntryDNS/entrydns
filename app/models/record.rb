@@ -19,10 +19,9 @@ class Record < ActiveRecord::Base
   }, :allow_blank => true
   validates :authentication_token, :presence => true, :uniqueness => true
   validate :max_records_per_domain, :on => :create
-  def max_records_per_domain # domains per user limit for DOS protection
-    max = Settings.max_records_per_domain.to_i
-    if domain.records.count >= max
-      errors.add :base, "as a security measure, you cannot have more than #{max} records on one domain"
+  def max_records_per_domain
+    if records_exceeding? && !host_domain?
+      errors.add :base, "as a security measure, you cannot have more than #{Settings.max_records_per_domain} records on one domain"
     end
   end
   
@@ -52,7 +51,7 @@ class Record < ActiveRecord::Base
     end
   end
   
-  delegate :host_domain?, :to => :domain
+  delegate :host_domain?, :records_exceeding?, :to => :domain
   delegate :user, :to => :domain, :prefix => :domain
   
   protected

@@ -32,6 +32,11 @@ class User < ActiveRecord::Base
   def ability(options = {:reload => false})
     options[:reload] ? _ability : (@ability ||= _ability)
   end
+  
+  # domains per user limit for DOS protection
+  def domains_exceeding?
+    domains.count >= Settings.max_domains_per_user.to_i
+  end
 
   protected
 

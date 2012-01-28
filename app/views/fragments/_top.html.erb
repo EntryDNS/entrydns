@@ -19,14 +19,14 @@
     <div id="user-navigation">
       <ul class="wat-cf">
         <li>
-           <%= link_to 'Tweet', "https://twitter.com/share", :class => "twitter-share-button",
-              :data => {
-                :url => root_url,
-                :text => "EntryDNS a nice free DNS service",
-                :count => "horizontal",
-                :via => "entrydns",
-                :related => "_clyfe:vaijab"
-              } %>
+          <%= link_to 'Tweet', "https://twitter.com/share", :class => "twitter-share-button",
+            :data => {
+              :url => root_url,
+              :text => "EntryDNS a nice free DNS service",
+              :count => "horizontal",
+              :via => "entrydns",
+              :related => "_clyfe:vaijab"
+            } %>
         </li>
         <li><%= link_to('News', Settings.news_link) %></li>
         <li><%= link_to('Donate', page_path('donate'), :class => 'highlight', :data => {:pjax => '#main'}) %></li>

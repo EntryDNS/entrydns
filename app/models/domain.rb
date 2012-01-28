@@ -1,5 +1,5 @@
 class Domain < ActiveRecord::Base
-  set_inheritance_column "sti_disabled"
+  self.inheritance_column = "sti_disabled"
   nilify_blanks
   stampable
 
@@ -39,12 +39,13 @@ class Domain < ActiveRecord::Base
   validates :user_id, :presence => true
   
   validate :max_domains_per_user, :on => :create
-  def max_domains_per_user # domains per user limit for DOS protection
-    max = Settings.max_domains_per_user.to_i
-    if user.domains.count >= max
-      errors.add :base, "as a security measure, you cannot have more than #{max} domains on one account"
+  def max_domains_per_user
+    if domains_exceeding?
+      errors.add :base, "as a security measure, you cannot have more than #{Settings.max_domains_per_user} domains on one account"
     end
   end
+  
+  delegate :domains_exceeding?, :to => :user
 
   validate :domain_ownership
   def domain_ownership
@@ -131,6 +132,11 @@ class Domain < ActiveRecord::Base
   
   def host_domain?
     Settings.host_domains.include?(name)
+  end
+  
+  # domains per user limit for DOS protection
+  def records_exceeding?
+    records.count >= Settings.max_records_per_domain.to_i
   end
   
   # domain.has_ns?('129.168.0.1')
