@@ -3,6 +3,7 @@
 <% columns.each do |column| %>
   <% authorized = record.authorized_for?(:crud_type => :read, :column => column.name) -%>
   <% column_value = authorized ? get_column_value(record, column) : active_scaffold_config.list.empty_field_text -%>
+  <% can_crud_permissions = can?(:crud_permissions, record) -%>
 
   <% if column.name == :name %>
     <td class="<%= column_class(column, column_value, record) %>" >
@@ -13,6 +14,13 @@
         else
           column_value
         end %>
+      <% unless can_crud_permissions %>
+        <% who = "<strong>#{record.user.name}</strong> #{mail_to record.user.email}" %>
+        <i class="icon question-sign" style="float: right;" rel="popover"
+          data-original-title="Shared domain"
+          data-content="This domain was shared with you by <%=h who %>"
+        ></i>
+      <% end %>
     </td>
   <% elsif column.name == :records %>
     <td class="<%= column_class(column, column_value, record) %>" >
@@ -24,7 +32,7 @@
       <% 
       if column_value == '-'
         column_value = 'Permissions (0)'
-        authorized &&= can?(:crud_permissions, record)
+        authorized &&= can_crud_permissions
       end
       %>
       <%= authorized ? render_list_column(column_value, column, record) : column_value %>

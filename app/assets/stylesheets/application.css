@@ -5,6 +5,8 @@
 
 *= require normalize
 
+*= require bootstrap/bootstrap
+
 *= require theme/base
 *= require theme/theme
 *= require theme/error_explanation

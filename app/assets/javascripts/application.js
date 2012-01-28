@@ -10,4 +10,10 @@
 //= require pjax
 //= require active_scaffold
 //= require slides
+//= require bootstrap-tooltip
+//= require bootstrap-popover
 //= require_self
+
+$(function(){
+    $('[rel=popover]').popover();
+});

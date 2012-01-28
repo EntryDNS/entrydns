@@ -1,5 +1,5 @@
 class Ability
-  CRUD = [:read, :create, :edit, :destroy]
+  CRUD = [:read, :create, :update, :destroy]
   
   include CanCan::Ability
   attr_accessor :user
@@ -48,7 +48,7 @@ class Ability
   def action_aliases
     alias_action :row, :show_search, :render_field, :to => :read
     alias_action :update_column, :add_association, :edit_associated, 
-      :edit_associated, :new_existing, :add_existing, :to => :edit
+      :edit_associated, :new_existing, :add_existing, :to => :update
     alias_action :delete, :destroy_existing, :to => :destroy
   end
   
