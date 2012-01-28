@@ -11,7 +11,12 @@
     </td>
   <% elsif column.name == :permissions %>
     <td class="<%= column_class(column, column_value, record) %>" >
-      <% column_value = 'Permissions (0)' if column_value == '-' %>
+      <% 
+      if column_value == '-'
+        column_value = 'Permissions (0)'
+        authorized &&= can?(:crud_permissions, record)
+      end
+      %>
       <%= authorized ? render_list_column(column_value, column, record) : column_value %>
     </td>
   <% else %>
