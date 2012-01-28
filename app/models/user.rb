@@ -24,6 +24,10 @@ class User < ActiveRecord::Base
   has_many :permitted_domains, :through => :permissions, :source => :domain
   
   def name
+    full_name.blank? ? email : full_name
+  end
+  
+  def full_name
     "#{first_name} #{last_name}"
   end
   
