@@ -22,7 +22,6 @@ gem 'rails_config', '~> 0.2.4'
 # gem 'rails-settings-cached', :require => 'rails-settings'
 gem 'active-model-email-validator', '~> 1.0.2'
 gem 'mail_form', '~> 1.3.0'
-gem 'capistrano', '~> 2.9.0'
 gem 'switch_user', '~> 0.6.0'
 
 # Gems used only for assets and not required
@@ -33,14 +32,16 @@ group :assets do
   gem 'coffee-rails', "~> 3.2.1"
   gem 'uglifier', '>= 1.0.3'
   gem 'therubyracer'
-  
 end
 
 gem 'jquery-rails'
 gem 'dalli', '~> 1.1.3'
 # gem 'foreigner' ?
 
-gem 'mongrel', '>= 1.2.0.pre2', :group => :development
+group :development do
+  gem 'capistrano', '~> 2.9.0'
+  gem 'mongrel', '>= 1.2.0.pre2'
+end
 
 group :test, :development do
   gem 'rspec-rails', '~> 2.8.1'

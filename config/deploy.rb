@@ -2,7 +2,15 @@ require 'bundler/capistrano'
 
 default_run_options[:pty] = true
 set :application, 'entrydns'
-set :domain, 'n0.entrydns.net'
+
+task :production do
+  set :domain, 'n0.entrydns.net'
+end
+
+task :staging do
+  set :domain, 'staging.entrydns.net'
+end
+
 set :repository,  "git@bitbucket.org:clyfe/entrydns.git"
 set :deploy_to, '/srv/www/apps/entrydns'
 set :user, 'clyfe'
