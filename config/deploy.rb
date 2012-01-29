@@ -1,13 +1,10 @@
+set :stages, %w(production staging)
+set :default_stage, "staging"
+require 'capistrano/ext/multistage'
 require 'bundler/capistrano'
 
 default_run_options[:pty] = true
 set :application, 'entrydns'
-set :domain, 'n0.entrydns.net'
-
-task :staging do
-  set :domain, 'staging.entrydns.net'
-  set :port, 2212
-end
 
 set :repository,  "git@bitbucket.org:clyfe/entrydns.git"
 set :deploy_to, '/srv/www/apps/entrydns'
@@ -20,12 +17,6 @@ set :deploy_via, :remote_cache
 # set :scm_verbose, true
 # set :git_enable_submodules, 
 # set :scm_passphrase, "passwd0" # the deploy user's password
-
-
-role :web, domain                   # Your HTTP server, Apache/etc
-role :app, domain                   # This may be the same as your `Web` server
-role :db,  domain, :primary => true # This is where Rails migrations will run
-# role :db,  "your slave db-server here"
 
 after 'deploy:update_code', 'deploy:symlink_database_yml'
 after 'deploy:update_code', 'deploy:symlink_settings_yml'

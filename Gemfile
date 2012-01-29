@@ -40,6 +40,7 @@ gem 'dalli', '~> 1.1.3'
 
 group :development do
   gem 'capistrano', '~> 2.9.0'
+  gem 'capistrano-ext', '~> 1.2.1'
   gem 'mongrel', '>= 1.2.0.pre2'
 end
 
