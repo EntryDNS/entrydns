@@ -16,7 +16,7 @@
         end %>
       <% unless can_crud_permissions %>
         <% who = "<strong>#{record.user.name}</strong> #{mail_to record.user.email}" %>
-        <i class="icon question-sign" style="float: right;" rel="popover"
+        <i class="icon share" style="float: right;" rel="popover"
           data-original-title="Shared domain"
           data-content="This domain was shared with you by <%=h who %>"
         ></i>
