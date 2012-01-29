@@ -18,6 +18,10 @@ class DomainsController < ApplicationController
   
   protected
   
+  def beginning_of_chain
+    super.readonly(false)
+  end
+  
   def do_new
     super
     @record.setup(current_user.email)
