@@ -1,11 +1,13 @@
 # an user for administrative purposes
-admin = User.create!(
+admin = User.new(
   :first_name => 'admin',
   :last_name => 'admin',
   :email => 'admin@entrydns.net',
   :password => 'garlik1',
   :password_confirmation => 'garlik1'
 )
+admin.confirmed_at = Time.now
+admin.save!
 admin.confirm!
 
 for name in Settings.host_domains
@@ -15,11 +17,13 @@ for name in Settings.host_domains
 end
 
 # sample user
-user = User.create!(
+user = User.new(
   :first_name => 'user',
   :last_name => 'user',
   :email => 'user@entrydns.net',
   :password => 'useruser',
   :password_confirmation => 'useruser'
 )
+user.confirmed_at = Time.now
+user.save!
 user.confirm!

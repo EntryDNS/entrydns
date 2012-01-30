@@ -6,7 +6,7 @@ GIT
 
 GIT
   remote: https://github.com/activescaffold/active_scaffold.git
-  revision: 1fb6598311db7807b665b356f7113a3b386394df
+  revision: 090aaf46e046534d64bf3d2ccf3671e26fc1995e
   specs:
     active_scaffold (3.1.18)
       rails (>= 3.1.3)
