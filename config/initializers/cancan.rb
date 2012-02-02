@@ -57,7 +57,14 @@ module CanCan
           # Return the conditions directly if there's just one definition
           @rules.first.conditions.dup
         else
-          @rules.reverse.inject(false_sql) {|acc, rule| acc | rule.conditions.dup}
+          @rules.reverse.inject(false_sql) do |accumulator, rule|
+            conditions = rule.conditions.dup
+            if conditions.blank?
+              rule.base_behavior ? (accumulator | true_sql) : (accumulator & false_sql)
+            else
+              rule.base_behavior ? (accumulator | conditions) : (accumulator & -conditions)
+            end
+          end
         end
       end
       

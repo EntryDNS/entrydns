@@ -76,7 +76,8 @@ class Domain < ActiveRecord::Base
   # If current user present authorize it
   # If current user not present, just allow (rake tasks etc)
   def can_be_managed_by_current_user?
-    User.current.present? ? User.current.can?(:manage, self) : true
+    return true if User.current.nil?
+    Ability::CRUD.all?{|operation| User.current.can?(operation, self)}
   end
   
   def slave?; self.type == 'SLAVE' end

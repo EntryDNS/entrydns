@@ -3,6 +3,7 @@ class ApplicationController < ActionController::Base
   include SentientController
   protect_from_forgery
   before_filter :check_honeypot
+  helper_method :client_remote_ip, :respond_to
   
   rescue_from CanCan::AccessDenied, ActiveScaffold::ActionNotAllowed do |exception|
     flash.now[:error] = exception.message
@@ -28,13 +29,6 @@ class ApplicationController < ActionController::Base
   def client_remote_ip
     @client_remote_ip ||= request.env["HTTP_X_FORWARDED_FOR"]
   end
-  
-  def current_ability
-    @current_ability ||= ::Ability.new(:user => current_user)
-  end
-  
-  helper_method :client_remote_ip
-  helper_method :respond_to
   
   def check_honeypot
     render :nothing => true if params[Settings.honeypot].present?
