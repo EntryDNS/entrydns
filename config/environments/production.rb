@@ -1,8 +1,9 @@
 Entrydns::Application.configure do
   # Settings specified here will take precedence over those in config/application.rb
 
-  # Code is not reloaded between requests
-  config.cache_classes = true
+  # Code is not reloaded between requests, unless rake
+  # https://github.com/activescaffold/active_scaffold/issues/131
+  config.cache_classes = (File.basename($0) == "rake" && ARGV.include?("db:migrate")) ? false : true
 
   # Full error reports are disabled and caching is turned on
   config.consider_all_requests_local       = false
