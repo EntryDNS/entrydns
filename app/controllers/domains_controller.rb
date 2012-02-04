@@ -1,5 +1,4 @@
-class DomainsController < ApplicationController
-  
+class DomainsController < ApplicationController  
   active_scaffold :domain do |conf|
     conf.columns = [:name, :ip, :records, :soa_record, :ns_records]
     conf.list.columns = [:name, :records, :permissions]

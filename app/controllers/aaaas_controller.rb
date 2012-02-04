@@ -15,7 +15,7 @@ class AaaasController < ApplicationController
   
   # override to use :mx_records instead of :records assoc
   def beginning_of_chain
-    nested_via_records? ? nested.parent_scope.aaaa_records : super
+    (nested_via_records? ? nested.parent_scope.aaaa_records : super).readonly(false)
   end
   
   # override, we make our own sti logic
