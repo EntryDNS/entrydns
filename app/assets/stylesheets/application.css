@@ -20,7 +20,10 @@
 *= require pages/contact
 *= require pages/donate
 
-*= require active_scaffold
+*= require active_scaffold_layout
+*= require active_scaffold_default
+*= active_scaffold_colors 
+
 *= require overrides
 *= require slides
 *= require_self

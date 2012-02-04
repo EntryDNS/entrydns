@@ -27,7 +27,7 @@ gem 'switch_user', '~> 0.6.0'
 # Gems used only for assets and not required
 # in production environments by default.
 group :assets do
-  gem 'compass', '~> 0.12.alpha.0'
+  gem 'compass-rails', '~> 1.0.0.rc.2'
   gem 'sass-rails', "  ~> 3.2.3"
   gem 'coffee-rails', "~> 3.2.1"
   gem 'uglifier', '>= 1.0.3'

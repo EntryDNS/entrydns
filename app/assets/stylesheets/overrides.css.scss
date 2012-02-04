@@ -23,6 +23,13 @@ body.errors #main .inner {
     margin-top: 15px;
 }
 
+// https://github.com/activescaffold/active_scaffold/commit/686f43c1fbd76224be9b32505ecde6d553a0d26d#commitcomment-931620
+.active-scaffold a,
+.active-scaffold a:visited,
+.active-scaffold a:hover {
+    color: #06c;
+}
+
 #as_domains-active-scaffold .name-column, 
 #as_hosts-active-scaffold .name-column {
     font-weight: bold;
