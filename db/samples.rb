@@ -1,3 +1,7 @@
+require 'factory_girl'
+require 'faker'
+require Rails.root.join('spec', 'factories.rb')
+
 # more sample users
 users = [User.find_by_email('user@entrydns.net')]
 for i in 1..5 do
