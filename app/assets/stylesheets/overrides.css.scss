@@ -1,33 +1,28 @@
-#main .block .content p {
-    font-size: 16px;
-}
-
-#main .block .content h2 {
-    margin-left: 0;
-}
-
-#main .block .content .active-scaffold-header h2 {
-    font-size: 160%;
-}
-
-#main .block .content .active-scaffold th a {
-    text-shadow: none;
-}
-
-#main .block .content .active-scaffold th p {
-    font: bold 11px arial, sans-serif;
-    text-shadow: none;
+#main .block {
+    .content p {
+        font-size: 16px;
+    }
+    
+    .content h2 {
+        margin-left: 0 !important;
+    }
+    
+    .content .active-scaffold-header h2 {
+        font-size: 160%;
+    }
+    
+    .content .active-scaffold th a {
+        text-shadow: none;
+    }
+    
+    .content .active-scaffold th p {
+        font: bold 11px arial, sans-serif;
+        text-shadow: none;
+    }
 }
 
 body.errors #main .inner {
     margin-top: 15px;
-}
-
-// https://github.com/activescaffold/active_scaffold/commit/686f43c1fbd76224be9b32505ecde6d553a0d26d#commitcomment-931620
-.active-scaffold a,
-.active-scaffold a:visited,
-.active-scaffold a:hover {
-    color: #06c;
 }
 
 #as_domains-active-scaffold .name-column, 
@@ -69,4 +64,19 @@ body.errors #main .inner {
 .flash .alert {
     border: 1px solid #bb9004;
     background: #f9c006 url(image-path("messages/warning.png")) no-repeat 10px center;
+}
+
+.active-scaffold {
+    input[type="submit"], input[type="reset"], button {
+        @extend .btn;
+        margin-top: 0;
+        padding-top: 2px;
+        padding-bottom: 1px;
+    }
+    input, select, textarea {
+        margin-bottom: 0;
+    }
+    a.as_cancel {
+        vertical-align: middle;
+    }
 }

@@ -4,10 +4,10 @@
     <div class="content login">
 
       <%= form_for(resource, :as => resource_name, :url => session_path(resource_name)) do |f| %>
-        <div><%= f.label :email %><br />
+        <div><%= f.label :email %>
           <%= f.email_field :email %></div>
 
-        <div><%= f.label :password %><br />
+        <div><%= f.label :password %>
           <%= f.password_field :password %></div>
 
         <% if devise_mapping.rememberable? -%>
