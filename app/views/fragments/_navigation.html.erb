@@ -1,0 +1,23 @@
+<div class="navbar navbar-fixed-top">
+  <div class="navbar-inner">
+    <div class="container">
+
+      <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </a>
+      
+      <%= link_to('EntryDNS', root_path, class: 'brand', data: {pjax: '#main'}) %>
+
+      <div class="nav-collapse">
+        <% if user_signed_in? %>
+          <%= render 'fragments/navigation/application' %>
+        <% else %>
+          <%= render 'fragments/navigation/public' %>
+        <% end %>
+      </div>
+
+    </div>
+  </div>
+</div>

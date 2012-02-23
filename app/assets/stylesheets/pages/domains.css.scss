@@ -1,0 +1,35 @@
+#as_domains-active-scaffold .name-column, 
+#as_hosts-active-scaffold .name-column {
+    font-weight: bold;
+    text-shadow: none;
+}
+
+#as_domains-active-scaffold tr.shared-domain {
+    &.record {
+        background-color: mix(#E6F2FF, lighten(yellow, 30%));
+    }
+    &.record td {
+        border-bottom: solid 1px #C5DBF7;
+        border-left: solid 1px #C5DBF7;
+    }
+    
+    &.even-record {
+        background-color: mix(#fff, lighten(yellow, 40%));
+    }
+    &.even-record td {
+        border-left-color: #ddd;
+    }
+    
+    &.record td.sorted {
+        background-color: mix(#B9DCFF, lighten(yellow, 30%));
+        border-bottom-color: #AFD0F5;
+    }
+    
+    &.even-record td.sorted {
+        background-color: mix(#E6F2FF, lighten(yellow, 40%));
+        border-bottom-color: #AFD0F5;
+    }
+    &.record td.actions table td {
+        border: none;
+    }
+}

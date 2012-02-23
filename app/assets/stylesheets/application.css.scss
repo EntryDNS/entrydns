@@ -4,23 +4,23 @@
 * the top of the compiled file, but it's generally better to create a new file per style scope.
 
 *= require_self
-
-*= require theme/base
-*= require theme/theme
 *= require theme/error_explanation
-*= require theme/public
-*= require theme/application
-
-*= require pages/home
-*= require pages/team
-*= require pages/help
 *= require pages/edit_account
-*= require pages/contact
-*= require pages/donate
-
+*= require pages/domains
 *= require slides
 */
 
 @import "twitter/bootstrap";
+@import "twitter/bootstrap/responsive";
 @import "active_scaffold";
 @import "overrides";
+
+#main {
+    margin-top: 40px;
+}
+
+.footer {
+    margin-top: 25px;
+    padding: 15px 0 15px;
+    border-top: 1px solid #E5E5E5;
+}

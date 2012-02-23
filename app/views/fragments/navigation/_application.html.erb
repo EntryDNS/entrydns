@@ -1,0 +1,43 @@
+<ul class="nav">
+  <li><%#= link_to('Dashboard', dashboard_path, :data => {:pjax => '#main'}) %></li>
+  <li>
+    <%= link_to domains_path, data: {pjax: '#main'} do %>
+      <i class="icon-white icon-th-list"></i> My Domains
+    <% end %>
+  </li>
+  <li>
+    <%= link_to hosts_path, data: {pjax: '#main'} do %>
+      <i class="icon-white icon-th"></i> Dynamic Hosts
+    <% end %>
+  </li>
+  <li>
+    <%= link_to(page_path('help'), data: {pjax: '#main'}) do %>
+      <i class="icon-white icon-question-sign"></i> Help & Support
+    <% end %>
+  </li>
+</ul>
+  
+<ul class="nav pull-right">
+  <li>
+    <%= link_to(Settings.news_link, rel: 'tooltip', title: Settings.news_link) do %>
+      <i class="icon-white icon-share-alt"></i> News
+    <% end %>
+  </li>
+  <li>
+    <%= link_to(page_path('donate'), rel: 'tooltip', title: 'PayPal', 
+      class: 'highlight', data: {pjax: '#main'}) do %>
+      <i class="icon-white icon-heart"></i> Donate
+    <% end %>
+  </li>
+  <li>
+    <%= link_to(edit_user_registration_path, rel: 'tooltip', 
+      :title => "IP: #{client_remote_ip}", data: {pjax: '#main'}) do %>
+      <i class="icon-white icon-user"></i> <%= current_user.email %>
+    <% end %>
+  </li>
+  <li>
+    <%= link_to(destroy_user_session_path, method: :delete) do %>
+      <i class="icon-white icon-off"></i> Sign out
+    <% end %>
+  </li>
+</ul>

@@ -6,7 +6,7 @@
   <div><%= f.label :email %>
   <%= f.email_field :email %></div>
 
-  <div><%= f.submit "Send me reset password instructions" %></div>
+  <div><%= f.submit "Send me reset password instructions", class: 'btn-primary' %></div>
 <% end %>
 
 <%= render :partial => "devise/shared/links" %>

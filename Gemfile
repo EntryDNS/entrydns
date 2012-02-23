@@ -13,8 +13,8 @@ gem 'squeel', '~> 0.9.3'
 gem 'sentient_user', '~> 0.3.2'
 gem 'userstamp_basic', '~> 0.1.0'
 gem 'active_scaffold', :git => 'https://github.com/activescaffold/active_scaffold.git'
-# '~> 3.2.0'
 # :path => '/home/clyfe/dev/active_scaffold'
+# '~> 3.2.0'
 gem 'pjax_rails', '~> 0.1.10'
 gem 'validates_hostname', '~> 1.0.0', :git => 'https://github.com/KimNorgaard/validates_hostname.git'
 gem 'nilify_blanks', '~> 1.0.0'
@@ -23,7 +23,6 @@ gem 'rails_config', '~> 0.2.4'
 gem 'active-model-email-validator', '~> 1.0.2'
 gem 'mail_form', '~> 1.3.0'
 gem 'switch_user', '~> 0.6.0'
-gem 'bootstrap-sass-rails', '~> 2.0.0.2'
 
 # Gems used only for assets and not required
 # in production environments by default.
@@ -33,6 +32,7 @@ group :assets do
   gem 'coffee-rails', "~> 3.2.1"
   gem 'uglifier', '>= 1.0.3'
   gem 'therubyracer'
+  gem 'bootstrap-sass-rails', '~> 2.0.0.2'
 end
 
 gem 'jquery-rails'

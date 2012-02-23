@@ -1,26 +1,27 @@
 <!DOCTYPE html>
 <html>
   <head>
+    <meta charset="utf-8">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>EntryDNS free DNS service and dynamic DNS</title>
-    
+
     <meta name="description" content="EntryDNS free DNS service and dynamic DNS" />
     <meta name="keywords" content="DNS, free, service, dynamic, management, hosting" />
     <meta name="author" content="EntryDNS Team" />
-    
+
     <%= stylesheet_link_tag    "application" %>
     <%= javascript_include_tag "application" %>
     <%= csrf_meta_tag %>
   </head>
   <body class="public">
+    <%= render :partial => 'fragments/navigation' %>
 
-    <div id="container">
-      <%= render :partial => 'fragments/top' %>
-      <div id="wrapper" class="wat-cf">
-        <div id="main" class="home-page-main" data-pjax-container="true">
-          <%= flash_display 'flash' %>
-          <%= yield %>
-        </div>
+    <div class="container" id="main">
+      <div data-pjax-container="true">
+        <%= flash_display 'flash' %>
+        <%= yield %>
       </div>
       <%= render :partial => 'fragments/bottom' %>
     </div>

@@ -1,65 +1,60 @@
-<div class="block article">
-  <div class="content">
-    <div class="inner help-page">
-
-      <h1>Help & Support</h1>
-
-      <em>We are working hard on creating a support system. In the mean time please bear with us!</em>
-
-      <h3>I have an idea for an EntryDNS feature, who can I tell about it?</h3>
-      <p>
-        We’d love to hear your idea. Please send an email to <%= mail_to Settings.support_mail %>
-        or use our <%= link_to 'contact form', page_path('contact') %>.
-      </p>
-      
-      <h3>What support can I expect?</h3>
-      <p>
-        Since the service is totally free and we both have full time jobs, 
-        we do our best to answer your questions and address your suggestions.
-      </p>
-
-      <h3>How can I contact you if I have a question?</h3>
-      <ul>
-        <li>Email: <%= mail_to Settings.support_mail %></li>
-        <li>Web: <%= link_to 'contact form', page_path('contact') %></li>
-        <li>IRC: #entrydns on irc.freenode.net</li>
-      </ul>
-
-      <h3>What are your name servers?</h3>
-      <ul>
-        <li>ns1.entrydns.net</li>
-        <li>ns2.entrydns.net</li>
-        <li>ns3.entrydns.net</li>
-      </ul>
-
-      <h3>How can I update my domain record dynamically?</h3>
-      <div>
-        We offer two API's: Complete REST API and Simple API.<br />
-        Using the simple API you can update your records using the following shell commands:<br />
-        <br />
-        
-        With IP specified:
-        <pre style="margin-top: 0;">curl -k -X PUT -d "ip=IP" https://entrydns.net/records/modify/TOKEN</pre>
-
-        With IP automatically computed from request origin:
-        <pre style="margin-top: 0;">curl -k -X PUT -d "" https://entrydns.net/records/modify/TOKEN</pre>
-      </div>
-
-      <h3>What domain record types do you currently support?</h3>
-      <p>SOA, NS, A, CNAME, AAAA, MX, TXT, SRV (more coming soon)</p>
-
-      <h3>Can I set individual TTL for each record?</h3>
-      <p>Yes, you certainly can.</p>
-
-      <h3>What is a minimum TTL for a domain record?</h3>
-      <p>60 seconds</p>
-
-      <h3>Do you offer domain names?</h3>
-      <p>
-        We offer free subdomains on our <strong>entrydns.org</strong> domain
-        in the form <strong>yourname.entrydns.org</strong>
-      </p>
-
-    </div>
-  </div>
+<div class="page-header">
+  <h1>Help & Support</h1>
+  <small>We are working hard on creating a support system. In the mean time please bear with us!</small>
 </div>
+
+
+<h4>I have an idea for an EntryDNS feature, who can I tell about it?</h4>
+<p>
+  We’d love to hear your idea. Please send an email to <%= mail_to Settings.support_mail %>
+  or use our <%= link_to 'contact form', page_path('contact') %>.
+</p>
+
+<h4>What support can I expect?</h4>
+<p>
+  Since the service is totally free and we both have full time jobs, 
+  we do our best to answer your questions and address your suggestions.
+</p>
+
+<h4>How can I contact you if I have a question?</h4>
+<ul>
+  <li>Email: <%= mail_to Settings.support_mail %></li>
+  <li>Web: <%= link_to 'contact form', page_path('contact') %></li>
+  <li>IRC: #entrydns on irc.freenode.net</li>
+</ul>
+
+<h4>What are your name servers?</h4>
+<ul>
+  <li>ns1.entrydns.net</li>
+  <li>ns2.entrydns.net</li>
+  <li>ns3.entrydns.net</li>
+</ul>
+
+<h4>How can I update my domain record dynamically?</h4>
+<div>
+  We offer two API's: Complete REST API and Simple API.<br />
+  Using the simple API you can update your records using the following shell commands:<br />
+  <br />
+  
+  With IP specified:
+  <pre style="margin-top: 0;">curl -k -X PUT -d "ip=IP" https://entrydns.net/records/modify/TOKEN</pre>
+
+  With IP automatically computed from request origin:
+  <pre style="margin-top: 0;">curl -k -X PUT -d "" https://entrydns.net/records/modify/TOKEN</pre>
+</div>
+
+<h4>What domain record types do you currently support?</h4>
+<p>SOA, NS, A, CNAME, AAAA, MX, TXT, SRV (more coming soon)</p>
+
+<h4>Can I set individual TTL for each record?</h4>
+<p>Yes, you certainly can.</p>
+
+<h4>What is a minimum TTL for a domain record?</h4>
+<p>60 seconds</p>
+
+<h4>Do you offer domain names?</h4>
+<p>
+  We offer free subdomains on our <strong>entrydns.org</strong> domain
+  in the form <strong>yourname.entrydns.org</strong>
+</p>
+

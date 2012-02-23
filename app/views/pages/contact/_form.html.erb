@@ -6,25 +6,26 @@
   </div>
 
   <p>
-    <%= f.label :name, 'Your name' %><br />
+    <%= f.label :name, 'Your name' %>
     <%= f.text_field :name %>
   </p>
 
   <p>
-    <%= f.label :email, 'Your email' %><br />
+    <%= f.label :email, 'Your email' %>
     <%= f.text_field :email %>
   </p>
 
   <p>
-    <%= f.label :file %> <i>can be attached optionally</i><br />
+    <%= f.label :file %>
     <%= f.file_field :file %>
+    <i>can be attached optionally</i>
   </p>
 
   <p>
-    <%= f.label :message %><br />
+    <%= f.label :message %>
     <%= f.text_area :message, :rows => 10 %>
   </p>
 
-  <p><%= f.submit 'Send', :class => 'send-contact-form' %></p>
+  <p><%= f.submit 'Send', :class => 'btn-primary' %></p>
 
 <% end %>

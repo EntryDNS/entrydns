@@ -5,13 +5,9 @@ module ApplicationHelper
   # and displays it
   def flash_display(clazz = '')
     flashes = flash.select{|key, msg| msg.present?}.collect { |key, msg|
-      content_tag :div, (content_tag :p, msg), :class => "message #{key}"
+      content_tag :div, msg, :class => "message #{key}"
     }.join
-    if flashes.present?
-      content_tag :div, flashes.html_safe, :class => clazz
-    else
-      nil
-    end
+    flashes.present? ? content_tag(:div, flashes.html_safe, :class => clazz) : nil
   end
   
   def active_scaffold_column_timestamp(column, record)

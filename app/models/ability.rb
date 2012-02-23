@@ -10,6 +10,7 @@ class Ability
     @user = user || User.new
     @context = options[:context] || :application
     
+    as_action_aliases
     action_aliases
     if @user.persisted?
       owner_abilities
@@ -46,10 +47,7 @@ class Ability
   end
   
   def action_aliases
-    alias_action :list, :row, :show_search, :render_field, :to => :read
-    alias_action :update_column, :add_association, :edit_associated, 
-      :edit_associated, :new_existing, :add_existing, :new_token, :to => :update
-    alias_action :delete, :destroy_existing, :to => :destroy
+    alias_action :new_token, :to => :update
   end
   
 end

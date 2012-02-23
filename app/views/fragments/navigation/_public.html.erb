@@ -1,0 +1,32 @@
+<ul class="nav">
+  <li><%= link_to('About', page_path('about'), data: {pjax: '#main'}) %></li>
+  <li><%= link_to('Team', page_path('team'), data: {pjax: '#main'}) %></li>
+  <li><%= link_to('Contact', page_path('contact'), data: {pjax: '#main'}) %></li>
+  <li><%= link_to('Help & Support', page_path('help'), data: {pjax: '#main'}) %></li>
+</ul>
+
+<ul class="nav pull-right">
+  <li>
+    <%= link_to(Settings.news_link, rel: 'tooltip', title: Settings.news_link) do %>
+      <i class="icon-white icon-share-alt"></i> News
+    <% end %>
+  </li>
+  <li>
+    <%= link_to(page_path('donate'), rel: 'tooltip', title: 'PayPal', 
+      class: 'highlight', data: {pjax: '#main'}) do %>
+      <i class="icon-white icon-heart"></i> Donate
+    <% end %>
+  </li>
+
+  <li>
+    <%= link_to(new_user_registration_path, data: {pjax: '#main'}) do %>
+      <i class="icon-white icon-arrow-up"></i> Sign up
+    <% end %>
+  </li>
+  <li>
+    <%= link_to(new_user_session_path, data: {pjax: '#main'}) do %>
+      <i class="icon-white icon-arrow-right"></i> Sign in
+    <% end %>
+  </li>
+
+</ul>

@@ -10,8 +10,7 @@
 #= require pjax
 #= require active_scaffold
 #= require slides
-#= require twitter/bootstrap/tooltip
-#= require twitter/bootstrap/popover
+#= require twitter/bootstrap
 #= require_self
 
 $ ->
