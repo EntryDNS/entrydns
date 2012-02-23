@@ -1,3 +1,7 @@
+.active-scaffold-header div.actions {
+    top: 0;
+}
+
 .active-scaffold {
     input[type="submit"], input[type="reset"], button {
         @extend .btn;

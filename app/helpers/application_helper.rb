@@ -1,11 +1,18 @@
 module ApplicationHelper
 
+  FLASH_ALIASES = HashWithIndifferentAccess.new(
+    error: :error, success: :success,
+    alert: :alert, warning: :alert, warn: :alert,
+    info: :info,   notice: :info
+  )
+  
   # for each record in the rails flash this
   # function wraps the message in an appropriate div
   # and displays it
   def flash_display(clazz = '')
     flashes = flash.select{|key, msg| msg.present?}.collect { |key, msg|
-      content_tag :div, msg, :class => "message #{key}"
+      content = '<a class="close" data-dismiss="alert">×</a> '.html_safe + msg
+      content_tag(:div, content, :class => "alert alert-#{FLASH_ALIASES[key]}")
     }.join
     flashes.present? ? content_tag(:div, flashes.html_safe, :class => clazz) : nil
   end

@@ -1,33 +1,28 @@
-<div id="box">
-  <div class="block" id="block-login">
-    <h2>Sign up</h2>
-    <div class="content login">
-
-      <%= form_for(resource, :as => resource_name, :url => registration_path(resource_name)) do |f| %>
-        <%= devise_error_messages! %>
-      
-        <%= honeypot %>
-
-        <div><%= f.label :first_name %>
-          <%= f.text_field :first_name %></div>
-
-        <div><%= f.label :last_name %>
-          <%= f.text_field :last_name %></div>
-
-        <div><%= f.label :email %>
-          <%= f.email_field :email %></div>
-
-        <div><%= f.label :password %>
-          <%= f.password_field :password %>
-
-        <div><%= f.label :password_confirmation %>
-          <%= f.password_field :password_confirmation %></div>
-
-        <div><%= f.submit "Sign up", class: 'btn-primary' %></div>
-      <% end %>
-
-      <%= render :partial => "devise/shared/links" %>
-
-    </div>
-  </div>
+<div class="page-header">
+  <h1>Sign up</h1>
 </div>
+
+<%= form_for(resource, :as => resource_name, :url => registration_path(resource_name)) do |f| %>
+  <%= devise_error_messages! %>
+
+  <%= honeypot %>
+
+  <div><%= f.label :first_name %>
+    <%= f.text_field :first_name %></div>
+
+  <div><%= f.label :last_name %>
+    <%= f.text_field :last_name %></div>
+
+  <div><%= f.label :email %>
+    <%= f.email_field :email %></div>
+
+  <div><%= f.label :password %>
+    <%= f.password_field :password %>
+
+  <div><%= f.label :password_confirmation %>
+    <%= f.password_field :password_confirmation %></div>
+
+  <div><%= f.submit "Sign up", class: 'btn-primary' %></div>
+<% end %>
+
+<%= render :partial => "devise/shared/links" %>
