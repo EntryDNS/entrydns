@@ -1,6 +1,8 @@
-require 'factory_girl'
-require 'faker'
-require Rails.root.join('spec', 'factories.rb')
+unless Object.const_defined?('FactoryGirl')
+  require 'factory_girl'
+  require 'faker'
+  require Rails.root.join('spec', 'factories.rb')
+end
 
 # more sample users
 users = [User.find_by_email('user@entrydns.net')]

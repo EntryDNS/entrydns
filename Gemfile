@@ -7,7 +7,7 @@ gem 'rails', '3.2.0'
 
 # gem 'pg'
 gem 'mysql2'
-gem 'devise', '~> 1.5.3'
+gem 'devise', '~> 2.0.4'
 gem 'cancan', '~> 1.6.7'
 gem 'squeel', '~> 0.9.3'
 gem 'sentient_user', '~> 0.3.2'

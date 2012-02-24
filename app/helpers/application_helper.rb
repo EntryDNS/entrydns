@@ -1,3 +1,5 @@
+# encoding: UTF-8
+
 module ApplicationHelper
 
   FLASH_ALIASES = HashWithIndifferentAccess.new(
