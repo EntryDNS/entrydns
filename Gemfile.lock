@@ -205,6 +205,9 @@ GEM
       json_pure
       rubyzip
     sentient_user (0.3.2)
+    simple_form (2.0.0)
+      actionpack (~> 3.0)
+      activemodel (~> 3.0)
     simplecov (0.6.0)
       multi_json (~> 1.0)
       simplecov-html (~> 0.5.3)
@@ -270,6 +273,7 @@ DEPENDENCIES
   rspec-rails (~> 2.8.1)
   sass-rails (~> 3.2.3)
   sentient_user (~> 0.3.2)
+  simple_form (~> 2.0.0)
   simplecov
   spork (~> 1.0.0.rc0)
   squeel (~> 0.9.3)
