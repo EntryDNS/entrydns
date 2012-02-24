@@ -5,6 +5,8 @@
 
 *= require_self
 *= require theme/errors
+*= require theme/logo
+*= require theme/layout
 *= require pages/domains
 *= require slides
 */
@@ -14,12 +16,3 @@
 @import "active_scaffold";
 @import "overrides";
 
-#main {
-    margin-top: 40px;
-}
-
-.footer {
-    margin-top: 25px;
-    padding: 15px 0 15px;
-    border-top: 1px solid #E5E5E5;
-}

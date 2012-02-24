@@ -1,0 +1,13 @@
+@import "compass/css3/border-radius";
+@import "compass/css3/box-shadow";
+@import "compass/css3/text-shadow";
+
+.navbar .brand {
+  color: #53d4ff;
+  border: 2px solid #53d4ff;
+  @include border-radius(10px);
+  @include text-shadow(0 1px 0 rgba(0, 0, 0, 0.6),0 0 6px rgba(143, 181, 200, 1),0 0 10px rgba(143, 181, 200, .7));
+  @include box-shadow(0 1px 0 rgba(0, 0, 0, 0.6),0 0 6px rgba(143, 181, 200, 1),0 0 10px rgba(143, 181, 200, .7));
+  padding: 2px 8px 2px 8px;
+  margin: 6px 18px 2px 6px;
+}
