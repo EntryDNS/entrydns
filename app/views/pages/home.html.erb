@@ -11,17 +11,18 @@
         :related => "_clyfe:vaijab"
       } %>
     </span>
-    <script type="text/javascript" src="//platform.twitter.com/widgets.js"></script>
   </h1>
 </div>
 
 <div class="row">
   <div class="span6">
-    <%= render :partial => 'pages/home/headlines' %>
-    <%= render :partial => 'pages/fragments/action' %>
+    <div class="incentives-unit">
+      <%= render 'pages/home/headlines' %>
+      <%= render 'pages/fragments/action' %>
+    </div>
   </div>
   <div class="span6">
-    <%= render :partial => 'pages/home/slides' %>
+    <%= render 'pages/home/slides' %>
   </div>
 </div>
 
@@ -29,16 +30,12 @@
 
 <div class="row">
   <div class="span6">
-    <blockquote>
-      We are two geeks who built a free DNS service to fill a void in this space.
-      The service is free and we hope to support it on either a freemium model or some sort of affiliate sales.
-    </blockquote>
+    <blockquote>We are two geeks who built a free DNS service to fill a void in this space.The service is free 
+      and we hope to support it on either a freemium model or some sort of affiliate sales.</blockquote>
   </div>
   <div class="span6">
-    <blockquote>
-      Note that we just started it, and there are still things to be done, it's still a work in progress.
-      Nevertheless the service is at this point functional and there are people already using it.
-    </blockquote>
+    <blockquote>Note that we just started it, and there are still things to be done, it's still a work in progress.
+      Nevertheless the service is at this point functional and there are people already using it.</blockquote>
   </div>
 </div>
 
@@ -48,7 +45,7 @@
   <div class="span6">
       <h3>Benefits</h3>
       <%= render 'pages/fragments/benefits' %>
-      <%= render :partial => 'pages/fragments/action' %>
+      <%= render 'pages/fragments/action' %>
   </div>
   <div class="span6">
       <h3>Features</h3>
@@ -56,3 +53,4 @@
   </div>
 </div>
 
+<script type="text/javascript" src="//platform.twitter.com/widgets.js"></script>

@@ -1,31 +1,23 @@
-<%= form_for @contact_form, :url => {:action => 'contact'}, :method => 'post' do |f| %>
+<%= simple_form_for(@contact_form, 
+    url: { action: 'contact' },
+    html: { method: :post, class: 'form-horizontal' }
+  ) do |f| %>
+  
   <%= error_messages_for(@contact_form) %>
 
   <div style="display:none;">
     <%= f.text_field :nickname %>
   </div>
 
-  <p>
-    <%= f.label :name, 'Your name' %>
-    <%= f.text_field :name %>
-  </p>
+  <div class="inputs">
+    <%= f.input :name, label: 'Your name' %>
+    <%= f.input :email, label: 'Your email' %>
+    <%= f.input :file, hint: 'can be attached optionally' %>
+    <%= f.input :message, as: :text, input_html: { rows: 10 } %>
+  </div>
 
-  <p>
-    <%= f.label :email, 'Your email' %>
-    <%= f.text_field :email %>
-  </p>
-
-  <p>
-    <%= f.label :file %>
-    <%= f.file_field :file %>
-    <i>can be attached optionally</i>
-  </p>
-
-  <p>
-    <%= f.label :message %>
-    <%= f.text_area :message, :rows => 10 %>
-  </p>
-
-  <p><%= f.submit 'Send', :class => 'btn-primary' %></p>
+  <div class="form-actions">
+    <%= f.submit 'Send', :class => 'btn btn-primary' %>
+  </div>
 
 <% end %>
