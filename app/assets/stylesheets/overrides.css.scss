@@ -5,6 +5,7 @@
 .active-scaffold {
     input[type="submit"], input[type="reset"], button {
         @extend .btn;
+        @extend .btn-primary;
         margin-top: 0;
         padding-top: 2px;
         padding-bottom: 1px;
