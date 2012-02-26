@@ -5,7 +5,7 @@ class Domain < ActiveRecord::Base
 
   # optional IP for create form, results in a type A record
   attr_accessor :ip
-  attr_accessor  :domain_ownership_failed
+  attr_accessor :domain_ownership_failed
   
   belongs_to :user, :inverse_of => :domain
   has_many :records, :inverse_of => :domain, :dependent => :destroy
@@ -110,7 +110,7 @@ class Domain < ActiveRecord::Base
   after_update do
     if name_changed?
       name_was_pattern = /#{Regexp.escape(name_was)}$/
-      for record in records.all
+      records.each do |record|
         record.name = record.name.sub(name_was_pattern, name)
         record.save!
       end
@@ -119,12 +119,8 @@ class Domain < ActiveRecord::Base
   
   def each_update_involved_record
     yield soa_record
-    for record in soa_records
-      yield record
-    end
-    for record in records
-      yield record
-    end
+    soa_records.each { |record| yield record }
+    records.each     { |record| yield record }
   end
 
   scope :host_domains, where(:name => Settings.host_domains)
