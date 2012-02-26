@@ -5,6 +5,7 @@ class Domain < ActiveRecord::Base
 
   # optional IP for create form, results in a type A record
   attr_accessor :ip
+  attr_accessor  :domain_ownership_failed
   
   belongs_to :user, :inverse_of => :domain
   has_many :records, :inverse_of => :domain, :dependent => :destroy
@@ -54,7 +55,8 @@ class Domain < ActiveRecord::Base
 
     # If parent domain is on our system, the user be permitted to manage current domain.
     # He either owns parent, or is permitted to current domain or to an ancestor.
-    if parent_domain.present? && can_be_managed_by_current_user?
+    if parent_domain.present? && !parent_domain.can_be_managed_by_current_user?
+      @domain_ownership_failed = true
       errors[:name] = "issue, the parent domain `#{parent_domain.name}` is registered to another user"
     end
   end

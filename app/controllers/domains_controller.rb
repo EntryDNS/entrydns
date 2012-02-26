@@ -26,6 +26,13 @@ class DomainsController < ApplicationController
     @record.setup(current_user.email)
   end
   
+  def do_create
+    super
+    if !successful? && @record.domain_ownership_failed
+      @record.user = current_user
+    end
+  end
+  
   def new_model
     record = super
     before_create_save(record)
