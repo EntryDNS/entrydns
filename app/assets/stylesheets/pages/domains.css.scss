@@ -1,5 +1,12 @@
-#as_domains-active-scaffold .name-column, 
-#as_hosts-active-scaffold .name-column {
-    font-weight: bold;
-    text-shadow: none;
+#as_domains-active-scaffold,
+#as_hosts-active-scaffold {
+    .name-column {
+        font-weight: bold;
+        text-shadow: none;
+    }
+    .content-column {
+        max-width: 200px;
+        overflow: auto;
+    }
 }
+
