@@ -7,7 +7,8 @@
 #= require jquery
 #= require jquery-ui
 #= require jquery_ujs
-#= require pjax
+#= require jquery.pjax
+#= require pjax/page_triggers
 #= require active_scaffold
 #= require slides
 #= require twitter/bootstrap
@@ -16,3 +17,9 @@
 $ ->
   $('[rel=popover]').popover()
   $('[rel=tooltip]').tooltip()
+  
+  $('.pjax-nav a:not([data-remote]):not([data-behavior]):not([data-skip-pjax])').pjax('[data-pjax-container]')
+
+  $(document).on 'pjax:success', (event, data, status, xhr, options) ->
+    $('ul.pjax-nav').find('li.active').removeClass 'active'
+    $("ul.pjax-nav a[href=\"#{window.location.pathname}\"]").parents('li').addClass 'active'

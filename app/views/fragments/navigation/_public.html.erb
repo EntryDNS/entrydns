@@ -1,32 +1,21 @@
-<ul class="nav">
-  <li><%= link_to('About', page_path('about'), data: {pjax: '#main'}) %></li>
-  <li><%= link_to('Team', page_path('team'), data: {pjax: '#main'}) %></li>
-  <li><%= link_to('Contact', page_path('contact'), data: {pjax: '#main'}) %></li>
-  <li><%= link_to('Help & Support', page_path('help'), data: {pjax: '#main'}) %></li>
-</ul>
+<% semantic_navigation :public_nav, html: { class: 'nav pjax-nav' } do |n| %>
+  <%= n.item 'About', link: page_path('about') %>
+  <%= n.item 'Team', link: page_path('team') %>
+  <%= n.item 'Contact', link: page_path('contact') %>
+  <%= n.item 'Help & Support', link: page_path('help') %>
+<% end %>
 
-<ul class="nav pull-right">
-  <li>
-    <%= link_to(Settings.news_link, rel: 'tooltip', title: Settings.news_link) do %>
-      <i class="icon-white icon-share-alt"></i> News
-    <% end %>
-  </li>
-  <li>
-    <%= link_to(page_path('donate'), rel: 'tooltip', title: 'PayPal', 
-      class: 'highlight', data: {pjax: '#main'}) do %>
-      <i class="icon-white icon-heart"></i> Donate
-    <% end %>
-  </li>
-
-  <li>
-    <%= link_to(new_user_registration_path, data: {pjax: '#main'}) do %>
-      <i class="icon-white icon-arrow-up"></i> Sign up
-    <% end %>
-  </li>
-  <li>
-    <%= link_to(new_user_session_path, data: {pjax: '#main'}) do %>
-      <i class="icon-white icon-arrow-right"></i> Sign in
-    <% end %>
-  </li>
-
-</ul>
+<% semantic_navigation :session_nav, html: { class: 'nav pull-right pjax-nav' } do |n| %>
+  <%= n.item '', link: Settings.news_link, html: { rel: 'tooltip', title: Settings.news_link } do %>
+    <i class="icon-white icon-share-alt"></i> News
+  <% end %>
+  <%= n.item '', link: page_path('donate'), html: { rel: 'tooltip', title: 'PayPal', class: 'highlight' } do %>
+    <i class="icon-white icon-heart"></i> Donate
+  <% end %>
+  <%= n.item '', link: new_user_registration_path do %>
+    <i class="icon-white icon-arrow-up"></i> Sign up
+  <% end %>
+  <%= n.item '', link: new_user_session_path do %>
+    <i class="icon-white icon-arrow-right"></i> Sign in
+  <% end %>
+<% end %>
