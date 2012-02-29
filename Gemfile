@@ -24,6 +24,7 @@ gem 'active-model-email-validator', '~> 1.0.2'
 gem 'mail_form', '~> 1.3.0'
 gem 'switch_user', '~> 0.6.0'
 gem 'simple_form', '~> 2.0.0'
+gem 'concerned_with', '~> 0.1.0'
 
 # Gems used only for assets and not required
 # in production environments by default.
