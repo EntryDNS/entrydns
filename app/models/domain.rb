@@ -61,18 +61,11 @@ class Domain < ActiveRecord::Base
     end
   end
   
+  # Returns the first immediate parent, if exists (and caches the search)
   def parent_domain
     return nil if name.nil?
     @parent_domain ||= {}
-    @parent_domain[name] ||= begin
-      segments = name.split('.')
-      if segments.size >= 2
-        domain_name = segments[1..-1].join('.')
-        Domain.find_by_name(domain_name)
-      else
-        nil
-      end
-    end
+    @parent_domain[name] ||= _parent_domain
   end
   
   # If current user present authorize it
@@ -156,4 +149,19 @@ class Domain < ActiveRecord::Base
     ns2.content = Settings.ns.second
     ns3.content = Settings.ns.third
   end
+  
+  protected
+  
+  # Returns the first immediate parent, if exists (does not cache the search)
+  # For example "sub.sub.domain.com"'s parent might be "sub.domain.com" or "domain.com"
+  def _parent_domain
+    segments = name.split('.')
+    while segments.size > 1
+      segments.shift
+      domain = Domain.find_by_name(segments.join('.'))
+      return domain if domain.present?
+    end
+    return nil
+  end
+  
 end

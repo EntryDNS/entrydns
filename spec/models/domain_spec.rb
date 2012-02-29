@@ -25,8 +25,8 @@ describe Domain do
   it "updates name to records when name changed" do
     domain.update_attributes(:name => "changed#{domain.name}")
     domain.soa_record.name.should == domain.name
-    domain.records.all.size.should == Settings.ns.count + 1
-    for record in domain.records.all
+    domain.records.count.should == Settings.ns.count + 1
+    domain.records.each do |record|
       record.name.should =~ /#{domain.name}$/
     end
     (domain.soa_record.serial % 10).should == 0
@@ -67,7 +67,12 @@ describe Domain do
 
     User.do_as(user) do
       # stub a parent domain on another user account, with no permissions present
-      mock_domain = mock(:user_id => user3.id, :user => user3, :name => 'x')
+      mock_domain = mock(
+        :user_id => user3.id, 
+        :user => user3, 
+        :name => 'x',
+        :can_be_managed_by_current_user? => false
+      )
       domain.stub(:parent_domain).and_return(mock_domain)
       domain.should have(1).errors_on(:name)
     end

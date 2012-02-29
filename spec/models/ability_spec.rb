@@ -29,29 +29,42 @@ describe Ability do
   
   context "permitted" do
     before do
-      permission # ensure permission to domain
+      User.do_as(user) do
+        domain
+        subdomain
+        subsubdomain
+        permission # ensure permission to domain
+      end
     end
     
     it "allows other user to manage user's domains and records, if permitted" do
-      user2.should be_able_to(crud, domain)
-      user2.should be_able_to(crud, a_record)
-      user2.should be_able_to(crud, soa_record)
+      User.do_as(user2) do
+        user2.should be_able_to(crud, domain)
+        user2.should be_able_to(crud, a_record)
+        user2.should be_able_to(crud, soa_record)
+      end
     end
     
     it "denies third user to manage user's permitted domains and records" do
-      user3.should_not be_able_to(crud, domain)
-      user3.should_not be_able_to(crud, a_record)
-      user3.should_not be_able_to(crud, soa_record)
+      User.do_as(user3) do
+        user3.should_not be_able_to(crud, domain)
+        user3.should_not be_able_to(crud, a_record)
+        user3.should_not be_able_to(crud, soa_record)
+      end
     end
 
     it "allows other user to manage user's permitted subdomains" do
-      user2.should be_able_to(crud, subdomain)
-      user2.should be_able_to(crud, subsubdomain)
+      User.do_as(user2) do
+        user2.should be_able_to(crud, subdomain)
+        user2.should be_able_to(crud, subsubdomain)
+      end
     end
 
     it "denies third user to manage other user's permitted subdomains" do
-      user3.should_not be_able_to(crud, subdomain)
-      user3.should_not be_able_to(crud, subsubdomain)
+      User.do_as(user3) do
+        user3.should_not be_able_to(crud, subdomain)
+        user3.should_not be_able_to(crud, subsubdomain)
+      end
     end
   end
   
