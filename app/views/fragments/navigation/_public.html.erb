@@ -1,8 +1,16 @@
 <% semantic_navigation :public_nav, html: { class: 'nav pjax-nav' } do |n| %>
-  <%= n.item 'About', link: page_path('about') %>
-  <%= n.item 'Team', link: page_path('team') %>
-  <%= n.item 'Contact', link: page_path('contact') %>
-  <%= n.item 'Help & Support', link: page_path('help') %>
+  <%= n.item '', link: page_path('about') do %>
+    <i class="icon-white icon-info-sign"></i> About
+  <% end %>
+  <%= n.item '', link: page_path('team') do %>
+    <i class="icon-white icon-user"></i> Team
+  <% end %>
+  <%= n.item '', link: page_path('contact') do %>
+    <i class="icon-white icon-envelope"></i> Contact
+  <% end %>
+  <%= n.item '', link: page_path('help') do %>
+    <i class="icon-white icon-question-sign"></i> Help & Support
+  <% end %>
 <% end %>
 
 <% semantic_navigation :session_nav, html: { class: 'nav pull-right pjax-nav' } do |n| %>
