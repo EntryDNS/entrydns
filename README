@@ -2,10 +2,15 @@
 
 A DNS users frontend.
 
+## Initialize for development
+
+# create config/database.yml and config/settings.yml from the samples
+> bundle exec rake db:create db:migrate db:seed db:samples
+
 ## Tests
 
-Start Spork
-> spork rspec
+Start Guard
+> bundle exec guard
 
 Run tests
-> rspec spec
+> bundle exec rspec spec
