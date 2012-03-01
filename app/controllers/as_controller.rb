@@ -8,8 +8,21 @@ class AsController < ApplicationController
     conf.columns[:change_date].list_ui = :timestamp
     conf.columns[:ttl].options = {:i18n_number => {:delimiter => ''}}
     conf.actions.exclude :show
+    conf.action_links.add 'new_token', label: 'New Token', method: :put,
+      type: :member, position: false, confirm: 'Are you sure?'
   end
   include RecordsControllerCommon
+  
+  def new_token
+    process_action_link_action do |record|
+      record.instance_variable_set(:@readonly, false)
+      record.generate_token
+      update_save(no_record_param_update: true)
+      if successful?
+        flash[:info] = "Token was updated successfully to #{record.authentication_token}"
+      end
+    end
+  end
   
   protected
   

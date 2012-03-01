@@ -47,7 +47,7 @@ class Record < ActiveRecord::Base
   def generate_token
     self.authentication_token = loop do
       token = Devise.friendly_token
-      break token unless self.class.exists?(:authentication_token => token)
+      break token unless Record.exists?(authentication_token: token)
     end
   end
   

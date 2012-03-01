@@ -25,6 +25,8 @@ class RecordsController < ApplicationController
     conf.columns[:ttl].options = {:i18n_number => {:delimiter => ''}}
     # conf.create.link.label = "Add Record"
     conf.actions.exclude :show
+    conf.action_links.add 'new_token', label: 'New Token', method: :put,
+      security_method: :a_record?, type: :member, position: false, confirm: 'Are you sure?'
   end
   include RecordsControllerCommon
   skip_before_filter :ensure_nested_under_domain, :only => 'modify'
@@ -45,12 +47,17 @@ class RecordsController < ApplicationController
       format.html {render(:text => MODIFY_OK)}
     end
   end
-  
+    
   protected
   
   def new_model
     record = super
     before_create_save(record)
     record
+  end
+  
+  # just to limit the action to A type records
+  def a_record?(record)
+    record.class == A
   end
 end

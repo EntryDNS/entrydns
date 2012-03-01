@@ -11,6 +11,9 @@ Entrydns::Application.routes.draw do
 
   resources :hosts do
     as_routes
+    member do
+      put 'new_token'
+    end
   end
 
   put '/records/modify/:authentication_token', :to => 'records#modify', :as => :modify_record
@@ -32,6 +35,9 @@ Entrydns::Application.routes.draw do
 
   resources :as do
     as_routes
+    member do
+      put 'new_token'
+    end
   end
 
   resources :cnames do
