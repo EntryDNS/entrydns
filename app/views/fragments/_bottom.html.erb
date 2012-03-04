@@ -1,16 +1,17 @@
 <div class="footer">
   <div class="block">
     <p class="pull-right">
+      <%= switch_user_select %>
       <a href="#">Back to top</a>
     </p>
-    <p class="pjax-nav">
-      <%= link_to('Terms & Conditions', page_path('terms'), :data => {:pjax => '#main'}) %> &bull;
-      <%= link_to('Privacy Policy', page_path('privacy'), :data => {:pjax => '#main'}) %> &bull;
-      <%= link_to('Contact', page_path('contact'), :data => {:pjax => '#main'}) %> &bull;
-      <%= link_to('About', page_path('about'), :data => {:pjax => '#main'}) %> &bull;
-      <%= link_to("&copy; #{Time.now.year} EntryDNS Team".html_safe, page_path('team'), :data => {:pjax => '#main'}) %>
-      <%= switch_user_select %>
-    </p>
+    
+    <% semantic_navigation :footer_nav, html: { class: 'nav nav-pills pjax-nav' } do |n| %>
+      <%= n.item "Terms & Conditions", link: page_path('terms') %>
+      <%= n.item "Privacy Policy", link: page_path('privacy') %>
+      <%= n.item "Contact", link: page_path('contact') %>
+      <%= n.item "About", link: page_path('about') %>
+      <%= n.item "&copy; #{Time.now.year} EntryDNS Team", link: page_path('team') %>
+    <% end %>
   </div>      
 </div>
 
