@@ -15,8 +15,8 @@
 #= require_self
 
 $ ->
-  $('[rel=popover]').popover()
-  $('[rel=tooltip]').tooltip()
+  $(document).popover(selector: '[rel=popover]')
+  $(document).tooltip(selector: '[rel=tooltip]')
   
   $('.pjax-nav a:not([data-remote]):not([data-behavior]):not([data-skip-pjax])').pjax('[data-pjax-container]')
 
