@@ -1,4 +1,6 @@
 class Domain < ActiveRecord::Base
+  attr_accessor :parent_synced
+  acts_as_nested_interval virtual_root: true
   
   validate :domain_ownership
   def domain_ownership
@@ -12,7 +14,7 @@ class Domain < ActiveRecord::Base
       errors[:name] = "issue, the parent domain `#{parent_domain.name}` is registered to another user"
     end
   end
-    
+  
   # If current user present authorize it
   # If current user not present, just allow (rake tasks etc)
   def can_be_managed_by_current_user?
@@ -22,7 +24,10 @@ class Domain < ActiveRecord::Base
   
   before_save do
     self.name_reversed = name.reverse if name_changed?
+    sync_parent
   end
+  
+  after_save :sync_children
   
   # Returns the first immediate parent, if exists (and caches the search)
   def parent_domain
@@ -33,6 +38,10 @@ class Domain < ActiveRecord::Base
   
   def subdomains
     Domain.where(:name_reversed.matches => "#{name_reversed}.%")
+  end
+  
+  def subdomain_of?(domain)
+    name.end_with?('.' + domain.name)
   end
   
   protected
@@ -47,6 +56,30 @@ class Domain < ActiveRecord::Base
       return domain if domain.present?
     end
     return nil
+  end
+  
+  # Syncs with nested interval when a child is added and parent exists
+  def sync_parent
+    if !@parent_synced && parent_domain.present? && self.parent_id != parent_domain.id
+      self.parent = parent_domain
+    end
+  end
+  
+  # Syncs with nested interval when the parent is added later than the children
+  def sync_children
+    descendants = subdomains.preorder.all
+    first = descendants.first
+    return true unless first.present?
+      
+    # only immediate children, rest will chain recursively
+    depth = first.depth
+    descendants = descendants.select { |d| d.depth == depth }
+      
+    subdomains.each do |subdomain|
+      subdomain.parent = self
+      subdomain.parent_synced = true # no n+1
+      subdomain.save!
+    end
   end
   
 end

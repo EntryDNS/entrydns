@@ -9,7 +9,7 @@ describe Domain do
 
   it "has correct ns records" do
     domain.should have(Settings.ns.count).ns_records
-    for record in domain.ns_records
+    domain.ns_records.each do |record|
       record.should be_persisted
     end
   end
@@ -95,6 +95,22 @@ describe Domain do
   it "has reversed name" do
     domain.name_reversed.should be_present
     domain.name_reversed.should == domain.name.reverse
+  end
+  
+  it "nests root's interval corectly" do
+    User.current = nil
+    hosts_domain = make_domain(:name => "hosts.com", :user => admin)
+    domain
+    subdomain
+    domain3
+    other = make_domain(:user => user)
+    Domain.preorder.map { |d| [d.id, d.lft, d.rgt] }.should == [
+      [hosts_domain.id, 0.5, 1.0],
+      [domain.id, 0.3333333333333333, 0.5],
+      [subdomain.id, 0.4, 0.5],
+      [domain3.id, 0.25, 0.3333333333333333],
+      [other.id, 0.2, 0.25]
+    ]
   end
   
 end

@@ -3,6 +3,16 @@
     .name-column {
         font-weight: bold;
         text-shadow: none;
+        .ui-icon {
+            display: inline-block;
+            height: 12px;
+        }
+        .ui-icon-blank {
+            background-image: none;
+        }
+        .icon-share {
+            float: right;
+        }
     }
     .content-column {
         max-width: 200px;
