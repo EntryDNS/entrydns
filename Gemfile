@@ -1,6 +1,6 @@
 source 'http://rubygems.org'
 
-gem 'rails', '3.2.1'
+gem 'rails', '3.2.2'
 
 # Bundle edge Rails instead:
 # gem 'rails',     :git => 'git://github.com/rails/rails.git'
@@ -12,9 +12,8 @@ gem 'cancan', '~> 1.6.7'
 gem 'squeel', '~> 0.9.3'
 gem 'sentient_user', '~> 0.3.2'
 gem 'userstamp_basic', '~> 0.1.0'
-gem 'active_scaffold', path: '/home/clyfe/dev/active_scaffold'
+gem 'active_scaffold', '~> 3.2.0', path: '/home/clyfe/dev/active_scaffold'
 # git: 'https://github.com/activescaffold/active_scaffold.git'
-# '~> 3.2.0'
 gem 'pjax_rails', '~> 0.1.7', git: 'https://github.com/rails/pjax_rails.git'
 gem 'validates_hostname', '~> 1.0.0', git: 'https://github.com/KimNorgaard/validates_hostname.git'
 gem 'nilify_blanks', '~> 1.0.0'
@@ -27,8 +26,8 @@ gem 'simple_form', '~> 2.0.0'
 gem 'concerned_with', '~> 0.1.0'
 gem 'navigasmic', '~> 0.5.6', git: 'https://github.com/jejacks0n/navigasmic.git'
 gem 'rails-backbone', '~> 0.7.0'
-gem 'acts_as_nested_interval', '~> 0.0.1', git: 'https://github.com/clyfe/acts_as_nested_interval.git'
-# path: '/home/clyfe/dev/acts_as_nested_interval'
+gem 'acts_as_nested_interval', '~> 0.0.1', path: '/home/clyfe/dev/acts_as_nested_interval'
+# git: 'https://github.com/clyfe/acts_as_nested_interval.git'
 
 # Gems used only for assets and not required
 # in production environments by default.

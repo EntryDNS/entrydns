@@ -5,13 +5,6 @@ GIT
     validates_hostname (1.0.0)
 
 GIT
-  remote: https://github.com/clyfe/acts_as_nested_interval.git
-  revision: f40731785fd3a0d11e89ce6212db751105b7b086
-  specs:
-    acts_as_nested_interval (0.0.1)
-      rails (~> 3.2.1)
-
-GIT
   remote: https://github.com/jejacks0n/navigasmic.git
   revision: 6108afe7930fd4b3282cbe8942240bf4f70e2f74
   specs:
@@ -30,15 +23,21 @@ PATH
     active_scaffold (3.2.0)
       rails (>= 3.1.3)
 
+PATH
+  remote: /home/clyfe/dev/acts_as_nested_interval
+  specs:
+    acts_as_nested_interval (0.0.1)
+      rails (~> 3.2.1)
+
 GEM
   remote: http://rubygems.org/
   specs:
-    actionmailer (3.2.1)
-      actionpack (= 3.2.1)
+    actionmailer (3.2.2)
+      actionpack (= 3.2.2)
       mail (~> 2.4.0)
-    actionpack (3.2.1)
-      activemodel (= 3.2.1)
-      activesupport (= 3.2.1)
+    actionpack (3.2.2)
+      activemodel (= 3.2.2)
+      activesupport (= 3.2.2)
       builder (~> 3.0.0)
       erubis (~> 2.7.0)
       journey (~> 1.0.1)
@@ -49,18 +48,18 @@ GEM
     active-model-email-validator (1.0.2)
       activemodel
       mail
-    activemodel (3.2.1)
-      activesupport (= 3.2.1)
+    activemodel (3.2.2)
+      activesupport (= 3.2.2)
       builder (~> 3.0.0)
-    activerecord (3.2.1)
-      activemodel (= 3.2.1)
-      activesupport (= 3.2.1)
-      arel (~> 3.0.0)
+    activerecord (3.2.2)
+      activemodel (= 3.2.2)
+      activesupport (= 3.2.2)
+      arel (~> 3.0.2)
       tzinfo (~> 0.3.29)
-    activeresource (3.2.1)
-      activemodel (= 3.2.1)
-      activesupport (= 3.2.1)
-    activesupport (3.2.1)
+    activeresource (3.2.2)
+      activemodel (= 3.2.2)
+      activesupport (= 3.2.2)
+    activesupport (3.2.2)
       i18n (~> 0.6)
       multi_json (~> 1.0)
     arel (3.0.2)
@@ -172,29 +171,29 @@ GEM
       activerecord (~> 3.0)
     polyglot (0.3.3)
     rack (1.4.1)
-    rack-cache (1.1)
+    rack-cache (1.2)
       rack (>= 0.4)
     rack-ssl (1.3.2)
       rack
     rack-test (0.6.1)
       rack (>= 1.0)
-    rails (3.2.1)
-      actionmailer (= 3.2.1)
-      actionpack (= 3.2.1)
-      activerecord (= 3.2.1)
-      activeresource (= 3.2.1)
-      activesupport (= 3.2.1)
+    rails (3.2.2)
+      actionmailer (= 3.2.2)
+      actionpack (= 3.2.2)
+      activerecord (= 3.2.2)
+      activeresource (= 3.2.2)
+      activesupport (= 3.2.2)
       bundler (~> 1.0)
-      railties (= 3.2.1)
+      railties (= 3.2.2)
     rails-backbone (0.7.0)
       coffee-script (~> 2.2.0)
       ejs (~> 1.0.0)
       railties (>= 3.1.0)
     rails_config (0.2.5)
       activesupport (>= 3.0)
-    railties (3.2.1)
-      actionpack (= 3.2.1)
-      activesupport (= 3.2.1)
+    railties (3.2.2)
+      actionpack (= 3.2.2)
+      activesupport (= 3.2.2)
       rack-ssl (~> 1.3.2)
       rake (>= 0.8.7)
       rdoc (~> 3.4)
@@ -265,7 +264,7 @@ GEM
     treetop (1.4.10)
       polyglot
       polyglot (>= 0.3.1)
-    tzinfo (0.3.31)
+    tzinfo (0.3.32)
     uglifier (1.2.3)
       execjs (>= 0.3.0)
       multi_json (>= 1.0.2)
@@ -281,7 +280,7 @@ PLATFORMS
 
 DEPENDENCIES
   active-model-email-validator (~> 1.0.2)
-  active_scaffold!
+  active_scaffold (~> 3.2.0)!
   acts_as_nested_interval (~> 0.0.1)!
   bootstrap-sass-rails (~> 2.0.0.2)
   cancan (~> 1.6.7)
@@ -306,7 +305,7 @@ DEPENDENCIES
   navigasmic (~> 0.5.6)!
   nilify_blanks (~> 1.0.0)
   pjax_rails (~> 0.1.7)!
-  rails (= 3.2.1)
+  rails (= 3.2.2)
   rails-backbone (~> 0.7.0)
   rails_config (~> 0.2.4)
   rb-inotify (~> 0.8.8)

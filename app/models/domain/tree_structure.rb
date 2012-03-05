@@ -1,5 +1,13 @@
 class Domain < ActiveRecord::Base
   attr_accessor :parent_synced
+  
+  # this goes before acts_as_nested_interval call
+  before_save do
+    self.name_reversed = name.reverse if name_changed?
+    sync_parent
+  end
+  
+  # this goes after sync_parent, to order callbacks correctly 
   acts_as_nested_interval virtual_root: true
   
   validate :domain_ownership
@@ -22,11 +30,6 @@ class Domain < ActiveRecord::Base
     Ability::CRUD.all?{|operation| User.current.can?(operation, self)}
   end
   
-  before_save do
-    self.name_reversed = name.reverse if name_changed?
-    sync_parent
-  end
-  
   after_save :sync_children
   
   # Returns the first immediate parent, if exists (and caches the search)
@@ -42,6 +45,11 @@ class Domain < ActiveRecord::Base
   
   def subdomain_of?(domain)
     name.end_with?('.' + domain.name)
+  end
+  
+  # Overrides acts_as_nested_interval#ancestor_of?
+  def ancestor_of?(domain)
+    domain.subdomain_of?(self)
   end
   
   protected
