@@ -18,13 +18,8 @@ class AddNestedIntervalToDomains < ActiveRecord::Migration
       reset_column_information
       self.inheritance_column = "sti_disabled"
       acts_as_nested_interval virtual_root: true
-      skip_callback :update, :before, :update_nested_interval
-      skip_callback :update, :before, :sync_children
     end
-    Domain.scoped.each do |d|
-      d.create_nested_interval
-      d.save!
-    end
+    Domain.rebuild_nested_interval_tree!
    
   end
 end
