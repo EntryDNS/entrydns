@@ -26,7 +26,7 @@ gem 'simple_form', '~> 2.0.0'
 gem 'concerned_with', '~> 0.1.0'
 gem 'navigasmic', '~> 0.5.6', git: 'https://github.com/jejacks0n/navigasmic.git'
 gem 'rails-backbone', '~> 0.7.0'
-gem 'acts_as_nested_interval', '~> 0.0.1'
+gem 'acts_as_nested_interval', '~> 0.0.2'
 # path: '/home/clyfe/dev/acts_as_nested_interval'
 # git: 'https://github.com/clyfe/acts_as_nested_interval.git'
 
