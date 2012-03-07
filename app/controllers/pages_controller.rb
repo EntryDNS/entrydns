@@ -15,11 +15,17 @@ class PagesController < ApplicationController
 
   def show
     return redirect_to(domains_path) if user_signed_in? && params[:id] == "home"
-    if params[:id] == "contact"
+    
+    options = {template: current_page}
+    case params[:id]
+    when "contact"
       init = user_signed_in? ? {:name => current_user.name, :email => current_user.email} : {}
       @contact_form = ContactForm.new(init)
+    when "home"
+      options[:layout] = 'home' unless request.xhr?
     end
-    render :template => current_page
+    
+    render options
   end
   
   def contact

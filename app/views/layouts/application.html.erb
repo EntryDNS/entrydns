@@ -13,14 +13,14 @@
     <%= csrf_meta_tag %>
   </head>
   <body class="application">
-    <%= render :partial => 'fragments/navigation' %>
+    <%= render 'shared/navigation' %>
     
     <div class="container" id="main">
       <div data-pjax-container="true">
         <%= flash_display 'flash' %>          
         <%= yield %>
       </div>
-      <%= render :partial => 'fragments/bottom' %>
+      <%= render 'shared/bottom' %>
     </div>
     
   </body>

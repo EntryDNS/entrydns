@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title><%= content_for?(:title) ? yield(:title) : "EntryDNS free DNS service and dynamic DNS" %></title>
+
+    <meta name="description" content="<%= content_for?(:description) ? yield(:description) : "EntryDNS free DNS service and dynamic DNS" %>" />
+    <meta name="keywords" content="<%= content_for?(:keywords) ? yield(:keywords) : "DNS, free, service, dynamic, management, hosting" %>" />
+    <meta name="author" content="EntryDNS Team" />
+
+    <%= stylesheet_link_tag    "application" %>
+    <%= javascript_include_tag "application" %>
+    <%= csrf_meta_tag %>
+  </head>

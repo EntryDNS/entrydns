@@ -3,11 +3,11 @@
   <body class="public">
     <%= render 'shared/navigation' %>
 
-    <div class="container" id="main">
-      <div data-pjax-container="true">
-        <%= flash_display 'flash' %>
-        <%= yield %>
-      </div>
+    <div data-pjax-container="true" id="main">
+      <%= flash_display 'flash' %>
+      <%= yield %>
+    </div>
+    <div class="container">
       <%= render 'shared/bottom' %>
     </div>
 

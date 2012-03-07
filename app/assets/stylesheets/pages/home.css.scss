@@ -14,13 +14,41 @@
     font-weight: normal;
 }
 
-.incentives-unit li,
-.incentives-unit p
-{
+.page-home-incentives li,
+.page-home-incentives p {
     font-size: 14px;
     line-height: 20px;
 }
 
-blockquote {
-    font-style: italic;
+.page-home-header {
+    background-color: #B9DCFF;
+    border-bottom: 1px solid darken(#B9DCFF, 10%);
+    .page-header {
+        small {
+            color: #3F3F39;
+        }
+        border-bottom: none;
+        padding-bottom: 0;
+    }
+}
+
+.page-home-incentives {
+    border-top: 1px solid white;
+    background-color: #DAFFCD;
+    padding-top: 17px;
+    padding-bottom: 17px;
+    border-bottom: 1px solid darken(#DAFFCD, 10%);
+}
+
+.page-home-quotes {
+    border-top: 1px solid white;
+    padding-top: 17px;
+    blockquote {
+        font-style: italic;
+        color: #555;
+    }
+}
+
+.page-home-extra {
+    padding-top: 17px;
 }
