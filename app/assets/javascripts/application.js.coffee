@@ -21,10 +21,12 @@ $ ->
   pjaxContainer = '[data-pjax-container]'
   $('.pjax-nav a:not([data-remote]):not([data-behavior]):not([data-skip-pjax])').pjax(pjaxContainer)
   $pjaxContainer = $(pjaxContainer)
+  $pjaxContainerParent = $(pjaxContainer).parent()
   $pjaxContainer.on 'pjax:success', (event, data, status, xhr, options) ->
     $('.pjax-nav').find('li.active').removeClass 'active'
     $(".pjax-nav a[href=\"#{window.location.pathname}\"]").parents('li').addClass 'active'
-    if $pjaxContainer.parent().hasClass('container') || $pjaxContainer.find('.container').length > 0
+    if $pjaxContainerParent.hasClass('container') || $pjaxContainer.find('.container').length > 0
       $pjaxContainer.removeClass 'container'
+      $pjaxContainerParent.removeClass 'container'
     else
       $pjaxContainer.addClass 'container'
