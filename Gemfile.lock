@@ -5,6 +5,13 @@ GIT
     validates_hostname (1.0.0)
 
 GIT
+  remote: https://github.com/activescaffold/active_scaffold.git
+  revision: b81585d8dec4616d13da8034fe8a704bf14a5b81
+  specs:
+    active_scaffold (3.2.0)
+      rails (>= 3.1.3)
+
+GIT
   remote: https://github.com/jejacks0n/navigasmic.git
   revision: 6108afe7930fd4b3282cbe8942240bf4f70e2f74
   specs:
@@ -16,12 +23,6 @@ GIT
   specs:
     pjax_rails (0.1.7)
       jquery-rails
-
-PATH
-  remote: /home/clyfe/dev/active_scaffold
-  specs:
-    active_scaffold (3.2.0)
-      rails (>= 3.1.3)
 
 GEM
   remote: http://rubygems.org/
