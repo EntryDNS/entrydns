@@ -25,8 +25,7 @@ $ ->
   $pjaxContainer.on 'pjax:success', (event, data, status, xhr, options) ->
     $('.pjax-nav').find('li.active').removeClass 'active'
     $(".pjax-nav a[href=\"#{window.location.pathname}\"]").parents('li').addClass 'active'
-    if $pjaxContainerParent.hasClass('container') || $pjaxContainer.find('.container').length > 0
-      $pjaxContainer.removeClass 'container'
+    if $pjaxContainer.find('.container').length > 0
       $pjaxContainerParent.removeClass 'container'
     else
-      $pjaxContainer.addClass 'container'
+      $pjaxContainerParent.addClass 'container'
