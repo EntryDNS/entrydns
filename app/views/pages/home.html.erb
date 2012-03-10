@@ -60,7 +60,10 @@
       <div class="span6">
         <h3>Benefits</h3>
         <%= render 'pages/shared/benefits' %>
-        <%= render 'pages/shared/action' %>
+        <%= link_to new_user_registration_path do %>
+          <i class="icon-arrow-right"></i>
+          <strong>Create an Account Now</strong>
+        <% end %>
       </div>
       <div class="span6">
         <h3>Features</h3>
