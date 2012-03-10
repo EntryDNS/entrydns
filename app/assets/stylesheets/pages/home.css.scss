@@ -1,3 +1,5 @@
+@import "compass/css3/images";
+
 .call-to-action {
     margin-top: 3em;
     margin-bottom: 3em;
@@ -12,15 +14,12 @@
     font-weight: normal;
 }
 
-.page-home-incentives li,
-.page-home-incentives p {
-    font-size: 14px;
-    line-height: 20px;
-}
-
 .page-home-header {
-    background-color: #B9DCFF;
-    border-bottom: 1px solid darken(#B9DCFF, 10%);
+    @include background(image-url("page-home-incentives.png"),
+        radial-gradient(
+            color-stops(#fff, #B9DCFF), 
+        bottom));
+    border-bottom: 1px solid #B9DCFF;
     .page-header {
         small {
             color: #3F3F39;
@@ -31,11 +30,17 @@
 }
 
 .page-home-incentives {
-    border-top: 1px solid white;
-    background-color: #DAFFCD;
+    border-top: 1px solid lighten(#DAFFCD, 5%);
+    @include background(image-url("page-home-incentives.png"),
+        radial-gradient(#fff, darken(#DAFFCD, 10%))
+    );
     padding-top: 17px;
     padding-bottom: 17px;
-    border-bottom: 1px solid darken(#DAFFCD, 10%);
+    border-bottom: 1px solid darken(#DAFFCD, 15%);
+    li, p {
+        font-size: 14px;
+        line-height: 20px;
+    }
 }
 
 .page-home-quotes {
