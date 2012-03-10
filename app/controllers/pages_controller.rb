@@ -23,6 +23,11 @@ class PagesController < ApplicationController
       @contact_form = ContactForm.new(init)
     when "home"
       options[:layout] = 'home' unless request.xhr?
+    when "signed_out"
+      if user_signed_in?
+        flash[:warning] = "You are still authenticated"
+        redirect_to after_sign_in_path_for(current_user) and return
+      end
     end
     
     render options

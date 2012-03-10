@@ -34,4 +34,9 @@ class ApplicationController < ActionController::Base
     render :nothing => true if params[Settings.honeypot].present?
   end
   
+  # Overwriting the sign_out redirect path method
+  def after_sign_out_path_for(resource_or_scope)
+    page_path('signed_out')
+  end
+  
 end
