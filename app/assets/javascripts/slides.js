@@ -691,15 +691,6 @@
     },
 		_loaded: function() {
 			if ( this.options.responsive ) {
-				
-				// TODO: cleanup and condense
-				this.slidesContainer.css({
-					height: this.slides.height()
-				});
-
-				this.slidesControl.css({
-					height: this.slides.height()
-				});
 
 				$(window).resize( $.proxy(function() {
 					this.slidesContainer.css({
