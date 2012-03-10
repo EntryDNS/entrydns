@@ -12,10 +12,12 @@
 <% end %>
 
 <% semantic_navigation :user_nav, html: { class: 'nav pull-right' } do |n| %>
-  <%= n.item '', link: Settings.news_link, html: { rel: 'tooltip', title: Settings.news_link } do %>
+  <%= n.item '', link: Settings.news_link, 
+    html: { rel: 'tooltip', data: { placement: 'bottom' }, title: Settings.news_link } do %>
     <i class="icon-white icon-share-alt"></i> News
   <% end %>
-  <%= n.item '', link: page_path('donate'), html: { rel: 'tooltip', title: 'PayPal', class: 'highlight' } do %>
+  <%= n.item '', link: page_path('donate'),
+    html: { rel: 'tooltip', title: 'PayPal', data: { placement: 'bottom' }, class: 'highlight' } do %>
     <i class="icon-white icon-heart"></i> Donate
   <% end %>
     <li class="dropdown">
