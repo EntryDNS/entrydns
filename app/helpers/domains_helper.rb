@@ -10,7 +10,7 @@ module DomainsHelper
   def domain_name_column(record)
     elements = []
     depth = record.depth
-    if depth > 1 && @previous_record && record.subdomain_of?(@previous_record)
+    if depth > 1
       (depth - 2).times do # indent
         elements << '<span class="ui-icon ui-icon-blank"></span>'
       end

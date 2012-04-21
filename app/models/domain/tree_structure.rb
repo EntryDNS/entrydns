@@ -47,9 +47,10 @@ class Domain < ActiveRecord::Base
     name.end_with?('.' + domain.name)
   end
   
-  # Overrides acts_as_nested_interval#ancestor_of?
-  def ancestor_of?(domain)
-    domain.subdomain_of?(self)
+  def self.rebuild_nested_interval_tree!
+    skip_callback :update, :before, :sync_children
+    super
+    set_callback :update, :before, :sync_children
   end
   
   protected
@@ -72,7 +73,7 @@ class Domain < ActiveRecord::Base
       self.parent = parent_domain
     end
   end
-  
+
   # Syncs with nested interval when the parent is added later than the children
   def sync_children
     descendants = subdomains.preorder.all

@@ -39,6 +39,21 @@ class DomainsController < ApplicationController
     end
   end
   
+  def do_destroy
+    @record ||= destroy_find_record
+    begin
+      self.successful = @record.destroy
+      marked_records.delete @record.id.to_s if successful?
+    rescue ActiveRecord::DeleteRestrictionError => e
+      flash[:warning] = as_(:cant_destroy_record, :record => @record.to_label)
+      @record.errors.add :base, "Delete subdomains first"
+      self.successful = false
+    rescue
+      flash[:warning] = as_(:cant_destroy_record, :record => @record.to_label)
+      self.successful = false
+    end
+  end
+  
   def new_model
     record = super
     before_create_save(record)
