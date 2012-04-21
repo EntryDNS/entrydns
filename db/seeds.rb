@@ -10,7 +10,7 @@ admin.confirmed_at = Time.now
 admin.save!
 admin.confirm!
 
-for name in Settings.host_domains
+Settings.host_domains.each do |name|
   entrydns_org = Domain.new(:name => name, :type => 'NATIVE', :user_id => admin.id)
   entrydns_org.setup(admin.email)
   entrydns_org.save!
