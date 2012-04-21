@@ -11,7 +11,7 @@
 #= require pjax/page_triggers
 #= require active_scaffold
 #= require slides
-#= require twitter/bootstrap
+#= require bootstrap
 #= require_self
 
 $ ->

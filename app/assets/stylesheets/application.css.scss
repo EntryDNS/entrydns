@@ -4,7 +4,6 @@
 * the top of the compiled file, but it's generally better to create a new file per style scope.
 
 *= require_self
-*= require theme/errors
 *= require theme/logo
 *= require theme/layout
 *= require pages/domains
@@ -13,8 +12,9 @@
 *= require slides
 */
 
-@import "twitter/bootstrap";
-@import "twitter/bootstrap/responsive";
+@import "bootstrap";
+@import "bootstrap-responsive";
 @import "active_scaffold";
 @import "theme/overrides";
+@import "theme/errors";
 
