@@ -1,6 +1,4 @@
-<div class="page-header">
-  <h1>Resend confirmation instructions</h1>
-</div>
+<%= render :partial => "devise/shared/links" %>
 
 <%= simple_form_for(resource, 
     as: resource_name,
@@ -18,5 +16,3 @@
     <%= f.submit "Resend confirmation instructions", class: 'btn btn-primary' %>
   </div>
 <% end %>
-
-<%= render :partial => "devise/shared/links" %>
