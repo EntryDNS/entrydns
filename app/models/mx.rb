@@ -7,8 +7,14 @@
 # Obtained from http://www.zytrax.com/books/dns/ch8/mx.html
 #
 class MX < Record
-  validates :name, :hostname => {:allow_underscore => true, :allow_wildcard_hostname => true}
-  validates :content, :presence => true, :hostname => true
+  validates :name, :hostname => {
+    :allow_underscore => true,
+    :allow_wildcard_hostname => true
+  }
+  validates :content, :presence => true, :hostname => {
+    :allow_underscore => true,
+    :allow_wildcard_hostname => true
+  }
   validates :prio, :presence => true, :numericality => {
     :greater_than_or_equal_to => 0, 
     :less_than_or_equal_to => 65535, 
