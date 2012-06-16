@@ -1,6 +1,6 @@
 source 'http://rubygems.org'
 
-gem 'rails', '3.2.2'
+gem 'rails', '3.2.6'
 
 # Bundle edge Rails instead:
 # gem 'rails',     :git => 'git://github.com/rails/rails.git'
@@ -12,10 +12,6 @@ gem 'cancan', '~> 1.6.7'
 gem 'squeel', '~> 0.9.3'
 gem 'sentient_user', '~> 0.3.2'
 gem 'userstamp_basic', '~> 0.1.0'
-gem 'active_scaffold', '~> 3.2.3'
-# git: 'https://github.com/activescaffold/active_scaffold.git'
-# path: '/home/clyfe/dev/active_scaffold'
-gem 'pjax_rails', '~> 0.2.0'
 gem 'validates_hostname', '~> 1.0.0', git: 'https://github.com/KimNorgaard/validates_hostname.git'
 gem 'nilify_blanks', '~> 1.0.0'
 gem 'rails_config', '~> 0.2.4'
@@ -34,17 +30,21 @@ gem 'acts_as_nested_interval', '~> 0.0.5'
 # Gems used only for assets and not required
 # in production environments by default.
 group :assets do
-  gem 'compass-rails', '~> 1.0.0.rc.2'
   gem 'sass-rails', "  ~> 3.2.3"
+  gem 'compass-rails', '~> 1.0.0.rc.2'
+  gem 'bootstrap-sass', '~> 2.0.3'
   gem 'coffee-rails', "~> 3.2.1"
   gem 'uglifier', '>= 1.0.3'
   gem 'therubyracer'
-  gem 'bootstrap-sass', '~> 2.0.1'
 end
 
 gem 'jquery-rails'
 gem 'dalli', '~> 1.1.3'
 # gem 'foreigner' ?
+gem 'active_scaffold', '~> 3.2.12'
+# git: 'https://github.com/activescaffold/active_scaffold.git'
+# path: '/home/clyfe/dev/active_scaffold'
+gem 'pjax_rails', '~> 0.2.0'
 
 group :development do
   gem 'capistrano', '~> 2.9.0'
