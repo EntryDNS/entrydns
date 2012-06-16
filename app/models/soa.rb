@@ -21,7 +21,7 @@ class SOA < Record
   after_initialize :disassemble_content
   
   before_validation do
-    self.primary_ns ||= domain.ns_records.first.content
+    self.primary_ns ||= domain.ns_records.first.try(:content)
   end
 
   # This allows us to have these convenience attributes act like any other
