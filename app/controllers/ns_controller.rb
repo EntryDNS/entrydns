@@ -36,9 +36,19 @@ class NsController < ApplicationController
   end
   
   def do_destroy
-    super
-    if successful? && nested_parent_record.ns_records.count == 0
-      flash[:warning] = "All NS records deleted, no other nameservers are associated with this domain!"
+    if nested_parent_record.ns_records.count > 1
+      @record ||= destroy_find_record
+      begin
+        self.successful = @record.destroy
+      rescue Exception => ex
+        flash[:warning] = as_(:cant_destroy_record, :record => @record.to_label)
+        self.successful = false
+        logger.debug ex.message
+        logger.debug ex.backtrace.join("\n")
+      end
+    else
+      self.successful = false
+      flash[:error] = "Cannot delete it, the domain must have at least one nameserver!"
     end
   end
 end
