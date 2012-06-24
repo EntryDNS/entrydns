@@ -7,9 +7,9 @@ gem 'rails', '3.2.6'
 
 # gem 'pg'
 gem 'mysql2'
-gem 'devise', '~> 2.0.4'
+gem 'devise', '~> 2.1.0'
 gem 'cancan', '~> 1.6.7'
-gem 'squeel', '~> 0.9.3'
+gem 'squeel', '~> 1.0.0'
 gem 'sentient_user', '~> 0.3.2'
 gem 'userstamp_basic', '~> 0.1.0'
 gem 'validates_hostname', '~> 1.0.0', git: 'https://github.com/KimNorgaard/validates_hostname.git'
@@ -23,7 +23,7 @@ gem 'simple_form', '~> 2.0.0'
 gem 'concerned_with', '~> 0.1.0'
 gem 'navigasmic', '~> 0.5.6', git: 'https://github.com/jejacks0n/navigasmic.git'
 gem 'rails-backbone', '~> 0.7.0'
-gem 'acts_as_nested_interval', '~> 0.0.5'
+gem 'acts_as_nested_interval', '~> 0.0.7'
 # path: '/home/clyfe/dev/acts_as_nested_interval'
 # git: 'https://github.com/clyfe/acts_as_nested_interval.git'
 
@@ -41,8 +41,8 @@ end
 gem 'jquery-rails'
 gem 'dalli', '~> 1.1.3'
 # gem 'foreigner' ?
-gem 'active_scaffold', '~> 3.2.12'
-# git: 'https://github.com/activescaffold/active_scaffold.git'
+gem 'active_scaffold', '~> 3.2.12',
+  git: 'https://github.com/activescaffold/active_scaffold.git'
 # path: '/home/clyfe/dev/active_scaffold'
 gem 'pjax_rails', '~> 0.2.0'
 

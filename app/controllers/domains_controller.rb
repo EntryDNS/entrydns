@@ -1,13 +1,17 @@
 class DomainsController < ApplicationController  
   active_scaffold :domain do |conf|
-    conf.columns = [:name, :ip, :records, :soa_record, :ns_records]
+    conf.columns = [:name, :ip, :records, :soa_record, :ns_records, :apply_subdomains]
     conf.list.columns = [:name, :records, :permissions]
     conf.create.columns = [:name, :ip, :soa_record, :ns_records]
-    conf.update.columns = [:name]
+    conf.update.columns = [:name, :apply_subdomains]
     conf.columns[:name].description = 'Ex. "domain.com"'
     conf.columns[:ip].description = 'Ex. "10.10.5.12", optional IP to associate your domain with'
     conf.columns[:ns_records].show_blank_record = false
     conf.columns[:permissions].label = 'Sharing'
+    conf.columns[:apply_subdomains].label = 'Also rename subdomains'
+    conf.columns[:apply_subdomains].description = 'If checked, will also rename all subdomains accordingly'
+    conf.columns[:apply_subdomains].form_ui = :checkbox
+    conf.columns[:apply_subdomains].options = { class: 'checkbox', checked: true }
     conf.actions.exclude :show
     conf.create.refresh_list = true # because tree structure might change
     conf.update.refresh_list = true # because tree structure might change

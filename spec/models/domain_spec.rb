@@ -113,4 +113,30 @@ describe Domain do
     ]
   end
   
+  it "chains rename to children" do
+    domain
+    subdomain
+    subsubdomain
+    domain.apply_subdomains = true
+    domain.update_attributes(:name => "changed#{domain.name}")
+    
+    subdomain.reload.name.should =~ /#{domain.name}$/
+    subsubdomain.reload.name.should =~ /#{domain.name}$/
+  end
+
+  it "orphans children" do
+    domain
+    subdomain
+    subsubdomain
+    domain.apply_subdomains = false
+    domain.update_attributes(:name => "changed#{domain.name}")
+    s = subdomain.reload
+    ss = subsubdomain.reload
+    
+    s.name.should_not =~ /#{domain.name}$/
+    s.parent.should be_nil
+    ss.name.should_not =~ /#{domain.name}$/
+    ss.parent.should_not be_nil
+  end
+  
 end

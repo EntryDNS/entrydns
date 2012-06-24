@@ -7,6 +7,8 @@ class Domain < ActiveRecord::Base
     sync_parent
   end
   
+  after_save :sync_children
+  
   # this goes after sync_parent, to order callbacks correctly 
   acts_as_nested_interval virtual_root: true
   
@@ -30,15 +32,14 @@ class Domain < ActiveRecord::Base
     Ability::CRUD.all?{|operation| User.current.can?(operation, self)}
   end
   
-  after_save :sync_children
-  
   # Returns the first immediate parent, if exists (and caches the search)
   def parent_domain
     return nil if name.nil?
     @parent_domain ||= {}
     @parent_domain[name] ||= _parent_domain
   end
-  
+
+  # subdomains in the system for the current domain name
   def subdomains
     Domain.where(:name_reversed.matches => "#{name_reversed}.%")
   end
@@ -47,6 +48,7 @@ class Domain < ActiveRecord::Base
     name.end_with?('.' + domain.name)
   end
   
+  # override
   def self.rebuild_nested_interval_tree!
     skip_callback :update, :before, :sync_children
     super
@@ -67,6 +69,17 @@ class Domain < ActiveRecord::Base
     return nil
   end
   
+  # only immediate children
+  def children_subdomains
+    descendants = subdomains.preorder.all
+    first = descendants.first
+    return [] unless first.present?
+      
+    # only immediate children
+    depth = first.depth
+    descendants.select { |d| d.depth == depth }
+  end
+  
   # Syncs with nested interval when a child is added and parent exists
   def sync_parent
     if !@parent_synced && parent_domain.present? && self.parent_id != parent_domain.id
@@ -76,18 +89,10 @@ class Domain < ActiveRecord::Base
 
   # Syncs with nested interval when the parent is added later than the children
   def sync_children
-    descendants = subdomains.preorder.all
-    first = descendants.first
-    return true unless first.present?
-      
-    # only immediate children, rest will chain recursively
-    depth = first.depth
-    descendants = descendants.select { |d| d.depth == depth }
-      
-    subdomains.each do |subdomain|
+    children_subdomains.each do |subdomain|
       subdomain.parent = self
       subdomain.parent_synced = true # no n+1
-      subdomain.save!
+      subdomain.save! # rest will chain recursively
     end
   end
   
