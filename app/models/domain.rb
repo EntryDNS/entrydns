@@ -51,7 +51,7 @@ class Domain < ActiveRecord::Base
     a_records.build(:content => ip) if ip.present?
   end
 
-  concerned_with :name_change_records, :name_change_subdomains, :tree_structure
+  concerned_with :tree_structure, :name_change_subdomains, :name_change_records
   
   scope :host_domains, where(:name => Settings.host_domains)
   

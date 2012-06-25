@@ -139,7 +139,7 @@ describe Domain do
     ss.parent.should_not be_nil
   end
   
-  it "recomputes parent", focus: true do
+  it "recomputes parent" do
     domain
     subdomain
     subsubdomain
