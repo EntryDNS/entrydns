@@ -139,4 +139,14 @@ describe Domain do
     ss.parent.should_not be_nil
   end
   
+  it "recomputes parent", focus: true do
+    domain
+    subdomain
+    subsubdomain
+    subdomain.update_attributes(:name => "sub.changed#{domain.name}")
+    
+    subdomain.reload.parent.should be_nil
+    subsubdomain.reload.depth.should == 2
+  end
+  
 end

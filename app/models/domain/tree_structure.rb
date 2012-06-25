@@ -55,7 +55,16 @@ class Domain < ActiveRecord::Base
     set_callback :update, :before, :sync_children
   end
   
+  # Syncs with nested interval when a child is added and parent exists
+  def sync_parent
+    self.parent = parent_domain if !@parent_synced && new_parent?
+  end
+  
   protected
+  
+  def new_parent?
+    parent_domain.present? && self.parent_id != parent_domain.id
+  end
 
   # Returns the first immediate parent, if exists (does not cache the search)
   # For example "sub.sub.domain.com"'s parent might be "sub.domain.com" or "domain.com"
@@ -78,13 +87,6 @@ class Domain < ActiveRecord::Base
     # only immediate children
     depth = first.depth
     descendants.select { |d| d.depth == depth }
-  end
-  
-  # Syncs with nested interval when a child is added and parent exists
-  def sync_parent
-    if !@parent_synced && parent_domain.present? && self.parent_id != parent_domain.id
-      self.parent = parent_domain
-    end
   end
 
   # Syncs with nested interval when the parent is added later than the children

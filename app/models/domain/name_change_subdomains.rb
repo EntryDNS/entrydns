@@ -5,10 +5,12 @@ class Domain < ActiveRecord::Base
     @apply_subdomains = ActiveRecord::ConnectionAdapters::Column.value_to_boolean(v)
   end
   
+  before_update do
+    self.parent = parent_domain if name_changed? # recompute parent
+  end
+  
   after_update do
-    if name_changed?
-      apply_subdomains ? chain_rename : sync_orphan_children
-    end
+    (apply_subdomains ? chain_rename : sync_orphan_children) if name_changed?
   end
   
   protected
@@ -33,7 +35,7 @@ class Domain < ActiveRecord::Base
   # Syncs with nested interval when the parent is added later than the children
   def sync_orphan_children
     previous_children_subdomains.each do |subdomain|
-      subdomain.parent = nil
+      subdomain.parent = subdomain.parent_domain
       subdomain.save!
     end
   end
