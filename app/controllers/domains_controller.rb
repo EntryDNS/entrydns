@@ -11,7 +11,7 @@ class DomainsController < ApplicationController
     conf.columns[:apply_subdomains].label = 'Also rename subdomains'
     conf.columns[:apply_subdomains].description = 'If checked, will also rename all subdomains accordingly'
     conf.columns[:apply_subdomains].form_ui = :checkbox
-    conf.columns[:apply_subdomains].options = { class: 'checkbox', checked: true }
+    conf.columns[:apply_subdomains].options = { :class => 'checkbox', checked: true }
     conf.actions.exclude :show
     conf.create.refresh_list = true # because tree structure might change
     conf.update.refresh_list = true # because tree structure might change
@@ -62,6 +62,38 @@ class DomainsController < ApplicationController
     record = super
     before_create_save(record)
     record
+  end
+  
+  # override to add locking
+  def update_save(options = {})
+    attributes = options[:attributes] || params[:record]
+    begin
+      active_scaffold_config.model.transaction do
+        @record = update_record_from_params(@record, active_scaffold_config.update.columns, attributes) unless options[:no_record_param_update]
+        before_update_save(@record)
+        self.successful = [@record.valid?, @record.associated_valid?].all? {|v| v == true} # this syntax avoids a short-circuit
+        if successful?
+          ActiveRecord::Base.connection.execute("LOCK TABLES domains WRITE, records WRITE, permissions READ") if @name_changed
+          @record.save! and @record.save_associated!
+          after_update_save(@record)
+        else
+          # some associations such as habtm are saved before saved is called on parent object
+          # we have to revert these changes if validation fails
+          raise ActiveRecord::Rollback, "don't save habtm associations unless record is valid"
+        end
+      end
+    rescue ActiveRecord::StaleObjectError
+      @record.errors.add(:base, as_(:version_inconsistency))
+      self.successful = false
+    rescue ActiveRecord::RecordNotSaved
+      @record.errors.add(:base, as_(:record_not_saved)) if @record.errors.empty?
+      self.successful = false
+    rescue ActiveRecord::ActiveRecordError => ex
+      flash[:error] = ex.message
+      self.successful = false
+    ensure
+      ActiveRecord::Base.connection.execute("UNLOCK TABLES") if @name_changed
+    end
   end
     
   def before_create_save(record)
