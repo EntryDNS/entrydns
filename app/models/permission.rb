@@ -17,6 +17,16 @@ class Permission < ActiveRecord::Base
     errors[:user] = 'cannot be yourself' if user_id == domain.user_id
   end
   
+  after_create do
+    PermissionMailer.created(self).deliver
+  end
+  after_update do
+    PermissionMailer.created(self).deliver if user_id_changed?
+  end
+  after_destroy do
+    PermissionMailer.destroyed(self).deliver
+  end
+  
   def user_email
     @user_email || user.try(:email)
   end
@@ -29,4 +39,6 @@ class Permission < ActiveRecord::Base
   def to_label
     user.try(:email) || @user_email || '-'
   end
+  
+  def as_marked=(v); end #shim
 end

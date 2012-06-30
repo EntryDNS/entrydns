@@ -1,0 +1,13 @@
+<p>
+  <%= @permission.domain.name %> was shared with you to administer by
+  <%= @permission.domain.user.name %>.
+</p>
+
+<p>
+  <%= link_to 'Manage domains', domains_url %>
+</p>
+
+<p>
+  If you cannot see the link copy and paste the following address in your browser address bar:<br />
+  <%= domains_url %>
+</p>
