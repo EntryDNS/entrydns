@@ -12,7 +12,7 @@
   <div class="inputs">
     <%= f.input :name, label: 'Your name' %>
     <%= f.input :email, label: 'Your email' %>
-    <%= f.input :file, hint: 'can be attached optionally' %>
+    <%= f.input :file, as: :file, hint: 'can be attached optionally' %>
     <%= f.input :message, as: :text, input_html: { rows: 10 } %>
   </div>
 
