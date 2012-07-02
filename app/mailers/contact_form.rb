@@ -5,6 +5,8 @@ class ContactForm < MailForm::Base
   attribute :file, :attachment => true, :allow_blank => true
   attribute :nickname, :captcha  => true # antispam
   
+  validates :email, email: true
+  
   # Declare the e-mail headers. It accepts anything the mail method
   # in ActionMailer accepts.
   def headers
