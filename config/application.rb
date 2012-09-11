@@ -17,6 +17,10 @@ module Entrydns
 
     # Custom directories with classes and modules you want to be autoloadable.
     # config.autoload_paths += %W(#{config.root}/extras)
+    config.autoload_paths += %W(
+      #{config.root}/app/controllers/concerns
+      #{config.root}/app/models/concerns
+    )
 
     # Only load the plugins named here, in the order given (default is alphabetical).
     # :all can be used as a placeholder for all plugins not explicitly named.
@@ -46,9 +50,10 @@ module Entrydns
     config.assets.version = '1.0'
     
     config.to_prepare do
-      layout = proc{|controller| 
-        l = user_signed_in? ? "application" : "public" 
-        request.xhr? ? false : l 
+      layout = proc { |c| 
+        return false if request.xhr?
+        return 'admin' if devise_controller? && resource_name == :admin
+        user_signed_in? ? 'users' : 'public'
       }
       Devise::SessionsController.layout layout
       Devise::RegistrationsController.layout layout

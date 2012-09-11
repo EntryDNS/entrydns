@@ -1,0 +1,2 @@
+module Users::SoasHelper
+end

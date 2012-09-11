@@ -1,4 +1,4 @@
-<div class="navbar navbar-fixed-top">
+<div class="navbar navbar-inverse navbar-fixed-top">
   <div class="navbar-inner">
     <div class="container pjax-nav">
 
@@ -12,7 +12,7 @@
 
       <div class="nav-collapse">
         <% if user_signed_in? %>
-          <%= render 'shared/navigation/application' %>
+          <%= render 'shared/navigation/users' %>
         <% else %>
           <%= render 'shared/navigation/public' %>
         <% end %>

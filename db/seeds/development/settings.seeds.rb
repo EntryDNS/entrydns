@@ -1,0 +1,1 @@
+Setting['public.donations.progress'] = '0'

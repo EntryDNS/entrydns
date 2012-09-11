@@ -1,5 +1,5 @@
 class Domain < ActiveRecord::Base
-  self.inheritance_column = "sti_disabled"
+  self.inheritance_column = :sti_disabled
   nilify_blanks
   stampable
 

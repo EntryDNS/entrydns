@@ -1,0 +1,11 @@
+.navbar-inverse .nav {
+    li.highlight a {
+        color: darken(yellow, 10%);
+        &:hover { 
+            color: yellow;
+        }
+    }
+    li.highlight.active a {
+        color: yellow;
+    }
+}

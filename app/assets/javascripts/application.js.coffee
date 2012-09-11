@@ -7,25 +7,10 @@
 #= require jquery
 #= require jquery-ui
 #= require jquery_ujs
-## require jquery.pjax
-## require pjax/page_triggers
+#= require jquery.pjax
+#= require pjax/page_triggers
 #= require slides
 #= require bootstrap
 #= require active_scaffold
+#= require_tree ./components
 #= require_self
-
-$ ->
-  $(document).popover(selector: '[rel=popover]')
-  $(document).tooltip(selector: '[rel=tooltip]')
-  
-#  pjaxContainer = '[data-pjax-container]'
-#  $('.pjax-nav a:not([data-remote]):not([data-behavior]):not([data-skip-pjax])').pjax(pjaxContainer)
-#  $pjaxContainer = $(pjaxContainer)
-#  $pjaxContainerParent = $(pjaxContainer).parent()
-#  $pjaxContainer.on 'pjax:success', (event, data, status, xhr, options) ->
-#    $('.pjax-nav').find('li.active').removeClass 'active'
-#    $(".pjax-nav a[href=\"#{window.location.pathname}\"]").parents('li').addClass 'active'
-#    if $pjaxContainer.find('.container').length > 0
-#      $pjaxContainerParent.removeClass 'container'
-#    else
-#      $pjaxContainerParent.addClass 'container'

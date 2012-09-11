@@ -29,7 +29,7 @@ class Domain < ActiveRecord::Base
   # If current user not present, just allow (rake tasks etc)
   def can_be_managed_by_current_user?
     return true if User.current.nil?
-    Ability::CRUD.all?{|operation| User.current.can?(operation, self)}
+    UserAbility::CRUD.all?{|operation| User.current.can?(operation, self)}
   end
   
   # Returns the first immediate parent, if exists (and caches the search)

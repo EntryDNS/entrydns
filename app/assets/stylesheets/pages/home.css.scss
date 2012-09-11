@@ -16,7 +16,7 @@
 
 .page-home-header {
     @include background(image-url("page-home-incentives.png"),
-        radial-gradient(color-stops(#fff, #c1f1ff), bottom));
+    radial-gradient(color-stops(#fff, #c1f1ff), bottom));
     border-bottom: 1px solid #B9DCFF;
     .page-header {
         small {
@@ -30,7 +30,7 @@
 .page-home-incentives {
     border-top: 1px solid lighten(#DAFFCD, 5%);
     @include background(image-url("marketing/square_bg.png"),
-        radial-gradient(#fff, darken(#DAFFCD, 10%)));
+    radial-gradient(#fff, darken(#DAFFCD, 10%)));
     padding-top: 17px;
     padding-bottom: 17px;
     border-bottom: 1px solid darken(#DAFFCD, 15%);
@@ -51,4 +51,21 @@
 
 .page-home-extra {
     padding-top: 17px;
+}
+
+@media (max-width: 767px) {
+    body.with-home-section {
+        padding-left: 0px;
+        padding-right: 0px;
+        
+        .navbar-fixed-top,
+        .navbar-fixed-bottom {
+            margin-left: 0px;
+            margin-right: 0px;
+        }
+        .page-home-section {
+            padding-left: 20px;
+            padding-right: 20px;
+        }
+    }
 }

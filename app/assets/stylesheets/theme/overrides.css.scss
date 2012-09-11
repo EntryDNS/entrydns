@@ -10,8 +10,10 @@
         padding-top: 2px;
         padding-bottom: 1px;
     }
-    input, select, textarea {
-        margin-bottom: 0;
+    form.as_form.search {
+        input, select, textarea {
+            margin-bottom: 0;
+        }
     }
     a.as_cancel {
         vertical-align: middle;

@@ -46,6 +46,7 @@ SimpleForm.setup do |config|
   end
 
   config.wrappers :bootstrap, :tag => 'div', :class => 'control-group', :error_class => 'error' do |b|
+    b.use :html5
     b.use :placeholder
     b.use :label
     b.wrapper :tag => 'div', :class => 'controls' do |ba|
@@ -56,6 +57,7 @@ SimpleForm.setup do |config|
   end
 
   config.wrappers :prepend, :tag => 'div', :class => "control-group", :error_class => 'error' do |b|
+    b.use :html5
     b.use :placeholder
     b.use :label
     b.wrapper :tag => 'div', :class => 'controls' do |input|
@@ -68,6 +70,7 @@ SimpleForm.setup do |config|
   end
 
   config.wrappers :append, :tag => 'div', :class => "control-group", :error_class => 'error' do |b|
+    b.use :html5
     b.use :placeholder
     b.use :label
     b.wrapper :tag => 'div', :class => 'controls' do |input|
@@ -92,9 +95,12 @@ SimpleForm.setup do |config|
   config.boolean_style = :nested
 
   # Default class for buttons
+  # config.button_class = 'btn'
   config.button_class = 'btn'
 
-  # Method used to tidy up errors.
+  # Method used to tidy up errors. Specify any Rails Array method.
+  # :first lists the first message for each field.
+  # Use :to_sentence to list all errors for each field.
   # config.error_method = :first
 
   # Default tag used for error notification helper.
@@ -143,7 +149,7 @@ SimpleForm.setup do |config|
 
   # Tell browsers whether to use default HTML5 validations (novalidate option).
   # Default is enabled.
-  config.browser_validations = false
+  config.browser_validations = true
 
   # Collection of methods to detect if a file type was given.
   # config.file_methods = [ :mounted_as, :file?, :public_filename ]

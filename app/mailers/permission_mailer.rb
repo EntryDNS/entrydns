@@ -1,4 +1,4 @@
-class PermissionMailer < ActionMailer::Base
+class Users::PermissionMailer < ActionMailer::Base
   layout "emails"
   default from: Settings.support_mail
   

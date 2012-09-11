@@ -1,0 +1,24 @@
+<div class="page-header">
+  <h1>Change your password</h1>
+</div>
+
+<%= simple_form_for(resource,
+    as: resource_name,
+    url: password_path(resource_name),
+    html: { method: :put, class: 'form-horizontal' }
+  ) do |f| %>
+  <%= f.hidden_field :reset_password_token %>
+  
+  <%= devise_error_messages! %>
+  
+  <div class="inputs">
+    <%= f.input :password, label: "New password" %>
+    <%= f.input :password_confirmation, label: "Confirm new password" %>
+  </div>
+  
+  <div class="form-actions">
+    <%= f.submit "Change my password", class: 'btn btn-primary' %>
+  </div>
+<% end %>
+
+<%= render :partial => "users/shared/links" %>

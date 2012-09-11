@@ -1,0 +1,18 @@
+<%= render :partial => "users/shared/links" %>
+
+<%= simple_form_for(resource, 
+    as: resource_name,
+    url: password_path(resource_name),
+    html: { method: :post, class: 'form-horizontal' }
+  ) do |f| %>
+  
+  <%= devise_error_messages! %>
+
+  <div class="inputs">
+    <%= f.input :email %>
+  </div>
+  
+  <div class="form-actions">
+    <%= f.submit "Send me reset password instructions", class: 'btn btn-primary' %>
+  </div>
+<% end %>

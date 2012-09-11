@@ -18,13 +18,13 @@ class Permission < ActiveRecord::Base
   end
   
   after_create do
-    PermissionMailer.created(self).deliver
+    Users::PermissionMailer.created(self).deliver
   end
   after_update do
-    PermissionMailer.created(self).deliver if user_id_changed?
+    Users::PermissionMailer.created(self).deliver if user_id_changed?
   end
   after_destroy do
-    PermissionMailer.destroyed(self).deliver
+    Users::PermissionMailer.destroyed(self).deliver
   end
   
   def user_email

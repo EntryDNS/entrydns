@@ -1,5 +1,6 @@
 class User < ActiveRecord::Base
-  include SentientUser
+  include SentientModel
+  model_stamper
   stampable
   
   # Include default devise modules. Others available are:
@@ -42,10 +43,18 @@ class User < ActiveRecord::Base
     options[:reload] ? _ability : (@ability ||= _ability)
   end
   
+  def self.do_as(user)
+    self.current = user
+    self.stamper = user
+    yield
+    self.current = nil
+    self.reset_stamper
+  end
+  
   protected
 
   def _ability
-    Ability.new(self)
+    UserAbility.new(self)
   end
 
 end

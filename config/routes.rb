@@ -1,71 +1,78 @@
 Entrydns::Application.routes.draw do
   
+  mount RailsAdmin::Engine => '/rails_admin', :as => 'rails_admin'
+
+  devise_for :admins
+
   devise_for :users
-  devise_scope :user do
-    get 'users/sign_out', :to => "devise/sessions#destroy"
-  end
   
-  resources :domains do
-    as_routes
-  end
-
-  resources :hosts do
-    as_routes
-    member do
-      put 'new_token'
+  scope module: 'users' do
+  
+    resources :domains do
+      as_routes
     end
-  end
 
-  put '/records/modify/:authentication_token', :to => 'records#modify', :as => :modify_record
-  resources :records do
-    as_routes
-  end
-
-  resources :soas do
-    as_routes
-  end
-
-  resources :ns do
-    as_routes
-  end
-
-  resources :mxes do
-    as_routes
-  end
-
-  resources :as do
-    as_routes
-    member do
-      put 'new_token'
+    resources :hosts do
+      as_routes
+      member do
+        put 'new_token'
+      end
     end
+
+    match '/records/modify/:authentication_token', to: 'records#modify', as: :modify_record
+    resources :records do
+      as_routes
+    end
+
+    resources :soas do
+      as_routes
+    end
+
+    resources :ns do
+      as_routes
+    end
+
+    resources :mxes do
+      as_routes
+    end
+
+    resources :as do
+      as_routes
+      member do
+        put 'new_token'
+      end
+    end
+
+    resources :cnames do
+      as_routes
+    end
+
+    resources :txts do
+      as_routes
+    end
+
+    resources :aaaas do
+      as_routes
+    end
+
+    resources :srvs do
+      as_routes
+    end
+
+    resources :permissions do
+      as_routes
+    end
+    
   end
 
-  resources :cnames do
-    as_routes
-  end
+  scope module: 'public' do
+    
+    resources :pages, only: :show
+    post 'pages/contact', to: 'pages#contact'
 
-  resources :txts do
-    as_routes
-  end
-  
-  resources :aaaas do
-    as_routes
-  end
-  
-  resources :srvs do
-    as_routes
-  end
-  
-  resources :permissions do
-    as_routes
-  end
+    root :to => 'pages#show', id: 'home'
 
-  get '/dashboard', :to => 'dashboard#index', :as => :dashboard
-  
-  resources :pages, :only => :show
-  post 'pages/contact', :to => 'pages#contact'
-  
-  root :to => 'pages#show', :id => 'home'
+  end
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
