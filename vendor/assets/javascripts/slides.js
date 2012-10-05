@@ -717,7 +717,7 @@
 			
 			this.slides.each(
 				$.proxy(function(index, element) {
-					$("<li><a href='#" + index + "' class='slidesNavigation slidesPaginationItem' data-slidesindex=" + index + " data-skip-pjax=true> " + ( index + 1 ) + "</a></li>").appendTo(this.pagination);
+					$("<li><a href='#" + index + "' class='slidesNavigation slidesPaginationItem' data-slidesindex=" + index + " data-no-turbolink=true> " + ( index + 1 ) + "</a></li>").appendTo(this.pagination);
 				},this)
 			);
 			

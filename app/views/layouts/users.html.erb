@@ -19,10 +19,8 @@
     <%= render 'shared/navigation' %>
     
     <div class="container" id="main">
-      <div data-pjax-container="true">
-        <%= flash_display 'flash' %>          
-        <%= yield %>
-      </div>
+      <%= flash_display 'flash' %>
+      <%= yield %>
     </div>
     
     <div class="container">

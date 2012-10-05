@@ -7,8 +7,7 @@
 #= require jquery
 #= require jquery-ui
 #= require jquery_ujs
-#= require jquery.pjax
-#= require pjax/page_triggers
+#= require turbolinks
 #= require slides
 #= require bootstrap
 #= require active_scaffold

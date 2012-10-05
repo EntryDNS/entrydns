@@ -4,7 +4,7 @@
       <%= switch_user_select %>
     </p>
     
-    <% semantic_navigation :footer_nav, html: { class: 'nav nav-pills pjax-nav' } do |n| %>
+    <% semantic_navigation :footer_nav, html: { class: 'nav nav-pills' } do |n| %>
       <%= n.item "Terms & Conditions", link: page_path('terms') %>
       <%= n.item "Privacy Policy", link: page_path('privacy') %>
       <%= n.item "Contact", link: page_path('contact') %>

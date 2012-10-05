@@ -47,7 +47,7 @@ gem 'dalli', '~> 1.1.3'
 gem 'active_scaffold', '~> 3.2.16'
 # git: 'https://github.com/activescaffold/active_scaffold.git'
 # path: '/home/clyfe/dev/active_scaffold'
-gem 'pjax_rails', '~> 0.2.0'
+gem 'turbolinks', '~> 0.5.1'
 # gem 'foreigner' ?
 
 group :development do

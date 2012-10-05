@@ -27,7 +27,7 @@
         <%= n.item '', link: edit_user_registration_path, html: { rel: 'tooltip', title: "IP: #{client_remote_ip}" } do %>
           <i class="icon-cog"></i> Settings
         <% end %>
-        <%= n.item '', link: destroy_user_session_path, link_html: { data: { :'skip-pjax' => true } } do %>
+        <%= n.item '', link: destroy_user_session_path do %>
           <i class="icon-off"></i> Sign out
         <% end %>
       <% end %>
