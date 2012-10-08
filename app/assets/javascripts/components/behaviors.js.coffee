@@ -1,6 +1,6 @@
 $ ->  
-  $(document).popover(selector: '[rel=popover]')
   $(document).tooltip(selector: '[rel=tooltip]')
+  $(document).popover(selector: '[rel=popover]', trigger: 'hover')
 
   # fix for Turbolinks with Bootstrap
   # https://github.com/rails/turbolinks/issues/16
