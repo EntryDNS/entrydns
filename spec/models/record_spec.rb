@@ -48,4 +48,10 @@ describe Record do
     query.to_sql.should == expected.gsub("\n", '').gsub(/\s+/, ' ').strip
   end
   
+  it "validates host a records dubles" do
+    host_a_record
+    host_a_record2 = build(:a, name: host_a_record.name, content: '127.0.0.2', domain: host_domain, user: user2)
+    host_a_record2.should have(1).errors_on(:name)
+  end
+  
 end
