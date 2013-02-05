@@ -1,6 +1,6 @@
 source 'http://rubygems.org'
 
-gem 'rails', '3.2.8'
+gem 'rails', '3.2.11'
 
 # Bundle edge Rails instead:
 # gem 'rails',     :git => 'git://github.com/rails/rails.git'
@@ -11,8 +11,10 @@ gem 'devise', '~> 2.1.0'
 gem 'cancan', '= 1.6.7'
 gem 'squeel', '~> 1.0.0'
 gem 'sentient_model', '~> 1.0.4'
-gem 'userstamp', '~> 2.0.2', git: 'https://github.com/delynn/userstamp.git'
-gem 'validates_hostname', '~> 1.0.0', git: 'https://github.com/KimNorgaard/validates_hostname.git'
+gem 'userstamp', '~> 2.0.2',
+  git: 'https://github.com/delynn/userstamp.git'
+gem 'validates_hostname', '~> 1.0.0',
+  git: 'https://github.com/KimNorgaard/validates_hostname.git'
 gem 'nilify_blanks', '~> 1.0.0'
 gem 'rails_config', '~> 0.2.4'
 gem 'active-model-email-validator', '~> 1.0.2'
@@ -20,7 +22,10 @@ gem 'mail_form', '~> 1.3.0'
 gem 'switch_user', '~> 0.6.0'
 gem 'simple_form', '~> 2.0.0'
 gem 'concerned_with', '~> 0.1.0'
-gem 'navigasmic', '~> 0.5.6', git: 'https://github.com/jejacks0n/navigasmic.git'
+gem 'navigasmic', '~> 0.5.6',
+  git: 'https://github.com/jejacks0n/navigasmic.git',
+  tag: 'v0.5.6',
+  ref: '1ffe437f279657c6fb87bb4b0215eb723df4ea7a'
 gem 'rails-backbone', '~> 0.7.0'
 gem 'acts_as_nested_interval', '~> 0.0.7'
 # path: '/home/clyfe/dev/acts_as_nested_interval'
@@ -30,6 +35,7 @@ gem 'font-awesome-sass-rails', '~> 2.0.0.0'
 gem 'seedbank', '~> 0.1.3'
 gem 'rails_admin', '~> 0.0.5'
 gem 'rails-settings-cached', '~> 0.2.2'
+gem 'unicorn', '~> 4.5.0'
 
 # Gems used only for assets and not required
 # in production environments by default.
