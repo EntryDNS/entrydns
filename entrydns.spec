@@ -42,6 +42,13 @@ bundle exec rake RAILS_ENV=production RAILS_GROUPS=assets assets:precompile
 rm -rf .bundle
 bundle install --path vendor/ --without development test
 
+# fix wrong sheebang for unicorn
+%if 0%{?fedora} >= 17
+find vendor/ruby/*/gems -type f -wholename '*/bin/unicorn*' | xargs \
+    grep -rl '/this/will/be/overwritten/or/wrapped/anyways/do/not/worry/ruby' | \
+    xargs sed -i -e 's|/this/will/be/overwritten/or/wrapped/anyways/do/not/worry/ruby|/usr/bin/env ruby|'
+%endif
+
 
 %install
 # clean not required files and directories
