@@ -1,7 +1,9 @@
 %global _enable_debug_package   0
 %global debug_package           %{nil}
 %global __os_install_post       /usr/lib/rpm/brp-compress %{nil}
-%global app_root                /srv/entrydns
+%global entrydns_root           /srv/entrydns
+%global entrydns_user           entrydns
+%global entrydns_group          entrydns
 
 Name:           entrydns
 Version:        0.0.2
@@ -23,6 +25,9 @@ BuildRequires:  libxml2-devel
 BuildRequires:  libxslt-devel
 BuildRequires:  mysql-server
 Requires:       ruby(abi) = 1.9.1
+Requires(post):   systemd
+Requires(preun):  systemd
+Requires(postun): systemd
 
 
 %description
@@ -40,7 +45,7 @@ cp config/database.mysql.sample.yml config/database.yml
 bundle install --without development test
 bundle exec rake RAILS_ENV=production RAILS_GROUPS=assets assets:precompile
 rm -rf .bundle
-bundle install --path vendor/ --without development test
+bundle install --path vendor/ --without development test assets
 
 # fix wrong sheebang for unicorn
 %if 0%{?fedora} >= 17
@@ -53,34 +58,44 @@ find vendor/ruby/*/gems -type f -wholename '*/bin/unicorn*' | xargs \
 %install
 # clean not required files and directories
 rm -rf test doc spec Capfile Gemfile Gemfile.lock Guardfile Rakefile .git \
-    .bundle .gitignore .rspec .rvmrc vendor/ruby/1.9.1/cache/* \
-    config/database.yml
+    .gitignore .rspec .rvmrc vendor/ruby/1.9.1/cache/* config/database.yml
 
 find vendor/ -type f -wholename "*/cache/*.gem" -delete
 find . -type f -name ".git*" -delete
 
-install -p -d -m 0755 %{buildroot}%{app_root}
-install -p -d -m 0755 %{buildroot}%{app_root}/log
-cp -R app %{buildroot}%{app_root}
-cp -R config %{buildroot}%{app_root}
-cp -R db %{buildroot}%{app_root}
-cp -R lib %{buildroot}%{app_root}
-cp -R public %{buildroot}%{app_root}
-cp -R script %{buildroot}%{app_root}
-cp -R vendor %{buildroot}%{app_root}
-cp config.ru %{buildroot}%{app_root}
+install -p -d -m 0755 %{buildroot}%{entrydns_root}
+install -p -d -m 0755 %{buildroot}%{entrydns_root}/log
+install -p -d -m 0755 %{buildroot}%{entrydns_root}/tmp
+cp -R app %{buildroot}%{entrydns_root}
+cp -R config %{buildroot}%{entrydns_root}
+cp -R db %{buildroot}%{entrydns_root}
+cp -R lib %{buildroot}%{entrydns_root}
+cp -R public %{buildroot}%{entrydns_root}
+cp -R script %{buildroot}%{entrydns_root}
+cp -R vendor %{buildroot}%{entrydns_root}
+cp config.ru %{buildroot}%{entrydns_root}
 
 
 %files
-%{app_root}/app
-%{app_root}/config
-%{app_root}/db
-%{app_root}/lib
-%{app_root}/log/
-%{app_root}/public
-%{app_root}/script
-%{app_root}/vendor
-%{app_root}/config.ru
+%{entrydns_root}/app
+%{entrydns_root}/config
+%{entrydns_root}/db
+%{entrydns_root}/lib
+%{entrydns_root}/log/
+%{entrydns_root}/tmp/
+%{entrydns_root}/public
+%{entrydns_root}/script
+%{entrydns_root}/vendor
+%{entrydns_root}/config.ru
+
+
+%pre
+getent group %{entrydns_group} >/dev/null || groupadd -r %{entrydns_group}
+getent passwd %{entrydns_user} >/dev/null || \
+    useradd -r -g %{entrydns_group} -d %{entrydns_root} -s /sbin/nologin \
+    -c "EntryDNS user" %{entrydns_user}
+exit 0
+
 
 
 %changelog
