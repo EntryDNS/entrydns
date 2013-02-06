@@ -73,6 +73,7 @@ cp -R lib %{buildroot}%{entrydns_root}
 cp -R public %{buildroot}%{entrydns_root}
 cp -R script %{buildroot}%{entrydns_root}
 cp -R vendor %{buildroot}%{entrydns_root}
+cp -R .bundle %{buildroot}%{entrydns_root}
 cp config.ru %{buildroot}%{entrydns_root}
 
 
@@ -86,6 +87,7 @@ cp config.ru %{buildroot}%{entrydns_root}
 %{entrydns_root}/public
 %{entrydns_root}/script
 %{entrydns_root}/vendor
+%{entrydns_root}/.bundle
 %{entrydns_root}/config.ru
 
 
