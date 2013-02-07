@@ -25,6 +25,8 @@ BuildRequires:  libxml2-devel
 BuildRequires:  libxslt-devel
 BuildRequires:  mysql-server
 Requires:       ruby(abi) = 1.9.1
+Requires:       memcached >= 1.4.10
+Requires:       nodejs >= 0.9.5
 Requires(post):   systemd
 Requires(preun):  systemd
 Requires(postun): systemd
@@ -45,11 +47,11 @@ cp config/database.mysql.sample.yml config/database.yml
 bundle install --without development test
 bundle exec rake RAILS_ENV=production RAILS_GROUPS=assets assets:precompile
 rm -rf .bundle
-bundle install --path vendor/ --without development test assets
+bundle install --deployment --without development test assets
 
 # fix wrong sheebang for unicorn
 %if 0%{?fedora} >= 17
-find vendor/ruby/*/gems -type f -wholename '*/bin/unicorn*' | xargs \
+find vendor/bundle/ruby/*/gems -type f -wholename '*/bin/unicorn*' | xargs \
     grep -rl '/this/will/be/overwritten/or/wrapped/anyways/do/not/worry/ruby' | \
     xargs sed -i -e 's|/this/will/be/overwritten/or/wrapped/anyways/do/not/worry/ruby|/usr/bin/env ruby|'
 %endif
@@ -57,8 +59,7 @@ find vendor/ruby/*/gems -type f -wholename '*/bin/unicorn*' | xargs \
 
 %install
 # clean not required files and directories
-rm -rf test doc spec Capfile Gemfile Gemfile.lock Guardfile Rakefile .git \
-    .gitignore .rspec .rvmrc vendor/ruby/1.9.1/cache/* config/database.yml
+rm -rf test doc spec Capfile Guardfile .git .gitignore .rspec .rvmrc config/database.yml
 
 find vendor/ -type f -wholename "*/cache/*.gem" -delete
 find . -type f -name ".git*" -delete
@@ -75,20 +76,28 @@ cp -R script %{buildroot}%{entrydns_root}
 cp -R vendor %{buildroot}%{entrydns_root}
 cp -R .bundle %{buildroot}%{entrydns_root}
 cp config.ru %{buildroot}%{entrydns_root}
+cp Gemfile %{buildroot}%{entrydns_root}
+cp Gemfile.lock %{buildroot}%{entrydns_root}
+cp Rakefile %{buildroot}%{entrydns_root}
 
 
 %files
+%defattr(0640, root, %{entrydns_user}, 0750)
 %{entrydns_root}/app
 %{entrydns_root}/config
 %{entrydns_root}/db
 %{entrydns_root}/lib
-%{entrydns_root}/log/
-%{entrydns_root}/tmp/
-%{entrydns_root}/public
+%attr(0770, root, %{entrydns_user}) %{entrydns_root}/log/
+%attr(0770, root, %{entrydns_user}) %{entrydns_root}/tmp/
+%attr(0755, root, %{entrydns_user}) %{entrydns_root}/public
+%attr(0644, root, %{entrydns_user}) %{entrydns_root}/public/*
 %{entrydns_root}/script
 %{entrydns_root}/vendor
 %{entrydns_root}/.bundle
 %{entrydns_root}/config.ru
+%{entrydns_root}/Gemfile
+%{entrydns_root}/Gemfile.lock
+%{entrydns_root}/Rakefile
 
 
 %pre
@@ -97,7 +106,6 @@ getent passwd %{entrydns_user} >/dev/null || \
     useradd -r -g %{entrydns_group} -d %{entrydns_root} -s /sbin/nologin \
     -c "EntryDNS user" %{entrydns_user}
 exit 0
-
 
 
 %changelog
