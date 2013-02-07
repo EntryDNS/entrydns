@@ -5,31 +5,34 @@
 %global entrydns_user           entrydns
 %global entrydns_group          entrydns
 
-Name:           entrydns
-Version:        0.0.2
-Release:        1%{?dist}
-Summary:        Free DNS management service for everyone
+Name:               entrydns
+Version:            0.0.2
+Release:            1%{?dist}
+Summary:            Free DNS management service for everyone
 
-Group:          Applications/Internet
-License:        AGPL
-URL:            https://entrydns.net
-Source0:        %{name}-%{version}.tar.gz
-BuildArch:      x86_64
+Group:              Applications/Internet
+License:            AGPL
+URL:                https://entrydns.net
+Source0:            %{name}-%{version}.tar.gz
+BuildArch:          x86_64
 
-BuildRequires:  ruby(abi) = 1.9.1
-BuildRequires:  rubygems >= 1.8
-BuildRequires:  ruby-devel >= 1.9.3
-BuildRequires:  mysql-devel >= 5.5
-BuildRequires:  rubygems-devel >= 1.8
-BuildRequires:  libxml2-devel
-BuildRequires:  libxslt-devel
-BuildRequires:  mysql-server
-Requires:       ruby(abi) = 1.9.1
-Requires:       memcached >= 1.4.10
-Requires:       nodejs >= 0.9.5
-Requires(post):   systemd
-Requires(preun):  systemd
-Requires(postun): systemd
+BuildRequires:      ruby(abi) = 1.9.1
+BuildRequires:      rubygems >= 1.8
+BuildRequires:      ruby-devel >= 1.9.3
+BuildRequires:      mysql-devel >= 5.5
+BuildRequires:      rubygems-devel >= 1.8
+BuildRequires:      libxml2-devel
+BuildRequires:      libxslt-devel
+BuildRequires:      mysql-server
+
+Requires:           ruby(abi) = 1.9.1
+Requires:           memcached >= 1.4.10
+Requires:           nodejs >= 0.9.5
+Requires(post):     systemd
+Requires(preun):    systemd
+Requires(postun):   systemd
+
+Provides:           entrydns = %{version}
 
 
 %description
@@ -43,10 +46,14 @@ DNS needs.
 
 
 %build
+# required config file for assets pre-compilation
 cp config/database.mysql.sample.yml config/database.yml
 bundle install --without development test
+
+# pre-compile assets
 bundle exec rake RAILS_ENV=production RAILS_GROUPS=assets assets:precompile
 rm -rf .bundle
+
 bundle install --deployment --without development test assets
 
 # fix wrong sheebang for unicorn
@@ -58,7 +65,7 @@ find vendor/bundle/ruby/*/gems -type f -wholename '*/bin/unicorn*' | xargs \
 
 
 %install
-# clean not required files and directories
+# clean up not required files and directories
 rm -rf test doc spec Capfile Guardfile .git .gitignore .rspec .rvmrc config/database.yml
 
 find vendor/ -type f -wholename "*/cache/*.gem" -delete
@@ -85,7 +92,7 @@ cp Rakefile %{buildroot}%{entrydns_root}
 %defattr(-, root, %{entrydns_user}, 0755)
 %{entrydns_root}/app
 %attr(0750, root, %{entrydns_user}) %{entrydns_root}/config
-%attr(0750, root, %{entrydns_user}) %{entrydns_root}/db
+%attr(0770, root, %{entrydns_user}) %{entrydns_root}/db
 %{entrydns_root}/lib
 %attr(0770, root, %{entrydns_user}) %{entrydns_root}/log/
 %attr(0770, root, %{entrydns_user}) %{entrydns_root}/tmp/
@@ -109,4 +116,4 @@ exit 0
 
 %changelog
 * Tue Feb 5 2013 Vaidas Jablonskis <jablonskis@gmail.com> - 1:0.0.2-1
-- initial build
+- initial test build
