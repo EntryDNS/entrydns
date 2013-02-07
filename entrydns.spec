@@ -82,7 +82,7 @@ cp Rakefile %{buildroot}%{entrydns_root}
 
 
 %files
-%defattr(0644, root, %{entrydns_user}, 0755)
+%defattr(-, root, %{entrydns_user}, 0755)
 %{entrydns_root}/app
 %attr(0750, root, %{entrydns_user}) %{entrydns_root}/config
 %attr(0750, root, %{entrydns_user}) %{entrydns_root}/db
