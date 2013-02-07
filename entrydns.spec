@@ -28,6 +28,7 @@ BuildRequires:      mysql-server
 Requires:           ruby(abi) = 1.9.1
 Requires:           memcached >= 1.4.10
 Requires:           nodejs >= 0.9.5
+Requires:           rubygem-bundler >= 1.1.4
 Requires(post):     systemd
 Requires(preun):    systemd
 Requires(postun):   systemd
