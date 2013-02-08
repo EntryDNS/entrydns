@@ -7,7 +7,7 @@
 
 Name:               entrydns
 Version:            0.0.2
-Release:            1%{?dist}
+Release:            2%{?dist}
 Summary:            Free DNS management service for everyone
 
 Group:              Applications/Internet
