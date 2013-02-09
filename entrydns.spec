@@ -72,9 +72,9 @@ rm -rf test doc spec Capfile Guardfile .git .gitignore .rspec .rvmrc config/data
 find vendor/ -type f -wholename "*/cache/*.gem" -delete
 find . -type f -name ".git*" -delete
 
-install -p -d -m 0755 %{_sysconfdir}/%{name}
-install -p -d -m 0750 %{_var}/log/%{name}
-install -p -d -m 0755 /run/%{name}
+install -p -d -m 0755 %{buildroot}%{_sysconfdir}/%{name}
+install -p -d -m 0750 %{buildroot}%{_var}/log/%{name}
+install -p -d -m 0755 %{buildroot}/run/%{name}
 install -p -d -m 0755 %{buildroot}%{entrydns_root}
 install -p -d -m 0755 %{buildroot}%{entrydns_root}/log
 install -p -d -m 0755 %{buildroot}%{entrydns_root}/tmp
@@ -92,13 +92,12 @@ cp Gemfile.lock %{buildroot}%{entrydns_root}
 cp Rakefile %{buildroot}%{entrydns_root}
 cp dist/fedora/etc/sysconfig/unicorn-entrydns %{buildroot}%{_sysconfdir}
 cp dist/fedora/etc/%{name}/unicorn.conf %{buildroot}%{_sysconfdir}/%{name}
+cp dist/fedora%{_unitdir}/unicorn-entrydns.service %{buildroot}%{_unitdir}
+
 
 
 %files
 %defattr(-, root, %{entrydns_user}, 0755)
-%attr(-, %{entrydns_user}, %{entrydns_group}) %{_var}/log/%{name}
-%{_sysconfdir}/%{name}
-/run/%{name}
 %{entrydns_root}/app
 %attr(0750, root, %{entrydns_user}) %{entrydns_root}/config
 %attr(0770, root, %{entrydns_user}) %{entrydns_root}/db
@@ -113,8 +112,12 @@ cp dist/fedora/etc/%{name}/unicorn.conf %{buildroot}%{_sysconfdir}/%{name}
 %{entrydns_root}/Gemfile
 %{entrydns_root}/Gemfile.lock
 %{entrydns_root}/Rakefile
-%attr(0644, root, root) %config(noreplace) %{entrydns_root}%{_sysconfdir}/sysconfig/unicorn-entrydns
-%attr(0644, root, root) %config(noreplace) %{entrydns_root}%{_sysconfdir}%{name}/unicorn.conf
+%attr(0644, root, root) %config(noreplace) %{_sysconfdir}/sysconfig/unicorn-entrydns
+%attr(0644, root, root) %config(noreplace) %{_sysconfdir}%{name}/unicorn.conf
+%{_unitdir}/unicorn-entrydns.service
+%attr(-, %{entrydns_user}, %{entrydns_group}) %{_var}/log/%{name}
+%{_sysconfdir}/%{name}
+/run/%{name}
 
 
 %pre
