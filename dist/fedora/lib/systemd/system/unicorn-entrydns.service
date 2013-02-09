@@ -1,0 +1,15 @@
+[Unit]
+Description=Unicorn application server for EntryDNS
+After=network.target remote-fs.target nss-lookup.target
+
+[Service]
+Type=simple
+EnvironmentFile=/etc/sysconfig/unicorn-entrydns
+PIDFile=/run/entrydns/unicorn.pid
+ExecStart=/usr/bin/bundle exec 'unicorn -c /etc/entrydns/unicorn.conf'
+ExecReload=/usr/bin/kill -HUP ${MAINPID}
+ExecStop=/usr/bin/kill -QUIT ${MAINPID}
+
+[Install]
+WantedBy=multi-user.target
+
