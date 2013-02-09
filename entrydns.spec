@@ -4,6 +4,7 @@
 %global entrydns_root           /srv/entrydns
 %global entrydns_user           entrydns
 %global entrydns_group          entrydns
+%global entrydns_systemd_unit   unicorn-entrydns.service
 
 Name:               entrydns
 Version:            0.0.2
@@ -73,11 +74,13 @@ find vendor/ -type f -wholename "*/cache/*.gem" -delete
 find . -type f -name ".git*" -delete
 
 install -p -d -m 0755 %{buildroot}%{_sysconfdir}/%{name}
+install -p -d -m 0755 %{buildroot}%{_sysconfdir}/sysconfig
 install -p -d -m 0750 %{buildroot}%{_var}/log/%{name}
 install -p -d -m 0755 %{buildroot}/run/%{name}
 install -p -d -m 0755 %{buildroot}%{entrydns_root}
 install -p -d -m 0755 %{buildroot}%{entrydns_root}/log
 install -p -d -m 0755 %{buildroot}%{entrydns_root}/tmp
+install -p -d -m 0755 %{buildroot}%{_unitdir}
 cp -R app %{buildroot}%{entrydns_root}
 cp -R config %{buildroot}%{entrydns_root}
 cp -R db %{buildroot}%{entrydns_root}
@@ -90,10 +93,9 @@ cp config.ru %{buildroot}%{entrydns_root}
 cp Gemfile %{buildroot}%{entrydns_root}
 cp Gemfile.lock %{buildroot}%{entrydns_root}
 cp Rakefile %{buildroot}%{entrydns_root}
-cp dist/fedora/etc/sysconfig/unicorn-entrydns %{buildroot}%{_sysconfdir}
+cp dist/fedora/etc/sysconfig/unicorn-entrydns %{buildroot}%{_sysconfdir}/sysconfig
 cp dist/fedora/etc/%{name}/unicorn.conf %{buildroot}%{_sysconfdir}/%{name}
-cp dist/fedora%{_unitdir}/unicorn-entrydns.service %{buildroot}%{_unitdir}
-
+cp dist/fedora%{_unitdir}/%{entrydns_systemd_unit} %{buildroot}%{_unitdir}
 
 
 %files
@@ -113,10 +115,10 @@ cp dist/fedora%{_unitdir}/unicorn-entrydns.service %{buildroot}%{_unitdir}
 %{entrydns_root}/Gemfile.lock
 %{entrydns_root}/Rakefile
 %attr(0644, root, root) %config(noreplace) %{_sysconfdir}/sysconfig/unicorn-entrydns
-%attr(0644, root, root) %config(noreplace) %{_sysconfdir}%{name}/unicorn.conf
-%{_unitdir}/unicorn-entrydns.service
+%attr(0644, root, root) %config(noreplace) %{_sysconfdir}/%{name}/unicorn.conf
+%{_unitdir}/%{entrydns_systemd_unit}
 %attr(-, %{entrydns_user}, %{entrydns_group}) %{_var}/log/%{name}
-%{_sysconfdir}/%{name}
+#%{_sysconfdir}/%{name}
 /run/%{name}
 
 
@@ -126,6 +128,18 @@ getent passwd %{entrydns_user} >/dev/null || \
     useradd -r -g %{entrydns_group} -d %{entrydns_root} -s /sbin/nologin \
     -c "EntryDNS user" %{entrydns_user}
 exit 0
+
+
+%post
+%systemd_post %{entrydns_systemd_unit}
+
+
+%preun
+%systemd_preun %{entrydns_systemd_unit}
+
+
+%postun
+%systemd_postun_with_restart %{entrydns_systemd_unit}
 
 
 %changelog
