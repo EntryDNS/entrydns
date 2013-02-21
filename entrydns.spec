@@ -105,8 +105,8 @@ cp dist/fedora%{_unitdir}/%{entrydns_systemd_unit} %{buildroot}%{_unitdir}
 %attr(0750, root, %{entrydns_user}) %{entrydns_root}/config
 %attr(0770, root, %{entrydns_user}) %{entrydns_root}/db
 %{entrydns_root}/lib
-%attr(0770, root, %{entrydns_user}) %{entrydns_root}/log/
-%attr(0770, root, %{entrydns_user}) %{entrydns_root}/tmp/
+%dir %attr(0770, root, %{entrydns_user}) %{entrydns_root}/log/
+%dir %attr(0770, root, %{entrydns_user}) %{entrydns_root}/tmp/
 %{entrydns_root}/public
 %{entrydns_root}/script
 %{entrydns_root}/vendor
