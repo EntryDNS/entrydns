@@ -7,8 +7,8 @@
 %global entrydns_systemd_unit   unicorn-entrydns.service
 
 Name:               entrydns
-Version:            0.0.2
-Release:            2%{?dist}
+Version:            0.0.3
+Release:            3%{?dist}
 Summary:            Free DNS management service for everyone
 
 Group:              Applications/Internet
@@ -75,6 +75,7 @@ find . -type f -name ".git*" -delete
 
 install -p -d -m 0755 %{buildroot}%{_sysconfdir}/%{name}
 install -p -d -m 0755 %{buildroot}%{_sysconfdir}/sysconfig
+install -p -d %{buildroot}%{_var}/log
 install -p -d -m 0750 %{buildroot}%{_var}/log/%{name}
 install -p -d -m 0755 %{buildroot}/run/%{name}
 install -p -d -m 0755 %{buildroot}%{entrydns_root}
