@@ -1,6 +1,7 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery
   before_filter :check_honeypot
+  around_filter :set_timezone
   helper_method :client_remote_ip
   layout :scoped_layout
   
@@ -10,6 +11,18 @@ class ApplicationController < ActionController::Base
   end
   
   protected
+  
+  def set_timezone
+    old_time_zone = Time.zone
+    if user_signed_in? && current_user.timezone.present?
+      Time.zone = current_user.timezone
+    elsif cookies[:time_zone].present?
+      Time.zone = cookies[:time_zone]
+    end
+    yield
+  ensure
+    Time.zone = old_time_zone
+  end
   
   def scoped_layout
     return false if request.xhr?

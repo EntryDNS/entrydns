@@ -34,7 +34,7 @@ gem 'seedbank', '~> 0.1.3'
 gem 'rails_admin', '~> 0.4.5'
 gem 'rails-settings-cached', '~> 0.2.2'
 gem 'unicorn', '~> 4.5.0'
-gem "audited-activerecord", '~> 3.0'
+gem 'audited-activerecord', '~> 3.0'
 
 # Gems used only for assets and not required
 # in production environments by default.
@@ -44,8 +44,13 @@ group :assets do
   gem 'bootstrap-sass', '~> 2.2.0'
   gem 'font-awesome-sass-rails', '~> 3.0.0'
   gem 'webshims-rails', '~> 0.4.7'
+  gem 'detect_timezone_rails', '~> 0.0.3'
+  gem 'jquery-cookie-rails', '~> 1.2.0',
+    git: 'git://github.com/RyanScottLewis/jquery-cookie-rails.git'
   gem 'coffee-rails', "~> 3.2.1"
   gem 'uglifier', '>= 1.0.3'
+  gem 'oily_png', '1.0.2'
+  gem 'turbo-sprockets-rails3', '0.3.6'
   gem 'therubyracer'
 end
 
@@ -62,6 +67,9 @@ group :development do
   gem 'capistrano-ext', '~> 1.2.1'
   gem 'mongrel', '>= 1.2.0.pre2'
   gem 'quiet_assets', '~> 1.0.1'
+  gem 'meta_request', '0.2.1'
+  gem 'parallel_tests', '0.10.0'
+  gem 'progress_bar', require: false
 end
 
 group :test, :development do
