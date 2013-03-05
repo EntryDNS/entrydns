@@ -1,0 +1,5 @@
+#
+# Environment variables for bundler
+#
+BUNDLE_GEMFILE="/srv/entrydns/Gemfile"
+RAILS_ENV="production"

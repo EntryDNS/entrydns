@@ -4,6 +4,9 @@ A DNS users frontend.
 
 ## Initialize for development
 
+Install required gems
+> bundle install
+
 # create config/database.yml and config/settings.yml from the samples
 > bundle exec rake db:drop db:create db:migrate db:seed:development
 
