@@ -14,11 +14,7 @@ class ApplicationController < ActionController::Base
   
   def set_timezone
     old_time_zone = Time.zone
-    if user_signed_in? && current_user.timezone.present?
-      Time.zone = current_user.timezone
-    elsif cookies[:time_zone].present?
-      Time.zone = cookies[:time_zone]
-    end
+    Time.zone = cookies[:time_zone] if cookies[:time_zone].present?
     yield
   ensure
     Time.zone = old_time_zone
