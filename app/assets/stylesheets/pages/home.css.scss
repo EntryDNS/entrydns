@@ -15,8 +15,7 @@
 }
 
 .page-home-header {
-    @include background(image-url("page-home-incentives.png"),
-    radial-gradient(color-stops(#fff, #c1f1ff), bottom));
+    @include background(radial-gradient(color-stops(#fff, #c1f1ff), bottom));
     border-bottom: 1px solid #B9DCFF;
     .page-header {
         small {
@@ -68,4 +67,8 @@
             padding-right: 20px;
         }
     }
+}
+
+.public .alert {
+    margin-bottom: 0;
 }
