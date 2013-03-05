@@ -1,8 +1,9 @@
-Admin.create(
-  :email => 'admin@entrydns.net',
-  :password => 'garlik1',
-  :password_confirmation => 'garlik1'
+admin = Admin.create(
+  email: 'admin@entrydns.net',
+  password: 'garlik1',
+  password_confirmation: 'garlik1',
 )
+admin.update_attribute(:active, true)
 puts 'Admin created'
 
 # an user for administrative purposes
@@ -18,7 +19,7 @@ admin.save!
 admin.confirm!
 
 Settings.host_domains.each do |name|
-  host_domain = Domain.new(name: name, user_id: admin.id)
+  host_domain = admin.domains.build(name: name)
   host_domain.type = 'NATIVE'
   host_domain.setup(admin.email)
   host_domain.save!

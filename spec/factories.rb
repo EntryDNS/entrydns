@@ -3,6 +3,7 @@ FactoryGirl.define do
   sequence(:email){|n| "#{Faker::Internet.user_name}#{n}@example.com"}
   sequence(:password){|n| "password#{n}"}
   sequence(:domain_name){|n| "#{n}#{Faker::Internet.domain_name}"}
+  sequence(:domain_word){|n| "#{n}#{Faker::Internet.domain_word}"}
   
   factory :user do
     first_name {Faker::Name.first_name}
@@ -32,7 +33,7 @@ FactoryGirl.define do
   end
 
   factory :a do
-    name {Faker::Internet.domain_word}
+    name {FactoryGirl.generate(:domain_name)}
     content {Faker::Internet.ip_v4_address}
   end
   
