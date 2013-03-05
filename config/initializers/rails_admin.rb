@@ -35,7 +35,7 @@ RailsAdmin.config do |config|
 
   # Add models here if you want to go 'whitelist mode':
   config.included_models = [A, AAAA, Admin, CNAME, Domain, MX, NS, Permission, 
-    Record, SOA, SRV, TXT, User, Audited::Adapters::ActiveRecord::Audit]
+    Record, SOA, SRV, TXT, User, Audit]
 
   # Application wide tried label methods for models' instances
   # config.label_methods << :description # Default is [:name, :title]
@@ -82,6 +82,19 @@ RailsAdmin.config do |config|
 
   config.model Setting do
     configure :value, :text
+  end
+  
+  config.model Audit do
+    field :id
+    field :user
+    field :username
+    field :auditable
+    field :action
+    field :audited_changes
+    field :version
+    field :comment
+    field :remote_address
+    field :created_at
   end
   
   # config.model A do

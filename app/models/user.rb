@@ -25,6 +25,7 @@ class User < ActiveRecord::Base
   has_many :records, :inverse_of => :user, :dependent => :destroy
   has_many :permissions, :inverse_of => :user, :dependent => :destroy
   has_many :permitted_domains, :through => :permissions, :source => :domain
+  has_many :audits, :as => :auditable
   
   def name
     full_name.blank? ? email : full_name

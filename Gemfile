@@ -1,6 +1,6 @@
 source 'http://rubygems.org'
 
-gem 'rails', '3.2.11'
+gem 'rails', '3.2.12'
 
 # Bundle edge Rails instead:
 # gem 'rails',     :git => 'git://github.com/rails/rails.git'
@@ -30,10 +30,8 @@ gem 'rails-backbone', '~> 0.7.0'
 gem 'acts_as_nested_interval', '~> 0.0.7'
 # path: '/home/clyfe/dev/acts_as_nested_interval'
 # git: 'https://github.com/clyfe/acts_as_nested_interval.git'
-gem 'webshims-rails', '~> 0.2'
-gem 'font-awesome-sass-rails', '~> 2.0.0.0'
 gem 'seedbank', '~> 0.1.3'
-gem 'rails_admin', '~> 0.0.5'
+gem 'rails_admin', '~> 0.4.5'
 gem 'rails-settings-cached', '~> 0.2.2'
 gem 'unicorn', '~> 4.5.0'
 gem "audited-activerecord", '~> 3.0'
@@ -43,18 +41,20 @@ gem "audited-activerecord", '~> 3.0'
 group :assets do
   gem 'sass-rails', "  ~> 3.2.3"
   gem 'compass-rails', '~> 1.0.3'
-  gem 'bootstrap-sass', '~> 2.1.0.0'
+  gem 'bootstrap-sass', '~> 2.2.0'
+  gem 'font-awesome-sass-rails', '~> 3.0.0'
+  gem 'webshims-rails', '~> 0.4.7'
   gem 'coffee-rails', "~> 3.2.1"
   gem 'uglifier', '>= 1.0.3'
   gem 'therubyracer'
 end
 
-gem 'jquery-rails'
-gem 'dalli', '~> 1.1.3'
-gem 'active_scaffold', '~> 3.2.16'
+gem 'jquery-rails', '~> 2.1.3'
+gem 'dalli', '~> 2.6.2'
+gem 'active_scaffold', '~> 3.2.19'
 # git: 'https://github.com/activescaffold/active_scaffold.git'
 # path: '/home/clyfe/dev/active_scaffold'
-gem 'turbolinks', '~> 0.5.1'
+gem 'turbolinks', '~> 1.0.0'
 # gem 'foreigner' ?
 
 group :development do

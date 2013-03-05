@@ -4,6 +4,7 @@ class Permission < ActiveRecord::Base
   
   belongs_to :domain, :inverse_of => :permissions
   belongs_to :user, :inverse_of => :permissions
+  has_many :audits, :as => :auditable
   
   validates :domain_id, :presence => true
   validates :user_id, :presence => true, :uniqueness => {

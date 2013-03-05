@@ -4,6 +4,7 @@ class Record < ActiveRecord::Base
   
   belongs_to :domain, :inverse_of => :records
   belongs_to :user, :inverse_of => :records
+  has_many :audits, :as => :auditable
   
   cattr_reader :types
   @@types = %w(SOA NS A MX TXT CNAME AAAA SRV)

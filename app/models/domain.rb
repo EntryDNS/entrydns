@@ -14,6 +14,7 @@ class Domain < ActiveRecord::Base
   has_many :records, :inverse_of => :domain, :dependent => :destroy
   has_many :permissions, :inverse_of => :domain, :dependent => :destroy
   has_many :permitted_users, :through => :permissions, :source => :user
+  has_many :audits, :as => :auditable
 
   cattr_reader :types
   @@types = ['NATIVE', 'MASTER', 'SLAVE', 'SUPERSLAVE']
