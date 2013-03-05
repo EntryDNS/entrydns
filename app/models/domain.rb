@@ -2,10 +2,13 @@ class Domain < ActiveRecord::Base
   self.inheritance_column = :sti_disabled
   nilify_blanks
   stampable
+  audited
 
   # optional IP for create form, results in a type A record
   attr_accessor :ip
   attr_accessor :domain_ownership_failed
+  
+  attr_accessible :name, :ip, :soa_record, :ns_records, :apply_subdomains
   
   belongs_to :user, :inverse_of => :domain
   has_many :records, :inverse_of => :domain, :dependent => :destroy

@@ -36,6 +36,7 @@ gem 'seedbank', '~> 0.1.3'
 gem 'rails_admin', '~> 0.0.5'
 gem 'rails-settings-cached', '~> 0.2.2'
 gem 'unicorn', '~> 4.5.0'
+gem "audited-activerecord", '~> 3.0'
 
 # Gems used only for assets and not required
 # in production environments by default.

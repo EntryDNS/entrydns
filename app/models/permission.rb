@@ -1,5 +1,6 @@
 class Permission < ActiveRecord::Base
   stampable
+  audited
   
   belongs_to :domain, :inverse_of => :permissions
   belongs_to :user, :inverse_of => :permissions
