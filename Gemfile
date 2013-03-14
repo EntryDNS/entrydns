@@ -39,9 +39,9 @@ gem 'audited-activerecord', '~> 3.0'
 # Gems used only for assets and not required
 # in production environments by default.
 group :assets do
-  gem 'sass-rails', "  ~> 3.2.3"
+  gem 'sass-rails', '~> 3.2.3'
   gem 'compass-rails', '~> 1.0.3'
-  gem 'bootstrap-sass', '~> 2.2.0'
+  gem 'bootstrap-sass', '~> 2.3.0.1'
   gem 'font-awesome-sass-rails', '~> 3.0.0'
   gem 'webshims-rails', '~> 0.4.7'
   gem 'detect_timezone_rails', '~> 0.0.3'
