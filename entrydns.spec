@@ -7,7 +7,7 @@
 %global entrydns_systemd_unit   unicorn-entrydns.service
 
 Name:               entrydns
-Version:            0.0.4
+Version:            0.0.5
 Release:            1%{?dist}
 Summary:            Free DNS management service for everyone
 
