@@ -8,7 +8,7 @@
 
 Name:               entrydns
 Version:            0.0.5
-Release:            1%{?dist}
+Release:            2%{?dist}
 Summary:            Free DNS management service for everyone
 
 Group:              Applications/Internet
@@ -120,7 +120,7 @@ cp dist/fedora%{_unitdir}/%{entrydns_systemd_unit} %{buildroot}%{_unitdir}
 %{_unitdir}/%{entrydns_systemd_unit}
 %attr(-, %{entrydns_user}, %{entrydns_group}) %{_var}/log/%{name}
 #%{_sysconfdir}/%{name}
-/run/%{name}
+%attr(0755, %{entrydns_user}, %{entrydns_group}) /run/%{name}
 
 
 %pre
@@ -144,5 +144,9 @@ exit 0
 
 
 %changelog
+* Sun Mar 17 2013 Vaidas Jablonskis <jablonskis@gmail.com> - 1:0.0.5-2
+- Bumped version to 0.0.5
+- Fixed pid directory permissions
+
 * Tue Feb 5 2013 Vaidas Jablonskis <jablonskis@gmail.com> - 1:0.0.2-1
 - initial test build
