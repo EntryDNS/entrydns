@@ -7,8 +7,8 @@
 %global entrydns_systemd_unit   unicorn-entrydns.service
 
 Name:               entrydns
-Version:            0.0.5
-Release:            2%{?dist}
+Version:            0.0.6
+Release:            1%{?dist}
 Summary:            Free DNS management service for everyone
 
 Group:              Applications/Internet
@@ -147,6 +147,9 @@ exit 0
 
 
 %changelog
+* Sat Apr 20 2013 Vaidas Jablonskis <jablonskis@gmail.com> - 1:0.0.6-1
+- Make sure /run/entrydns is created properly
+
 * Sun Mar 17 2013 Vaidas Jablonskis <jablonskis@gmail.com> - 1:0.0.5-2
 - Bumped version to 0.0.5
 - Fixed pid directory permissions
