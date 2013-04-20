@@ -121,7 +121,6 @@ cp dist/fedora/etc/tmpfiles.d/%{name}.conf %{buildroot}%{_tmpfilesdir}
 %attr(0644, root, root) %config(noreplace) %{_sysconfdir}/%{name}/unicorn.conf
 %{_unitdir}/%{entrydns_systemd_unit}
 %attr(-, %{entrydns_user}, %{entrydns_group}) %{_var}/log/%{name}
-%attr(0755, %{entrydns_user}, %{entrydns_group}) /run/%{name}
 %dir /run/%{name}
 %{_tmpfilesdir}/%{name}.conf
 
