@@ -7,8 +7,8 @@
 %global entrydns_systemd_unit   unicorn-entrydns.service
 
 Name:               entrydns
-Version:            0.0.5
-Release:            2%{?dist}
+Version:            0.0.6
+Release:            1%{?dist}
 Summary:            Free DNS management service for everyone
 
 Group:              Applications/Internet
@@ -82,6 +82,7 @@ install -p -d -m 0755 %{buildroot}%{entrydns_root}
 install -p -d -m 0755 %{buildroot}%{entrydns_root}/log
 install -p -d -m 0755 %{buildroot}%{entrydns_root}/tmp
 install -p -d -m 0755 %{buildroot}%{_unitdir}
+install -p -d -m 0755 %{buildroot}%{_tmpfilesdir}
 cp -R app %{buildroot}%{entrydns_root}
 cp -R config %{buildroot}%{entrydns_root}
 cp -R db %{buildroot}%{entrydns_root}
@@ -97,6 +98,7 @@ cp Rakefile %{buildroot}%{entrydns_root}
 cp dist/fedora/etc/sysconfig/unicorn-entrydns %{buildroot}%{_sysconfdir}/sysconfig
 cp dist/fedora/etc/%{name}/unicorn.conf %{buildroot}%{_sysconfdir}/%{name}
 cp dist/fedora%{_unitdir}/%{entrydns_systemd_unit} %{buildroot}%{_unitdir}
+cp dist/fedora/etc/tmpfiles.d/%{name}.conf %{buildroot}%{_tmpfilesdir}
 
 
 %files
@@ -119,8 +121,8 @@ cp dist/fedora%{_unitdir}/%{entrydns_systemd_unit} %{buildroot}%{_unitdir}
 %attr(0644, root, root) %config(noreplace) %{_sysconfdir}/%{name}/unicorn.conf
 %{_unitdir}/%{entrydns_systemd_unit}
 %attr(-, %{entrydns_user}, %{entrydns_group}) %{_var}/log/%{name}
-#%{_sysconfdir}/%{name}
-%attr(0755, %{entrydns_user}, %{entrydns_group}) /run/%{name}
+%dir /run/%{name}
+%{_tmpfilesdir}/%{name}.conf
 
 
 %pre
@@ -144,6 +146,9 @@ exit 0
 
 
 %changelog
+* Sat Apr 20 2013 Vaidas Jablonskis <jablonskis@gmail.com> - 1:0.0.6-1
+- Make sure /run/entrydns is created properly
+
 * Sun Mar 17 2013 Vaidas Jablonskis <jablonskis@gmail.com> - 1:0.0.5-2
 - Bumped version to 0.0.5
 - Fixed pid directory permissions
