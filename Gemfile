@@ -1,6 +1,6 @@
 source 'http://rubygems.org'
 
-gem 'rails', '3.2.12'
+gem 'rails', '3.2.13'
 
 # Bundle edge Rails instead:
 # gem 'rails',     :git => 'git://github.com/rails/rails.git'
@@ -45,8 +45,7 @@ group :assets do
   gem 'font-awesome-sass-rails', '~> 3.0.0'
   gem 'webshims-rails', '~> 0.4.7'
   gem 'detect_timezone_rails', '~> 0.0.3'
-  gem 'jquery-cookie-rails', '~> 1.2.0',
-    git: 'git://github.com/RyanScottLewis/jquery-cookie-rails.git'
+  gem 'jquery-cookie-rails', '~> 1.3.1'
   gem 'coffee-rails', "~> 3.2.1"
   gem 'uglifier', '>= 1.0.3'
   gem 'oily_png', '1.0.2'
