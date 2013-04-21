@@ -40,4 +40,11 @@ FactoryGirl.define do
   factory :permission do
   end
   
+  factory :admin do
+  end
+  
+  factory :blacklisted_domain do
+    name {FactoryGirl.generate(:domain_name)}
+  end
+  
 end

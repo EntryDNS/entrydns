@@ -77,6 +77,19 @@ describe Domain do
       domain.should have(1).errors_on(:name)
     end
   end
+  
+  it "validates blacklist" do
+    blacklisted_domain
+
+    domain.name = blacklisted_domain.name
+    domain.should have(1).errors_on(:name)
+
+    domain.name = "www.#{blacklisted_domain.name}"
+    domain.should have(1).errors_on(:name)
+
+    domain.name = "pre#{blacklisted_domain.name}"
+    domain.should have(0).errors_on(:name)
+  end
 
   it "queries domains corectly in index" do
     permission3

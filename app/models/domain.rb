@@ -32,7 +32,9 @@ class Domain < ActiveRecord::Base
     validates_associated :"#{type.downcase}_records"
   end
   
-  validates :name, :presence => true, :uniqueness => true, :domainname => {:require_valid_tld => false}
+  validates :name, :presence => true, :uniqueness => true, 
+    :domainname => {:require_valid_tld => false},
+    :exclusion => {:in => BlacklistedDomain}
   validates :master, :presence => true, :if => :slave?
   validates :master, :ip => true, :allow_nil => true, :if => :slave?
   validates :type, :inclusion => { :in => @@types, :message => "Unknown domain type" }
