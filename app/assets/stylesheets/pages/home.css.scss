@@ -1,29 +1,24 @@
 @import "compass/css3/images";
+@import "compass/css3/border-radius";
 
-.call-to-action {
-    margin-top: 3em;
-    margin-bottom: 3em;
-    small {
-        font-style: italic;
-        font-size: 80%
+.contour {
+    border: 2px solid $text-color;
+    padding: 1em;
+    @include border-radius($border-radius-large);
+    br.hide {
+        display: block !important;
+        visibility: visible !important;
     }
-}
-
-.twitter-share-button {
-    font-size: 14px;
-    font-weight: normal;
 }
 
 .page-home-header {
     @include background(radial-gradient(color-stops(#fff, #c1f1ff), bottom));
     border-bottom: 1px solid #B9DCFF;
     .page-header {
-        small {
-            color: #3F3F39;
-        }
+        small { color: #3F3F39; }
         border-bottom: none;
         padding-bottom: 0;
-        margin-bottom: 20px;
+        margin: 20px 0 20px;
     }
 }
 
@@ -34,10 +29,6 @@
     padding-top: 17px;
     padding-bottom: 17px;
     border-bottom: 1px solid darken(#DAFFCD, 15%);
-    li, p {
-        font-size: 14px;
-        line-height: 20px;
-    }
 }
 
 .page-home-quotes {
@@ -46,27 +37,6 @@
     blockquote {
         font-style: italic;
         color: #555;
-    }
-}
-
-.page-home-extra {
-    padding-top: 17px;
-}
-
-@media (max-width: 767px) {
-    body.with-home-section {
-        padding-left: 0px;
-        padding-right: 0px;
-        
-        .navbar-fixed-top,
-        .navbar-fixed-bottom {
-            margin-left: 0px;
-            margin-right: 0px;
-        }
-        .page-home-section {
-            padding-left: 20px;
-            padding-right: 20px;
-        }
     }
 }
 

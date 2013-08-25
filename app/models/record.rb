@@ -1,14 +1,12 @@
 class Record < ActiveRecord::Base
   stampable
-  audited on: [:create]
   
   belongs_to :domain, :inverse_of => :records
   belongs_to :user, :inverse_of => :records
-  has_many :audits, :as => :auditable
   
   cattr_reader :types
   @@types = %w(SOA NS A MX TXT CNAME AAAA SRV)
-  attr_accessible :name, :content, :ttl, :prio
+  # attr_accessible :name, :content, :ttl, :prio
   
   validates :domain, :name, :presence => true
   validates :type, :inclusion => {:in => @@types, :message => "Unknown record type"}

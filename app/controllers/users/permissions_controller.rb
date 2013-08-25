@@ -14,7 +14,7 @@ class Users::PermissionsController < UsersController
     conf.create.link.label = 'Share Domain'
     
     # conf.columns[:user_email].search_sql = 'user.email'
-    # conf.columns[:user].search_sql = 'CONCAT(first_name, ' ', last_name)'
+    # conf.columns[:user].search_sql = 'full_name'
   end
   before_filter :ensure_nested_under_domain
   

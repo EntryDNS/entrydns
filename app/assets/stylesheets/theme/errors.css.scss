@@ -2,18 +2,19 @@
 
 #error_explanation {
     @extend .alert;
-    @extend .alert-error;
+    @extend .alert-danger;
     h2 {
-        color: $errorText;
+        color: $state-danger-text;
+        margin-top: 0;
     }
 }
 
 .field_with_errors {
     display: table;
     label {
-        color: $errorText;
+        color: $state-danger-text;
     }
     input, textarea, select {
-        border: 1px solid $errorBorder;;
+        border: 1px solid $state-danger-border;
     }
 }

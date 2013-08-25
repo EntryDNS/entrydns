@@ -2,32 +2,29 @@ class Domain < ActiveRecord::Base
   self.inheritance_column = :sti_disabled
   nilify_blanks
   stampable
-  audited
 
   # optional IP for create form, results in a type A record
   attr_accessor :ip
   attr_accessor :domain_ownership_failed
   
-  attr_accessible :name, :ip, :soa_record, :ns_records, :apply_subdomains
+  # attr_accessible :name, :ip, :soa_record, :ns_records, :apply_subdomains
   
   belongs_to :user, :inverse_of => :domain
   has_many :records, :inverse_of => :domain, :dependent => :destroy
   has_many :permissions, :inverse_of => :domain, :dependent => :destroy
   has_many :permitted_users, :through => :permissions, :source => :user
-  has_many :audits, :as => :auditable
 
   cattr_reader :types
   @@types = ['NATIVE', 'MASTER', 'SLAVE', 'SUPERSLAVE']
   
   has_one :soa_record,
+    -> { where(type: 'SOA') },
     :class_name => 'SOA', 
-    :conditions => {:type => 'SOA'},
     :inverse_of => :domain
   
-  for type in Record.types
-    has_many :"#{type.downcase}_records", 
+  Record.types.each do |type|
+    has_many :"#{type.downcase}_records",
       :class_name => type, 
-      :conditions => {:type => type},
       :inverse_of => :domain
     validates_associated :"#{type.downcase}_records"
   end
@@ -49,7 +46,10 @@ class Domain < ActiveRecord::Base
   delegate :domains_exceeding?, :to => :user
   def max_domains_per_user
     if domains_exceeding?
-      errors.add :base, "as a security measure, you cannot have more than #{Settings.max_domains_per_user} domains on one account"
+      errors.add :base, <<-DOC
+        as a security measure, you cannot have more than
+        #{Settings.max_domains_per_user} domains on one account
+      DOC
     end
   end
 
@@ -59,7 +59,7 @@ class Domain < ActiveRecord::Base
 
   concerned_with :tree_structure, :name_change_subdomains, :name_change_records
   
-  scope :host_domains, where(:name => Settings.host_domains)
+  scope :host_domains, -> { where(:name => Settings.host_domains) }
   
   def host_domain?
     Settings.host_domains.include?(name)

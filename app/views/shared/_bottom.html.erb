@@ -1,5 +1,7 @@
-<div class="footer">
-  <div class="block">
+<div id="footer">
+  <div class="container">
+    <hr>
+    
     <p class="pull-right">
       <%= switch_user_select %>
     </p>
@@ -11,7 +13,7 @@
       <%= n.item "About", link: page_path('about') %>
       <%= n.item "&copy; #{Time.now.year} EntryDNS Team", link: page_path('team') %>
     <% end %>
-  </div>      
+  </div>
 </div>
 
 <%= render 'shared/analytics' %>

@@ -73,4 +73,9 @@ Entrydns::Application.configure do
     :port    => 25,
     :domain  => 'entrydns.net'
   }
+  
+  config.eager_load = true
+  
+  # Compress JavaScripts and CSS
+  config.assets.js_compressor = :uglifier
 end

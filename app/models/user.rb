@@ -2,7 +2,6 @@ class User < ActiveRecord::Base
   include SentientModel
   model_stamper
   stampable
-  audited
   
   # Include default devise modules. Others available are:
   # :token_authenticatable, :encryptable, :timeoutable and :omniauthable
@@ -15,24 +14,19 @@ class User < ActiveRecord::Base
     :confirmable,
     :lockable
   
-  validates :first_name, :last_name, :presence => true
+  validates :full_name, :presence => true
 
   # Setup accessible (or protected) attributes for your model
-  attr_accessible :email, :password, :password_confirmation, :remember_me, 
-    :first_name, :last_name
+  # attr_accessible :email, :password, :password_confirmation, :remember_me, 
+  #   :full_name
   
   has_many :domains, :inverse_of => :user, :dependent => :destroy
   has_many :records, :inverse_of => :user, :dependent => :destroy
   has_many :permissions, :inverse_of => :user, :dependent => :destroy
   has_many :permitted_domains, :through => :permissions, :source => :domain
-  has_many :audits, :as => :auditable
   
   def name
     full_name.blank? ? email : full_name
-  end
-  
-  def full_name
-    "#{first_name} #{last_name}"
   end
   
   # domains per user limit for DOS protection

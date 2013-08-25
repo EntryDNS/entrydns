@@ -1,4 +1,4 @@
-class ApplicationController < ActionController::Base
+class ApplicationController < ActionController::Base  
   protect_from_forgery
   before_filter :check_honeypot
   around_filter :set_timezone
@@ -39,13 +39,29 @@ class ApplicationController < ActionController::Base
     render :nothing => true if params[Settings.honeypot].present?
   end
   
-  # Overwriting the sign_out redirect path method
   def after_sign_out_path_for(resource_or_scope)
     page_path('signed_out')
   end
   
   def current_ability
     @current_ability ||= ::UserAbility.new(current_user)
+  end
+  
+  class UserParameterSanitizer < Devise::ParameterSanitizer
+    
+    def sign_up
+      default_params.permit(:full_name, :email, :password)
+    end
+    
+    def account_update
+      default_params.permit(:full_name, :email, :password, :current_password)
+    end
+    
+  end
+  
+  def devise_parameter_sanitizer
+    super unless resource_class == User
+    UserParameterSanitizer.new(User, :user, params)
   end
   
 end

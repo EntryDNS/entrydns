@@ -4,7 +4,7 @@ module ApplicationHelper
 
   FLASH_ALIASES = HashWithIndifferentAccess.new(
     error: :error, success: :success,
-    alert: :alert, warning: :alert, warn: :alert,
+    alert: :warning, warning: :warning, warn: :warning,
     info: :info,   notice: :info
   )
   
@@ -17,11 +17,6 @@ module ApplicationHelper
       content_tag(:div, content, :class => "alert alert-#{FLASH_ALIASES[key]}")
     }.join
     flashes.present? ? content_tag(:div, flashes.html_safe, :class => clazz) : nil
-  end
-  
-  def active_scaffold_column_timestamp(column, record)
-    value = record.send(column.name)
-    value.nil? ? nil : Time.at(value)
   end
   
   def error_messages_for(resource)
@@ -46,6 +41,13 @@ module ApplicationHelper
     content_tag('div', :style => 'position: absolute; left: -2000px;') do
       text_field_tag("#{Settings.honeypot}", nil, :tabindex => 900)
     end
+  end
+  
+  # ActiveScaffold
+  
+  def active_scaffold_column_timestamp(record, column)
+    value = record.send(column.name)
+    value.nil? ? nil : Time.at(value)
   end
   
 end

@@ -1,2 +1,0 @@
-module Users::CnamesHelper
-end

@@ -14,7 +14,8 @@ module RecordsControllerCommon
   end
   
   def nested_via_records?
-    nested? && nested.association && nested.association.collection? && nested.association.name == :records
+    nested? && nested.association && nested.association.collection? && 
+      nested.association.name == :records
   end
   
   # override to close create form after success

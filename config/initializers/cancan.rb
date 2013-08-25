@@ -85,42 +85,36 @@ module CanCan
     end
   end
   
-  class Rule
-    # allow Squeel
+  class Rule # allow Squeel
     def matches_conditions_hash?(subject, conditions = @conditions)
-      if conditions.empty?
-        true
-      else
-        if model_adapter(subject).override_conditions_hash_matching? subject, conditions
-          model_adapter(subject).matches_conditions_hash? subject, conditions
+      return true if conditions.empty?
+      conditions.all? do |name, value|
+        if model_adapter(subject).override_condition_matching? subject, name, value
+          model_adapter(subject).matches_condition? subject, name, value
         else
-          conditions.all? do |name, value|
-            if model_adapter(subject).override_condition_matching? subject, name, value
-              model_adapter(subject).matches_condition? subject, name, value
+          method_name = case name
+          when Symbol                   then name
+          when Squeel::Nodes::Join      then name._name
+          when Squeel::Nodes::Predicate then name.expr
+          else raise name
+          end
+          attribute = subject.send(method_name)
+          if value.kind_of?(Hash)
+            case attribute
+            when Array, ActiveRecord::Associations::CollectionProxy
+              attribute.any? { |element| matches_conditions_hash? element, value }
             else
-              method_name = case name
-              when Symbol                   then name
-              when Squeel::Nodes::Join      then name._name
-              when Squeel::Nodes::Predicate then name.expr
-              else raise name
-              end
-              attribute = subject.send(method_name)
-              if value.kind_of?(Hash)
-                if attribute.kind_of? Array
-                  attribute.any? { |element| matches_conditions_hash? element, value }
-                else
-                  !attribute.nil? && matches_conditions_hash?(attribute, value)
-                end
-              elsif value.kind_of?(Array) || value.kind_of?(Range)
-                value.include? attribute
-              else
-                attribute == value
-              end
+              !attribute.nil? && matches_conditions_hash?(attribute, value)
             end
+          elsif value.kind_of?(Array) || value.kind_of?(Range)
+            value.include? attribute
+          else
+            attribute == value
           end
         end
       end
     end
+    
   end
   
 end

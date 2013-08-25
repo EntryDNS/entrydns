@@ -1,2 +1,0 @@
-module Users::MxesHelper
-end

@@ -1,11 +1,11 @@
 <div class="page-header">
   <h1>Contact us</h1>
+  <small>
+    Our email address is <%= mail_to Settings.support_mail %> ,
+    or you can contact us using the form below:
+  </small>
 </div>
 
-<p>
-  Our email address is <%= mail_to Settings.support_mail %> ,
-  or you can contact us using the form below:
-</p>
 
 <%= render :partial => 'public/pages/contact/form' %>
 

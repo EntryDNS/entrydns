@@ -12,7 +12,7 @@ class Users::SoasController < UsersController
   protected
   
   def beginning_of_chain
-    (nested_via_records? ? nested.parent_scope.soa_records : super).readonly(false)
+    (nested_via_records? ? nested_parent_record.soa_records : super).readonly(false)
   end
   
   # override, we make our own sti logic

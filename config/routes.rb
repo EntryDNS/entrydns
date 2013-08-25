@@ -1,10 +1,12 @@
 Entrydns::Application.routes.draw do
   
-  mount RailsAdmin::Engine => '/rails_admin', :as => 'rails_admin'
+#  mount RailsAdmin::Engine => '/rails_admin', :as => 'rails_admin'
 
   devise_for :admins
 
-  devise_for :users
+  devise_for :users, controllers: {
+    registrations: 'users/registrations'
+  }
   
   scope module: 'users' do
   
@@ -19,7 +21,8 @@ Entrydns::Application.routes.draw do
       end
     end
 
-    match '/records/modify/:authentication_token', to: 'records#modify', as: :modify_record
+    match '/records/modify/:authentication_token', to: 'records#modify', 
+      as: :modify_record, via: [:get, :post, :put]
     resources :records do
       as_routes
     end

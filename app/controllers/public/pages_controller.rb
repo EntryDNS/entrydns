@@ -47,4 +47,10 @@ class Public::PagesController < PublicController
     Pathname.new("/#{params[:id]}").cleanpath.to_s[1..-1]
   end
   
+  def resource; User.new end
+  helper_method :resource
+
+  def resource_name; :user end
+  helper_method :resource_name
+  
 end

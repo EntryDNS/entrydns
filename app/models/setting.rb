@@ -1,3 +1,3 @@
 class Setting < RailsSettings::CachedSettings
-  attr_accessible :var, :value
+  # attr_accessible :var, :value
 end

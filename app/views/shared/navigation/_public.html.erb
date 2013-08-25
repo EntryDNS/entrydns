@@ -1,4 +1,4 @@
-<% semantic_navigation :public_nav, html: { class: 'nav' } do |n| %>
+<% semantic_navigation :public_nav, html: { class: 'nav navbar-nav' } do |n| %>
   <%= n.item '', link: page_path('about') do %>
     <i class="icon-white icon-info-sign"></i> About
   <% end %>
@@ -13,7 +13,7 @@
   <% end %>
 <% end %>
 
-<% semantic_navigation :session_nav, html: { class: 'nav pull-right' } do |n| %>
+<% semantic_navigation :session_nav, html: { class: 'nav navbar-nav pull-right' } do |n| %>
   <%= n.item '', link: Settings.news_link, 
     html: { rel: 'tooltip', data: { placement: 'bottom' }, title: Settings.news_link } do %>
     <i class="icon-white icon-share-alt"></i> News

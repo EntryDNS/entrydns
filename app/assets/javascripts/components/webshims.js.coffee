@@ -1,5 +1,5 @@
-#= require webshims/minified/extras/modernizr-custom
-#= require webshims/minified/polyfiller
+#= require webshims/extras/modernizr-custom
+#= require webshims/polyfiller
 
-$.webshims.setOptions('basePath', '/assets/webshims/minified/shims/')
+$.webshims.setOptions('basePath', '/assets/webshims/shims/')
 $.webshims.polyfill()

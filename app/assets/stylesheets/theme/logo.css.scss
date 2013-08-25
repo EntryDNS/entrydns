@@ -2,7 +2,7 @@
 @import "compass/css3/box-shadow";
 @import "compass/css3/text-shadow";
 
-.navbar .brand {
+.navbar .navbar-brand {
     color: #53d4ff;
     @include text-shadow(
         0 1px 0 rgba(0, 0, 0, 0.6),

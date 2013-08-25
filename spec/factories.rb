@@ -6,12 +6,11 @@ FactoryGirl.define do
   sequence(:domain_word){|n| "#{n}#{Faker::Internet.domain_word}"}
   
   factory :user do
-    first_name {Faker::Name.first_name}
-    last_name {Faker::Name.last_name}
+    full_name {Faker::Name.first_name + ' ' + Faker::Name.last_name}
     email
     password
     password_confirmation {password}
-    after_create do |u|
+    after(:create) do |u|
       u.confirm!
     end
   end

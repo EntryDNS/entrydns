@@ -1,36 +1,46 @@
 <div class="page-header">
-  <h1>Edit <%= resource_name.to_s.humanize %></h1>
+  <h1>Settings</h1>
 </div>
 
-<%= simple_form_for(resource,
-    as: resource_name,
-    url: registration_path(resource_name), 
-    html: { method: :put, class: 'form-horizontal' }
-  ) do |f| %>
-  
-  <%= devise_error_messages! %>
+<div class="row">
+  <div class="col-lg-8">
+    <%= simple_form_for(resource,
+        as: resource_name,
+        url: registration_path(resource_name), 
+        method: :put,
+        html: { autocomplete: 'off' }
+      ) do |f| %>
+      <%= devise_error_messages! %>
 
-  <div class="actions">
-    <%= f.input :first_name %>
-    <%= f.input :last_name %>
-    <%= f.input :email %>
-    <%= f.input :password, hint: "leave blank if you don't want to change it" %>
-    <%= f.input :password_confirmation %>
-    <%= f.input :current_password, hint: 'we need your current password to confirm your changes' %>
+          <%= f.input :full_name, required: true %>
+          <%= f.input :email, required: true %>
+          <label class="password optional">Password</label>
+          <small>leave blank if you don't want to change it</small>
+          <%= f.input :password, label: false %>
+          <label class="password optional">
+            <abbr title="required">*</abbr> Current password
+          </label>
+          <small>we need your current password to confirm your changes</small>
+          <%= f.input :current_password, label: false, required: true %>
+
+      <%= f.submit "Update", class: 'btn btn-primary' %>
+    <% end %>
   </div>
-  
-  <div class="form-actions">
-    <%= f.submit "Update", class: 'btn btn-primary' %>
+  <div class="col-lg-4">
+    <br class="hidden-lg">
+    <div class="alert alert-warning text-center">
+      <h4>Delete account</h4>
+      <p>
+        <strong>Danger zone!</strong>
+        If you delete your account all your data will be deleted!
+      </p>
+      <p>
+        <%= link_to "Delete my account!", registration_path(resource_name),
+          class: 'btn btn-danger',
+          confirm: "All your data will be deleted! Are you sure?", 
+          method: :delete
+        %>
+      </p>
+    </div>
   </div>
-<% end %>
-
-<hr />
-
-<div class="alert alert-error">
-  <h3>Danger zone</h3>
-  <%= link_to "Cancel account", registration_path(resource_name),
-    class: 'btn btn-danger pull-right',
-    confirm: "All your data will be deleted! Are you sure?", 
-    method: :delete %>
-  <p>If you cancel your account all your data will be deleted!</p>
 </div>

@@ -1,15 +1,14 @@
 admin = Admin.create(
   email: 'admin@entrydns.net',
   password: 'garlik1',
-  password_confirmation: 'garlik1',
+  password_confirmation: 'garlik1'
 )
 admin.update_attribute(:active, true)
 puts 'Admin created'
 
 # an user for administrative purposes
 admin = User.new(
-  first_name: 'admin',
-  last_name: 'admin',
+  full_name: 'admin admin',
   email: 'admin@entrydns.net',
   password: 'garlik1',
   password_confirmation: 'garlik1'
@@ -27,8 +26,7 @@ end
 
 # sample user
 user = User.new(
-  first_name: 'user',
-  last_name: 'user',
+  full_name: 'user user',
   email: 'user@entrydns.net',
   password: 'useruser',
   password_confirmation: 'useruser'

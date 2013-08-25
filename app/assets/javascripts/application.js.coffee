@@ -5,14 +5,13 @@
 # the compiled file.
 #
 #= require jquery
-#= require jquery-ui
 #= require jquery_ujs
 #= require turbolinks
-#= require slides
 #= require bootstrap
 #= require active_scaffold
 #= require jquery.cookie
 #= require detect_timezone
 #= require jquery.detect_timezone
+#= require nprogress
 #= require_tree ./components
 #= require_self

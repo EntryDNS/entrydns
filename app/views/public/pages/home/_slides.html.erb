@@ -1,24 +1,39 @@
-<div id="slidesWrapper">
-  <div id="slides">
-    <%= image_tag 'marketing/1.png' %>
-    <%= image_tag 'marketing/2.png' %>
-    <%= image_tag 'marketing/3.png' %>
-    <%= image_tag 'marketing/4.png' %>
-    <%= image_tag 'marketing/5.png' %>
+<div id="carousel-jumbotron" class="carousel slide">
+  <!-- Indicators -->
+  <ol class="carousel-indicators">
+    <li data-target="#carousel-jumbotron" data-slide-to="0" class="active"></li>
+    <li data-target="#carousel-jumbotron" data-slide-to="1"></li>
+    <li data-target="#carousel-jumbotron" data-slide-to="2"></li>
+    <li data-target="#carousel-jumbotron" data-slide-to="3"></li>
+    <li data-target="#carousel-jumbotron" data-slide-to="4"></li>
+  </ol>
+
+  <!-- Wrapper for slides -->
+  <div class="carousel-inner">
+    <div class="item active">
+      <%= image_tag 'marketing/1.png' %>
+    </div>
+    <div class="item">
+      <%= image_tag 'marketing/2.png' %>
+    </div>
+    <div class="item">
+      <%= image_tag 'marketing/3.png' %>
+    </div>
+    <div class="item">
+      <%= image_tag 'marketing/4.png' %>
+    </div>
+    <div class="item">
+      <%= image_tag 'marketing/5.png' %>
+    </div>
   </div>
+
+  <!-- Controls -->
+  <a class="left carousel-control" href="#carousel-jumbotron" data-slide="prev">
+    <span class="icon-prev"></span>
+  </a>
+  <a class="right carousel-control" href="#carousel-jumbotron" data-slide="next">
+    <span class="icon-next"></span>
+  </a>
 </div>
 
-<script type="text/javascript">
-  $("#slides").slides({
-    navigation: false,
-    responsive: true,
-    slide: {
-      interval: 500
-    },
-    preload: {
-      active: true
-    },
-    playInterval: 8000,
-    pauseInterval: 16000
-  }).slides('play');
-</script>
+<%= javascript_tag "$('.carousel').carousel()" %>

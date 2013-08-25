@@ -1,2 +1,0 @@
-module Users::AsHelper
-end

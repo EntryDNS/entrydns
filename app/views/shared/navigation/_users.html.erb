@@ -1,4 +1,4 @@
-<% semantic_navigation :application_nav, html: { class: 'nav' } do |n| %>
+<% semantic_navigation :application_nav, html: { class: 'nav navbar-nav' } do |n| %>
   <%= n.item '', link: domains_path do %>
     <i class="icon-white icon-th-list"></i> My Domains
   <% end %>
@@ -10,7 +10,7 @@
   <% end %>
 <% end %>
 
-<% semantic_navigation :user_nav, html: { class: 'nav pull-right' } do |n| %>
+<% semantic_navigation :user_nav, html: { class: 'nav navbar-nav navbar-right' } do |n| %>
   <%= n.item '', link: Settings.news_link, 
     html: { rel: 'tooltip', data: { placement: 'bottom' }, title: Settings.news_link } do %>
     <i class="icon-white icon-share-alt"></i> News

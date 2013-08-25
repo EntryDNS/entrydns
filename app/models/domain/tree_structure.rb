@@ -80,7 +80,7 @@ class Domain < ActiveRecord::Base
   
   # only immediate children
   def children_subdomains
-    descendants = subdomains.preorder.all
+    descendants = subdomains.preorder.to_a
     first = descendants.first
     return [] unless first.present?
       

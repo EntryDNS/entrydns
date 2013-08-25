@@ -1,6 +1,8 @@
 # RailsAdmin config file. Generated on September 10, 2012 23:57
 # See github.com/sferik/rails_admin for more informations
 
+__END__
+
 RailsAdmin.config do |config|
 
   # If your default_local is different from :en, uncomment the following 2 lines and set your default locale here:
@@ -35,7 +37,7 @@ RailsAdmin.config do |config|
 
   # Add models here if you want to go 'whitelist mode':
   config.included_models = [A, AAAA, Admin, CNAME, Domain, MX, NS, Permission, 
-    Record, SOA, SRV, TXT, User, Audit, BlacklistedDomain]
+    Record, SOA, SRV, TXT, User, BlacklistedDomain]
 
   # Application wide tried label methods for models' instances
   # config.label_methods << :description # Default is [:name, :title]
@@ -82,19 +84,6 @@ RailsAdmin.config do |config|
 
   config.model Setting do
     configure :value, :text
-  end
-  
-  config.model Audit do
-    field :id
-    field :user
-    field :username
-    field :auditable
-    field :action
-    field :audited_changes
-    field :version
-    field :comment
-    field :remote_address
-    field :created_at
   end
   
   # config.model A do
@@ -447,8 +436,7 @@ RailsAdmin.config do |config|
   #     configure :locked_at, :datetime 
   #     configure :created_at, :datetime 
   #     configure :updated_at, :datetime 
-  #     configure :first_name, :string 
-  #     configure :last_name, :string 
+  #     configure :full_name, :string
   #     configure :creator_id, :integer         # Hidden 
   #     configure :updator_id, :integer   #   # Sections:
   #   list do; end

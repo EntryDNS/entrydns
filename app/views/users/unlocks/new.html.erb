@@ -3,16 +3,12 @@
 <%= simple_form_for(resource,
     as: resource_name,
     url: unlock_path(resource_name),
-    html: { :method => :post, class: 'form-horizontal' }
+    method: :post
   ) do |f| %>
   
   <%= devise_error_messages! %>
 
-  <div class="actions">
-    <%= f.input :email %>
-  </div>
+  <%= f.input :email, required: true %>
 
-  <div class="form-actions">
-    <%= f.submit "Resend unlock instructions", class: 'btn btn-primary' %>
-  </div>
+  <%= f.submit "Resend unlock instructions", class: 'btn btn-primary' %>
 <% end %>
