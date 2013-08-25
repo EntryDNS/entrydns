@@ -41,7 +41,6 @@ gem 'compass-rails',
 gem 'bootstrap-sass',
   git: 'git://github.com/thomas-mcdonald/bootstrap-sass.git',
   branch: '3'
-gem 'font-awesome-sass-rails', '~> 3.0.0'
 gem 'webshims-rails', '~> 1.10.10'
 gem 'detect_timezone_rails', '~> 0.0.3'
 # gem 'jquery-cookie-rails', '~> 1.3.1'
