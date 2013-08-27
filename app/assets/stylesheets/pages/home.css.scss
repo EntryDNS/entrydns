@@ -1,13 +1,12 @@
 @import "compass/css3/images";
 @import "compass/css3/border-radius";
 
-.contour {
-    border: 2px solid $text-color;
-    padding: 1em;
-    @include border-radius($border-radius-large);
-    br.hide {
-        display: block !important;
-        visibility: visible !important;
+.home-sign-up {
+    h3 {
+      margin-top: 0;
+    }
+    .actions {
+        margin-top: 2em;
     }
 }
 

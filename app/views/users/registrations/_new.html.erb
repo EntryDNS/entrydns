@@ -1,7 +1,12 @@
-<%= simple_form_for(resource, 
+<%
+  options = {
     as: resource_name, 
     url: registration_path(resource_name)
-  ) do |f| %>
+  }
+  options[:wrapper] = wrapper if defined? wrapper
+%>
+
+<%= simple_form_for(resource, options) do |f| %>
   
   <%= devise_error_messages! %>
 
@@ -9,9 +14,11 @@
   <%= f.input :full_name, required: true %>
   <%= f.input :email, required: true %>
   <%= f.input :password, required: true %>
-  <%= f.submit "Sign up", class: 'btn btn-primary' %>
-  <small>
-    or <%= link_to 'Sign in', new_user_session_path %>
-    / <%= link_to 'Forgot your password?', new_password_path(resource_name) %>
-  </small>
+  <div class="actions">
+    <%= f.submit "Sign up", class: 'btn btn-primary' %>
+    <small>
+      or <%= link_to 'Sign in', new_user_session_path %>
+      / <%= link_to 'Forgot your password?', new_password_path(resource_name) %>
+    </small>
+  </div>
 <% end %>
