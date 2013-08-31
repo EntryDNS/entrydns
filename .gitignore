@@ -1,6 +1,5 @@
 .bundle
 db/*.sqlite3
-db/schema.rb
 log/*.log
 tmp/
 .sass-cache/
@@ -16,3 +15,4 @@ spec/.requests/
 spec/.controllers/
 spec/.helpers/
 coverage
+vendor/cache
