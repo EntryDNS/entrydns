@@ -7,7 +7,7 @@
 %global entrydns_systemd_unit   unicorn-entrydns.service
 
 Name:               entrydns
-Version:            0.0.7
+Version:            0.1.0
 Release:            1%{?dist}
 Summary:            Free DNS management service for everyone
 
@@ -17,18 +17,18 @@ URL:                https://entrydns.net
 Source0:            %{name}-%{version}.tar.gz
 BuildArch:          x86_64
 
-BuildRequires:      ruby(abi) = 1.9.1
-BuildRequires:      rubygems >= 1.8
-BuildRequires:      ruby-devel >= 1.9.3
+BuildRequires:      ruby(abi) = 2.0
+BuildRequires:      rubygems >= 2.0
+BuildRequires:      ruby-devel >= 2.0
 BuildRequires:      mysql-devel >= 5.5
-BuildRequires:      rubygems-devel >= 1.8
+BuildRequires:      rubygems-devel >= 2.0
 BuildRequires:      libxml2-devel
 BuildRequires:      libxslt-devel
 BuildRequires:      mysql-server
 
-Requires:           ruby(abi) = 1.9.1
+Requires:           ruby(abi) = 2.0
 Requires:           memcached >= 1.4.10
-Requires:           nodejs >= 0.9.5
+Requires:           nodejs >= 0.10.0
 Requires:           rubygem-bundler >= 1.1.4
 Requires(post):     systemd
 Requires(preun):    systemd
@@ -146,6 +146,9 @@ exit 0
 
 
 %changelog
+* Sun Sep 01 2013 Vaidas Jablonskis <jablonskis@gmail.com> - 1:0.1.0-1
+- Major upgrade to support ruby 2.0 and more.
+
 * Sat Apr 20 2013 Vaidas Jablonskis <jablonskis@gmail.com> - 1:0.0.6-1
 - Make sure /run/entrydns is created properly
 
