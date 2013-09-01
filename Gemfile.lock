@@ -159,6 +159,7 @@ GEM
     jquery-ui-rails (4.0.4)
       jquery-rails
       railties (>= 3.1.0)
+    json (1.8.0)
     kgio (2.8.0)
     libv8 (3.16.14.3)
     mail (2.5.4)
@@ -292,6 +293,7 @@ DEPENDENCIES
   faker (~> 1.2.0)
   jquery-rails (~> 3.0.4)
   jquery-ui-rails (~> 4.0.4)
+  json (~> 1.8.0)
   mail_form (~> 1.5.0.rc)!
   mysql2 (~> 0.3.13)
   navigasmic (~> 0.5.6)!

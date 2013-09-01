@@ -53,7 +53,7 @@ cp config/database.mysql.sample.yml config/database.yml
 bundle install --without development test
 
 # pre-compile assets
-bundle exec rake RAILS_ENV=production RAILS_GROUPS=assets assets:precompile
+bundle exec rake RAILS_ENV=production assets:precompile
 rm -rf .bundle
 
 bundle install --deployment --without development test assets
