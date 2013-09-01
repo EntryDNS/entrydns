@@ -9,9 +9,6 @@
     <title><%= content_for?(:title) ? yield(:title) : "EntryDNS" %></title>
     
     <%= stylesheet_link_tag "application" %>
-    <!--[if lte IE 8]>
-      <%= stylesheet_link_tag "application-ie", :media => "all" %>
-    <![endif]-->
     <%= javascript_include_tag "application" %>
     <%= csrf_meta_tag %>
   </head>
