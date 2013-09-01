@@ -1,9 +1,13 @@
 Entrydns::Application.configure do
   # Settings specified here will take precedence over those in config/application.rb
 
+  db_operation = File.basename($0) == "rake" &&
+    %w(db:migrate db:schema:load).any? { |op| op.in?(ARGV) }
+
   # Code is not reloaded between requests, unless rake
   # https://github.com/activescaffold/active_scaffold/issues/131
-  config.cache_classes = (File.basename($0) == "rake" && ARGV.include?("db:migrate")) ? false : true
+  config.cache_classes = !db_operation
+  config.eager_load = !db_operation
 
   # Full error reports are disabled and caching is turned on
   config.consider_all_requests_local       = false
@@ -73,8 +77,6 @@ Entrydns::Application.configure do
     :port    => 25,
     :domain  => 'entrydns.net'
   }
-  
-  config.eager_load = true
   
   # Compress JavaScripts and CSS
   config.assets.js_compressor = :uglifier

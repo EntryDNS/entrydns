@@ -53,7 +53,7 @@ cp config/database.mysql.sample.yml config/database.yml
 bundle install --deployment --without development test
 
 # pre-compile assets
-bundle exec rake RAILS_ENV=production db:create db:migrate
+bundle exec rake RAILS_ENV=production db:create db:schema:load
 bundle exec rake RAILS_ENV=production assets:precompile
 
 # fix wrong sheebang for unicorn
