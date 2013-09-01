@@ -50,6 +50,7 @@ DNS needs.
 %build
 # required config file for assets pre-compilation
 cp config/database.mysql.sample.yml config/database.yml
+cp config/settings.sample.yml config/settings.yml
 bundle install --deployment --without development test
 
 # pre-compile assets
