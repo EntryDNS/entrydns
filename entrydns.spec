@@ -17,7 +17,7 @@ URL:                https://entrydns.net
 Source0:            %{name}-%{version}.tar.gz
 BuildArch:          x86_64
 
-BuildRequires:      ruby(abi) = 2.0.0
+BuildRequires:      ruby(release) = 2.0.0
 BuildRequires:      rubygems >= 2.0.0
 BuildRequires:      ruby-devel >= 2.0.0
 BuildRequires:      mysql-devel >= 5.5
@@ -26,7 +26,7 @@ BuildRequires:      libxml2-devel
 BuildRequires:      libxslt-devel
 BuildRequires:      mysql-server
 
-Requires:           ruby(abi) = 2.0.0
+Requires:           ruby(release) = 2.0.0
 Requires:           memcached >= 1.4.10
 Requires:           nodejs >= 0.10.0
 Requires:           rubygem-bundler >= 1.1.4
