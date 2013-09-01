@@ -50,13 +50,10 @@ DNS needs.
 %build
 # required config file for assets pre-compilation
 cp config/database.mysql.sample.yml config/database.yml
-bundle install --without development test
+bundle install --deployment --without development test
 
 # pre-compile assets
 bundle exec rake RAILS_ENV=production assets:precompile
-rm -rf .bundle
-
-bundle install --deployment --without development test assets
 
 # fix wrong sheebang for unicorn
 %if 0%{?fedora} >= 17
