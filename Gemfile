@@ -38,6 +38,8 @@ gem 'dalli', '~> 2.6.2'
 gem 'json', '~> 1.8.0'
 gem 'active_scaffold', '~> 3.3.4.rc', github: 'activescaffold/active_scaffold'
 gem 'turbolinks', '~> 1.3.0'
+gem 'faker','~> 1.2.0'
+gem 'factory_girl_rails', '~> 4.2.1'
 # gem 'rails_admin', '~> 0.5.0'
 # gem 'jquery-cookie-rails', '~> 1.3.1'
 # gem 'foreigner', '~> 1.4.2
@@ -61,8 +63,6 @@ end
 
 group :test, :development do
   gem 'rspec-rails', '~> 2.14.0'
-  gem 'faker','~> 1.2.0'
-  gem 'factory_girl_rails', '~> 4.2.1'
   # gem 'sourcify', '~> 0.6.0.rc1'
 end
 
