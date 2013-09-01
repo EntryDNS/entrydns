@@ -4,4 +4,4 @@
 # If you change this key, all old signed cookies will become invalid!
 # Make sure the secret is at least 30 characters and all random,
 # no regular words or you'll be exposed to dictionary attacks.
-Entrydns::Application.config.secret_key_base = '0ce1f02a4b3fc4d1a1c8d22973b21e8589e9314dc338294953f0b985e3f44f12c8af74f2d9ba6f7c7bdb736c4efc5ea3f8135e23b1a036d033cd23331383ac75'
+Entrydns::Application.config.secret_key_base = Settings.secret_key_base
