@@ -24,8 +24,8 @@ ActiveRecord::Schema.define(version: 20130824171517) do
     t.datetime "last_sign_in_at"
     t.string   "current_sign_in_ip"
     t.string   "last_sign_in_ip"
-    t.datetime "created_at",                             null: false
-    t.datetime "updated_at",                             null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
     t.boolean  "active",                 default: false
   end
 
@@ -34,8 +34,8 @@ ActiveRecord::Schema.define(version: 20130824171517) do
 
   create_table "blacklisted_domains", force: true do |t|
     t.string   "name"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "domains", force: true do |t|
@@ -46,8 +46,8 @@ ActiveRecord::Schema.define(version: 20130824171517) do
     t.string   "type",            limit: 6,               null: false
     t.integer  "notified_serial"
     t.string   "account",         limit: 40
-    t.datetime "created_at",                              null: false
-    t.datetime "updated_at",                              null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
     t.string   "name_reversed",                           null: false
     t.integer  "creator_id"
     t.integer  "updator_id"
@@ -72,8 +72,8 @@ ActiveRecord::Schema.define(version: 20130824171517) do
   create_table "permissions", force: true do |t|
     t.integer  "domain_id"
     t.integer  "user_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
     t.integer  "creator_id"
     t.integer  "updator_id"
   end
@@ -88,8 +88,8 @@ ActiveRecord::Schema.define(version: 20130824171517) do
     t.string   "table"
     t.integer  "month",      limit: 2
     t.integer  "year",       limit: 8
-    t.datetime "created_at",           null: false
-    t.datetime "updated_at",           null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   add_index "rails_admin_histories", ["item", "table", "month", "year"], name: "index_rails_admin_histories", using: :btree
@@ -103,8 +103,8 @@ ActiveRecord::Schema.define(version: 20130824171517) do
     t.integer  "prio"
     t.integer  "change_date"
     t.string   "authentication_token"
-    t.datetime "created_at",                      null: false
-    t.datetime "updated_at",                      null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
     t.integer  "user_id"
     t.integer  "creator_id"
     t.integer  "updator_id"
@@ -120,8 +120,8 @@ ActiveRecord::Schema.define(version: 20130824171517) do
     t.text     "value"
     t.integer  "thing_id"
     t.string   "thing_type", limit: 30
-    t.datetime "created_at",            null: false
-    t.datetime "updated_at",            null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   add_index "settings", ["thing_type", "thing_id", "var"], name: "index_settings_on_thing_type_and_thing_id_and_var", unique: true, using: :btree
@@ -144,8 +144,8 @@ ActiveRecord::Schema.define(version: 20130824171517) do
     t.integer  "failed_attempts",        default: 0
     t.string   "unlock_token"
     t.datetime "locked_at"
-    t.datetime "created_at",                            null: false
-    t.datetime "updated_at",                            null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
     t.integer  "creator_id"
     t.integer  "updator_id"
     t.boolean  "active",                 default: true
@@ -156,16 +156,5 @@ ActiveRecord::Schema.define(version: 20130824171517) do
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
   add_index "users", ["unlock_token"], name: "index_users_on_unlock_token", unique: true, using: :btree
-
-  create_table "versions", force: true do |t|
-    t.string   "item_type",  null: false
-    t.integer  "item_id",    null: false
-    t.string   "event",      null: false
-    t.string   "whodunnit"
-    t.text     "object"
-    t.datetime "created_at"
-  end
-
-  add_index "versions", ["item_type", "item_id"], name: "index_versions_on_item_type_and_item_id", using: :btree
 
 end
