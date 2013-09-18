@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130824171517) do
+ActiveRecord::Schema.define(version: 20130918144521) do
 
   create_table "admins", force: true do |t|
     t.string   "email",                  default: "",    null: false
@@ -98,7 +98,7 @@ ActiveRecord::Schema.define(version: 20130824171517) do
     t.integer  "domain_id"
     t.string   "name"
     t.string   "type",                 limit: 10
-    t.string   "content"
+    t.string   "content",              limit: 20000
     t.integer  "ttl"
     t.integer  "prio"
     t.integer  "change_date"
