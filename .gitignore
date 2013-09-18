@@ -3,6 +3,9 @@ db/*.sqlite3
 log/*.log
 tmp/
 .sass-cache/
+.redcar/
+.kateproject.d/
+.vagrant/
 nbproject/
 config/database.yml
 config/settings.local.yml
@@ -16,3 +19,5 @@ spec/.controllers/
 spec/.helpers/
 coverage
 vendor/cache
+vendor/ruby
+
