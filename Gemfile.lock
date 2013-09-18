@@ -6,9 +6,9 @@ GIT
 
 GIT
   remote: git://github.com/activescaffold/active_scaffold.git
-  revision: 6ef005c0dc384a6189d6ccdf1a6ba8ff5fce3a90
+  revision: 692e7175fc25e163741cfa0ccafccc2eb8afadab
   specs:
-    active_scaffold (3.3.4.rc)
+    active_scaffold (3.4.0.rc)
       rails (>= 3.2.6, < 5)
 
 GIT
@@ -49,7 +49,7 @@ GIT
 
 GIT
   remote: git://github.com/plataformatec/simple_form.git
-  revision: 359606f222fa0972a4a14ec70140ac00f7c80839
+  revision: f0b95cb9805ebc895947cafaf33a07b67eeb8c71
   specs:
     simple_form (3.0.0.rc)
       actionpack (>= 4.0.0, < 4.1)
@@ -57,7 +57,7 @@ GIT
 
 GIT
   remote: git://github.com/thomas-mcdonald/bootstrap-sass.git
-  revision: 82f1b343ffc0069bf99d2a3d4f0190bc87ba89ed
+  revision: 0e88056ac5d58fb0bbd23d3fe929eac01712d964
   branch: 3
   specs:
     bootstrap-sass (3.0.0.0)
@@ -95,10 +95,10 @@ GEM
       tzinfo (~> 0.3.37)
     acts_as_nested_interval (0.1.0)
       rails (>= 3.2.1, < 5)
-    animate-rails (1.0.0)
+    animate-rails (1.0.1)
       rails
     arel (4.0.0)
-    atomic (1.1.13)
+    atomic (1.1.14)
     bcrypt-ruby (3.1.2)
     better_errors (0.9.0)
       coderay (>= 1.0.0)
@@ -114,7 +114,7 @@ GEM
       rack-test (>= 0.5.4)
       xpath (~> 2.0)
     chunky_png (1.2.8)
-    coderay (1.0.9)
+    coderay (1.1.0)
     coffee-rails (4.0.0)
       coffee-script (>= 2.2.0)
       railties (>= 4.0.0.beta, < 5.0)
@@ -160,7 +160,7 @@ GEM
       jquery-rails
       railties (>= 3.1.0)
     json (1.8.0)
-    kgio (2.8.0)
+    kgio (2.8.1)
     libv8 (3.16.14.3)
     mail (2.5.4)
       mime-types (~> 1.16)
@@ -168,18 +168,18 @@ GEM
     mime-types (1.25)
     mini_portile (0.5.1)
     minitest (4.7.5)
-    multi_json (1.7.9)
+    multi_json (1.8.0)
     mysql2 (0.3.13)
     nilify_blanks (1.0.2)
       activerecord (>= 3.0.0)
       activesupport (>= 3.0.0)
     nokogiri (1.6.0)
       mini_portile (~> 0.5.0)
-    nprogress-rails (0.1.2.2)
+    nprogress-rails (0.1.2.3)
     oily_png (1.1.0)
       chunky_png (~> 1.2.7)
     orm_adapter (0.4.0)
-    polyamorous (0.6.3)
+    polyamorous (0.6.4)
       activerecord (>= 3.0)
     polyglot (0.3.3)
     quiet_assets (1.0.2)
@@ -204,7 +204,7 @@ GEM
       activesupport (= 4.0.0)
       rake (>= 0.8.7)
       thor (>= 0.18.1, < 2.0)
-    raindrops (0.11.0)
+    raindrops (0.12.0)
     rake (10.1.0)
     ref (1.0.5)
     rspec-core (2.14.5)
@@ -236,7 +236,7 @@ GEM
       actionpack (>= 3.0)
       activesupport (>= 3.0)
       sprockets (~> 2.8)
-    squeel (1.1.0)
+    squeel (1.1.1)
       activerecord (>= 3.0)
       activesupport (>= 3.0)
       polyamorous (~> 0.6.0)
@@ -245,7 +245,7 @@ GEM
       libv8 (~> 3.16.14.0)
       ref
     thor (0.18.1)
-    thread_safe (0.1.2)
+    thread_safe (0.1.3)
       atomic
     tilt (1.4.1)
     treetop (1.4.15)
@@ -273,7 +273,7 @@ PLATFORMS
 
 DEPENDENCIES
   active-model-email-validator (~> 1.0.2)
-  active_scaffold (~> 3.3.4.rc)!
+  active_scaffold (~> 3.4.0.rc)!
   acts_as_nested_interval (~> 0.1.0)
   animate-rails (~> 1.0.0)
   better_errors (= 0.9.0)
