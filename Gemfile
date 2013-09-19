@@ -46,7 +46,7 @@ gem 'factory_girl_rails', '~> 4.2.1'
 
 group :development do
   gem 'quiet_assets', '~> 1.0.1'
-  gem 'better_errors', '0.9.0'
+  gem 'better_errors', '1.0.1'
   gem 'binding_of_caller', '0.7.2'
   gem 'debase', '~> 0.0.7'
   gem 'ruby-debug-ide', '~> 0.4.18'

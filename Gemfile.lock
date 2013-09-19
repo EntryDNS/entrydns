@@ -6,7 +6,7 @@ GIT
 
 GIT
   remote: git://github.com/activescaffold/active_scaffold.git
-  revision: 692e7175fc25e163741cfa0ccafccc2eb8afadab
+  revision: b52d88de7385fe1370382a776a6c7be0aa592651
   specs:
     active_scaffold (3.4.0.rc)
       rails (>= 3.2.6, < 5)
@@ -100,7 +100,7 @@ GEM
     arel (4.0.0)
     atomic (1.1.14)
     bcrypt-ruby (3.1.2)
-    better_errors (0.9.0)
+    better_errors (1.0.1)
       coderay (>= 1.0.0)
       erubis (>= 2.6.6)
     binding_of_caller (0.7.2)
@@ -276,7 +276,7 @@ DEPENDENCIES
   active_scaffold (~> 3.4.0.rc)!
   acts_as_nested_interval (~> 0.1.0)
   animate-rails (~> 1.0.0)
-  better_errors (= 0.9.0)
+  better_errors (= 1.0.1)
   binding_of_caller (= 0.7.2)
   bootstrap-sass!
   cancan (= 1.6.7)
