@@ -1,5 +1,12 @@
 require 'spec_helper'
 
 describe BlacklistedDomain do
-  pending "add some examples to (or delete) #{__FILE__}"
+  include_context "data"
+
+  it "includes blacklisted", focus: true do
+    blacklisted_domain
+    BlacklistedDomain.should include(blacklisted_domain.name)
+    BlacklistedDomain.should include("sub.#{blacklisted_domain.name}")
+    BlacklistedDomain.should_not include(FactoryGirl.generate(:domain_name))
+  end
 end
