@@ -34,6 +34,7 @@ shared_context "data" do
   
   let(:blacklisted_domain){create(:blacklisted_domain)}
   
-  let(:admin){create(:admin)}
+  # admin model
+  let(:admin_admin){create(:admin)}
     
 end
