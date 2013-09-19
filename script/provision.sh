@@ -5,12 +5,31 @@
 sudo apt-get -y update
 sudo apt-get -y install python-software-properties debconf-utils
 sudo apt-add-repository -y ppa:chris-lea/node.js
+
 sudo debconf-set-selections <<< 'mysql-server-5.5 mysql-server/root_password password linux1'
 sudo debconf-set-selections <<< 'mysql-server-5.5 mysql-server/root_password_again password linux1'
+
+sudo debconf-set-selections <<< 'phpmyadmin phpmyadmin/dbconfig-install boolean false'
+sudo debconf-set-selections <<< 'phpmyadmin phpmyadmin/reconfigure-webserver multiselect apache2'
+
+sudo debconf-set-selections <<< 'phpmyadmin phpmyadmin/app-password-confirm password linux1'
+sudo debconf-set-selections <<< 'phpmyadmin phpmyadmin/mysql/admin-pass password linux1'
+sudo debconf-set-selections <<< 'phpmyadmin phpmyadmin/password-confirm password linux1'
+sudo debconf-set-selections <<< 'phpmyadmin phpmyadmin/setup-password password linux1'
+sudo debconf-set-selections <<< 'phpmyadmin phpmyadmin/database-type select mysql'
+sudo debconf-set-selections <<< 'phpmyadmin phpmyadmin/mysql/app-pass password linux1'
+
+sudo debconf-set-selections <<< 'dbconfig-common dbconfig-common/mysql/app-pass password linux1'
+sudo debconf-set-selections <<< 'dbconfig-common dbconfig-common/mysql/app-pass password'
+sudo debconf-set-selections <<< 'dbconfig-common dbconfig-common/password-confirm password linux1'
+sudo debconf-set-selections <<< 'dbconfig-common dbconfig-common/app-password-confirm password linux1'
+sudo debconf-set-selections <<< 'dbconfig-common dbconfig-common/app-password-confirm password linux1'
+sudo debconf-set-selections <<< 'dbconfig-common dbconfig-common/password-confirm password linux1'
+
 sudo apt-get -y install build-essential zlib1g-dev libssl-dev libreadline-dev \
   git-core libxml2 libxml2-dev libxslt1-dev sqlite3 libsqlite3-dev curl \
   libyaml-dev openssl libssl-dev ncurses-dev libtool bison autoconf libc-dev \
-  mysql-server libmysqlclient15-dev memcached nodejs
+  mysql-server libmysqlclient15-dev memcached nodejs apache2 phpmyadmin
 
 set -e
 CURRENT=`pwd`
