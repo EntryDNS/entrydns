@@ -40,6 +40,9 @@ FactoryGirl.define do
   end
   
   factory :admin do
+    email
+    password
+    password_confirmation {password}
   end
   
   factory :blacklisted_domain do

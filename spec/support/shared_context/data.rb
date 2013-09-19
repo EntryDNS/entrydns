@@ -33,5 +33,7 @@ shared_context "data" do
   let(:permission3){create(:permission, :domain => domain3, :user => user)}
   
   let(:blacklisted_domain){create(:blacklisted_domain)}
+  
+  let(:admin){create(:admin)}
     
 end

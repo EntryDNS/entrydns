@@ -1,5 +1,9 @@
 require 'spec_helper'
 
 describe Admin do
-  pending "add some examples to (or delete) #{__FILE__}"
+  include_context "data"
+  
+  it "is inactive by default", focus: true do
+    admin.should_not be_active
+  end
 end
