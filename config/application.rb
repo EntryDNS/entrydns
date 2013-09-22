@@ -15,6 +15,7 @@ module Entrydns
     config.autoload_paths += %W(
       #{config.root}/app/controllers/concerns
       #{config.root}/app/models/concerns
+      #{config.root}/lib
     )
 
     # Only load the plugins named here, in the order given (default is alphabetical).
