@@ -2,8 +2,11 @@ class BlacklistedDomain < ActiveRecord::Base
   # attr_accessible :name
   
   scope :of, ->(domain_name) {
-    where("blacklisted_domains.name = ? OR ? LIKE CONCAT('%.', blacklisted_domains.name)",
-      domain_name, domain_name)
+    domain_name_quoted = connection.quote(domain_name)
+    where{
+      (name == domain_name) |
+      (`#{domain_name_quoted}` =~ CONCAT('%.', name))
+    }
   }
   
   def self.include?(domain_name)
