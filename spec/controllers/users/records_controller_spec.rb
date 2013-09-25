@@ -21,7 +21,7 @@ describe Users::RecordsController do
     
     it "modifies @record with remote IP" do
       ip = '127.0.0.3'
-      request.env["HTTP_X_FORWARDED_FOR"] = ip
+      @request.env['REMOTE_ADDR'] = ip
       get :modify, :authentication_token => a_record.authentication_token
       response.should be_success
       response.body.should == Users::RecordsController::MODIFY_OK
@@ -31,7 +31,7 @@ describe Users::RecordsController do
 
     it "errors when not A type @record with" do
       ip = '127.0.0.3'
-      request.env["HTTP_X_FORWARDED_FOR"] = ip
+      @request.env['REMOTE_ADDR'] = ip
       get :modify, :authentication_token => soa_record.authentication_token
       response.should be_success
       response.body.should == Users::RecordsController::MODIFY_ERROR

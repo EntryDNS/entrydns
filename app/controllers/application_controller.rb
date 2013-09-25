@@ -32,7 +32,7 @@ class ApplicationController < ActionController::Base
   end
 
   def client_remote_ip
-    @client_remote_ip ||= request.env["HTTP_X_FORWARDED_FOR"]
+    @client_remote_ip ||= Settings.uses_proxy ? request.remote_ip : request.ip
   end
   
   def check_honeypot
