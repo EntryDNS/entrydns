@@ -20,11 +20,11 @@ BuildArch:          x86_64
 BuildRequires:      ruby(release) = 2.0.0
 BuildRequires:      rubygems >= 2.0.0
 BuildRequires:      ruby-devel >= 2.0.0
-BuildRequires:      mysql-devel >= 5.5
+BuildRequires:      community-mysql-devel >= 5.5
 BuildRequires:      rubygems-devel >= 2.0
 BuildRequires:      libxml2-devel
 BuildRequires:      libxslt-devel
-BuildRequires:      mysql-server
+BuildRequires:      community-mysql-server
 
 Requires:           ruby(release) = 2.0.0
 Requires:           memcached >= 1.4.10
