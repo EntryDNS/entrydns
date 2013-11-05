@@ -1,6 +1,6 @@
 source 'http://rubygems.org'
 
-gem 'rails', '4.0.0'
+gem 'rails', '4.0.1'
 gem 'mysql2', '~> 0.3.13'
 gem 'devise', '~> 3.0.3'
 gem 'cancan', '= 1.6.7'
