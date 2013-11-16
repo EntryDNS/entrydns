@@ -19,7 +19,7 @@ describe Domain do
   end
 
   it "has a soa serial updated" do
-    (domain.soa_record.serial % 10).should == 1
+    (domain.soa_record.serial % 100).should_not == 0
   end
   
   it "updates name to records when name changed" do

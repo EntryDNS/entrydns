@@ -49,7 +49,7 @@ class SOA < Record
   # If the serial number is 0, we opt for PowerDNS's automatic serial number
   # generation, that gets triggered by updating the change_date
   def update_serial
-    return if self.content_changed?
+    return if content_changed?
     compute_serial
   end
   
@@ -61,7 +61,7 @@ class SOA < Record
   # Same as #update_serial and saves the record
   def update_serial!
     update_serial
-    save
+    save!
   end
   
   # if SOA record's primary NS is among it's domain's NS records
