@@ -6,7 +6,7 @@ GIT
 
 GIT
   remote: git://github.com/clyfe/active_scaffold.git
-  revision: 5eaedd36fe4ed404049ca02b39a48acb84fbed4f
+  revision: b82fdc8f7252ca88b1f44b72a0ff75e511fa967d
   branch: fix-always-use-build_associated
   specs:
     active_scaffold (3.4.0.rc)
@@ -234,7 +234,7 @@ GEM
       raindrops (~> 0.7)
     warden (1.2.3)
       rack (>= 1.0)
-    webshims-rails (1.11.3)
+    webshims-rails (1.11.3.1)
       rails (> 3.1.0)
     xpath (2.0.0)
       nokogiri (~> 1.3)
