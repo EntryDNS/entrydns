@@ -1,6 +1,4 @@
-<div class="page-header">
-  <h1>Change your password</h1>
-</div>
+<%= render :partial => "users/shared/links" %>
 
 <%= simple_form_for(resource,
     as: resource_name,
@@ -16,5 +14,3 @@
 
   <%= f.submit "Change my password", class: 'btn btn-primary' %>
 <% end %>
-
-<%= render :partial => "users/shared/links" %>
