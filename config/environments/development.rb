@@ -24,12 +24,25 @@ Entrydns::Application.configure do
   # Expands the lines which load the assets
   config.assets.debug = true
 
-  config.action_mailer.default_url_options = { :host => 'localhost:3000' }
-  config.action_mailer.delivery_method = :smtp
-  config.action_mailer.smtp_settings = {
-    :address => "localhost",
-    :port => 1025
-  }
+  config.action_mailer.default_url_options = { host: 'localhost:3000' }
+  config.action_mailer.delivery_method = :letter_opener
+  # config.action_mailer.delivery_method = :smtp
+  # config.action_mailer.smtp_settings = { address: "localhost", port: 1025 }
   
   config.eager_load = false
+  
+  config.after_initialize do
+    Bullet.enable = true
+    Bullet.alert = true
+    Bullet.bullet_logger = true
+    Bullet.console = true
+    #Bullet.growl = true
+    #Bullet.xmpp = { :account  => 'bullets_account@jabber.org',
+    #                :password => 'bullets_password_for_jabber',
+    #                :receiver => 'your_account@jabber.org',
+    #                :show_online_status => true }
+    Bullet.rails_logger = true
+    #Bullet.airbrake = true
+    Bullet.add_footer = true
+  end
 end

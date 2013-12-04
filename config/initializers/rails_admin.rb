@@ -1,8 +1,6 @@
 # RailsAdmin config file. Generated on September 10, 2012 23:57
 # See github.com/sferik/rails_admin for more informations
 
-__END__
-
 RailsAdmin.config do |config|
 
   # If your default_local is different from :en, uncomment the following 2 lines and set your default locale here:
