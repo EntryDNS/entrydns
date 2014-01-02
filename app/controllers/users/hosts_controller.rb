@@ -41,7 +41,9 @@ class Users::HostsController < UsersController
   end
   
   def beginning_of_chain
-    super.includes(:domain).where(:domains => {:name => Settings.host_domains}).readonly(false)
+    super.includes(:domain).
+      where(:domains => {:name => Settings.host_domains}).
+      readonly(false)
   end
   
   def before_create_save(record)

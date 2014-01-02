@@ -44,5 +44,7 @@ Entrydns::Application.configure do
     Bullet.rails_logger = true
     #Bullet.airbrake = true
     Bullet.add_footer = true
+
+    Bullet.add_whitelist type: :n_plus_one_query, class_name: "Domain", association: :permissions
   end
 end
