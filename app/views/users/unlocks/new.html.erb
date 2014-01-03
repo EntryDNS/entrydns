@@ -1,14 +1,20 @@
 <%= render :partial => "users/shared/links" %>
 
-<%= simple_form_for(resource,
-    as: resource_name,
-    url: unlock_path(resource_name),
-    method: :post
-  ) do |f| %>
-  
-  <%= devise_error_messages! %>
+<div class="row">
+  <div class="col-lg-offset-4 col-lg-4 well">
 
-  <%= f.input :email, required: true %>
+    <%= simple_form_for(resource,
+        as: resource_name,
+        url: unlock_path(resource_name),
+        method: :post
+      ) do |f| %>
 
-  <%= f.submit "Resend unlock instructions", class: 'btn btn-primary' %>
-<% end %>
+      <%= devise_error_messages! %>
+
+      <%= f.input :email, required: true %>
+
+      <%= f.submit "Resend unlock instructions", class: 'btn btn-primary' %>
+    <% end %>
+
+  </div>
+</div>

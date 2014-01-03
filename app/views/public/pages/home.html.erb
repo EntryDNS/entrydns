@@ -12,10 +12,7 @@
   <div class="container">
     <div class="row">
 
-      <div class="col-lg-4 home-sign-up">
-        <h3>Use it yourself, it's free!</h3>
-        <p>In a few seconds you're done!</p>
-        <br>
+      <div class="col-lg-4">
         <%= render 'users/registrations/new', wrapper: :inlabel, 
           resource_name: :user, resource: User.new %>
         <br class="hidden-lg">

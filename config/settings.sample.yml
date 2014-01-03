@@ -1,3 +1,5 @@
+domain: entrydns.net
+
 # framework
 secret_key_base: 0ce1f02a4b3fc4d1a1c8d22973b21e8589e9314dc338294953f0b985e3f44f12c8af74f2d9ba6f7c7bdb736c4efc5ea3f8135e23b1a036d033cd23331383ac75
 

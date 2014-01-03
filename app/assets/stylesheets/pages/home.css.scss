@@ -1,15 +1,6 @@
 @import "compass/css3/images";
 @import "compass/css3/border-radius";
 
-.home-sign-up {
-    h3 {
-      margin-top: 0;
-    }
-    .actions {
-        margin-top: 2em;
-    }
-}
-
 .page-home-header {
     @include background(radial-gradient(color-stops(#fff, #c1f1ff), bottom));
     border-bottom: 1px solid #B9DCFF;
@@ -39,3 +30,27 @@
     }
 }
 
+// text-separator
+.text-separator {
+    overflow: hidden;
+    text-align: center;
+    margin: 20px 0 20px 0;
+}
+.text-separator:before,
+.text-separator:after {
+    background-color: #abe098;
+    content: "";
+    display: inline-block;
+    height: 1px;
+    position: relative;
+    vertical-align: middle;
+    width: 50%;
+}
+.text-separator:before {
+    right: 0.5em;
+    margin-left: -50%;
+}
+.text-separator:after {
+    left: 0.5em;
+    margin-right: -50%;
+}

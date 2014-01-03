@@ -3,7 +3,7 @@
 </div>
 
 <div class="row">
-  <div class="col-lg-8">
+  <div class="col-lg-5">
     <%= simple_form_for(resource,
         as: resource_name,
         url: registration_path(resource_name), 
@@ -26,8 +26,12 @@
       <%= f.submit "Update", class: 'btn btn-primary' %>
     <% end %>
   </div>
-  <div class="col-lg-4">
+  <div class="col-lg-offset-1 col-lg-6">
     <br class="hidden-lg">
+    <% if current_user.authentications.exists? %>
+      <%= render active_scaffold: "users/authentications" %>
+      <br><br>
+    <% end %>
     <div class="alert alert-warning text-center">
       <h4>Delete account</h4>
       <p>

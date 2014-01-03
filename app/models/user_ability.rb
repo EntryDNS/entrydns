@@ -32,6 +32,9 @@ class UserAbility
     # can manage permissions for his domains
     can CRUD, Permission, :domain => {:user_id => user.id}
     can :crud_permissions, Domain, :user_id => user.id
+    
+    # can manage his authentications
+    can CRUD, Authentication, :user_id => user.id
   end
   
   def sharing_abilities

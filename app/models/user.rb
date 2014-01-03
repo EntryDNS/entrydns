@@ -12,7 +12,9 @@ class User < ActiveRecord::Base
     :trackable, 
     :validatable,
     :confirmable,
-    :lockable
+    :lockable,
+    :omniauthable,
+    :omniauth_providers => [:google_apps]
   
   validates :full_name, :presence => true
 
@@ -20,6 +22,7 @@ class User < ActiveRecord::Base
   # attr_accessible :email, :password, :password_confirmation, :remember_me, 
   #   :full_name
   
+  has_many :authentications, :inverse_of => :user, :dependent => :destroy
   has_many :domains, :inverse_of => :user, :dependent => :destroy
   has_many :records, :inverse_of => :user, :dependent => :destroy
   has_many :permissions, :inverse_of => :user, :dependent => :destroy

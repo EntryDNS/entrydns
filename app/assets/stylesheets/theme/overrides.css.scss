@@ -28,3 +28,9 @@
     padding: 9px 14px;
     font-weight: normal;
 }
+
+.btn-social:hover {
+    &:hover, &:focus {
+        color: $btn-primary-color;
+    }
+}
