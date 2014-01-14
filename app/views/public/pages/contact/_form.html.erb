@@ -9,20 +9,10 @@
     <%= f.text_field :nickname %>
   </div>
 
-  <div class="row">
-    <div class="col-lg-8">
-      <%= f.input :name, label: 'Your name' %>
-      <%= f.input :email, label: 'Your email' %>
-    </div>
-    <div class="col-lg-4">
-      <%= f.input :file, as: :file, hint: 'can be attached optionally' %>
-    </div>
-  </div>
-  <div class="row">
-    <div class="col-lg-12">
-      <%= f.input :message, as: :text, input_html: { rows: 5 } %>
-      <%= f.submit 'Send', :class => 'btn btn-primary' %>
-    </div>
-  </div>
+  <%= f.input :name, label: 'Your name' %>
+  <%= f.input :email, label: 'Your email' %>
+  <%= f.input :file, as: :file, hint: 'can be attached optionally' %>
+  <%= f.input :message, as: :text, input_html: { rows: 5 } %>
+  <%= f.submit 'Send', :class => 'btn btn-primary' %>
 
 <% end %>
