@@ -19,4 +19,4 @@ spec/.helpers/
 coverage
 vendor/cache
 vendor/ruby
-
+dist/google_marketplace.zip
