@@ -7,25 +7,26 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
   protected
 
   def oauthorize(provider)
-    @user = find_for_oauth(provider)
-    return unless @user
-    if @user.active_for_authentication?
-      flash[:notice] = I18n.t "devise.omniauth_callbacks.success", kind: provider.camelcase
-      session["devise.google_apps_data"] = env["omniauth.auth"]
-      @user.remember_me! if session.delete(:user_remember_me) == "1"
-    end
-    if user_signed_in?
-      redirect_to :back
-    else
-      sign_in_and_redirect @user, event: :authentication
-    end
+    return redirect_to(:back) if user_signed_in?
+    @user = find_or_create_user(provider)
+    return redirect_to(:back) unless @user && @user.active_for_authentication?
+    flash[:notice] = I18n.t "devise.omniauth_callbacks.success", kind: provider.camelcase
+    session["devise.google_apps_data"] = env["omniauth.auth"]
+    @user.remember_me! if session.delete(:user_remember_me) == "1"
+    sign_in_and_redirect @user, event: :authentication
   end
   
-  def find_for_oauth(provider)
+  def find_or_create_user(provider)
     user = if resource then resource
-    elsif email then find_or_create_by_email(email)
-    elsif uid then find_or_create_by_uid(uid)
+    elsif email then User.where(email: email).first
+    elsif uid then Authentication.where(uid: uid).first.try(:user)
     else raise "Bad provider data: #{auth.inspect}"
+    end
+    
+    if !user
+      user = User.new(user_attrs.merge(password: Devise.friendly_token[0,20]))
+      user.skip_confirmation!
+      user.save!(validate: false)
     end
     
     authentication = user.authentications.where(provider: provider).first
@@ -35,24 +36,6 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
       user.authentications << authentication
     end
     
-    return user
-  end
-
-  def find_or_create_by_uid(uid)
-    auth = Authentication.where(uid: uid).first
-    return auth ? auth.user : make_user
-  end
-
-  def find_or_create_by_email(email)
-    user = User.where(email: email).first
-    return user ? user : make_user
-  end
-  
-  def make_user
-    return current_user if user_signed_in?
-    user = User.new(user_attrs.merge(password: Devise.friendly_token[0,20]))
-    user.skip_confirmation!
-    user.save!(validate: false)
     return user
   end
   
