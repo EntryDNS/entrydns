@@ -33,3 +33,6 @@ resolv:
 honeypot: userid
 support_mail: "support@entrydns.net"
 news_link: "http://twitter.com/#!/entrydns"
+
+google_key: 105547277286.apps.googleusercontent.com
+google_secret: 7cIdW07UrWUmeb8QFYV4L63k

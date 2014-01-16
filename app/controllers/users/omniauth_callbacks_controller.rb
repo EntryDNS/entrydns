@@ -1,7 +1,7 @@
 class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
 
-  def google_apps
-    oauthorize 'google_apps'
+  def google_oauth2
+    oauthorize 'google_oauth2'
   end
 
   protected
@@ -11,7 +11,7 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
     @user = find_or_create_user(provider)
     return redirect_to(:back) unless @user && @user.active_for_authentication?
     flash[:notice] = I18n.t "devise.omniauth_callbacks.success", kind: provider.camelcase
-    session["devise.google_apps_data"] = env["omniauth.auth"]
+    session["devise.google_data"] = env["omniauth.auth"]
     @user.remember_me! if session.delete(:user_remember_me) == "1"
     sign_in_and_redirect @user, event: :authentication
   end
