@@ -2,6 +2,7 @@ class Domain < ActiveRecord::Base
   self.inheritance_column = :sti_disabled
   nilify_blanks
   stampable
+  has_paper_trail
 
   # optional IP for create form, results in a type A record
   attr_accessor :ip

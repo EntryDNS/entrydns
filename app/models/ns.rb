@@ -20,6 +20,8 @@
 # Obtained from http://www.zytrax.com/books/dns/ch8/ns.html
 #
 class NS < Record
+  has_paper_trail
+  
   validates :name, :hostname => {:allow_underscore => true}
   validates :content, :presence => true, :hostname => true #, :inclusion => {:in => Settings.ns}
 

@@ -7,6 +7,8 @@
 # Obtained from http://www.zytrax.com/books/dns/ch8/soa.html
 #
 class SOA < Record
+  has_paper_trail
+  
   validates :domain, :presence => true
   validates :domain_id, :uniqueness => true # one SOA per domain
   validates :name, :presence => true, :hostname => true

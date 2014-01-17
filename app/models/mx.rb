@@ -7,6 +7,8 @@
 # Obtained from http://www.zytrax.com/books/dns/ch8/mx.html
 #
 class MX < Record
+  has_paper_trail
+  
   validates :name, :hostname => {
     :allow_underscore => true,
     :allow_wildcard_hostname => true

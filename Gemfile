@@ -21,6 +21,7 @@ gem 'concerned_with', '~> 0.1.0'
 gem 'faker','~> 1.2.0'
 gem 'factory_girl_rails', '~> 4.3.0'
 gem 'validates_hostname', '~> 1.0.0', github: 'KimNorgaard/validates_hostname'
+gem 'paper_trail', '~> 3.0.0'
 
 # Interface
 gem 'mail_form', '~> 1.5.0'

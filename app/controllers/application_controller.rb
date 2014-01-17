@@ -64,4 +64,8 @@ class ApplicationController < ActionController::Base
     UserParameterSanitizer.new(User, :user, params)
   end
   
+  def user_for_paper_trail
+    current_user.to_paper_trail rescue 'Public'
+  end
+  
 end

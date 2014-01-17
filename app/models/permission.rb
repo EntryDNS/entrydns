@@ -1,5 +1,6 @@
 class Permission < ActiveRecord::Base
   stampable
+  has_paper_trail
   
   belongs_to :domain, :inverse_of => :permissions
   belongs_to :user, :inverse_of => :permissions
