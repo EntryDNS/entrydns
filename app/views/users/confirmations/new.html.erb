@@ -1,20 +1,27 @@
-<%= render :partial => "users/shared/links" %>
+<br>
 
 <div class="row">
-  <div class="col-lg-offset-4 col-lg-4 well">
+  <div class="col-md-3">
+    
+    <%= render 'users/shared/links' %>
+    
+  </div>
+  <div class="col-md-offset-2 col-md-4">
+    
+    <div class="well">
+      <%= simple_form_for(resource, 
+          as: resource_name,
+          url: confirmation_path(resource_name),
+          method: :post
+        ) do |f| %>
 
-    <%= simple_form_for(resource, 
-        as: resource_name,
-        url: confirmation_path(resource_name),
-        method: :post
-      ) do |f| %>
+        <%= devise_error_messages! %>
 
-      <%= devise_error_messages! %>
+        <%= f.input :email, required: true %>
 
-      <%= f.input :email, required: true %>
-
-      <%= f.submit "Resend confirmation instructions", class: 'btn btn-primary' %>
-    <% end %>
+        <%= f.submit "Resend confirmation instructions", class: 'btn btn-primary' %>
+      <% end %>
+    </div>
 
   </div>
 </div>

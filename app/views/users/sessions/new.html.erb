@@ -1,36 +1,43 @@
-<%= render 'users/shared/links' %>
+<br>
 
 <div class="row">
-  <div class="col-lg-offset-4 col-lg-4 well">
+  <div class="col-md-3">
+    
+    <%= render 'users/shared/links' %>
+    
+  </div>
+  <div class="col-md-offset-2 col-md-4">
+    
+    <div class="well">
+      <p>
+        <%= link_to user_omniauth_authorize_path(:google_oauth2),
+          class: 'btn btn-block btn-social btn-google-plus',
+          'data-no-turbolink' => true do %>
+          <i class="fa fa-google-plus"></i> Sign in with Google
+        <% end %>
+      </p>
 
-    <p>
-      <%= link_to user_omniauth_authorize_path(:google_oauth2),
-        class: 'btn btn-block btn-social btn-google-plus',
-        'data-no-turbolink' => true do %>
-        <i class="fa fa-google-plus"></i> Sign in with Google
+      <h5 class="text-info text-center text-separator">Or use the form below</h5>
+
+      <%= simple_form_for(resource,
+          as: resource_name,
+          url: session_path(resource_name)
+        ) do |f| %>
+
+        <%= f.input :email, required: true %>
+        <%= f.input :password, required: true %>
+        <% if devise_mapping.rememberable? -%>
+          <%= f.input :remember_me, as: :boolean %>
+        <% end -%>
+
+        <%= f.submit "Sign in", class: 'btn btn-primary' %>
+        <small>
+          or <%= link_to "Sign up", new_registration_path(resource_name) %>
+          / <%= link_to 'Forgot password', new_password_path(resource_name) %>
+        </small>
+
       <% end %>
-    </p>
-
-    <h5 class="text-info text-center text-separator">Or use the form below</h5>
-
-    <%= simple_form_for(resource,
-        as: resource_name,
-        url: session_path(resource_name)
-      ) do |f| %>
-
-      <%= f.input :email, required: true %>
-      <%= f.input :password, required: true %>
-      <% if devise_mapping.rememberable? -%>
-        <%= f.input :remember_me, as: :boolean %>
-      <% end -%>
-
-      <%= f.submit "Sign in", class: 'btn btn-primary' %>
-      <small>
-        or <%= link_to "Sign up", new_registration_path(resource_name) %>
-        / <%= link_to 'Forgot password', new_password_path(resource_name) %>
-      </small>
-
-    <% end %>
+    </div>
 
   </div>
 </div>

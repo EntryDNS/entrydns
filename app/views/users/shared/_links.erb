@@ -1,10 +1,22 @@
-<br />
-<% semantic_navigation :devise_nav, html: { class: 'nav nav-tabs nav-justified' } do |n| %>
-  <%= n.item "Sign in", link: new_session_path(resource_name) %>
-  <%= n.item "Sign up", link: new_registration_path(resource_name) %>
-  <%= n.item "Forgot password", link: new_password_path(resource_name),
-    highlights_on: [{ controller: 'devise/passwords' }] %>
-  <%= n.item "Resend confirmation instructions", link: new_confirmation_path(resource_name) %>
-  <%= n.item "Resend unlock instructions", link: new_unlock_path(resource_name) %>
-<% end %>
-</br>
+<div class="navbar navbar-vertical navbar-default navbar-links" role="navigation">
+  <div class="navbar-header">
+    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-links-collapse">
+      <span class="sr-only">Toggle navigation</span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+    </button>
+    <span class="navbar-brand visible-sm">Menu</span>
+  </div>
+
+  <div class="collapse navbar-collapse navbar-links-collapse">
+    <% semantic_navigation :devise_nav, html: { class: 'nav nav-stacked navbar-nav' } do |n| %>
+      <%= n.item "Sign in", link: new_session_path(resource_name) %>
+      <%= n.item "Sign up", link: new_registration_path(resource_name) %>
+      <%= n.item "Forgot password", link: new_password_path(resource_name),
+        highlights_on: [{ controller: 'devise/passwords' }] %>
+      <%= n.item "Resend confirmation instructions", link: new_confirmation_path(resource_name) %>
+      <%= n.item "Resend unlock instructions", link: new_unlock_path(resource_name) %>
+    <% end %>
+  </div>
+</div>
