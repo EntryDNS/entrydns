@@ -4,10 +4,10 @@
 
 <p>
   <%= link_to 'Confirm my account', 
-    confirmation_url(@resource, :confirmation_token => @resource.confirmation_token) %>
+    confirmation_url(@resource, :confirmation_token => @token) %>
 </p>
 
 <p>
   If you cannot see the link copy and paste the following address in your browser address bar:<br />
-  <%= confirmation_url(@resource, :confirmation_token => @resource.confirmation_token) %>
+  <%= confirmation_url(@resource, :confirmation_token => @token) %>
 </p>

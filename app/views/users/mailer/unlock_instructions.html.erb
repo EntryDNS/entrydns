@@ -4,9 +4,9 @@
 
 <p>Click the link below to unlock your account:</p>
 
-<p><%= link_to 'Unlock my account', unlock_url(@resource, :unlock_token => @resource.unlock_token) %></p>
+<p><%= link_to 'Unlock my account', unlock_url(@resource, :unlock_token => @token) %></p>
 
 <p>
   If you cannot see the link copy and paste the following address in your browser address bar:<br />
-  <%= unlock_url(@resource, :unlock_token => @resource.unlock_token) %>
+  <%= unlock_url(@resource, :unlock_token => @token) %>
 </p>
