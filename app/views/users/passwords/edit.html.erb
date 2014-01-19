@@ -1,16 +1,29 @@
-<%= render :partial => "users/shared/links" %>
+<br>
 
-<%= simple_form_for(resource,
-    as: resource_name,
-    url: password_path(resource_name),
-    method: :put
-  ) do |f| %>
-  <%= f.hidden_field :reset_password_token %>
-  
-  <%= devise_error_messages! %>
+<div class="row">
+  <div class="col-md-3">
+    
+    <%= render 'users/shared/links' %>
+    
+  </div>
+  <div class="col-md-offset-2 col-md-4">
+    
+    <div class="well">
+      <%= simple_form_for(resource,
+          as: resource_name,
+          url: password_path(resource_name),
+          method: :put
+        ) do |f| %>
+        <%= f.hidden_field :reset_password_token %>
 
-  <%= f.input :password, label: "New password" %>
-  <%= f.input :password_confirmation, label: "Confirm new password" %>
+        <%= devise_error_messages! %>
 
-  <%= f.submit "Change my password", class: 'btn btn-primary' %>
-<% end %>
+        <%= f.input :password, label: "New password" %>
+        <%= f.input :password_confirmation, label: "Confirm new password" %>
+
+        <%= f.submit "Change my password", class: 'btn btn-primary' %>
+      <% end %>
+    </div>
+
+  </div>
+</div>
