@@ -23,7 +23,7 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
     else raise "Bad provider data: #{auth.inspect}"
     end
     
-    if !user
+    if user.nil?
       user = User.new(user_attrs.merge(password: Devise.friendly_token[0,20]))
       user.skip_confirmation!
       user.save!(validate: false)
