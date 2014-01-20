@@ -2,11 +2,7 @@ class User < ActiveRecord::Base
   include SentientModel
   model_stamper
   stampable
-  has_paper_trail ignore: [
-    :updated_at, :sign_in_count,
-    :last_sign_in_at, :current_sign_in_at,
-    :last_sign_in_ip, :current_sign_in_ip
-  ]
+  has_paper_trail
   
   # Include default devise modules. Others available are:
   # :token_authenticatable, :encryptable, :timeoutable and :omniauthable
@@ -54,6 +50,13 @@ class User < ActiveRecord::Base
   
   def to_paper_trail
     "#{id} #{email} name:#{full_name} ip:#{current_sign_in_ip} last_ip:#{last_sign_in_ip}"
+  end
+  
+  # @override
+  def update_tracked_fields!(*)
+    self.paper_trail_event = "sign_in"
+    PaperTrail.whodunnit = to_paper_trail
+    super
   end
   
   delegate :can?, :cannot?, :to => :ability
