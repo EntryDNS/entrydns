@@ -65,7 +65,11 @@ class ApplicationController < ActionController::Base
   end
   
   def user_for_paper_trail
-    current_user.to_paper_trail rescue 'Public'
+    if user_signed_in?
+      current_user.to_paper_trail
+    else
+      "Public ip:#{client_remote_ip}"
+    end
   end
   
 end

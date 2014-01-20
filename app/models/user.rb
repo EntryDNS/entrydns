@@ -2,9 +2,11 @@ class User < ActiveRecord::Base
   include SentientModel
   model_stamper
   stampable
-  has_paper_trail ignore: [ :sign_in_count,
+  has_paper_trail ignore: [
+    :updated_at, :sign_in_count,
     :last_sign_in_at, :current_sign_in_at,
-    :last_sign_in_ip, :current_sign_in_ip ]
+    :last_sign_in_ip, :current_sign_in_ip
+  ]
   
   # Include default devise modules. Others available are:
   # :token_authenticatable, :encryptable, :timeoutable and :omniauthable
