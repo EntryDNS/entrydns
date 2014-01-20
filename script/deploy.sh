@@ -1,6 +1,8 @@
 #!/bin/bash
-
-server='master0.entrydns.net'
+if [[ $(whoami) != 'root' ]]; then
+  echo 'Must be run with sudo.'
+  exit 1
+fi
 
 if [[ $# != 1 ]]; then
   echo 'Specify rpm file to deploy'
@@ -9,7 +11,9 @@ else:
   package=${1}
 fi
 
-scp ${package} ${server}:/tmp
+yum update -y ${package}
+su - entrydns -c 'bundle exec rake db:migrate RAILS_ENV=production'
 
-ssh -t ${server} "sudo yum update -y /tmp/${package}"
-ssh -t ${server} "su - entrydns -c 'cd ${HOME} && bundle exec rake db:migrate RAILS_ENV=production'
+systemctl reload unicorn-entrydns.service
+
+systemctl status unicorn-entrydns.service
