@@ -48,6 +48,19 @@ class User < ActiveRecord::Base
     !active? ? :deactivated : super
   end
   
+  def ban!
+    self.class.transaction do
+      update_column :active, false
+      domains.each &:destroy
+      records.each &:destroy
+      permissions.each &:destroy
+    end
+  end
+  
+  def unban!
+    update_column :active, true
+  end
+  
   def to_paper_trail
     "#{id} #{email} name:#{full_name} ip:#{current_sign_in_ip} last_ip:#{last_sign_in_ip}"
   end

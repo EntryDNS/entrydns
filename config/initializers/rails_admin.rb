@@ -1,5 +1,5 @@
-# RailsAdmin config file. Generated on September 10, 2012 23:57
-# See github.com/sferik/rails_admin for more informations
+require 'rails_admin/config/actions/ban'
+require 'rails_admin/config/actions/unban'
 
 RailsAdmin.config do |config|
 
@@ -15,11 +15,13 @@ RailsAdmin.config do |config|
   # Or with a PaperTrail: (you need to install it first)
   # config.audit_with :paper_trail, Admin
 
+
   # Set the admin name here (optional second array element will appear in a beautiful RailsAdmin red ©)
   config.main_app_name = ['Entrydns', 'Admin']
   # or for a dynamic name:
   # config.main_app_name = Proc.new { |controller| [Rails.application.engine_name.titleize, controller.params['action'].titleize] }
 
+  config.authorize_with :cancan, AdminAbility
 
   #  ==> Global show view settings
   # Display empty fields in show views
@@ -35,8 +37,39 @@ RailsAdmin.config do |config|
 
   # Add models here if you want to go 'whitelist mode':
   config.included_models = [A, AAAA, Admin, CNAME, Domain, MX, NS, Permission, 
-    Record, SOA, SRV, TXT, User, BlacklistedDomain, PaperTrail::Version]
+    Record, SOA, SRV, TXT, User, Authentication, BlacklistedDomain, PaperTrail::Version]
 
+  config.model Authentication do |conf|
+    parent User
+  end
+
+  config.model Permission do |conf|
+    parent User
+  end
+  
+  config.model Record do |conf|
+    parent Domain
+  end
+  
+  config.actions do
+    # root actions
+    dashboard                     # mandatory
+    # collection actions 
+    index                         # mandatory
+    new
+    export
+    history_index
+    bulk_delete
+    # member actions
+    show
+    edit
+    delete
+    history_show
+    show_in_app
+    ban
+    unban
+  end
+  
   # Application wide tried label methods for models' instances
   # config.label_methods << :description # Default is [:name, :title]
 

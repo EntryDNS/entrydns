@@ -1,0 +1,15 @@
+en:
+  admin:
+    form:
+      are_you_sure_you_want_to_ban: "Are you sure you want to ban this %{model_name}"
+    actions:
+      ban:
+        menu: "Ban"
+        title: "Ban"
+        breadcrumb: "Ban"
+        done: "User successfully banned"
+      unban:
+        menu: "Unban"
+        title: "Unban"
+        breadcrumb: "Unban"
+        done: "User successfully unbanned"
