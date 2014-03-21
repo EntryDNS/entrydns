@@ -1,7 +1,7 @@
 domain: entrydns.net
 
 # framework
-secret_key_base: 0ce1f02a4b3fc4d1a1c8d22973b21e8589e9314dc338294953f0b985e3f44f12c8af74f2d9ba6f7c7bdb736c4efc5ea3f8135e23b1a036d033cd23331383ac75
+secret_key_base: [PLACEHOLDER]
 
 # deployment
 uses_proxy: true
@@ -34,5 +34,8 @@ honeypot: userid
 support_mail: "support@entrydns.net"
 news_link: "http://twitter.com/#!/entrydns"
 
-google_key: 105547277286.apps.googleusercontent.com
-google_secret: 7cIdW07UrWUmeb8QFYV4L63k
+google_key: [PLACEHOLDER]
+google_secret: [PLACEHOLDER]
+
+ses_access_key_id: [PLACEHOLDER]
+ses_secret_access_key: [PLACEHOLDER]

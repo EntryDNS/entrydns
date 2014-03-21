@@ -43,6 +43,7 @@ gem 'unicorn', '~> 4.6.3'
 gem 'dalli', '~> 2.7.0'
 gem 'json', '~> 1.8.0'
 gem 'rails_admin', '~> 0.6.1'
+gem 'aws-ses', '~> 0.5.0', :require => 'aws/ses'
 
 # Assets
 gem 'uglifier', '~> 2.4.0'
