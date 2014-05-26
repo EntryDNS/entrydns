@@ -1,7 +1,7 @@
 class UsersController < ApplicationController
   before_filter :authenticate_user!
-  before_filter :set_stampers
-  include Userstamp
+  before_filter :set_user_current
+  after_filter :unset_user_current
   layout :scoped_layout
 
   rescue_from CanCan::AccessDenied, ActiveScaffold::ActionNotAllowed do |exception|
@@ -11,9 +11,12 @@ class UsersController < ApplicationController
 
   protected
   
-  def set_stampers
+  def set_user_current
     User.current = current_user
-    User.stamper = current_user
+  end
+  
+  def unset_user_current
+    User.current = nil
   end
 
   def ensure_nested_under_domain

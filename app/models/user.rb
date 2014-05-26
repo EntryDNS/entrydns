@@ -1,7 +1,6 @@
 class User < ActiveRecord::Base
   include SentientModel
-  model_stamper
-  stampable
+  include Stampable
   has_paper_trail
   
   # Include default devise modules. Others available are:
@@ -80,10 +79,8 @@ class User < ActiveRecord::Base
   
   def self.do_as(user)
     self.current = user
-    self.stamper = user
     yield
     self.current = nil
-    self.reset_stamper
   end
   
   protected

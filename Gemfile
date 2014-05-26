@@ -1,11 +1,11 @@
 source 'http://rubygems.org'
 
 # Core
-gem 'rails', '4.1.1'
+gem 'rails', '4.0.5'
 gem 'mysql2', '~> 0.3.13'
 
 # Auth
-gem 'devise', '~> 3.2.2'
+gem 'devise', '~> 3.1.1'
 gem 'omniauth', '~> 1.2.1'
 gem 'omniauth-google-oauth2', '~> 0.2.2'
 gem 'cancan', '= 1.6.7'
@@ -14,7 +14,6 @@ gem 'switch_user', '~> 0.9.3'
 # ActiveRecord
 gem 'squeel', '~> 1.1.0'
 gem 'sentient_model', '~> 1.0.4'
-gem 'userstamp', '~> 2.0.2', github: 'kimkong/userstamp'
 gem 'nilify_blanks', '~> 1.0.2'
 gem 'active-model-email-validator', '~> 1.0.2'
 gem 'concerned_with', '~> 0.1.0'
@@ -38,7 +37,7 @@ gem 'rails_config', '~> 0.4.2'
 gem 'rails-settings-cached', '~> 0.4.0'
 
 # Other
-gem 'acts_as_nested_interval', '~> 0.1.0'
+gem 'acts_as_nested_interval', '~> 0.1.1'
 gem 'seedbank', '~> 0.3.0'
 gem 'unicorn', '~> 4.8.3'
 gem 'dalli', '~> 2.7.0'
