@@ -181,6 +181,8 @@ ActiveRecord::Schema.define(version: 20140526093613) do
     t.integer  "updator_id"
   end
 
+  add_index "versions", ["creator_id"], name: "index_versions_on_creator_id", using: :btree
   add_index "versions", ["item_type", "item_id"], name: "index_versions_on_item_type_and_item_id", using: :btree
+  add_index "versions", ["updator_id"], name: "index_versions_on_updator_id", using: :btree
 
 end
