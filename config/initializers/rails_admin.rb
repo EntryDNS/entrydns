@@ -7,7 +7,12 @@ RailsAdmin.config do |config|
   # require 'i18n'
   # I18n.default_locale = :de
 
-  config.current_user_method { current_admin } # auto-generated
+  RailsAdmin.config do |config|
+    config.authenticate_with do
+      warden.authenticate! scope: :admin
+    end
+    config.current_user_method &:current_admin
+  end
 
   # If you want to track changes on your models:
   # config.audit_with :history, Admin
