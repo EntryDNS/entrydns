@@ -162,7 +162,7 @@ describe Domain do
     subsubdomain.reload.depth.should == 2
   end
   
-  it "audits creations", focus: true do
+  it "audits creations" do
     PaperTrail.enabled = true
     User.current = user
     expect { domain }.to change(PaperTrail::Version, :count)
