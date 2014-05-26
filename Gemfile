@@ -24,7 +24,7 @@ gem 'paper_trail', '~> 3.0.0'
 
 # Interface
 gem 'mail_form', '~> 1.5.0'
-gem 'simple_form', '~> 3.1.0.rc1'
+gem 'simple_form', '~> 3.0.2'
 gem 'navigasmic', '~> 0.5.6', github: 'jejacks0n/navigasmic',
   tag: 'v0.5.6', ref: '1ffe437f279657c6fb87bb4b0215eb723df4ea7a'
 gem 'active_scaffold', '~> 3.4.0.rc', 
