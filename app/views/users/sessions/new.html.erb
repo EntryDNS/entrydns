@@ -27,7 +27,7 @@
         <%= f.input :email, required: true %>
         <%= f.input :password, required: true %>
         <% if devise_mapping.rememberable? -%>
-          <%= f.input :remember_me, as: :boolean %>
+          <div class="checkbox"><%= f.input :remember_me, as: :boolean %></div>
         <% end -%>
 
         <%= f.submit "Sign in", class: 'btn btn-primary' %>
