@@ -10,10 +10,10 @@ module Stampable
   end
   
   def set_creator_attribute
-    self.creator = User.current
+    self.creator = User.current unless creator_id?
   end
 
   def set_updator_attribute
-    self.updator = User.current
+    self.updator = User.current unless updator_id? && updator_id_changed?
   end
 end
