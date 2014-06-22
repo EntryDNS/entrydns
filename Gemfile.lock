@@ -10,18 +10,19 @@ GIT
       sqlite3-ruby
 
 GIT
+  remote: git://github.com/clyfe/active_scaffold.git
+  revision: 72f6cbdfce7661a29e5517e4562fb7a009826976
+  specs:
+    active_scaffold (3.4.0.rc)
+      rails (>= 3.2.6, < 5)
+
+GIT
   remote: git://github.com/jejacks0n/navigasmic.git
   revision: 1ffe437f279657c6fb87bb4b0215eb723df4ea7a
   ref: 1ffe437f279657c6fb87bb4b0215eb723df4ea7a
   tag: v0.5.6
   specs:
     navigasmic (0.5.6)
-
-PATH
-  remote: vendor/cache/active_scaffold
-  specs:
-    active_scaffold (3.4.0.rc)
-      rails (>= 3.2.6, < 5)
 
 GEM
   remote: http://rubygems.org/

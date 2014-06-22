@@ -28,8 +28,8 @@ gem 'simple_form', '~> 3.0.2'
 gem 'navigasmic', '~> 0.5.6', github: 'jejacks0n/navigasmic',
   tag: 'v0.5.6', ref: '1ffe437f279657c6fb87bb4b0215eb723df4ea7a'
 gem 'active_scaffold', '~> 3.4.0.rc', 
-  path: '/home/clyfe/dev/active_scaffold'
-  #github: 'clyfe/active_scaffold',
+  github: 'clyfe/active_scaffold'
+  # path: '/home/clyfe/dev/active_scaffold'
   #branch: 'fix-always-use-build_associated'
 
 # Config
