@@ -1,7 +1,7 @@
 source 'http://rubygems.org'
 
 # Core
-gem 'rails', '4.0.4'
+gem 'rails', '4.0.3'
 gem 'mysql2', '~> 0.3.13'
 
 # Auth
