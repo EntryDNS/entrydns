@@ -3,8 +3,8 @@ class AddNestedIntervalToDomains < ActiveRecord::Migration
     add_column :domains, :parent_id, :integer
     add_column :domains, :lftp, :integer, null: false, default: 0
     add_column :domains, :lftq, :integer, null: false, default: 0
-    add_column :domains, :rgtp, :integer, null: false
-    add_column :domains, :rgtq, :integer, null: false
+    add_column :domains, :rgtp, :integer, null: false, default: 0
+    add_column :domains, :rgtq, :integer, null: false, default: 0
     add_column :domains, :lft, :float, null: false, limit: 53
     add_column :domains, :rgt, :float, null: false, limit: 53
 

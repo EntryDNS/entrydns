@@ -67,8 +67,8 @@ ActiveRecord::Schema.define(version: 20140526093613) do
     t.integer  "parent_id"
     t.integer  "lftp",                        default: 0, null: false
     t.integer  "lftq",                        default: 0, null: false
-    t.integer  "rgtp",                                    null: false
-    t.integer  "rgtq",                                    null: false
+    t.integer  "rgtp",                        default: 0, null: false
+    t.integer  "rgtq",                        default: 0, null: false
     t.float    "lft",                                     null: false
     t.float    "rgt",                                     null: false
   end
