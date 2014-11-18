@@ -11,7 +11,7 @@ class SOA < Record
   
   validates :domain, :presence => true
   validates :domain_id, :uniqueness => true # one SOA per domain
-  validates :name, :presence => true, :hostname => true
+  validates :name, :presence => true, :hostname2 => true
   validate  :name_equals_domain_name
   validates :content, :presence => true
   validates :primary_ns, :presence => true

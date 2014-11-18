@@ -7,7 +7,7 @@
 class SRV < Record
   has_paper_trail
   
-  validates :name, :hostname => {:allow_underscore => true, :allow_wildcard_hostname => true}
+  validates :name, :hostname2 => {:allow_wildcard_hostname => true}
   validates :content, :format => /\A\d+ \d+ [A-Za-z0-9\-_.]+\z/
   # RFC 2872
   validates :prio, :presence => true, :numericality => {
@@ -25,10 +25,7 @@ class SRV < Record
     :less_than_or_equal_to => 65535,
     :only_integer => true
   }
-  validates :host, :presence => true, :hostname => {
-    :allow_underscore => true, 
-    :allow_wildcard_hostname => true
-  }
+  validates :host, :presence => true, :hostname2 => {:allow_wildcard_hostname => true}
   
   attr_accessor :weight, :port, :host
   

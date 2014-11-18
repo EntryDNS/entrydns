@@ -1,5 +1,16 @@
-# skips length validations
+# skips length validations, more permissive defaults
 class Hostname2Validator < PAK::ValidatesHostname::HostnameValidator
+  
+  def initialize(options)
+    opts = {
+      :allow_underscore        => true,
+      :require_valid_tld       => false,
+      :valid_tlds              => ALLOWED_TLDS,
+      :allow_numeric_hostname  => true,
+      :allow_wildcard_hostname => false
+    }.merge(options)
+    super(opts)
+  end
 
   def validate_each(record, attribute, value)
     value ||= ''

@@ -8,7 +8,7 @@
 class AAAA < Record
   has_paper_trail
   
-  validates :name, :hostname => {:allow_underscore => true, :allow_wildcard_hostname => true}
+  validates :name, :hostname2 => {:allow_wildcard_hostname => true}
   validates :content, :presence => true, :ip => {:ip_type => :v6}
   
 end

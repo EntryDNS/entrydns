@@ -22,8 +22,8 @@
 class NS < Record
   has_paper_trail
   
-  validates :name, :hostname => {:allow_underscore => true}
-  validates :content, :presence => true, :hostname => true #, :inclusion => {:in => Settings.ns}
+  validates :name, :hostname2 => true
+  validates :content, :presence => true, :hostname2 => true #, :inclusion => {:in => Settings.ns}
 
   def to_label; "#{content}" end
 end

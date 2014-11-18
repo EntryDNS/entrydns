@@ -11,7 +11,7 @@
 class TXT < Record
   has_paper_trail
   
-  validates :name, :hostname => {:allow_underscore => true, :allow_wildcard_hostname => true}
+  validates :name, :hostname2 => {:allow_wildcard_hostname => true}
   validates :content, :presence => true, :length => { :maximum => 255 }
   
   def to_label; type end

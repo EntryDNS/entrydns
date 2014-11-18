@@ -13,7 +13,7 @@
 class A < Record
   has_paper_trail
   
-  validates :name, :hostname => {:allow_underscore => true, :allow_wildcard_hostname => true}
+  validates :name, :hostname2 => {:allow_wildcard_hostname => true}
   validates :content, :presence => true, :ip => {:ip_type => :v4} # Only accept valid IPv4 addresses
 
   attr_accessor :host_domain
