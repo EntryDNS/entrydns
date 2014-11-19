@@ -9,4 +9,6 @@ RSpec.configure do |config|
   config.filter_run :focus => true
   config.run_all_when_everything_filtered = true
   config.order = "random"
+  
+  config.infer_spec_type_from_file_location!
 end

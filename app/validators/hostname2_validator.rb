@@ -5,7 +5,7 @@ class Hostname2Validator < PAK::ValidatesHostname::HostnameValidator
     opts = {
       :allow_underscore        => true,
       :require_valid_tld       => false,
-      :valid_tlds              => ALLOWED_TLDS,
+      :valid_tlds              => PAK::ValidatesHostname::ALLOWED_TLDS,
       :allow_numeric_hostname  => true,
       :allow_wildcard_hostname => false
     }.merge(options)

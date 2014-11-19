@@ -1,4 +1,6 @@
 class Domain < ActiveRecord::Base
+  include ActsAsNestedInterval
+  
   attr_accessor :parent_synced
   
   # this goes before acts_as_nested_interval call
@@ -10,7 +12,7 @@ class Domain < ActiveRecord::Base
   after_save :sync_children
   
   # this goes after sync_parent, to order callbacks correctly 
-  acts_as_nested_interval virtual_root: true
+  acts_as_nested_interval virtual_root: true, dependent: :nullify
   
   validate :domain_ownership
   def domain_ownership
@@ -59,6 +61,20 @@ class Domain < ActiveRecord::Base
   def sync_parent
     self.parent = parent_domain if !@parent_synced && new_parent?
   end
+  
+  # acts_as_nested_interval monkeypatch for lock
+  def update_nested_interval
+    changed = send(:"#{nested_interval_foreign_key}_changed?")
+    if !changed
+      db_self = self.class.lock(true).find(id)
+      write_attribute(nested_interval_foreign_key, db_self.read_attribute(nested_interval_foreign_key))
+      set_nested_interval db_self.lftp, db_self.lftq
+    else
+      # No locking in this case -- caller should have acquired table lock.
+      update_nested_interval_move
+    end
+  end
+  def connection; self.class.connection end
   
   protected
   

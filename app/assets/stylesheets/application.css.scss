@@ -13,6 +13,7 @@ $carousel-indicator-border-color: #333;
 $carousel-indicator-active-bg: #333;
 $grid-float-breakpoint: 992px;
 
+@import "bootstrap-sprockets";
 @import "bootstrap";
 @import "bootstrap/theme";
 @import "active_scaffold";

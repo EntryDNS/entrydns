@@ -69,8 +69,8 @@ ActiveRecord::Schema.define(version: 20140526093613) do
     t.integer  "lftq",                        default: 0, null: false
     t.integer  "rgtp",                        default: 0, null: false
     t.integer  "rgtq",                        default: 0, null: false
-    t.float    "lft",                                     null: false
-    t.float    "rgt",                                     null: false
+    t.float    "lft",             limit: 53,              null: false
+    t.float    "rgt",             limit: 53,              null: false
   end
 
   add_index "domains", ["lft"], name: "index_domains_on_lft", using: :btree

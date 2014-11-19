@@ -7,3 +7,9 @@ ActiveScaffold.set_defaults do |conf|
   # conf.cache_action_link_urls = false
   ActiveScaffold::Config::Mark.mark_all_mode = :page
 end
+
+ActiveScaffold::Bridges::PaperTrail.instance_eval do
+  def install?
+    false
+  end
+end
