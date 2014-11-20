@@ -10,6 +10,14 @@ GIT
       sqlite3-ruby
 
 GIT
+  remote: git://github.com/clyfe/active_scaffold.git
+  revision: edbf575a42813afe7632a00cee9515774e7e7555
+  branch: always_use_build
+  specs:
+    active_scaffold (3.4.9)
+      rails (>= 3.2.18, < 5)
+
+GIT
   remote: git://github.com/jejacks0n/navigasmic.git
   revision: 1ffe437f279657c6fb87bb4b0215eb723df4ea7a
   ref: 1ffe437f279657c6fb87bb4b0215eb723df4ea7a
@@ -33,8 +41,6 @@ GEM
       activesupport (= 4.1.8)
       builder (~> 3.1)
       erubis (~> 2.7.0)
-    active_scaffold (3.4.9)
-      rails (>= 3.2.18, < 5)
     activemodel (4.1.8)
       activesupport (= 4.1.8)
       builder (~> 3.1)
@@ -326,7 +332,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  active_scaffold (~> 3.4.9)
+  active_scaffold (~> 3.4.9)!
   acts_as_nested_interval (~> 0.1.1)
   aws-ses (~> 0.6.0)
   better_errors (= 2.0.0)
