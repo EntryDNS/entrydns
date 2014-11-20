@@ -67,7 +67,7 @@ describe Domain do
 
     User.do_as(user) do
       # stub a parent domain on another user account, with no permissions present
-      mock_domain = mock(
+      mock_domain = double(
         :user_id => user3.id, 
         :user => user3, 
         :name => 'x',

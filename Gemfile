@@ -73,6 +73,7 @@ group :test, :development do
   gem 'rspec-rails', '~> 3.1.0'
   gem 'rspec-its', '~> 1.1.0'
   gem 'rspec-collection_matchers', '~> 1.1.2'
+  gem 'rspec-mocks', '~> 3.1.3'
 end
 
 group :test do

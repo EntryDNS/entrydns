@@ -12,7 +12,7 @@ class Domain < ActiveRecord::Base
   after_save :sync_children
   
   # this goes after sync_parent, to order callbacks correctly 
-  acts_as_nested_interval virtual_root: true, dependent: :nullify
+  acts_as_nested_interval virtual_root: true, dependent: :restrict_with_error
   
   validate :domain_ownership
   def domain_ownership
