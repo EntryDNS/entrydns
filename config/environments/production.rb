@@ -83,4 +83,9 @@ Entrydns::Application.configure do
   
   # Compress JavaScripts and CSS
   config.assets.js_compressor = :uglifier
+  
+  # disable paper-trail in production
+  config.after_initialize do
+    PaperTrail.enabled = false
+  end
 end
