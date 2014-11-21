@@ -29,10 +29,13 @@ class Users::RecordsController < UsersController
       security_method: :a_record?, type: :member, position: false, confirm: 'Are you sure?'
   end
   include RecordsControllerCommon
-  skip_before_filter :ensure_nested_under_domain, :only => 'modify'
-  skip_before_filter :authenticate_user!, :only => 'modify'
+  with_options(:only => 'modify') do |c|
+    c.skip_before_filter :ensure_nested_under_domain
+    c.skip_before_filter :authenticate_user!
+    c.skip_before_filter :set_user_current
+    c.skip_authorize_resource
+  end
   protect_from_forgery :except => 'modify'
-  skip_authorize_resource :only => :modify
   
   MODIFY_ERROR = 'ERROR: only A records can be modified with this API'
   MODIFY_OK = 'OK'
