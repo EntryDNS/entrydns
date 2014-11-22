@@ -11,10 +11,10 @@ GIT
 
 GIT
   remote: git://github.com/clyfe/active_scaffold.git
-  revision: edbf575a42813afe7632a00cee9515774e7e7555
+  revision: 4415c56d5667e150b42a933bda97bbc847768d50
   branch: always_use_build
   specs:
-    active_scaffold (3.4.9)
+    active_scaffold (3.4.10)
       rails (>= 3.2.18, < 5)
 
 GIT

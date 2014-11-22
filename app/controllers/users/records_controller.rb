@@ -29,7 +29,7 @@ class Users::RecordsController < UsersController
       security_method: :a_record?, type: :member, position: false, confirm: 'Are you sure?'
   end
   include RecordsControllerCommon
-  with_options(:only => 'modify') do |c|
+  with_options(:only => :modify) do |c|
     c.skip_before_filter :ensure_nested_under_domain
     c.skip_before_filter :authenticate_user!
     c.skip_before_filter :set_user_current
@@ -46,9 +46,7 @@ class Users::RecordsController < UsersController
     return render(:text => MODIFY_ERROR) if @record.type != 'A'
     @record.content = params[:ip] || client_remote_ip
     @record.save!
-    respond_with(@record) do |format|
-      format.html {render(:text => MODIFY_OK)}
-    end
+    render(:text => MODIFY_OK)
   end
     
   protected
