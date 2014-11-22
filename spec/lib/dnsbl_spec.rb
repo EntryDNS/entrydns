@@ -1,5 +1,7 @@
 require 'spec_helper'
 
+__END__
+
 describe Dnsbl do
   include_context "data"
 

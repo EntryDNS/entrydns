@@ -10,6 +10,6 @@ class BlacklistedDomain < ActiveRecord::Base
   }
   
   def self.include?(domain_name)
-    of(domain_name).exists? || Dnsbl.include?(domain_name)
+    of(domain_name).exists? # || Dnsbl.include?(domain_name)
   end
 end
