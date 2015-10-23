@@ -9,7 +9,7 @@
 #
 class CNAME < Record
   has_paper_trail
-  
+
   validates :name, :hostname2 =>  {:allow_wildcard_hostname => true}
   validates :content, :presence => true, :length => { :maximum => 20000 }, :hostname2 => true
 

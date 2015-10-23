@@ -28,9 +28,9 @@ Entrydns::Application.configure do
   config.action_mailer.delivery_method = :letter_opener
   # config.action_mailer.delivery_method = :smtp
   # config.action_mailer.smtp_settings = { address: "localhost", port: 1025 }
-  
+
   config.eager_load = false
-  
+
   config.after_initialize do
     Bullet.enable = true
     Bullet.alert = true

@@ -1,9 +1,9 @@
 module Entrydns
   module TestHelpers
-    
+
 #    def make_user
 #    end
-    
+
   end
 end
 

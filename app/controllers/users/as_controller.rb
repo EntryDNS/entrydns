@@ -12,7 +12,7 @@ class Users::AsController < UsersController
       type: :member, position: false, confirm: 'Are you sure?'
   end
   include RecordsControllerCommon
-  
+
   def new_token
     process_action_link_action do |record|
       record.instance_variable_set(:@readonly, false)
@@ -23,13 +23,13 @@ class Users::AsController < UsersController
       end
     end
   end
-  
+
   protected
-  
+
   def beginning_of_chain
     (nested_via_records? ? nested_parent_record.a_records : super).readonly(false)
   end
-  
+
   # override, we make our own sti logic
   def new_model
     record = beginning_of_chain.new

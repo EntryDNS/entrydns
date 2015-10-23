@@ -49,7 +49,7 @@ Entrydns::Application.configure do
     :expires_in => 1.day,
     :compress => true
   }
-  
+
   # Enable serving of images, stylesheets, and JavaScripts from an asset server
   # config.action_controller.asset_host = "http://assets.example.com"
 
@@ -68,7 +68,7 @@ Entrydns::Application.configure do
 
   # Send deprecation notices to registered listeners
   config.active_support.deprecation = :notify
-  
+
   ActionMailer::Base.add_delivery_method :ses, AWS::SES::Base,
     :access_key_id     => Settings.ses_access_key_id,
     :secret_access_key => Settings.ses_secret_access_key
@@ -80,10 +80,10 @@ Entrydns::Application.configure do
   #    :domain  => 'entrydns.net'
   #  }
   config.action_mailer.delivery_method = :ses
-  
+
   # Compress JavaScripts and CSS
   config.assets.js_compressor = :uglifier
-  
+
   # disable paper-trail in production
   config.after_initialize do
     PaperTrail.enabled = false

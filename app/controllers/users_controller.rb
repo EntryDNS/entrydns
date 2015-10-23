@@ -10,11 +10,11 @@ class UsersController < ApplicationController
   end
 
   protected
-  
+
   def set_user_current
     User.current = current_user
   end
-  
+
   def unset_user_current
     User.current = nil
   end

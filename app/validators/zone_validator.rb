@@ -6,9 +6,9 @@ class ZoneValidator < ActiveModel::Validator
     record.errors.add(:mname, options[:message] || :mname) if mname_is_zone_name?(record)
     record.errors.add(:base,  options[:message] || :missing_ns_record) unless has_two_ns_rr?(record)
     record.errors.add(:mname, options[:message] || :not_a_defined_nameserver) unless mname_is_a_defined_nameserver?(record)
-    record.errors.add(:base,  options[:message] || :duplicate_nameservers_found) unless nameservers_are_unique?(record)    
+    record.errors.add(:base,  options[:message] || :duplicate_nameservers_found) unless nameservers_are_unique?(record)
   end
-  
+
 private
   # Check if the zone name equals the primary nameserver
   # @param [Zone] record The Zone to check
@@ -16,14 +16,14 @@ private
   def mname_is_zone_name?(zone)
     zone.name == zone.mname
   end
-  
+
   # Check if the zone has at least two associated NS resource records
   # @param [Zone] zone The Zone to check
   # @return [Boolean] True if the zone has at least two associated NS resource records
   def has_two_ns_rr?(zone)
     zone.ns_resource_records.length >= 2
   end
-  
+
   # Check if the primary nameserver of the zone is defined as one of the
   #   associated NS resource records
   # @param [Zone] zone The Zone to check

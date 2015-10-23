@@ -15,7 +15,7 @@ set :ssh_options, :forward_agent => true
 set :deploy_via, :remote_cache
 # set :branch, "master"
 # set :scm_verbose, true
-# set :git_enable_submodules, 
+# set :git_enable_submodules,
 # set :scm_passphrase, "passwd0" # the deploy user's password
 
 after 'deploy:update_code', 'deploy:symlink_database_yml'
@@ -44,7 +44,7 @@ namespace :deploy do
   task :restart, :roles => :app, :except => { :no_release => true } do
     run "touch #{current_release}/tmp/restart.txt"
   end
-  
+
   desc "Symlinks the database.yml"
   task :symlink_database_yml, :roles => :app do
     run "ln -nfs #{deploy_to}/shared/config/database.yml #{release_path}/config/database.yml"
@@ -54,7 +54,7 @@ namespace :deploy do
   task :symlink_settings_yml, :roles => :app do
     run "ln -nfs #{deploy_to}/shared/config/settings.yml #{release_path}/config/settings.yml"
   end
-  
+
   desc "Populates the Production Database"
   task :seed do
     run "cd #{current_path}; #{rake} db:seed RAILS_ENV=production"

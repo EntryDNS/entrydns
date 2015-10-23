@@ -12,15 +12,15 @@ class Users::PermissionsController < UsersController
       including it's records, it's subdomains and their records.
     DOC
     conf.create.link.label = 'Share Domain'
-    
+
     # conf.columns[:user_email].search_sql = 'user.email'
     # conf.columns[:user].search_sql = 'full_name'
   end
   before_filter :ensure_nested_under_domain
-  
+
   protected
-  
+
   def beginning_of_chain
     super.readonly(false)
   end
-end 
+end

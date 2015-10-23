@@ -2,7 +2,7 @@ module Users::DomainsHelper
   def domain_list_row_class(record)
     cannot?(:crud_permissions, record) ? "shared-domain" : ''
   end
-  
+
   # Indents and dedents to create a tree structure,
   # assuming that the records are sorted in preorder.
   # Adds a visual cue if the record is shared via permissions feature.

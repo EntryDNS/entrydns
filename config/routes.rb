@@ -1,5 +1,5 @@
 Entrydns::Application.routes.draw do
-  
+
   mount RailsAdmin::Engine => '/rails_admin', as: 'rails_admin'
 
   devise_for :admins
@@ -8,13 +8,13 @@ Entrydns::Application.routes.draw do
     registrations: 'users/registrations',
     omniauth_callbacks: 'users/omniauth_callbacks'
   }
-    
+
   scope module: 'users' do
-  
+
     resources :authentications do
       as_routes
     end
-    
+
     resources :domains do
       as_routes
     end
@@ -26,7 +26,7 @@ Entrydns::Application.routes.draw do
       end
     end
 
-    match '/records/modify/:authentication_token', to: 'records#modify', 
+    match '/records/modify/:authentication_token', to: 'records#modify',
       as: :modify_record, via: [:get, :post, :put]
     resources :records do
       as_routes
@@ -70,11 +70,11 @@ Entrydns::Application.routes.draw do
     resources :permissions do
       as_routes
     end
-    
+
   end
 
   scope module: 'public' do
-    
+
     resources :pages, only: :show, path: ''
     post 'contact', to: 'pages#contact'
 

@@ -7,7 +7,7 @@ class Admin < ActiveRecord::Base
 
   # Setup accessible (or protected) attributes for your model
   # attr_accessible :email, :password, :password_confirmation, :remember_me
-  
+
   # Called by Devise to see if an user can currently be signed in
   def active_for_authentication?
     active? && super
@@ -17,5 +17,5 @@ class Admin < ActiveRecord::Base
   def inactive_message
     !active? ? :deactivated : super
   end
-  
+
 end

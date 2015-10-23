@@ -1,7 +1,7 @@
 class Users::PermissionMailer < ActionMailer::Base
   layout "emails"
   default from: Settings.support_mail
-  
+
   def created(permission)
     @permission = permission
     mail(

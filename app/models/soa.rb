@@ -8,7 +8,7 @@
 #
 class SOA < Record
   has_paper_trail
-  
+
   validates :domain, :presence => true
   validates :domain_id, :uniqueness => true # one SOA per domain
   validates :name, :presence => true, :hostname2 => true
@@ -21,7 +21,7 @@ class SOA < Record
   before_validation :assemble_content
   before_update :update_serial
   after_initialize :disassemble_content
-  
+
   before_validation do
     self.primary_ns ||= domain.ns_records.first.try(:content)
   end
@@ -54,7 +54,7 @@ class SOA < Record
     return if content_changed?
     compute_serial
   end
-  
+
   def reset_serial
     @serial = nil
     compute_serial
@@ -65,16 +65,16 @@ class SOA < Record
     update_serial
     save!
   end
-  
+
   # if SOA record's primary NS is among it's domain's NS records
   def ns?
     domain.has_ns?(primary_ns)
   end
 
   def to_label; "#{primary_ns} #{contact}" end
-  
+
   private
-  
+
   def assemble_content
     self.content = "#{@primary_ns} #{@contact} #{@serial}".strip
   end
@@ -85,12 +85,12 @@ class SOA < Record
     @serial = @serial.to_i unless @serial.nil?
     update_serial if @serial.nil? || @serial.zero?
   end
-  
+
   def compute_serial
     date_serial = Time.now.strftime( "%Y%m%d00" ).to_i
-    @serial = (@serial.nil? || date_serial > @serial) ? date_serial : @serial + 1    
+    @serial = (@serial.nil? || date_serial > @serial) ? date_serial : @serial + 1
   end
-  
+
 end
 
 Soa = SOA

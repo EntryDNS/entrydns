@@ -19,7 +19,7 @@ class Users::HostsController < UsersController
     conf.action_links.add 'new_token', label: 'New Token', method: :put,
       type: :member, position: false, confirm: 'Are you sure?'
   end
-  
+
   def new_token
     process_action_link_action do |record|
       record.instance_variable_set(:@readonly, false)
@@ -30,22 +30,22 @@ class Users::HostsController < UsersController
       end
     end
   end
-  
+
   protected
 
   def new_model
     record = super
-    record.content = client_remote_ip    
+    record.content = client_remote_ip
     before_create_save(record)
     record
   end
-  
+
   def beginning_of_chain
     super.includes(:domain).
       where(:domains => {:name => Settings.host_domains}).
       readonly(false)
   end
-  
+
   def before_create_save(record)
     record.user = current_user
   end

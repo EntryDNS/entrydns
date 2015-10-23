@@ -9,20 +9,20 @@ module Squeel
     class PredicateVisitor < Visitor
       def visit_String(o, parent)
         Arel::Nodes::SqlLiteral.new(o)
-      end      
+      end
     end
   end
 end
 
 module CanCan
-  
+
   module ModelAdapters
     class ActiveRecordAdapter < AbstractAdapter
 
       def self.override_condition_matching?(subject, name, value)
         name.kind_of?(Squeel::Nodes::Predicate) if defined? Squeel
       end
-      
+
       def self.matches_condition?(subject, name, value)
         subject_value = subject.send(name.expr)
         method_name = name.method_name.to_s
@@ -34,7 +34,7 @@ module CanCan
           squeel_match? subject_value, name.method_name, value
         end
       end
-      
+
       def self.squeel_match?(subject_value, method, value)
         case method.to_sym
         when :eq      then subject_value == value
@@ -67,9 +67,9 @@ module CanCan
           end
         end
       end
-      
+
       private
-      
+
       # override to fix overwrites
       # do not write existing hashes using empty hashes
       def merge_joins(base, add)
@@ -84,7 +84,7 @@ module CanCan
 
     end
   end
-  
+
   class Rule # allow Squeel
     def matches_conditions_hash?(subject, conditions = @conditions)
       return true if conditions.empty?
@@ -114,7 +114,7 @@ module CanCan
         end
       end
     end
-    
+
   end
-  
+
 end

@@ -41,7 +41,7 @@ RailsAdmin.config do |config|
   # config.excluded_models = [A, AAAA, Admin, CNAME, Domain, MX, NS, Permission, Record, SOA, SRV, TXT, User]
 
   # Add models here if you want to go 'whitelist mode':
-  config.included_models = [A, AAAA, Admin, CNAME, Domain, MX, NS, Permission, 
+  config.included_models = [A, AAAA, Admin, CNAME, Domain, MX, NS, Permission,
     Record, SOA, SRV, TXT, User, Authentication, BlacklistedDomain, PaperTrail::Version]
 
   config.model Authentication do |conf|
@@ -51,15 +51,15 @@ RailsAdmin.config do |config|
   config.model Permission do |conf|
     parent User
   end
-  
+
   config.model Record do |conf|
     parent Domain
   end
-  
+
   config.actions do
     # root actions
     dashboard                     # mandatory
-    # collection actions 
+    # collection actions
     index                         # mandatory
     new
     export
@@ -74,7 +74,7 @@ RailsAdmin.config do |config|
     ban
     unban
   end
-  
+
   # Application wide tried label methods for models' instances
   # config.label_methods << :description # Default is [:name, :title]
 
@@ -121,25 +121,25 @@ RailsAdmin.config do |config|
   config.model Setting do
     configure :value, :text
   end
-  
+
   # config.model A do
   #   # Found associations:
-  #     configure :domain, :belongs_to_association 
-  #     configure :user, :belongs_to_association 
+  #     configure :domain, :belongs_to_association
+  #     configure :user, :belongs_to_association
   #     configure :creator, :belongs_to_association   #   # Found columns:
-  #     configure :id, :integer 
-  #     configure :domain_id, :integer         # Hidden 
-  #     configure :name, :string 
-  #     configure :type, :string 
-  #     configure :content, :string 
-  #     configure :ttl, :integer 
-  #     configure :prio, :integer 
-  #     configure :change_date, :integer 
-  #     configure :authentication_token, :string 
-  #     configure :created_at, :datetime 
-  #     configure :updated_at, :datetime 
-  #     configure :user_id, :integer         # Hidden 
-  #     configure :creator_id, :integer         # Hidden 
+  #     configure :id, :integer
+  #     configure :domain_id, :integer         # Hidden
+  #     configure :name, :string
+  #     configure :type, :string
+  #     configure :content, :string
+  #     configure :ttl, :integer
+  #     configure :prio, :integer
+  #     configure :change_date, :integer
+  #     configure :authentication_token, :string
+  #     configure :created_at, :datetime
+  #     configure :updated_at, :datetime
+  #     configure :user_id, :integer         # Hidden
+  #     configure :creator_id, :integer         # Hidden
   #     configure :updator_id, :integer   #   # Sections:
   #   list do; end
   #   export do; end
@@ -150,22 +150,22 @@ RailsAdmin.config do |config|
   # end
   # config.model AAAA do
   #   # Found associations:
-  #     configure :domain, :belongs_to_association 
-  #     configure :user, :belongs_to_association 
+  #     configure :domain, :belongs_to_association
+  #     configure :user, :belongs_to_association
   #     configure :creator, :belongs_to_association   #   # Found columns:
-  #     configure :id, :integer 
-  #     configure :domain_id, :integer         # Hidden 
-  #     configure :name, :string 
-  #     configure :type, :string 
-  #     configure :content, :string 
-  #     configure :ttl, :integer 
-  #     configure :prio, :integer 
-  #     configure :change_date, :integer 
-  #     configure :authentication_token, :string 
-  #     configure :created_at, :datetime 
-  #     configure :updated_at, :datetime 
-  #     configure :user_id, :integer         # Hidden 
-  #     configure :creator_id, :integer         # Hidden 
+  #     configure :id, :integer
+  #     configure :domain_id, :integer         # Hidden
+  #     configure :name, :string
+  #     configure :type, :string
+  #     configure :content, :string
+  #     configure :ttl, :integer
+  #     configure :prio, :integer
+  #     configure :change_date, :integer
+  #     configure :authentication_token, :string
+  #     configure :created_at, :datetime
+  #     configure :updated_at, :datetime
+  #     configure :user_id, :integer         # Hidden
+  #     configure :creator_id, :integer         # Hidden
   #     configure :updator_id, :integer   #   # Sections:
   #   list do; end
   #   export do; end
@@ -177,19 +177,19 @@ RailsAdmin.config do |config|
   # config.model Admin do
   #   # Found associations:
   #   # Found columns:
-  #     configure :id, :integer 
-  #     configure :email, :string 
-  #     configure :password, :password         # Hidden 
-  #     configure :password_confirmation, :password         # Hidden 
-  #     configure :reset_password_token, :string         # Hidden 
-  #     configure :reset_password_sent_at, :datetime 
-  #     configure :remember_created_at, :datetime 
-  #     configure :sign_in_count, :integer 
-  #     configure :current_sign_in_at, :datetime 
-  #     configure :last_sign_in_at, :datetime 
-  #     configure :current_sign_in_ip, :string 
-  #     configure :last_sign_in_ip, :string 
-  #     configure :created_at, :datetime 
+  #     configure :id, :integer
+  #     configure :email, :string
+  #     configure :password, :password         # Hidden
+  #     configure :password_confirmation, :password         # Hidden
+  #     configure :reset_password_token, :string         # Hidden
+  #     configure :reset_password_sent_at, :datetime
+  #     configure :remember_created_at, :datetime
+  #     configure :sign_in_count, :integer
+  #     configure :current_sign_in_at, :datetime
+  #     configure :last_sign_in_at, :datetime
+  #     configure :current_sign_in_ip, :string
+  #     configure :last_sign_in_ip, :string
+  #     configure :created_at, :datetime
   #     configure :updated_at, :datetime   #   # Sections:
   #   list do; end
   #   export do; end
@@ -200,22 +200,22 @@ RailsAdmin.config do |config|
   # end
   # config.model CNAME do
   #   # Found associations:
-  #     configure :domain, :belongs_to_association 
-  #     configure :user, :belongs_to_association 
+  #     configure :domain, :belongs_to_association
+  #     configure :user, :belongs_to_association
   #     configure :creator, :belongs_to_association   #   # Found columns:
-  #     configure :id, :integer 
-  #     configure :domain_id, :integer         # Hidden 
-  #     configure :name, :string 
-  #     configure :type, :string 
-  #     configure :content, :string 
-  #     configure :ttl, :integer 
-  #     configure :prio, :integer 
-  #     configure :change_date, :integer 
-  #     configure :authentication_token, :string 
-  #     configure :created_at, :datetime 
-  #     configure :updated_at, :datetime 
-  #     configure :user_id, :integer         # Hidden 
-  #     configure :creator_id, :integer         # Hidden 
+  #     configure :id, :integer
+  #     configure :domain_id, :integer         # Hidden
+  #     configure :name, :string
+  #     configure :type, :string
+  #     configure :content, :string
+  #     configure :ttl, :integer
+  #     configure :prio, :integer
+  #     configure :change_date, :integer
+  #     configure :authentication_token, :string
+  #     configure :created_at, :datetime
+  #     configure :updated_at, :datetime
+  #     configure :user_id, :integer         # Hidden
+  #     configure :creator_id, :integer         # Hidden
   #     configure :updator_id, :integer   #   # Sections:
   #   list do; end
   #   export do; end
@@ -226,41 +226,41 @@ RailsAdmin.config do |config|
   # end
   # config.model Domain do
   #   # Found associations:
-  #     configure :user, :belongs_to_association 
-  #     configure :creator, :belongs_to_association 
-  #     configure :parent, :belongs_to_association 
-  #     configure :records, :has_many_association 
-  #     configure :permissions, :has_many_association 
-  #     configure :permitted_users, :has_many_association 
-  #     configure :soa_record, :has_one_association 
-  #     configure :soa_records, :has_many_association 
-  #     configure :ns_records, :has_many_association 
-  #     configure :a_records, :has_many_association 
-  #     configure :mx_records, :has_many_association 
-  #     configure :txt_records, :has_many_association 
-  #     configure :cname_records, :has_many_association 
-  #     configure :aaaa_records, :has_many_association 
-  #     configure :srv_records, :has_many_association 
+  #     configure :user, :belongs_to_association
+  #     configure :creator, :belongs_to_association
+  #     configure :parent, :belongs_to_association
+  #     configure :records, :has_many_association
+  #     configure :permissions, :has_many_association
+  #     configure :permitted_users, :has_many_association
+  #     configure :soa_record, :has_one_association
+  #     configure :soa_records, :has_many_association
+  #     configure :ns_records, :has_many_association
+  #     configure :a_records, :has_many_association
+  #     configure :mx_records, :has_many_association
+  #     configure :txt_records, :has_many_association
+  #     configure :cname_records, :has_many_association
+  #     configure :aaaa_records, :has_many_association
+  #     configure :srv_records, :has_many_association
   #     configure :children, :has_many_association   #   # Found columns:
-  #     configure :id, :integer 
-  #     configure :user_id, :integer         # Hidden 
-  #     configure :name, :string 
-  #     configure :master, :string 
-  #     configure :last_check, :integer 
-  #     configure :type, :string 
-  #     configure :notified_serial, :integer 
-  #     configure :account, :string 
-  #     configure :created_at, :datetime 
-  #     configure :updated_at, :datetime 
-  #     configure :name_reversed, :string 
-  #     configure :creator_id, :integer         # Hidden 
-  #     configure :updator_id, :integer 
-  #     configure :parent_id, :integer         # Hidden 
-  #     configure :lftp, :integer 
-  #     configure :lftq, :integer 
-  #     configure :rgtp, :integer 
-  #     configure :rgtq, :integer 
-  #     configure :lft, :float 
+  #     configure :id, :integer
+  #     configure :user_id, :integer         # Hidden
+  #     configure :name, :string
+  #     configure :master, :string
+  #     configure :last_check, :integer
+  #     configure :type, :string
+  #     configure :notified_serial, :integer
+  #     configure :account, :string
+  #     configure :created_at, :datetime
+  #     configure :updated_at, :datetime
+  #     configure :name_reversed, :string
+  #     configure :creator_id, :integer         # Hidden
+  #     configure :updator_id, :integer
+  #     configure :parent_id, :integer         # Hidden
+  #     configure :lftp, :integer
+  #     configure :lftq, :integer
+  #     configure :rgtp, :integer
+  #     configure :rgtq, :integer
+  #     configure :lft, :float
   #     configure :rgt, :float   #   # Sections:
   #   list do; end
   #   export do; end
@@ -271,22 +271,22 @@ RailsAdmin.config do |config|
   # end
   # config.model MX do
   #   # Found associations:
-  #     configure :domain, :belongs_to_association 
-  #     configure :user, :belongs_to_association 
+  #     configure :domain, :belongs_to_association
+  #     configure :user, :belongs_to_association
   #     configure :creator, :belongs_to_association   #   # Found columns:
-  #     configure :id, :integer 
-  #     configure :domain_id, :integer         # Hidden 
-  #     configure :name, :string 
-  #     configure :type, :string 
-  #     configure :content, :string 
-  #     configure :ttl, :integer 
-  #     configure :prio, :integer 
-  #     configure :change_date, :integer 
-  #     configure :authentication_token, :string 
-  #     configure :created_at, :datetime 
-  #     configure :updated_at, :datetime 
-  #     configure :user_id, :integer         # Hidden 
-  #     configure :creator_id, :integer         # Hidden 
+  #     configure :id, :integer
+  #     configure :domain_id, :integer         # Hidden
+  #     configure :name, :string
+  #     configure :type, :string
+  #     configure :content, :string
+  #     configure :ttl, :integer
+  #     configure :prio, :integer
+  #     configure :change_date, :integer
+  #     configure :authentication_token, :string
+  #     configure :created_at, :datetime
+  #     configure :updated_at, :datetime
+  #     configure :user_id, :integer         # Hidden
+  #     configure :creator_id, :integer         # Hidden
   #     configure :updator_id, :integer   #   # Sections:
   #   list do; end
   #   export do; end
@@ -297,22 +297,22 @@ RailsAdmin.config do |config|
   # end
   # config.model NS do
   #   # Found associations:
-  #     configure :domain, :belongs_to_association 
-  #     configure :user, :belongs_to_association 
+  #     configure :domain, :belongs_to_association
+  #     configure :user, :belongs_to_association
   #     configure :creator, :belongs_to_association   #   # Found columns:
-  #     configure :id, :integer 
-  #     configure :domain_id, :integer         # Hidden 
-  #     configure :name, :string 
-  #     configure :type, :string 
-  #     configure :content, :string 
-  #     configure :ttl, :integer 
-  #     configure :prio, :integer 
-  #     configure :change_date, :integer 
-  #     configure :authentication_token, :string 
-  #     configure :created_at, :datetime 
-  #     configure :updated_at, :datetime 
-  #     configure :user_id, :integer         # Hidden 
-  #     configure :creator_id, :integer         # Hidden 
+  #     configure :id, :integer
+  #     configure :domain_id, :integer         # Hidden
+  #     configure :name, :string
+  #     configure :type, :string
+  #     configure :content, :string
+  #     configure :ttl, :integer
+  #     configure :prio, :integer
+  #     configure :change_date, :integer
+  #     configure :authentication_token, :string
+  #     configure :created_at, :datetime
+  #     configure :updated_at, :datetime
+  #     configure :user_id, :integer         # Hidden
+  #     configure :creator_id, :integer         # Hidden
   #     configure :updator_id, :integer   #   # Sections:
   #   list do; end
   #   export do; end
@@ -323,15 +323,15 @@ RailsAdmin.config do |config|
   # end
   # config.model Permission do
   #   # Found associations:
-  #     configure :domain, :belongs_to_association 
-  #     configure :user, :belongs_to_association 
+  #     configure :domain, :belongs_to_association
+  #     configure :user, :belongs_to_association
   #     configure :creator, :belongs_to_association   #   # Found columns:
-  #     configure :id, :integer 
-  #     configure :domain_id, :integer         # Hidden 
-  #     configure :user_id, :integer         # Hidden 
-  #     configure :created_at, :datetime 
-  #     configure :updated_at, :datetime 
-  #     configure :creator_id, :integer         # Hidden 
+  #     configure :id, :integer
+  #     configure :domain_id, :integer         # Hidden
+  #     configure :user_id, :integer         # Hidden
+  #     configure :created_at, :datetime
+  #     configure :updated_at, :datetime
+  #     configure :creator_id, :integer         # Hidden
   #     configure :updator_id, :integer   #   # Sections:
   #   list do; end
   #   export do; end
@@ -342,22 +342,22 @@ RailsAdmin.config do |config|
   # end
   # config.model Record do
   #   # Found associations:
-  #     configure :domain, :belongs_to_association 
-  #     configure :user, :belongs_to_association 
+  #     configure :domain, :belongs_to_association
+  #     configure :user, :belongs_to_association
   #     configure :creator, :belongs_to_association   #   # Found columns:
-  #     configure :id, :integer 
-  #     configure :domain_id, :integer         # Hidden 
-  #     configure :name, :string 
-  #     configure :type, :string 
-  #     configure :content, :string 
-  #     configure :ttl, :integer 
-  #     configure :prio, :integer 
-  #     configure :change_date, :integer 
-  #     configure :authentication_token, :string 
-  #     configure :created_at, :datetime 
-  #     configure :updated_at, :datetime 
-  #     configure :user_id, :integer         # Hidden 
-  #     configure :creator_id, :integer         # Hidden 
+  #     configure :id, :integer
+  #     configure :domain_id, :integer         # Hidden
+  #     configure :name, :string
+  #     configure :type, :string
+  #     configure :content, :string
+  #     configure :ttl, :integer
+  #     configure :prio, :integer
+  #     configure :change_date, :integer
+  #     configure :authentication_token, :string
+  #     configure :created_at, :datetime
+  #     configure :updated_at, :datetime
+  #     configure :user_id, :integer         # Hidden
+  #     configure :creator_id, :integer         # Hidden
   #     configure :updator_id, :integer   #   # Sections:
   #   list do; end
   #   export do; end
@@ -368,22 +368,22 @@ RailsAdmin.config do |config|
   # end
   # config.model SOA do
   #   # Found associations:
-  #     configure :domain, :belongs_to_association 
-  #     configure :user, :belongs_to_association 
+  #     configure :domain, :belongs_to_association
+  #     configure :user, :belongs_to_association
   #     configure :creator, :belongs_to_association   #   # Found columns:
-  #     configure :id, :integer 
-  #     configure :domain_id, :integer         # Hidden 
-  #     configure :name, :string 
-  #     configure :type, :string 
-  #     configure :content, :string 
-  #     configure :ttl, :integer 
-  #     configure :prio, :integer 
-  #     configure :change_date, :integer 
-  #     configure :authentication_token, :string 
-  #     configure :created_at, :datetime 
-  #     configure :updated_at, :datetime 
-  #     configure :user_id, :integer         # Hidden 
-  #     configure :creator_id, :integer         # Hidden 
+  #     configure :id, :integer
+  #     configure :domain_id, :integer         # Hidden
+  #     configure :name, :string
+  #     configure :type, :string
+  #     configure :content, :string
+  #     configure :ttl, :integer
+  #     configure :prio, :integer
+  #     configure :change_date, :integer
+  #     configure :authentication_token, :string
+  #     configure :created_at, :datetime
+  #     configure :updated_at, :datetime
+  #     configure :user_id, :integer         # Hidden
+  #     configure :creator_id, :integer         # Hidden
   #     configure :updator_id, :integer   #   # Sections:
   #   list do; end
   #   export do; end
@@ -394,22 +394,22 @@ RailsAdmin.config do |config|
   # end
   # config.model SRV do
   #   # Found associations:
-  #     configure :domain, :belongs_to_association 
-  #     configure :user, :belongs_to_association 
+  #     configure :domain, :belongs_to_association
+  #     configure :user, :belongs_to_association
   #     configure :creator, :belongs_to_association   #   # Found columns:
-  #     configure :id, :integer 
-  #     configure :domain_id, :integer         # Hidden 
-  #     configure :name, :string 
-  #     configure :type, :string 
-  #     configure :content, :string 
-  #     configure :ttl, :integer 
-  #     configure :prio, :integer 
-  #     configure :change_date, :integer 
-  #     configure :authentication_token, :string 
-  #     configure :created_at, :datetime 
-  #     configure :updated_at, :datetime 
-  #     configure :user_id, :integer         # Hidden 
-  #     configure :creator_id, :integer         # Hidden 
+  #     configure :id, :integer
+  #     configure :domain_id, :integer         # Hidden
+  #     configure :name, :string
+  #     configure :type, :string
+  #     configure :content, :string
+  #     configure :ttl, :integer
+  #     configure :prio, :integer
+  #     configure :change_date, :integer
+  #     configure :authentication_token, :string
+  #     configure :created_at, :datetime
+  #     configure :updated_at, :datetime
+  #     configure :user_id, :integer         # Hidden
+  #     configure :creator_id, :integer         # Hidden
   #     configure :updator_id, :integer   #   # Sections:
   #   list do; end
   #   export do; end
@@ -420,22 +420,22 @@ RailsAdmin.config do |config|
   # end
   # config.model TXT do
   #   # Found associations:
-  #     configure :domain, :belongs_to_association 
-  #     configure :user, :belongs_to_association 
+  #     configure :domain, :belongs_to_association
+  #     configure :user, :belongs_to_association
   #     configure :creator, :belongs_to_association   #   # Found columns:
-  #     configure :id, :integer 
-  #     configure :domain_id, :integer         # Hidden 
-  #     configure :name, :string 
-  #     configure :type, :string 
-  #     configure :content, :string 
-  #     configure :ttl, :integer 
-  #     configure :prio, :integer 
-  #     configure :change_date, :integer 
-  #     configure :authentication_token, :string 
-  #     configure :created_at, :datetime 
-  #     configure :updated_at, :datetime 
-  #     configure :user_id, :integer         # Hidden 
-  #     configure :creator_id, :integer         # Hidden 
+  #     configure :id, :integer
+  #     configure :domain_id, :integer         # Hidden
+  #     configure :name, :string
+  #     configure :type, :string
+  #     configure :content, :string
+  #     configure :ttl, :integer
+  #     configure :prio, :integer
+  #     configure :change_date, :integer
+  #     configure :authentication_token, :string
+  #     configure :created_at, :datetime
+  #     configure :updated_at, :datetime
+  #     configure :user_id, :integer         # Hidden
+  #     configure :creator_id, :integer         # Hidden
   #     configure :updator_id, :integer   #   # Sections:
   #   list do; end
   #   export do; end
@@ -446,34 +446,34 @@ RailsAdmin.config do |config|
   # end
   # config.model User do
   #   # Found associations:
-  #     configure :creator, :belongs_to_association 
-  #     configure :domains, :has_many_association 
-  #     configure :records, :has_many_association 
-  #     configure :permissions, :has_many_association 
+  #     configure :creator, :belongs_to_association
+  #     configure :domains, :has_many_association
+  #     configure :records, :has_many_association
+  #     configure :permissions, :has_many_association
   #     configure :permitted_domains, :has_many_association   #   # Found columns:
-  #     configure :id, :integer 
-  #     configure :email, :string 
-  #     configure :password, :password         # Hidden 
-  #     configure :password_confirmation, :password         # Hidden 
-  #     configure :reset_password_token, :string         # Hidden 
-  #     configure :reset_password_sent_at, :datetime 
-  #     configure :remember_created_at, :datetime 
-  #     configure :sign_in_count, :integer 
-  #     configure :current_sign_in_at, :datetime 
-  #     configure :last_sign_in_at, :datetime 
-  #     configure :current_sign_in_ip, :string 
-  #     configure :last_sign_in_ip, :string 
-  #     configure :confirmation_token, :string 
-  #     configure :confirmed_at, :datetime 
-  #     configure :confirmation_sent_at, :datetime 
-  #     configure :unconfirmed_email, :string 
-  #     configure :failed_attempts, :integer 
-  #     configure :unlock_token, :string 
-  #     configure :locked_at, :datetime 
-  #     configure :created_at, :datetime 
-  #     configure :updated_at, :datetime 
+  #     configure :id, :integer
+  #     configure :email, :string
+  #     configure :password, :password         # Hidden
+  #     configure :password_confirmation, :password         # Hidden
+  #     configure :reset_password_token, :string         # Hidden
+  #     configure :reset_password_sent_at, :datetime
+  #     configure :remember_created_at, :datetime
+  #     configure :sign_in_count, :integer
+  #     configure :current_sign_in_at, :datetime
+  #     configure :last_sign_in_at, :datetime
+  #     configure :current_sign_in_ip, :string
+  #     configure :last_sign_in_ip, :string
+  #     configure :confirmation_token, :string
+  #     configure :confirmed_at, :datetime
+  #     configure :confirmation_sent_at, :datetime
+  #     configure :unconfirmed_email, :string
+  #     configure :failed_attempts, :integer
+  #     configure :unlock_token, :string
+  #     configure :locked_at, :datetime
+  #     configure :created_at, :datetime
+  #     configure :updated_at, :datetime
   #     configure :full_name, :string
-  #     configure :creator_id, :integer         # Hidden 
+  #     configure :creator_id, :integer         # Hidden
   #     configure :updator_id, :integer   #   # Sections:
   #   list do; end
   #   export do; end

@@ -14,19 +14,19 @@ describe UserAbility do
       user.should_not be_able_to(:delete, soa_record) # SOA deleted only via parent
       user.should be_able_to(crud, host_a_record)
     end
-  
+
     it "denies other user to manage my domains and their records, and my hosts" do
       user2.should_not be_able_to(crud, domain)
       user2.should_not be_able_to(crud, a_record)
       user2.should_not be_able_to(crud, soa_record)
       user2.should_not be_able_to(crud, host_a_record)
     end
-  
+
     it "allows admin to manage other user's hosts" do
       admin.should be_able_to(crud, host_a_record)
     end
   end
-  
+
   context "permitted" do
     before do
       User.do_as(user) do
@@ -36,7 +36,7 @@ describe UserAbility do
         permission # ensure permission to domain
       end
     end
-    
+
     it "allows other user to manage user's domains and records, if permitted" do
       User.do_as(user2) do
         user2.should be_able_to(crud, domain)
@@ -44,7 +44,7 @@ describe UserAbility do
         user2.should be_able_to(crud, soa_record)
       end
     end
-    
+
     it "denies third user to manage user's permitted domains and records" do
       User.do_as(user3) do
         user3.should_not be_able_to(crud, domain)
@@ -67,7 +67,7 @@ describe UserAbility do
       end
     end
   end
-  
+
   context "permission" do
     it "allows me to manage my domain's permissions" do
       user.should be_able_to(crud, permission)

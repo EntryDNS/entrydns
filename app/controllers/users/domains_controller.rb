@@ -21,28 +21,28 @@ class Users::DomainsController < UsersController
     end
     conf.list.sorting = [{rgt: :desc}, {lftp: :asc}] # preorder
     conf.columns[:name].css_class = 'sorted'
-    
+
     # conf.columns[:records].label = 'All Records'
   end
-  
+
   protected
-  
+
   def beginning_of_chain
     super.readonly(false)
   end
-  
+
   def do_new
     super
     @record.setup(current_user.email)
   end
-  
+
   def do_create
     super
     if !successful? && @record.domain_ownership_failed
       @record.user = current_user
     end
   end
-  
+
   def do_destroy
     @record ||= destroy_find_record
     begin
@@ -57,13 +57,13 @@ class Users::DomainsController < UsersController
       self.successful = false
     end
   end
-  
+
   def new_model
     record = super
     before_create_save(record)
     record
   end
-  
+
   # override to add locking
   def update_save(options = {})
     attributes = options[:attributes] || params[:record]
@@ -95,7 +95,7 @@ class Users::DomainsController < UsersController
       ActiveRecord::Base.connection.execute("UNLOCK TABLES") if @name_changed
     end
   end
-    
+
   def before_create_save(record)
     record.type = 'NATIVE'
     record.user = record.parent_domain.present? ? record.parent_domain.user : current_user
@@ -118,5 +118,5 @@ class Users::DomainsController < UsersController
     end
     @record.reload
   end
-  
+
 end

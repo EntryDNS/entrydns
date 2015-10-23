@@ -41,9 +41,9 @@ module Entrydns
 
     # Version of your assets, change this if you want to expire all your assets
     config.assets.version = '1.0'
-    
+
     config.to_prepare do
-      layout = proc { |c| 
+      layout = proc { |c|
         return false if request.xhr?
         return 'admin' if devise_controller? && resource_name == :admin
         user_signed_in? ? 'users' : 'public'
@@ -53,9 +53,9 @@ module Entrydns
       Devise::ConfirmationsController.layout layout
       Devise::UnlocksController.layout layout
       Devise::PasswordsController.layout layout
-      
+
       Devise::Mailer.layout "emails"
     end
-    
+
   end
 end

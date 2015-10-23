@@ -30,18 +30,18 @@ end
 # Use this setup block to configure all options available in SimpleForm.
 SimpleForm.setup do |config|
   config.boolean_style = :nested
-  
+
   config.wrappers :bootstrap3, tag: 'div', class: 'form-group', error_class: 'has-error',
       defaults: { input_html: { class: 'default_class' } } do |b|
-    
+
     b.use :html5
-    
+
     b.use :min_max
     b.use :maxlength
     b.use :placeholder
     b.optional :pattern
     b.optional :readonly
-    
+
     b.use :label_input
     b.use :hint,  wrap_with: { tag: 'p', class: 'help-block' }
     b.use :error, wrap_with: { tag: 'span', class: 'help-inline' }
@@ -49,15 +49,15 @@ SimpleForm.setup do |config|
 
   config.wrappers :inlabel, tag: 'div', class: 'form-group', error_class: 'has-error',
       defaults: { input_html: { class: 'default_class' } } do |b|
-    
+
     b.use :html5
-    
+
     b.use :min_max
     b.use :maxlength
     b.use :placeholder
     b.optional :pattern
     b.optional :readonly
-    
+
     b.use :labeled_input
     b.use :input
     b.use :hint,  wrap_with: { tag: 'p', class: 'help-block' }

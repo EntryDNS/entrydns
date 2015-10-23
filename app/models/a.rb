@@ -12,7 +12,7 @@
 #
 class A < Record
   has_paper_trail
-  
+
   validates :name, :hostname2 => {:allow_wildcard_hostname => true}
   validates :content, :presence => true, :ip => {:ip_type => :v4} # Only accept valid IPv4 addresses
 
@@ -23,18 +23,18 @@ class A < Record
     :length => {:minimum => 4},
     :uniqueness => {:scope => [:domain_id, :type]},
     :if => :host?
-  
+
   validate do
     if host? && Settings.protected_hostnames.any? {|hn| name =~ /^#{hn}/i}
       errors[:name] << "cannot be used, please try another"
     end
   end
-  
+
   before_validation do
     if host_domain.present? && Settings.host_domains.include?(host_domain)
       self.domain_id = Domain.find_by_name(host_domain).try(:id)
     end
   end
-  
+
   def host?; domain.present? && Settings.host_domains.include?(domain.name) end
 end
