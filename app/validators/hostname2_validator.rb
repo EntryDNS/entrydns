@@ -1,6 +1,6 @@
 # skips length validations, more permissive defaults
 class Hostname2Validator < PAK::ValidatesHostname::HostnameValidator
-  
+
   def initialize(options)
     opts = {
       :allow_underscore        => true,
@@ -14,7 +14,7 @@ class Hostname2Validator < PAK::ValidatesHostname::HostnameValidator
 
   def validate_each(record, attribute, value)
     value ||= ''
-    
+
     # split each hostname into labels and do various checks
     if value.is_a?(String)
       labels = value.split '.'
@@ -26,14 +26,14 @@ class Hostname2Validator < PAK::ValidatesHostname::HostnameValidator
         # Take care of wildcard first label
         next if options[:allow_wildcard_hostname] and label == '*' and index == 0
 
-        # CHECK 3: hostname can only contain characters: 
+        # CHECK 3: hostname can only contain characters:
         #          a-z, 0-9, hyphen, optional underscore, optional asterisk
         valid_chars = 'a-z0-9\-'
         valid_chars << '_' if options[:allow_underscore] == true
         add_error(record, attribute, :label_contains_invalid_characters, :valid_chars => valid_chars) unless label =~ /^[#{valid_chars}]+$/i
       end
 
-      # CHECK 4: the unqualified hostname portion cannot consist of 
+      # CHECK 4: the unqualified hostname portion cannot consist of
       #          numeric values only
       if options[:allow_numeric_hostname] == false
         is_numeric_only = (
@@ -54,5 +54,5 @@ class Hostname2Validator < PAK::ValidatesHostname::HostnameValidator
       end
     end
   end
-  
+
 end

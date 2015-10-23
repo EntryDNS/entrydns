@@ -14,7 +14,7 @@ describe Tld do
     Tld.include?('ANYTHING.ar').should be_truthy
     Tld.include?('pref.fukuoka.jp').should be_truthy
     Tld.include?('any.toyama.jp').should be_truthy
-    
+
     Tld.include?('clyfe.ro').should be_falsey
     Tld.include?('clyfe.zooz.lt').should be_falsey
   end

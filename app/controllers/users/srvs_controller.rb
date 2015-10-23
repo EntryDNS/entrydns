@@ -10,18 +10,18 @@ class Users::SrvsController < UsersController
     conf.actions.exclude :show
   end
   include RecordsControllerCommon
-  
+
   protected
-  
+
   def do_new
     super
     @record.prio ||= 0
   end
-  
+
   def beginning_of_chain
     (nested_via_records? ? nested_parent_record.srv_records : super).readonly(false)
   end
-  
+
   # override, we make our own sti logic
   def new_model
     record = beginning_of_chain.new
@@ -29,5 +29,5 @@ class Users::SrvsController < UsersController
     before_create_save(record)
     record
   end
-  
+
 end

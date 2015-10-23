@@ -7,7 +7,7 @@ class IpValidator < ActiveModel::EachValidator
       (?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.){3}
       (?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)
     $/x
-  
+
   IPV6_REGEX = /^
       (
          (([0-9A-Fa-f]{1,4}:){7}[0-9A-Fa-f]{1,4})
@@ -23,7 +23,7 @@ class IpValidator < ActiveModel::EachValidator
         |(::([0-9A-Fa-f]{1,4}:){0,6}[0-9A-Fa-f]{1,4})
         |(([0-9A-Fa-f]{1,4}:){1,7}:)
       )$/x
-  
+
   # @param [Hash] options Options for validation
   # @option options [Symbol] :ip_type (:any) The IP address type (:any, :v4 or :v6)
   # @see ActiveModel::EachValidator#new
@@ -31,7 +31,7 @@ class IpValidator < ActiveModel::EachValidator
     options[:ip_type] ||= :any
     super
   end
-  
+
   def validate_each(record, attribute, value)
     case options[:ip_type]
       when :v4
@@ -49,14 +49,14 @@ private
   def ipv4?(address)
     address =~ IPV4_REGEX
   end
-  
+
   # Validates IPv6 address
   # @param [String] address the ipv6 address
   # @return [Boolean] the validation result
   def ipv6?(address)
     address =~ IPV6_REGEX
   end
-  
+
   # Validates IP (v4 or v6) address
   # @param [String] address the ip address
   # @return [Boolean] the validation result

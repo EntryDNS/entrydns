@@ -1,8 +1,8 @@
 class Tld
-  
+
   @@lines = []
   cattr_accessor :lines
-  
+
   File.open(Rails.root.join('db', 'data', 'tlds.txt').to_s) do |fd|
     fd.each do |line|
       unless line[0..1] == '//' || line =~ /^\s$/ # neither comment neither blank
@@ -14,12 +14,12 @@ class Tld
       end
     end
   end
-  
+
   def self.include?(name)
     for line in @@lines
       return true if name =~ line
     end
     return false
   end
-  
+
 end

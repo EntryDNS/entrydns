@@ -21,7 +21,7 @@
 #
 class NS < Record
   has_paper_trail
-  
+
   validates :name, :hostname2 => true
   validates :content, :presence => true, :hostname2 => true #, :inclusion => {:in => Settings.ns}
 

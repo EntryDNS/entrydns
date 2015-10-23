@@ -1,19 +1,19 @@
 class Domain < ActiveRecord::Base
   include ActsAsNestedInterval
-  
+
   attr_accessor :parent_synced
-  
+
   # this goes before acts_as_nested_interval call
   before_save do
     self.name_reversed = name.reverse if name_changed?
     sync_parent
   end
-  
+
   after_save :sync_children
-  
-  # this goes after sync_parent, to order callbacks correctly 
+
+  # this goes after sync_parent, to order callbacks correctly
   acts_as_nested_interval virtual_root: true, dependent: :restrict_with_error
-  
+
   validate :domain_ownership
   def domain_ownership
     # non-TLD validation
@@ -26,14 +26,14 @@ class Domain < ActiveRecord::Base
       errors[:name] = "issue, the parent domain `#{parent_domain.name}` is registered to another user"
     end
   end
-  
+
   # If current user present authorize it
   # If current user not present, just allow (rake tasks etc)
   def can_be_managed_by_current_user?
     return true if User.current.nil?
     UserAbility::CRUD.all?{|operation| User.current.can?(operation, self)}
   end
-  
+
   # Returns the first immediate parent, if exists (and caches the search)
   def parent_domain
     return nil if name.nil?
@@ -45,23 +45,23 @@ class Domain < ActiveRecord::Base
   def subdomains
     Domain.where(:name_reversed.matches => "#{name_reversed}.%")
   end
-  
+
   def subdomain_of?(domain)
     name.end_with?('.' + domain.name)
   end
-  
+
   # override
   def self.rebuild_nested_interval_tree!
     skip_callback :update, :before, :sync_children
     super
     set_callback :update, :before, :sync_children
   end
-  
+
   # Syncs with nested interval when a child is added and parent exists
   def sync_parent
     self.parent = parent_domain if !@parent_synced && new_parent?
   end
-  
+
   # acts_as_nested_interval monkeypatch for lock
   def update_nested_interval
     changed = send(:"#{nested_interval_foreign_key}_changed?")
@@ -75,9 +75,9 @@ class Domain < ActiveRecord::Base
     end
   end
   def connection; self.class.connection end
-  
+
   protected
-  
+
   def new_parent?
     parent_domain.present? && self.parent_id != parent_domain.id
   end
@@ -93,13 +93,13 @@ class Domain < ActiveRecord::Base
     end
     return nil
   end
-  
+
   # only immediate children
   def children_subdomains
     descendants = subdomains.preorder.to_a
     first = descendants.first
     return [] unless first.present?
-      
+
     # only immediate children
     depth = first.depth
     descendants.select { |d| d.depth == depth }
@@ -113,5 +113,5 @@ class Domain < ActiveRecord::Base
       subdomain.save! # rest will chain recursively
     end
   end
-  
+
 end

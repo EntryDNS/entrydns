@@ -8,15 +8,15 @@
 #
 class MX < Record
   has_paper_trail
-  
+
   validates :name, :hostname2 => {:allow_wildcard_hostname => true}
   validates :content, :presence => true, :hostname2 => {:allow_wildcard_hostname => true}
   validates :prio, :presence => true, :numericality => {
-    :greater_than_or_equal_to => 0, 
-    :less_than_or_equal_to => 65535, 
+    :greater_than_or_equal_to => 0,
+    :less_than_or_equal_to => 65535,
     :only_integer => true
   }
-  
+
   def supports_priority?; true end
 end
 

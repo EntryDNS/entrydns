@@ -1,5 +1,5 @@
 class Domain < ActiveRecord::Base
-  
+
   before_validation(:on => :update) do
     if name_changed?
       name_was_pattern = /#{Regexp.escape(name_was)}$/
@@ -24,11 +24,11 @@ class Domain < ActiveRecord::Base
       end
     end
   end
-  
+
   def each_update_involved_record
     yield soa_record
     soa_records.each { |record| yield record }
     records.each     { |record| yield record }
   end
-  
+
 end

@@ -7,7 +7,7 @@ module ApplicationHelper
     alert: :warning, warning: :warning, warn: :warning,
     info: :info,   notice: :info
   )
-  
+
   # for each record in the rails flash this
   # function wraps the message in an appropriate div
   # and displays it
@@ -18,7 +18,7 @@ module ApplicationHelper
     }.join
     flashes.present? ? content_tag(:div, flashes.html_safe, :class => clazz) : nil
   end
-  
+
   def error_messages_for(resource)
     return "" if resource.errors.empty?
 
@@ -36,18 +36,18 @@ module ApplicationHelper
 
     html.html_safe
   end
-  
+
   def honeypot
     content_tag('div', :style => 'position: absolute; left: -2000px;') do
       text_field_tag("#{Settings.honeypot}", nil, :tabindex => 900)
     end
   end
-  
+
   # ActiveScaffold
-  
+
   def active_scaffold_column_timestamp(record, column)
     value = record.send(column.name)
     value.nil? ? nil : Time.at(value)
   end
-  
+
 end

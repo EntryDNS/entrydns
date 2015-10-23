@@ -15,9 +15,9 @@ class Users::RecordsController < UsersController
       active_scaffold_config.action_links.collection.create.name = "Add Record"
     end
   end
-  
+
   respond_to :html, :xml, :json
-  
+
   active_scaffold :record do |conf|
     conf.sti_children = [:SOA, :NS, :MX, :A, :CNAME, :TXT, :AAAA, :SRV]
     conf.columns = [:name, :type, :content, :ttl, :prio, :change_date, :authentication_token]
@@ -36,10 +36,10 @@ class Users::RecordsController < UsersController
     c.skip_authorize_resource
   end
   protect_from_forgery :except => 'modify'
-  
+
   MODIFY_ERROR = 'ERROR: only A records can be modified with this API'
   MODIFY_OK = 'OK'
-  
+
   # TODO: externalize
   def modify
     @record = Record.where(:authentication_token => params[:authentication_token]).first!
@@ -48,15 +48,15 @@ class Users::RecordsController < UsersController
     @record.save!
     render(:text => MODIFY_OK)
   end
-    
+
   protected
-  
+
   def new_model
     record = super
     before_create_save(record)
     record
   end
-  
+
   # just to limit the action to A type records
   def a_record?(record)
     record.class == A

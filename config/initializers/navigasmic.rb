@@ -6,7 +6,7 @@ end
 module Navigasmic
   # lazy monkey patch, makes it work with twitter bootstrap
   class HtmlNavigationBuilder
-    
+
     def item(label = '', options = {}, &proc)
       buffer = block_given? ? template.capture(self, &proc) : ''
       label = (label + buffer).html_safe
@@ -24,7 +24,7 @@ module Navigasmic
 
       item.hidden? ? '' : template.content_tag(Navigasmic.item_tag, label, options.delete(:html))
     end
-    
+
     def group(options = {}, &proc)
       raise ArgumentError, "Missing block" unless block_given?
 
@@ -37,6 +37,6 @@ module Navigasmic
       visible = options[:hidden_unless].nil? ? true : options[:hidden_unless].is_a?(Proc) ? template.instance_eval(&options[:hidden_unless]) : options[:hidden_unless]
       visible ? group.html_safe : ''
     end
-    
+
   end
 end

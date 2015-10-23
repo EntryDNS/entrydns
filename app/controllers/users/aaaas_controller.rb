@@ -10,13 +10,13 @@ class Users::AaaasController < UsersController
     conf.actions.exclude :show
   end
   include RecordsControllerCommon
-  
+
   protected
-  
+
   def beginning_of_chain
     (nested_via_records? ? nested_parent_record.aaaa_records : super).readonly(false)
   end
-  
+
   # override, we make our own sti logic
   def new_model
     record = beginning_of_chain.new
